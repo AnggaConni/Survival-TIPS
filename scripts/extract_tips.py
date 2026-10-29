@@ -105,8 +105,8 @@ def normalize_tip(raw,source,provider):
     # No practical steps usually means we captured a heading or a broad slogan.
     # Keep procedural exceptions out of the corpus rather than padding them.
     if not steps: return None
-    content_type=str(raw.get("content_type","other")).strip().lower()
-    if content_type not in CONTENT_TYPES: content_type="other"
+    content_type=str(raw.get("content_type","")).strip().lower()
+    if content_type not in CONTENT_TYPES: return None
     def clean_list(key, limit=12):
         value=raw.get(key, [])
         if not isinstance(value, list): value=[]
