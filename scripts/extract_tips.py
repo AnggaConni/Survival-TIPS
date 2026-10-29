@@ -36,6 +36,7 @@ STRICT SOURCE-EVIDENCE RULES
 
 QUALITY BAR
 A good tip is a self-contained practice a reader can understand and act on. Prefer concrete procedures, decision criteria, checklists, measurable recommendations with source-stated context, troubleshooting, maintenance, or repeatable methods.
+Every tip must declare one content_type: identify, eat, grow, build, make, repair, maintain, treat, prepare, plan, or other. Prefer action-specific labels rather than category=other.
 Reject vague advice such as "be prepared", "improve resilience", "use appropriate materials", "grow nutritious crops", or "consult guidelines" unless the source provides concrete steps that make the advice operational.
 Reject tips whose only action is to download a document, visit an app, share a notice, follow a generic link, or comply with a broad policy. Extract the substantive procedure from the source itself when present; otherwise return no tip.
 Do not create multiple near-duplicate tips from one page. Prefer a small number of high-value, distinct tips over a long list of shallow ones. Usually return 0-5 tips per source; return fewer when evidence is thin.
