@@ -13,7 +13,7 @@ GENERIC_PHRASES = (
 )
 
 def norm(value):
-    return re.sub(r"\\s+", " ", str(value or "")).strip().casefold()
+    return re.sub(r"\s+", " ", str(value or "")).strip().casefold()
 
 def audit(tips, sources):
     source_by_url = {s.get("url"): s for s in sources if s.get("url")}
