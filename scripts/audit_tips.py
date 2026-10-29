@@ -11,6 +11,7 @@ GENERIC_PHRASES = (
     "be prepared", "improve resilience", "consult guidelines",
     "use appropriate", "plan ahead", "provide safe", "ensure proper",
 )
+VALID_CONTENT_TYPES = {"identify", "eat", "grow", "build", "make", "repair", "maintain", "treat", "prepare", "plan", "other"}
 
 def norm(value):
     return re.sub(r"\s+", " ", str(value or "")).strip().casefold()
@@ -26,6 +27,20 @@ def audit(tips, sources):
             issues[tip_id].append("missing_title")
         if not tip.get("summary"):
             issues[tip_id].append("missing_summary")
+        content_type = norm(tip.get("content_type"))
+        if content_type not in VALID_CONTENT_TYPES:
+            issues[tip_id].append("missing_or_invalid_content_type")
+        if content_type == "eat":
+            food_fields = ("identification_criteria", "edible_parts", "preparation_requirements", "lookalikes_or_uncertainty")
+            if any(not isinstance(tip.get(field), list) or not tip.get(field) for field in food_fields):
+                issues[tip_id].append("wild_food_safety_details_missing")
+        if content_type in {"build", "make"}:
+            if not tip.get("materials"):
+                issues[tip_id].append("build_recipe_missing_materials")
+            if not tip.get("tools"):
+                issues[tip_id].append("build_recipe_missing_tools")
+            if not tip.get("expected_result"):
+                issues[tip_id].append("build_recipe_missing_expected_result")
         if not isinstance(tip.get("steps"), list) or not tip.get("steps"):
             issues[tip_id].append("no_actionable_steps")
         if not tip.get("sources"):
@@ -122,6 +137,9 @@ def main():
             "evidence_not_found_verbatim_in_source", "no_actionable_steps",
             "missing_title", "missing_summary", "missing_source",
             "possibly_generic_advice", "unclassified_stage",
+            "missing_or_invalid_content_type", "wild_food_safety_details_missing",
+            "build_recipe_missing_materials", "build_recipe_missing_tools",
+            "build_recipe_missing_expected_result",
         }
         rejected = {
             tip.get("id"): sorted(set(replacement_issues.get(tip.get("id"), [])) & severe)
