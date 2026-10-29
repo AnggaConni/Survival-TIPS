@@ -27,7 +27,7 @@ def test_prompt_rejects_heading_only_and_requires_verbatim_evidence():
     assert "Never invent thresholds" in PROMPT
 
 def test_normalize_tip_keeps_unreviewed_status_and_rejects_empty_steps_shape():
-    src={"url":"https://example.org/water","title":"Water guide","domain":"example.org","retrieved_at":"2026-10-29T00:00:00+00:00"}
+    src={"url":"https://example.org/water","title":"Water guide","domain":"example.org","retrieved_at":"2026-10-29T00:00:00+00:00","text":"Boil water before drinking."}
     tip=normalize_tip({
         "title":"Treat drinking water","category":"water",
         "summary":"Use the source-supported water treatment method.",
@@ -55,3 +55,17 @@ def test_normalize_tip_accepts_verbatim_evidence_and_steps():
     tip=normalize_tip(raw,src,"test")
     assert tip is not None
     assert tip["evidence_excerpt"] in src["text"]
+
+
+def test_extract_falls_back_when_first_provider_fails_validation(monkeypatch):
+    import scripts.extract_tips as extractor
+    source={"url":"https://example.org/guide","title":"Guide","domain":"example.org","retrieved_at":"2026-10-29T00:00:00+00:00","text":"Boil water for one minute before drinking."}
+    bad={"tips":[{"title":"Treat water","category":"water","summary":"Boil water.","steps":["Boil water."],"warnings":[],"evidence_excerpt":"Boiling water removes every contaminant.","confidence":"high"}]}
+    good={"tips":[{"title":"Boil water before drinking","category":"water","summary":"Boil water before use.","steps":["Bring water to a boil for one minute."],"warnings":[],"evidence_excerpt":"Boil water for one minute before drinking.","confidence":"medium"}]}
+    monkeypatch.setattr(extractor, "call_groq", lambda source: bad)
+    monkeypatch.setattr(extractor, "call_deepseek", lambda source: good)
+    monkeypatch.setattr(extractor, "call_openrouter", lambda source: {"tips":[]})
+    tips, provider = extractor.extract(source)
+    assert provider == "deepseek"
+    assert len(tips) == 1
+    assert tips[0]["evidence_excerpt"] in source["text"]
