@@ -69,3 +69,30 @@ def test_extract_falls_back_when_first_provider_fails_validation(monkeypatch):
     assert provider == "deepseek"
     assert len(tips) == 1
     assert tips[0]["evidence_excerpt"] in source["text"]
+
+
+def test_audit_flags_missing_verbatim_evidence():
+    from scripts.audit_tips import audit
+    source={"url":"https://example.org/water","text":"Boil water before drinking."}
+    tip={
+        "id":"tip-1","title":"Boil drinking water","category":"water",
+        "summary":"Boil water before drinking.","steps":["Boil water."],
+        "evidence_excerpt":"Boiling removes every contaminant.",
+        "sources":[{"url":"https://example.org/water"}],
+        "stage_ids":["03-water-sanitation"]
+    }
+    issues, _ = audit([tip], [source])
+    assert "evidence_not_found_verbatim_in_source" in issues["tip-1"]
+
+def test_audit_accepts_tip_with_verbatim_evidence_and_stage():
+    from scripts.audit_tips import audit
+    source={"url":"https://example.org/water","text":"Boil water before drinking."}
+    tip={
+        "id":"tip-2","title":"Boil drinking water","category":"water",
+        "summary":"Boil water before drinking.","steps":["Boil water."],
+        "evidence_excerpt":"Boil water before drinking.",
+        "sources":[{"url":"https://example.org/water"}],
+        "stage_ids":["03-water-sanitation"]
+    }
+    issues, _ = audit([tip], [source])
+    assert "tip-2" not in issues
