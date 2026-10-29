@@ -97,18 +97,49 @@ def main():
     repaired = 0
     for url in urls_to_repair:
         source = source_by_url[url]
-        replacements, provider = extract(source)
+        source_tips = [
+            tip for tip in updated_tips
+            if any(ref.get("url") == url for ref in tip.get("sources", []))
+        ]
+        feedback_lines = []
+        for tip in source_tips:
+            tip_issues = issues.get(tip.get("id", "(missing-id)"), [])
+            if tip_issues:
+                feedback_lines.append(f"- {tip.get('title', '(untitled)')}: {', '.join(tip_issues)}")
+        repair_source = dict(source)
+        repair_source["repair_feedback"] = (
+            "Flagged existing entries and their issues:\\n"
+            + "\\n".join(feedback_lines)
+            + "\\nProduce only distinct, source-supported, actionable replacements. "
+              "Do not preserve a weak title by merely rephrasing it; return no tip if evidence is insufficient."
+        )
+        replacements, provider = extract(repair_source)
         if not replacements:
             print(f"[repair] Kept existing tips for {url}: no replacement passed validation (provider={provider}).")
             continue
+        replacement_issues, _ = audit(replacements, [source])
+        severe = {
+            "evidence_not_found_verbatim_in_source", "no_actionable_steps",
+            "missing_title", "missing_summary", "missing_source",
+            "possibly_generic_advice", "unclassified_stage",
+        }
+        rejected = {
+            tip.get("id"): sorted(set(replacement_issues.get(tip.get("id"), [])) & severe)
+            for tip in replacements
+            if set(replacement_issues.get(tip.get("id"), [])) & severe
+        }
+        if rejected:
+            print(f"[repair] Kept existing tips for {url}: replacement candidates still failed quality checks: {rejected}")
+            continue
         before = len(updated_tips)
+        old_count = len(source_tips)
         updated_tips = [
             tip for tip in updated_tips
             if not any(ref.get("url") == url for ref in tip.get("sources", []))
         ]
         updated_tips.extend(replacements)
         repaired += 1
-        print(f"[repair] Replaced source tips for {url}: {before - len(updated_tips) + len(replacements)} old candidate(s) -> {len(replacements)} new candidate(s).")
+        print(f"[repair] Replaced source tips for {url}: {old_count} old candidate(s) -> {len(replacements)} new candidate(s) from {provider}.")
 
     if repaired:
         write_json(tip_path, {
