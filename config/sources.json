@@ -6,7 +6,15 @@
     "site:ifrc.org emergency preparedness household survival",
     "site:fao.org home gardening food security guide",
     "site:unhcr.org emergency shelter water sanitation guidance",
-    "official emergency preparedness guidance water treatment food storage"
+    "official emergency preparedness guidance water treatment food storage",
+    "site:fao.org technical guide crop cultivation seed saving compost food preservation",
+    "site:who.int household water treatment safe storage emergency guidance",
+    "site:unhcr.org emergency shelter construction technical guidance materials",
+    "site:usda.gov food safety food preservation technical guidance",
+    "site:extension.oregonstate.edu food preservation safety guide",
+    "site:practicalaction.org technical brief water energy agriculture construction",
+    "site:cdc.gov emergency water disinfection sanitation practical instructions",
+    "site:ready.gov how to emergency preparedness checklist evacuation shelter"
   ],
   "trusted_domains": [
     "ready.gov",
@@ -23,7 +31,11 @@
     "noaa.gov",
     "usgs.gov",
     "nps.gov",
-    "fema.gov"
+    "fema.gov",
+    "usda.gov",
+    "nifa.usda.gov",
+    "extension.oregonstate.edu",
+    "practicalaction.org"
   ],
   "rss_feeds": [
     {
