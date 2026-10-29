@@ -148,3 +148,15 @@ def test_normalize_tip_rejects_missing_content_type():
     src={"url":"https://example.org/guide","title":"Guide","domain":"example.org","retrieved_at":"2026-10-29T00:00:00+00:00","text":"Boil water before drinking."}
     raw={"title":"Boil drinking water","category":"water","summary":"Boil water.","steps":["Boil water."],"warnings":[],"evidence_excerpt":"Boil water before drinking.","confidence":"high"}
     assert normalize_tip(raw,src,"test") is None
+
+
+def test_normalize_tip_rejects_generic_slogan():
+    src={"url":"https://example.org/guide","title":"Guide","domain":"example.org","retrieved_at":"2026-10-29T00:00:00+00:00","text":"Be prepared for emergencies."}
+    raw={"title":"Be prepared","content_type":"prepare","category":"planning","summary":"Be prepared for emergencies.","steps":["Be prepared."],"warnings":[],"evidence_excerpt":"Be prepared for emergencies.","confidence":"high"}
+    assert normalize_tip(raw,src,"test") is None
+
+
+def test_normalize_tip_rejects_incomplete_build_recipe():
+    src={"url":"https://example.org/build","title":"Build guide","domain":"example.org","retrieved_at":"2026-10-29T00:00:00+00:00","text":"Build a simple stove from local materials."}
+    raw={"title":"Build a simple stove","content_type":"build","category":"other","summary":"Build a stove.","steps":["Arrange the materials."],"materials":["Local materials"],"tools":[],"expected_result":"A stove","warnings":[],"evidence_excerpt":"Build a simple stove from local materials.","confidence":"medium"}
+    assert normalize_tip(raw,src,"test") is None
