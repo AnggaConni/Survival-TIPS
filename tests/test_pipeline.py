@@ -88,7 +88,7 @@ def test_audit_accepts_tip_with_verbatim_evidence_and_stage():
     from scripts.audit_tips import audit
     source={"url":"https://example.org/water","text":"Boil water before drinking."}
     tip={
-        "id":"tip-2","title":"Boil drinking water","category":"water",
+        "id":"tip-2","title":"Boil drinking water","content_type":"treat","category":"water",
         "summary":"Boil water before drinking.","steps":["Boil water."],
         "evidence_excerpt":"Boil water before drinking.",
         "sources":[{"url":"https://example.org/water"}],
@@ -96,3 +96,49 @@ def test_audit_accepts_tip_with_verbatim_evidence_and_stage():
     }
     issues, _ = audit([tip], [source])
     assert "tip-2" not in issues
+
+
+def test_normalize_tip_rejects_wild_food_without_safety_details():
+    src={"url":"https://example.org/plant","title":"Plant guide","domain":"example.org","retrieved_at":"2026-10-29T00:00:00+00:00","text":"The leaves of Example plant are eaten after thorough cooking."}
+    raw={
+        "title":"Eat Example plant leaves","content_type":"eat","category":"food",
+        "summary":"The source mentions cooked leaves.","steps":["Cook the leaves."],
+        "warnings":[],"evidence_excerpt":"The leaves of Example plant are eaten after thorough cooking.",
+        "confidence":"high"
+    }
+    assert normalize_tip(raw,src,"test") is None
+
+
+def test_normalize_tip_accepts_eat_only_with_required_source_fields():
+    src={"url":"https://example.org/plant","title":"Plant guide","domain":"example.org","retrieved_at":"2026-10-29T00:00:00+00:00","text":"The leaves of Example plant are eaten after thorough cooking."}
+    raw={
+        "title":"Eat Example plant leaves","content_type":"eat","category":"food",
+        "summary":"The source mentions cooked leaves.","steps":["Cook the leaves."],
+        "materials":["Example plant leaves"],"tools":[],"prerequisites":[],
+        "expected_result":"Cooked leaves","failure_modes":[],"safety_notes":[],
+        "identification_criteria":["Use only the plant identified in the source."],
+        "edible_parts":["Leaves"],"preparation_requirements":["Thorough cooking"],
+        "lookalikes_or_uncertainty":["The source does not describe look-alikes; identification needs expert confirmation."],
+        "warnings":[],"evidence_excerpt":"The leaves of Example plant are eaten after thorough cooking.",
+        "confidence":"medium"
+    }
+    tip=normalize_tip(raw,src,"test")
+    assert tip is not None
+    assert tip["content_type"] == "eat"
+    assert tip["edible_parts"] == ["Leaves"]
+
+
+def test_audit_flags_build_tip_missing_recipe_details():
+    from scripts.audit_tips import audit
+    source={"url":"https://example.org/build","text":"Build a brick stove for cooking."}
+    tip={
+        "id":"tip-build","title":"Build a brick stove","content_type":"build","category":"other",
+        "summary":"Build a brick stove.","steps":["Arrange bricks."],
+        "evidence_excerpt":"Build a brick stove for cooking.",
+        "sources":[{"url":"https://example.org/build"}],"stage_ids":["07-manufacturing"],
+        "materials":[],"tools":[],"expected_result":""
+    }
+    issues,_=audit([tip],[source])
+    assert "build_recipe_missing_materials" in issues["tip-build"]
+    assert "build_recipe_missing_tools" in issues["tip-build"]
+    assert "build_recipe_missing_expected_result" in issues["tip-build"]
