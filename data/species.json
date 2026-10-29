@@ -1,5 +1,132 @@
 {
   "schema_version": "1.0",
-  "generated_at": null,
-  "species": []
+  "generated_at": "2026-10-29T17:35:35+00:00",
+  "species": [
+    {
+      "id": "gbif-9e3d7b2079d169",
+      "scientific_name": "Quercus robur L.",
+      "common_name": null,
+      "gbif_occurrence_key": 5938047468,
+      "gbif_taxon_key": 2878688,
+      "country": "Russian Federation",
+      "locality": null,
+      "image_path": "assets/species/gbif-9e3d7b2079d169.jpg",
+      "image_source_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/604765683/original.jpg",
+      "image_license": "http://creativecommons.org/licenses/by/4.0/",
+      "image_creator": "Stanislav Murashkin",
+      "image_publisher": "iNaturalist",
+      "image_rights_holder": "Stanislav Murashkin",
+      "gbif_record_url": "https://www.gbif.org/occurrence/5938047468",
+      "survival_use_evidence": "Not established by GBIF occurrence/photo data. Never infer edibility or safety.",
+      "verification": {
+        "status": "needs_review"
+      },
+      "retrieved_at": "2026-10-29T17:35:28+00:00"
+    },
+    {
+      "id": "gbif-74bfaa1a5b9f24",
+      "scientific_name": "Moringa oleifera Lam.",
+      "common_name": null,
+      "gbif_occurrence_key": 6129905128,
+      "gbif_taxon_key": 3054181,
+      "country": "Mexico",
+      "locality": null,
+      "image_path": "assets/species/gbif-74bfaa1a5b9f24.jpg",
+      "image_source_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/609777031/original.jpg",
+      "image_license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "image_creator": "Sinaloa Silvestre",
+      "image_publisher": "iNaturalist",
+      "image_rights_holder": "Sinaloa Silvestre",
+      "gbif_record_url": "https://www.gbif.org/occurrence/6129905128",
+      "survival_use_evidence": "Not established by GBIF occurrence/photo data. Never infer edibility or safety.",
+      "verification": {
+        "status": "needs_review"
+      },
+      "retrieved_at": "2026-10-29T17:35:30+00:00"
+    },
+    {
+      "id": "gbif-db8448b31f97e5",
+      "scientific_name": "Moringa oleifera Lam.",
+      "common_name": null,
+      "gbif_occurrence_key": 6130415748,
+      "gbif_taxon_key": 3054181,
+      "country": "Mexico",
+      "locality": null,
+      "image_path": "assets/species/gbif-db8448b31f97e5.jpg",
+      "image_source_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/610840494/original.jpg",
+      "image_license": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "image_creator": "Sinaloa Silvestre",
+      "image_publisher": "iNaturalist",
+      "image_rights_holder": "Sinaloa Silvestre",
+      "gbif_record_url": "https://www.gbif.org/occurrence/6130415748",
+      "survival_use_evidence": "Not established by GBIF occurrence/photo data. Never infer edibility or safety.",
+      "verification": {
+        "status": "needs_review"
+      },
+      "retrieved_at": "2026-10-29T17:35:31+00:00"
+    },
+    {
+      "id": "gbif-e53c6a90ffb220",
+      "scientific_name": "Cocos nucifera L.",
+      "common_name": null,
+      "gbif_occurrence_key": 5938194554,
+      "gbif_taxon_key": 2735117,
+      "country": "Honduras",
+      "locality": null,
+      "image_path": "assets/species/gbif-e53c6a90ffb220.jpg",
+      "image_source_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/605077533/original.jpg",
+      "image_license": "http://creativecommons.org/licenses/by/4.0/",
+      "image_creator": "Isis I. Castro Alberto",
+      "image_publisher": "iNaturalist",
+      "image_rights_holder": "Isis I. Castro Alberto",
+      "gbif_record_url": "https://www.gbif.org/occurrence/5938194554",
+      "survival_use_evidence": "Not established by GBIF occurrence/photo data. Never infer edibility or safety.",
+      "verification": {
+        "status": "needs_review"
+      },
+      "retrieved_at": "2026-10-29T17:35:32+00:00"
+    },
+    {
+      "id": "gbif-c233df324f3345",
+      "scientific_name": "Cocos nucifera L.",
+      "common_name": null,
+      "gbif_occurrence_key": 5938319745,
+      "gbif_taxon_key": 2735117,
+      "country": "Chinese Taipei",
+      "locality": null,
+      "image_path": "assets/species/gbif-c233df324f3345.jpg",
+      "image_source_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/605601318/original.jpg",
+      "image_license": "http://creativecommons.org/licenses/by/4.0/",
+      "image_creator": "chiuluan",
+      "image_publisher": "iNaturalist",
+      "image_rights_holder": "chiuluan",
+      "gbif_record_url": "https://www.gbif.org/occurrence/5938319745",
+      "survival_use_evidence": "Not established by GBIF occurrence/photo data. Never infer edibility or safety.",
+      "verification": {
+        "status": "needs_review"
+      },
+      "retrieved_at": "2026-10-29T17:35:33+00:00"
+    },
+    {
+      "id": "gbif-5c5328213c1139",
+      "scientific_name": "Ipomoea batatas (L.) Lam.",
+      "common_name": null,
+      "gbif_occurrence_key": 6130422940,
+      "gbif_taxon_key": 2928551,
+      "country": "Mexico",
+      "locality": null,
+      "image_path": "assets/species/gbif-5c5328213c1139.jpg",
+      "image_source_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/607689052/original.jpg",
+      "image_license": "http://creativecommons.org/licenses/by/4.0/",
+      "image_creator": "Carlos Domínguez-Rodríguez",
+      "image_publisher": "iNaturalist",
+      "image_rights_holder": "Carlos Domínguez-Rodríguez",
+      "gbif_record_url": "https://www.gbif.org/occurrence/6130422940",
+      "survival_use_evidence": "Not established by GBIF occurrence/photo data. Never infer edibility or safety.",
+      "verification": {
+        "status": "needs_review"
+      },
+      "retrieved_at": "2026-10-29T17:35:35+00:00"
+    }
+  ]
 }
