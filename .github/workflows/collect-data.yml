@@ -45,7 +45,7 @@ jobs:
       - name: Validate JSON
         run: python -m scripts.validate_data
       - name: Test
-        run: pytest -q
+        run: python -m pytest -q
       - name: Generate separate stage PDFs
         run: python -m scripts.export_pdfs --all
       - name: Commit collected data and PDFs
