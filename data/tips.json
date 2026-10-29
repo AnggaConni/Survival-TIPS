@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-29T17:41:40+00:00",
+  "generated_at": "2026-10-29T17:51:54+00:00",
   "tips": [
     {
       "id": "tip-3104734432df54",
@@ -1361,6 +1361,37 @@
         }
       ],
       "retrieved_at": "2026-10-29T17:34:52+00:00",
+      "ai_provider": "groq",
+      "verification": {
+        "status": "needs_review",
+        "confidence": "high",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stage_ids": [
+        "01-drr"
+      ]
+    },
+    {
+      "id": "tip-f03df031c28d44",
+      "title": "Define Clear Objectives for Your Home Garden",
+      "category": "planning",
+      "summary": "List the main outputs you want and the constraints you face to guide improvement decisions.",
+      "steps": [
+        "Write a list of the main things you want your home garden to produce.",
+        "Identify major constraints such as wild pigs, poor soil or sloping land."
+      ],
+      "warnings": [],
+      "evidence_excerpt": "STEP 2: SET OBJECTIVES Make a list of the main things you want your home garden to produce. You should also identify the major constraints you need to overcome, such as wild pigs, poor soil or sloping land.",
+      "sources": [
+        {
+          "title": "Improving nutrition through home gardening - A training package for preparing field workers in Southeast Asia",
+          "url": "https://www.fao.org/4/V5290E/v5290e04.htm",
+          "domain": "fao.org",
+          "retrieved_at": "2026-10-29T17:34:50+00:00"
+        }
+      ],
+      "retrieved_at": "2026-10-29T17:34:50+00:00",
       "ai_provider": "groq",
       "verification": {
         "status": "needs_review",
