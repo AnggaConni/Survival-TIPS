@@ -11,8 +11,8 @@ def test_license_allowlist():
     assert not license_allowed("All rights reserved")
 
 def test_tip_requires_source():
-    src={"url":"https://example.org/guide","title":"Guide","domain":"example.org","retrieved_at":"2026-10-29T00:00:00+00:00"}
-    tip=normalize_tip({"title":"Keep water safe","category":"water","summary":"Follow current public health guidance." ,"steps":["Check official guidance"],"warnings":[],"confidence":"medium"},src,"test")
+    src={"url":"https://example.org/guide","title":"Guide","domain":"example.org","retrieved_at":"2026-10-29T00:00:00+00:00","text":"Follow current public health guidance."}
+    tip=normalize_tip({"title":"Keep water safe","category":"water","summary":"Follow current public health guidance." ,"steps":["Check official guidance"],"warnings":[],"evidence_excerpt":"Follow current public health guidance.","confidence":"medium"},src,"test")
     assert tip and tip["verification"]["status"]=="needs_review"
     assert tip["sources"][0]["url"]==src["url"]
     assert "03-water-sanitation" in tip["stage_ids"]
