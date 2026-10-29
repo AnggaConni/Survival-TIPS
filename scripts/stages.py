@@ -28,7 +28,7 @@ def classify_tip(tip):
         if score:
             scored.append((score, -stage.get("order", 999), stage["id"]))
     if not scored:
-        return ["01-drr"]
+        return []
     best = max(score for score, _, _ in scored)
     # Keep all tied best matches, allowing cross-cutting guides to appear in multiple filters.
     return [stage_id for score, _, stage_id in scored if score == best]
