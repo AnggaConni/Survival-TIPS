@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-29T17:35:26+00:00",
+  "generated_at": "2026-10-29T17:41:40+00:00",
   "tips": [
     {
       "id": "tip-3104734432df54",
@@ -590,6 +590,787 @@
         "reviewed_at": null
       },
       "stage_ids": []
+    },
+    {
+      "id": "tip-4e3e6a8ddbe453",
+      "title": "Boil Water During Advisories",
+      "category": "water",
+      "summary": "When a boil water advisory is issued, heat water to a rolling boil for at least one minute to kill pathogens such as Cryptosporidium.",
+      "steps": [
+        "Check local advisories for boil water orders.",
+        "Collect water from a safe source.",
+        "Heat water on a stove or other heat source until it reaches a rolling boil.",
+        "Maintain the boil for at least 1 minute.",
+        "Cool and store in clean containers.",
+        "Use the boiled water for drinking, cooking, and brushing teeth.",
+        "Reboil if water is stored for more than 24 hours."
+      ],
+      "warnings": [
+        "Do not use water that has been stored in contaminated containers.",
+        "Avoid boiling water that may contain chemical contaminants."
+      ],
+      "evidence_excerpt": "Boil Water Advisories. For Cryptosporidium, but applies to other organisms as well.",
+      "sources": [
+        {
+          "title": "Responding to a Water, Sanitation, & Hygiene (WASH)-related Emergency | Water, Sanitation, & Hygiene-related Emergencies & and Outbreaks | Healthy Water | CDC",
+          "url": "https://archive.cdc.gov/www_cdc_gov/healthywater/emergency/planning-training-response/responding.html",
+          "domain": "archive.cdc.gov",
+          "retrieved_at": "2026-10-29T17:34:42+00:00"
+        }
+      ],
+      "retrieved_at": "2026-10-29T17:34:42+00:00",
+      "ai_provider": "groq",
+      "verification": {
+        "status": "needs_review",
+        "confidence": "high",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stage_ids": [
+        "03-water-sanitation"
+      ]
+    },
+    {
+      "id": "tip-50274fdbea111f",
+      "title": "Follow Bulk Water Hauling Guidelines",
+      "category": "water",
+      "summary": "Use the Connecticut Department of Public Health bulk water hauling guidelines to safely transport large volumes of water during emergencies.",
+      "steps": [
+        "Obtain the bulk water hauling guidelines PDF.",
+        "Select appropriate containers and transport vehicles.",
+        "Ensure containers are clean and sealed.",
+        "Transport water to the destination following local regulations.",
+        "Store water in a cool, shaded area.",
+        "Label containers with contents and date.",
+        "Dispose of any contaminated water properly."
+      ],
+      "warnings": [
+        "Do not transport water in containers that have previously held chemicals.",
+        "Ensure vehicles are clean to avoid contamination."
+      ],
+      "evidence_excerpt": "Bulk Water Hauling Guidelines. [PDF – 4 pages]",
+      "sources": [
+        {
+          "title": "Responding to a Water, Sanitation, & Hygiene (WASH)-related Emergency | Water, Sanitation, & Hygiene-related Emergencies & and Outbreaks | Healthy Water | CDC",
+          "url": "https://archive.cdc.gov/www_cdc_gov/healthywater/emergency/planning-training-response/responding.html",
+          "domain": "archive.cdc.gov",
+          "retrieved_at": "2026-10-29T17:34:42+00:00"
+        }
+      ],
+      "retrieved_at": "2026-10-29T17:34:42+00:00",
+      "ai_provider": "groq",
+      "verification": {
+        "status": "needs_review",
+        "confidence": "high",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stage_ids": [
+        "03-water-sanitation",
+        "08-infrastructure"
+      ]
+    },
+    {
+      "id": "tip-5108cbb1899f56",
+      "title": "Clean and Disinfect Water Storage Tanks",
+      "category": "water",
+      "summary": "Use WHO guidelines to disinfect water storage tanks and tankers to prevent contamination during emergencies.",
+      "steps": [
+        "Gather WHO cleaning and disinfecting guidelines PDF.",
+        "Inspect tanks for cracks or leaks.",
+        "Clean interior surfaces with soap and water.",
+        "Apply disinfectant according to WHO instructions.",
+        "Rinse thoroughly to remove residues.",
+        "Refill with clean water.",
+        "Check for any remaining contamination before use."
+      ],
+      "warnings": [
+        "Do not use disinfectants that are not approved for potable water.",
+        "Avoid over‑dilution of disinfectant which reduces effectiveness."
+      ],
+      "evidence_excerpt": "Cleaning and Disinfecting Water Storage Tanks and Tankers. [PDF – 4 pages]",
+      "sources": [
+        {
+          "title": "Responding to a Water, Sanitation, & Hygiene (WASH)-related Emergency | Water, Sanitation, & Hygiene-related Emergencies & and Outbreaks | Healthy Water | CDC",
+          "url": "https://archive.cdc.gov/www_cdc_gov/healthywater/emergency/planning-training-response/responding.html",
+          "domain": "archive.cdc.gov",
+          "retrieved_at": "2026-10-29T17:34:42+00:00"
+        }
+      ],
+      "retrieved_at": "2026-10-29T17:34:42+00:00",
+      "ai_provider": "groq",
+      "verification": {
+        "status": "needs_review",
+        "confidence": "high",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stage_ids": [
+        "03-water-sanitation"
+      ]
+    },
+    {
+      "id": "tip-3bf699c33ed3dd",
+      "title": "Practice Handwashing and Diapering After Emergencies",
+      "category": "other",
+      "summary": "Follow CDC handwashing and diapering practices to reduce disease spread in emergency settings.",
+      "steps": [
+        "Wash hands with soap and water for at least 20 seconds.",
+        "Use hand sanitizer if soap is unavailable.",
+        "Set up diapering stations with clean diapers and wipes.",
+        "Dispose of diapers in sealed bags.",
+        "Clean diapering surfaces with disinfectant.",
+        "Wash hands after diapering."
+      ],
+      "warnings": [
+        "Avoid using contaminated water for handwashing.",
+        "Do not reuse diapers or wipes."
+      ],
+      "evidence_excerpt": "Hygiene, Handwashing, Diapering. Information on good hygiene, handwashing, and diapering practices after an emergency.",
+      "sources": [
+        {
+          "title": "Responding to a Water, Sanitation, & Hygiene (WASH)-related Emergency | Water, Sanitation, & Hygiene-related Emergencies & and Outbreaks | Healthy Water | CDC",
+          "url": "https://archive.cdc.gov/www_cdc_gov/healthywater/emergency/planning-training-response/responding.html",
+          "domain": "archive.cdc.gov",
+          "retrieved_at": "2026-10-29T17:34:42+00:00"
+        }
+      ],
+      "retrieved_at": "2026-10-29T17:34:42+00:00",
+      "ai_provider": "groq",
+      "verification": {
+        "status": "needs_review",
+        "confidence": "high",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stage_ids": [
+        "03-water-sanitation"
+      ]
+    },
+    {
+      "id": "tip-aa24101d40ec26",
+      "title": "Clean Flood Water Inside and Outside the Home",
+      "category": "other",
+      "summary": "Follow CDC cleanup guidelines to safely remove flood water and reduce health risks.",
+      "steps": [
+        "Wear protective gear (gloves, boots, mask).",
+        "Remove standing water using pumps or wet vacuums.",
+        "Dispose of contaminated water in accordance with local regulations.",
+        "Clean and disinfect surfaces with EPA‑approved disinfectants.",
+        "Dry areas thoroughly to prevent mold.",
+        "Check for structural damage before re‑occupying the space."
+      ],
+      "warnings": [
+        "Avoid contact with flood water that may contain sewage or chemicals.",
+        "Do not use contaminated water for cooking or drinking."
+      ],
+      "evidence_excerpt": "After a Hurricane or Flood: Cleanup of Flood Water. Information on cleaning up flood water inside and outside of the home.",
+      "sources": [
+        {
+          "title": "Responding to a Water, Sanitation, & Hygiene (WASH)-related Emergency | Water, Sanitation, & Hygiene-related Emergencies & and Outbreaks | Healthy Water | CDC",
+          "url": "https://archive.cdc.gov/www_cdc_gov/healthywater/emergency/planning-training-response/responding.html",
+          "domain": "archive.cdc.gov",
+          "retrieved_at": "2026-10-29T17:34:42+00:00"
+        }
+      ],
+      "retrieved_at": "2026-10-29T17:34:42+00:00",
+      "ai_provider": "groq",
+      "verification": {
+        "status": "needs_review",
+        "confidence": "high",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stage_ids": [
+        "01-drr"
+      ]
+    },
+    {
+      "id": "tip-1e65f9a5862072",
+      "title": "Handle Community Wastewater Systems After Emergencies",
+      "category": "other",
+      "summary": "Use CDC guidance to manage community wastewater systems and minimize disease spread.",
+      "steps": [
+        "Inspect systems for damage or overflow.",
+        "Seal off damaged sections to prevent contamination.",
+        "Use temporary sanitation solutions if needed.",
+        "Monitor water quality regularly.",
+        "Report any issues to local health authorities."
+      ],
+      "warnings": [
+        "Do not enter contaminated wastewater areas without proper protection.",
+        "Avoid using untreated wastewater for irrigation."
+      ],
+      "evidence_excerpt": "Community Wastewater Systems. Information on what to do with community wastewater systems after an emergency.",
+      "sources": [
+        {
+          "title": "Responding to a Water, Sanitation, & Hygiene (WASH)-related Emergency | Water, Sanitation, & Hygiene-related Emergencies & and Outbreaks | Healthy Water | CDC",
+          "url": "https://archive.cdc.gov/www_cdc_gov/healthywater/emergency/planning-training-response/responding.html",
+          "domain": "archive.cdc.gov",
+          "retrieved_at": "2026-10-29T17:34:42+00:00"
+        }
+      ],
+      "retrieved_at": "2026-10-29T17:34:42+00:00",
+      "ai_provider": "groq",
+      "verification": {
+        "status": "needs_review",
+        "confidence": "high",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stage_ids": [
+        "03-water-sanitation"
+      ]
+    },
+    {
+      "id": "tip-bb5dbb48c3f9f8",
+      "title": "Use the Environmental Health Shelter Assessment Tool",
+      "category": "other",
+      "summary": "Employ CDC’s 14‑area assessment form to quickly evaluate shelter conditions during emergencies.",
+      "steps": [
+        "Download the Environmental Health Shelter Assessment Tool.",
+        "Conduct a rapid assessment covering food safety, water quality, sanitation, etc.",
+        "Document findings and immediate needs.",
+        "Prioritize interventions based on assessment results.",
+        "Re‑assess after changes are made."
+      ],
+      "warnings": [
+        "Ensure the tool is adapted to local context before use.",
+        "Do not rely solely on the tool; use professional judgment."
+      ],
+      "evidence_excerpt": "CDC has developed an Environmental Health Shelter Assessment Tool to assist environmental health practitioners in conducting a rapid assessment of shelter conditions during emergencies and disasters.",
+      "sources": [
+        {
+          "title": "Responding to a Water, Sanitation, & Hygiene (WASH)-related Emergency | Water, Sanitation, & Hygiene-related Emergencies & and Outbreaks | Healthy Water | CDC",
+          "url": "https://archive.cdc.gov/www_cdc_gov/healthywater/emergency/planning-training-response/responding.html",
+          "domain": "archive.cdc.gov",
+          "retrieved_at": "2026-10-29T17:34:42+00:00"
+        }
+      ],
+      "retrieved_at": "2026-10-29T17:34:42+00:00",
+      "ai_provider": "groq",
+      "verification": {
+        "status": "needs_review",
+        "confidence": "high",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stage_ids": [
+        "01-drr"
+      ]
+    },
+    {
+      "id": "tip-cfd222d0061a1a",
+      "title": "Apply Infection Control Guidance in Evacuation Centers",
+      "category": "other",
+      "summary": "Implement CDC infection control recommendations to prevent disease spread in temporary community evacuation centers.",
+      "steps": [
+        "Set up handwashing stations with soap and water.",
+        "Provide hand sanitizer where water is scarce.",
+        "Ensure proper waste disposal and sanitation facilities.",
+        "Educate residents on hygiene practices.",
+        "Monitor for signs of illness and isolate if necessary."
+      ],
+      "warnings": [
+        "Do not neglect ventilation, which can spread airborne pathogens.",
+        "Avoid overcrowding of sanitation facilities."
+      ],
+      "evidence_excerpt": "Infection Control Guidance for Community Evacuation Centers Following Disasters. Recommendations for basic infection control guidance to prevent exposure to or transmission of infectious diseases in temporary community evacuation centers.",
+      "sources": [
+        {
+          "title": "Responding to a Water, Sanitation, & Hygiene (WASH)-related Emergency | Water, Sanitation, & Hygiene-related Emergencies & and Outbreaks | Healthy Water | CDC",
+          "url": "https://archive.cdc.gov/www_cdc_gov/healthywater/emergency/planning-training-response/responding.html",
+          "domain": "archive.cdc.gov",
+          "retrieved_at": "2026-10-29T17:34:42+00:00"
+        }
+      ],
+      "retrieved_at": "2026-10-29T17:34:42+00:00",
+      "ai_provider": "groq",
+      "verification": {
+        "status": "needs_review",
+        "confidence": "high",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stage_ids": [
+        "01-drr"
+      ]
+    },
+    {
+      "id": "tip-8edac0707a96b2",
+      "title": "Integrate Small Livestock and Aquaculture into Home Gardens",
+      "category": "other",
+      "summary": "Adding poultry and fish to home gardens boosts protein and micronutrient intake, especially for children.",
+      "steps": [
+        "Select suitable species (e.g., chickens, tilapia) that fit the local climate.",
+        "Provide clean water and proper housing to prevent disease.",
+        "Use organic waste from garden crops as feed.",
+        "Harvest eggs, meat, and fish for household consumption or sale.",
+        "Monitor animal health and adjust feeding as needed."
+      ],
+      "warnings": [
+        "Ensure biosecurity to avoid disease spread.",
+        "Avoid overstocking to prevent waste and pollution.",
+        "Use safe, non-toxic feed ingredients."
+      ],
+      "evidence_excerpt": "Post-project evaluations found increased production of vegetables, fruits, poultry and fish among the targeted households and a decline in the rates of undernutrition in children under five years of age.",
+      "sources": [
+        {
+          "title": "Improving  nutrition through home gardening",
+          "url": "https://openknowledge.fao.org/items/e2135500-73cb-4855-8cd0-a8bdecb971a5",
+          "domain": "openknowledge.fao.org",
+          "retrieved_at": "2026-10-29T17:34:47+00:00"
+        }
+      ],
+      "retrieved_at": "2026-10-29T17:34:47+00:00",
+      "ai_provider": "groq",
+      "verification": {
+        "status": "needs_review",
+        "confidence": "high",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stage_ids": []
+    },
+    {
+      "id": "tip-a26cefbc6c9bb8",
+      "title": "Plant Underutilized, Climate‑Resistant Crops for Micronutrients",
+      "category": "other",
+      "summary": "Growing low‑maintenance, nutrient‑rich local species can reduce micronutrient deficiencies.",
+      "steps": [
+        "Identify underutilized crops native to the region (e.g., certain leafy greens, legumes).",
+        "Prepare soil with compost or organic matter.",
+        "Plant during appropriate seasons and space for optimal growth.",
+        "Harvest when mature and incorporate into daily meals.",
+        "Share surplus with neighbors to build community resilience."
+      ],
+      "warnings": [
+        "Check for local pests or diseases that may affect these crops.",
+        "Avoid planting in contaminated soils.",
+        "Ensure proper storage to prevent spoilage."
+      ],
+      "evidence_excerpt": "In Sri Lanka, many crops in existing home gardens are under‑utilized, meaning that these species are not widely grown, rarely found in the market and not cultivated commercially, yet are low maintenance, climate resistant and contain high amounts of micronutrients.",
+      "sources": [
+        {
+          "title": "Improving  nutrition through home gardening",
+          "url": "https://openknowledge.fao.org/items/e2135500-73cb-4855-8cd0-a8bdecb971a5",
+          "domain": "openknowledge.fao.org",
+          "retrieved_at": "2026-10-29T17:34:47+00:00"
+        }
+      ],
+      "retrieved_at": "2026-10-29T17:34:47+00:00",
+      "ai_provider": "groq",
+      "verification": {
+        "status": "needs_review",
+        "confidence": "high",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stage_ids": [
+        "04-agriculture"
+      ]
+    },
+    {
+      "id": "tip-1fb4553eab12c0",
+      "title": "Maximize Food Production on Small Plots",
+      "category": "other",
+      "summary": "Even a modest garden can significantly improve household nutrition if managed well.",
+      "steps": [
+        "Design a layout that maximizes sun exposure and water use.",
+        "Use crop rotation and intercropping to maintain soil fertility.",
+        "Apply compost or organic fertilizers to enrich soil.",
+        "Implement drip or mulch irrigation to conserve water.",
+        "Harvest regularly to encourage continuous production."
+      ],
+      "warnings": [
+        "Avoid overuse of chemical fertilizers that can contaminate water.",
+        "Monitor soil pH and adjust as needed.",
+        "Prevent erosion on sloped plots."
+      ],
+      "evidence_excerpt": "Even a small plot of land, if well managed, can make a substantial contribution towards meeting household food needs and improving nutrition.",
+      "sources": [
+        {
+          "title": "Improving  nutrition through home gardening",
+          "url": "https://openknowledge.fao.org/items/e2135500-73cb-4855-8cd0-a8bdecb971a5",
+          "domain": "openknowledge.fao.org",
+          "retrieved_at": "2026-10-29T17:34:47+00:00"
+        }
+      ],
+      "retrieved_at": "2026-10-29T17:34:47+00:00",
+      "ai_provider": "groq",
+      "verification": {
+        "status": "needs_review",
+        "confidence": "high",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stage_ids": []
+    },
+    {
+      "id": "tip-578d4a07239e17",
+      "title": "Leverage Home Gardens for Income Generation",
+      "category": "other",
+      "summary": "Surplus produce from home gardens can create local income streams and support food security.",
+      "steps": [
+        "Grow a mix of high‑value crops (e.g., herbs, tomatoes).",
+        "Establish a small market stall or community sales group.",
+        "Use fair pricing and promote fresh, local produce.",
+        "Reinvest profits into garden improvements or livestock.",
+        "Track sales to identify best‑selling items."
+      ],
+      "warnings": [
+        "Ensure compliance with local market regulations.",
+        "Avoid over‑harvesting that depletes the garden.",
+        "Protect produce from pests during transport."
+      ],
+      "evidence_excerpt": "Home gardens in enhancing food security by providing direct access to a variety of nutritionally rich foods, as well as employment and income generation opportunities to households.",
+      "sources": [
+        {
+          "title": "Improving  nutrition through home gardening",
+          "url": "https://openknowledge.fao.org/items/e2135500-73cb-4855-8cd0-a8bdecb971a5",
+          "domain": "openknowledge.fao.org",
+          "retrieved_at": "2026-10-29T17:34:47+00:00"
+        }
+      ],
+      "retrieved_at": "2026-10-29T17:34:47+00:00",
+      "ai_provider": "groq",
+      "verification": {
+        "status": "needs_review",
+        "confidence": "high",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stage_ids": []
+    },
+    {
+      "id": "tip-86a38b85f9b3ca",
+      "title": "Promote Year‑Round Nutritional Diets through Community Gardening",
+      "category": "other",
+      "summary": "Community‑based home gardening programs support continuous access to diverse, nutritious foods.",
+      "steps": [
+        "Organize training workshops for local households.",
+        "Create shared garden plots or cooperative plots.",
+        "Develop a schedule for planting, harvesting, and storage.",
+        "Encourage participation of all age groups, especially children.",
+        "Monitor nutritional outcomes and adjust practices."
+      ],
+      "warnings": [
+        "Ensure equitable access to garden space.",
+        "Prevent conflicts over resource allocation.",
+        "Maintain hygiene to avoid foodborne illnesses."
+      ],
+      "evidence_excerpt": "Effective community‑based action aimed at improving household food security and promoting the year‑round consumption of nutritionally adequate diets.",
+      "sources": [
+        {
+          "title": "Improving  nutrition through home gardening",
+          "url": "https://openknowledge.fao.org/items/e2135500-73cb-4855-8cd0-a8bdecb971a5",
+          "domain": "openknowledge.fao.org",
+          "retrieved_at": "2026-10-29T17:34:47+00:00"
+        }
+      ],
+      "retrieved_at": "2026-10-29T17:34:47+00:00",
+      "ai_provider": "groq",
+      "verification": {
+        "status": "needs_review",
+        "confidence": "high",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stage_ids": [
+        "04-agriculture"
+      ]
+    },
+    {
+      "id": "tip-db1d4b0b18b7e0",
+      "title": "Use Home Gardens to Combat Micronutrient Deficiencies",
+      "category": "other",
+      "summary": "Diversifying fruit and vegetable production in home gardens can sustainably reduce micronutrient gaps.",
+      "steps": [
+        "Select a variety of colorful fruits and vegetables rich in vitamins and minerals.",
+        "Plant in succession to provide continuous harvests.",
+        "Educate families on the nutritional benefits of each crop.",
+        "Incorporate home‑grown produce into daily meals.",
+        "Track changes in dietary diversity and health indicators."
+      ],
+      "warnings": [
+        "Avoid over‑use of pesticides that may reduce nutrient quality.",
+        "Ensure safe irrigation water to prevent contamination.",
+        "Be mindful of seasonal availability of certain crops."
+      ],
+      "evidence_excerpt": "The policy brief suggests that promoting cultivation, harvesting and consumption of these under‑utilized food crops in home gardens is a feasible strategy to sustainably reduce micronutrient deficiencies.",
+      "sources": [
+        {
+          "title": "Improving  nutrition through home gardening",
+          "url": "https://openknowledge.fao.org/items/e2135500-73cb-4855-8cd0-a8bdecb971a5",
+          "domain": "openknowledge.fao.org",
+          "retrieved_at": "2026-10-29T17:34:47+00:00"
+        }
+      ],
+      "retrieved_at": "2026-10-29T17:34:47+00:00",
+      "ai_provider": "groq",
+      "verification": {
+        "status": "needs_review",
+        "confidence": "high",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stage_ids": [
+        "04-agriculture"
+      ]
+    },
+    {
+      "id": "tip-721d1d6277269b",
+      "title": "Prepare for Hurricane Evacuation",
+      "category": "other",
+      "summary": "Know evacuation routes and how to reach them quickly if instructed.",
+      "steps": [
+        "Identify nearest evacuation shelters",
+        "Map out fastest routes",
+        "Ensure family members know the plan"
+      ],
+      "warnings": [
+        "Evacuate promptly if ordered"
+      ],
+      "evidence_excerpt": "Know where to go if asked to evacuate quickly",
+      "sources": [
+        {
+          "title": "Plan Ahead for Disasters | Ready.gov",
+          "url": "https://www.ready.gov/",
+          "domain": "ready.gov",
+          "retrieved_at": "2026-10-29T17:34:52+00:00"
+        }
+      ],
+      "retrieved_at": "2026-10-29T17:34:52+00:00",
+      "ai_provider": "groq",
+      "verification": {
+        "status": "needs_review",
+        "confidence": "high",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stage_ids": [
+        "01-drr"
+      ]
+    },
+    {
+      "id": "tip-212b6fb8ba0c05",
+      "title": "Use Alternative Phone Charging During Power Outages",
+      "category": "other",
+      "summary": "Have backup charging methods for mobile devices when electricity is lost.",
+      "steps": [
+        "Keep a portable power bank",
+        "Use solar chargers",
+        "Store extra batteries"
+      ],
+      "warnings": [],
+      "evidence_excerpt": "alternative charging methods for your phone in case of power outages",
+      "sources": [
+        {
+          "title": "Plan Ahead for Disasters | Ready.gov",
+          "url": "https://www.ready.gov/",
+          "domain": "ready.gov",
+          "retrieved_at": "2026-10-29T17:34:52+00:00"
+        }
+      ],
+      "retrieved_at": "2026-10-29T17:34:52+00:00",
+      "ai_provider": "groq",
+      "verification": {
+        "status": "needs_review",
+        "confidence": "high",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stage_ids": [
+        "05-energy"
+      ]
+    },
+    {
+      "id": "tip-33acd83dc99593",
+      "title": "Avoid Flooded Roads and Walkways",
+      "category": "other",
+      "summary": "If you encounter a flooded path, turn around to avoid drowning.",
+      "steps": [
+        "Check water depth",
+        "If water is visible, do not cross",
+        "Seek higher ground"
+      ],
+      "warnings": [
+        "Do not attempt to cross flooded areas"
+      ],
+      "evidence_excerpt": "If you approach a flooded road or walkway, follow this rule: turn around, don't drown!",
+      "sources": [
+        {
+          "title": "Plan Ahead for Disasters | Ready.gov",
+          "url": "https://www.ready.gov/",
+          "domain": "ready.gov",
+          "retrieved_at": "2026-10-29T17:34:52+00:00"
+        }
+      ],
+      "retrieved_at": "2026-10-29T17:34:52+00:00",
+      "ai_provider": "groq",
+      "verification": {
+        "status": "needs_review",
+        "confidence": "high",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stage_ids": [
+        "01-drr",
+        "08-infrastructure"
+      ]
+    },
+    {
+      "id": "tip-23f143c0afa10a",
+      "title": "Plan Ahead for Severe Weather",
+      "category": "other",
+      "summary": "Assess risks and prepare for sudden severe weather events.",
+      "steps": [
+        "Identify local severe weather hazards",
+        "Create a shelter plan",
+        "Stock essential supplies"
+      ],
+      "warnings": [],
+      "evidence_excerpt": "Know your risks and plan ahead",
+      "sources": [
+        {
+          "title": "Plan Ahead for Disasters | Ready.gov",
+          "url": "https://www.ready.gov/",
+          "domain": "ready.gov",
+          "retrieved_at": "2026-10-29T17:34:52+00:00"
+        }
+      ],
+      "retrieved_at": "2026-10-29T17:34:52+00:00",
+      "ai_provider": "groq",
+      "verification": {
+        "status": "needs_review",
+        "confidence": "high",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stage_ids": []
+    },
+    {
+      "id": "tip-155786be60cdfd",
+      "title": "Enable Wireless Emergency Alerts",
+      "category": "other",
+      "summary": "Activate alerts to receive life‑saving information quickly.",
+      "steps": [
+        "Turn on emergency alerts in phone settings",
+        "Subscribe to local alert services"
+      ],
+      "warnings": [],
+      "evidence_excerpt": "Wireless emergency alerts allow officials to provide the public with life‑saving information quickly",
+      "sources": [
+        {
+          "title": "Plan Ahead for Disasters | Ready.gov",
+          "url": "https://www.ready.gov/",
+          "domain": "ready.gov",
+          "retrieved_at": "2026-10-29T17:34:52+00:00"
+        }
+      ],
+      "retrieved_at": "2026-10-29T17:34:52+00:00",
+      "ai_provider": "groq",
+      "verification": {
+        "status": "needs_review",
+        "confidence": "high",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stage_ids": []
+    },
+    {
+      "id": "tip-47dd1efe45ee58",
+      "title": "Create a Family Communication Plan",
+      "category": "other",
+      "summary": "Develop a quick, easy plan for staying in touch during emergencies.",
+      "steps": [
+        "Choose primary contact person",
+        "List alternate contacts",
+        "Agree on meeting points"
+      ],
+      "warnings": [],
+      "evidence_excerpt": "Make a family communication plan quickly and easily with our fillable form",
+      "sources": [
+        {
+          "title": "Plan Ahead for Disasters | Ready.gov",
+          "url": "https://www.ready.gov/",
+          "domain": "ready.gov",
+          "retrieved_at": "2026-10-29T17:34:52+00:00"
+        }
+      ],
+      "retrieved_at": "2026-10-29T17:34:52+00:00",
+      "ai_provider": "groq",
+      "verification": {
+        "status": "needs_review",
+        "confidence": "high",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stage_ids": []
+    },
+    {
+      "id": "tip-e2e8cf6c566da0",
+      "title": "Build an Emergency Kit",
+      "category": "other",
+      "summary": "Stock your kit with essential items for emergencies.",
+      "steps": [
+        "Include water, food, first aid, flashlight, batteries",
+        "Add personal documents",
+        "Check expiration dates regularly"
+      ],
+      "warnings": [],
+      "evidence_excerpt": "Make sure your emergency kit is stocked with the right items",
+      "sources": [
+        {
+          "title": "Plan Ahead for Disasters | Ready.gov",
+          "url": "https://www.ready.gov/",
+          "domain": "ready.gov",
+          "retrieved_at": "2026-10-29T17:34:52+00:00"
+        }
+      ],
+      "retrieved_at": "2026-10-29T17:34:52+00:00",
+      "ai_provider": "groq",
+      "verification": {
+        "status": "needs_review",
+        "confidence": "high",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stage_ids": [
+        "01-drr"
+      ]
+    },
+    {
+      "id": "tip-73c9b828fbd532",
+      "title": "Download the FEMA Mobile App",
+      "category": "other",
+      "summary": "Use the FEMA app for preparedness strategies and real‑time alerts.",
+      "steps": [
+        "Install the FEMA app",
+        "Enable notifications",
+        "Review preparedness guides"
+      ],
+      "warnings": [],
+      "evidence_excerpt": "Download the newly updated FEMA App to get preparedness strategies and real‑time weather and emergency alerts",
+      "sources": [
+        {
+          "title": "Plan Ahead for Disasters | Ready.gov",
+          "url": "https://www.ready.gov/",
+          "domain": "ready.gov",
+          "retrieved_at": "2026-10-29T17:34:52+00:00"
+        }
+      ],
+      "retrieved_at": "2026-10-29T17:34:52+00:00",
+      "ai_provider": "groq",
+      "verification": {
+        "status": "needs_review",
+        "confidence": "high",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stage_ids": [
+        "01-drr"
+      ]
     }
   ]
 }
