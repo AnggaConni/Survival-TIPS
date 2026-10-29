@@ -57,8 +57,11 @@ def parse_json(text):
     return obj
 
 def make_prompt(source):
-    return PROMPT+"\nSOURCE URL: "+source["url"]+"\nTITLE: "+source.get("title","")+"\nSOURCE TEXT:\n"+source.get("text","")[:11000]
-
+    prompt=PROMPT+"\\nSOURCE URL: "+source["url"]+"\\nTITLE: "+source.get("title","")+"\\nSOURCE TEXT:\\n"+source.get("text","")[:11000]
+    feedback=str(source.get("repair_feedback","")).strip()
+    if feedback:
+        prompt+="\\n\\nREPAIR REQUEST\\nThe previous extraction was flagged by deterministic quality checks. Address these issues and do not repeat the same shallow or unsupported entries.\\n"+feedback
+    return prompt
 def call_groq(source):
     from openai import OpenAI
     key=os.getenv("GROQ_API_KEY")
