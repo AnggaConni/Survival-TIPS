@@ -106,6 +106,9 @@ def normalize_tip(raw,source,provider):
     # Confidence remains an AI estimate only; all candidates require human review.
     tip={"id":stable_id(source["url"]+"|"+title.casefold(),"tip"),"title":title,"category":category,"summary":summary,"steps":steps,"warnings":warnings,"evidence_excerpt":evidence,"sources":[{"title":source.get("title",""),"url":source["url"],"domain":source.get("domain",""),"retrieved_at":source.get("retrieved_at")}],"retrieved_at":source.get("retrieved_at") or now_iso(),"ai_provider":provider,"verification":{"status":"needs_review","confidence":confidence,"reviewed_by":None,"reviewed_at":None}}
     tip["stage_ids"]=classify_tip(tip)
+    # Unclassified content is not publishable as a stage-filtered survival tip.
+    if not tip["stage_ids"]:
+        return None
     return tip
 
 def extract(source):
