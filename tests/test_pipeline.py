@@ -12,7 +12,7 @@ def test_license_allowlist():
 
 def test_tip_requires_source():
     src={"url":"https://example.org/guide","title":"Guide","domain":"example.org","retrieved_at":"2026-10-29T00:00:00+00:00","text":"Follow current public health guidance."}
-    tip=normalize_tip({"title":"Keep water safe","category":"water","summary":"Follow current public health guidance." ,"steps":["Check official guidance"],"warnings":[],"evidence_excerpt":"Follow current public health guidance.","confidence":"medium"},src,"test")
+    tip=normalize_tip({"title":"Keep water safe","content_type":"treat","category":"water","summary":"Follow current public health guidance." ,"steps":["Check official guidance"],"warnings":[],"evidence_excerpt":"Follow current public health guidance.","confidence":"medium"},src,"test")
     assert tip and tip["verification"]["status"]=="needs_review"
     assert tip["sources"][0]["url"]==src["url"]
     assert "03-water-sanitation" in tip["stage_ids"]
@@ -29,7 +29,7 @@ def test_prompt_rejects_heading_only_and_requires_verbatim_evidence():
 def test_normalize_tip_keeps_unreviewed_status_and_rejects_empty_steps_shape():
     src={"url":"https://example.org/water","title":"Water guide","domain":"example.org","retrieved_at":"2026-10-29T00:00:00+00:00","text":"Boil water before drinking."}
     tip=normalize_tip({
-        "title":"Treat drinking water","category":"water",
+        "title":"Treat drinking water","content_type":"treat","category":"water",
         "summary":"Use the source-supported water treatment method.",
         "steps":["Follow the stated procedure."],"warnings":[],
         "evidence_excerpt":"Boil water before drinking.","confidence":"high"
@@ -41,17 +41,17 @@ def test_normalize_tip_keeps_unreviewed_status_and_rejects_empty_steps_shape():
 
 def test_normalize_tip_rejects_non_verbatim_evidence():
     src={"url":"https://example.org/guide","title":"Guide","domain":"example.org","retrieved_at":"2026-10-29T00:00:00+00:00","text":"Boil water for one minute before drinking."}
-    raw={"title":"Treat water","category":"water","summary":"Treat drinking water.","steps":["Boil the water."],"warnings":[],"evidence_excerpt":"Boiling water kills all chemicals.","confidence":"high"}
+    raw={"title":"Treat water","content_type":"treat","category":"water","summary":"Treat drinking water.","steps":["Boil the water."],"warnings":[],"evidence_excerpt":"Boiling water kills all chemicals.","confidence":"high"}
     assert normalize_tip(raw,src,"test") is None
 
 def test_normalize_tip_rejects_heading_only_without_steps():
     src={"url":"https://example.org/guide","title":"Guide","domain":"example.org","retrieved_at":"2026-10-29T00:00:00+00:00","text":"Emergency water storage"}
-    raw={"title":"Emergency water storage","category":"water","summary":"Store water for emergencies.","steps":[],"warnings":[],"evidence_excerpt":"Emergency water storage","confidence":"high"}
+    raw={"title":"Emergency water storage","content_type":"other","category":"water","summary":"Store water for emergencies.","steps":[],"warnings":[],"evidence_excerpt":"Emergency water storage","confidence":"high"}
     assert normalize_tip(raw,src,"test") is None
 
 def test_normalize_tip_accepts_verbatim_evidence_and_steps():
     src={"url":"https://example.org/guide","title":"Guide","domain":"example.org","retrieved_at":"2026-10-29T00:00:00+00:00","text":"Boil water for one minute before drinking."}
-    raw={"title":"Boil water before drinking","category":"water","summary":"Boil water before use.","steps":["Bring water to a boil for one minute."],"warnings":[],"evidence_excerpt":"Boil water for one minute before drinking.","confidence":"medium"}
+    raw={"title":"Boil water before drinking","content_type":"treat","category":"water","summary":"Boil water before use.","steps":["Bring water to a boil for one minute."],"warnings":[],"evidence_excerpt":"Boil water for one minute before drinking.","confidence":"medium"}
     tip=normalize_tip(raw,src,"test")
     assert tip is not None
     assert tip["evidence_excerpt"] in src["text"]
@@ -75,7 +75,7 @@ def test_audit_flags_missing_verbatim_evidence():
     from scripts.audit_tips import audit
     source={"url":"https://example.org/water","text":"Boil water before drinking."}
     tip={
-        "id":"tip-1","title":"Boil drinking water","category":"water",
+        "id":"tip-1","title":"Boil drinking water","content_type":"treat","category":"water",
         "summary":"Boil water before drinking.","steps":["Boil water."],
         "evidence_excerpt":"Boiling removes every contaminant.",
         "sources":[{"url":"https://example.org/water"}],
@@ -142,3 +142,9 @@ def test_audit_flags_build_tip_missing_recipe_details():
     assert "build_recipe_missing_materials" in issues["tip-build"]
     assert "build_recipe_missing_tools" in issues["tip-build"]
     assert "build_recipe_missing_expected_result" in issues["tip-build"]
+
+
+def test_normalize_tip_rejects_missing_content_type():
+    src={"url":"https://example.org/guide","title":"Guide","domain":"example.org","retrieved_at":"2026-10-29T00:00:00+00:00","text":"Boil water before drinking."}
+    raw={"title":"Boil drinking water","category":"water","summary":"Boil water.","steps":["Boil water."],"warnings":[],"evidence_excerpt":"Boil water before drinking.","confidence":"high"}
+    assert normalize_tip(raw,src,"test") is None
