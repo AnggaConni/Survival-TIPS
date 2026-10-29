@@ -90,9 +90,17 @@ def normalize_tip(raw,source,provider):
     if category not in CATEGORIES: category="other"
     steps=[str(x).strip()[:500] for x in raw.get("steps",[]) if str(x).strip()][:12]
     warnings=[str(x).strip()[:500] for x in raw.get("warnings",[]) if str(x).strip()][:12]
+    evidence=str(raw.get("evidence_excerpt","")).strip()[:800]
+    source_text=str(source.get("text",""))
+    # Evidence must be found verbatim within the extracted source body; reject
+    # hallucinated or paraphrased quotations before a candidate reaches JSON.
+    if not evidence or not source_text or evidence.casefold() not in source_text.casefold(): return None
+    # No practical steps usually means we captured a heading or a broad slogan.
+    # Keep procedural exceptions out of the corpus rather than padding them.
+    if not steps: return None
     confidence=raw.get("confidence","low")
     if confidence not in {"low","medium","high"}: confidence="low"
-    evidence=str(raw.get("evidence_excerpt","")).strip()[:800]
+    # Confidence remains an AI estimate only; all candidates require human review.
     tip={"id":stable_id(source["url"]+"|"+title.casefold(),"tip"),"title":title,"category":category,"summary":summary,"steps":steps,"warnings":warnings,"evidence_excerpt":evidence,"sources":[{"title":source.get("title",""),"url":source["url"],"domain":source.get("domain",""),"retrieved_at":source.get("retrieved_at")}],"retrieved_at":source.get("retrieved_at") or now_iso(),"ai_provider":provider,"verification":{"status":"needs_review","confidence":confidence,"reviewed_by":None,"reviewed_at":None}}
     tip["stage_ids"]=classify_tip(tip)
     return tip
