@@ -17,7 +17,7 @@ def search_occurrences(name,limit=3):
     r.raise_for_status(); return r.json().get("results",[])
 def select_image(record):
     for media in record.get("media",[]) or []:
-        lic=media.get("license") # media-level license required
+        lic=media.get("license")
         url=media.get("identifier")
         if url and url.startswith("https://") and license_allowed(lic): return media,lic
     return None,None
