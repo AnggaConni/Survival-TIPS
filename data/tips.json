@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-29T17:51:54+00:00",
+  "generated_at": "2026-10-29T18:06:52+00:00",
   "tips": [
     {
       "id": "tip-3104734432df54",
@@ -1119,260 +1119,6 @@
       ]
     },
     {
-      "id": "tip-721d1d6277269b",
-      "title": "Prepare for Hurricane Evacuation",
-      "category": "other",
-      "summary": "Know evacuation routes and how to reach them quickly if instructed.",
-      "steps": [
-        "Identify nearest evacuation shelters",
-        "Map out fastest routes",
-        "Ensure family members know the plan"
-      ],
-      "warnings": [
-        "Evacuate promptly if ordered"
-      ],
-      "evidence_excerpt": "Know where to go if asked to evacuate quickly",
-      "sources": [
-        {
-          "title": "Plan Ahead for Disasters | Ready.gov",
-          "url": "https://www.ready.gov/",
-          "domain": "ready.gov",
-          "retrieved_at": "2026-10-29T17:34:52+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:52+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": [
-        "01-drr"
-      ]
-    },
-    {
-      "id": "tip-212b6fb8ba0c05",
-      "title": "Use Alternative Phone Charging During Power Outages",
-      "category": "other",
-      "summary": "Have backup charging methods for mobile devices when electricity is lost.",
-      "steps": [
-        "Keep a portable power bank",
-        "Use solar chargers",
-        "Store extra batteries"
-      ],
-      "warnings": [],
-      "evidence_excerpt": "alternative charging methods for your phone in case of power outages",
-      "sources": [
-        {
-          "title": "Plan Ahead for Disasters | Ready.gov",
-          "url": "https://www.ready.gov/",
-          "domain": "ready.gov",
-          "retrieved_at": "2026-10-29T17:34:52+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:52+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": [
-        "05-energy"
-      ]
-    },
-    {
-      "id": "tip-33acd83dc99593",
-      "title": "Avoid Flooded Roads and Walkways",
-      "category": "other",
-      "summary": "If you encounter a flooded path, turn around to avoid drowning.",
-      "steps": [
-        "Check water depth",
-        "If water is visible, do not cross",
-        "Seek higher ground"
-      ],
-      "warnings": [
-        "Do not attempt to cross flooded areas"
-      ],
-      "evidence_excerpt": "If you approach a flooded road or walkway, follow this rule: turn around, don't drown!",
-      "sources": [
-        {
-          "title": "Plan Ahead for Disasters | Ready.gov",
-          "url": "https://www.ready.gov/",
-          "domain": "ready.gov",
-          "retrieved_at": "2026-10-29T17:34:52+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:52+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": [
-        "01-drr",
-        "08-infrastructure"
-      ]
-    },
-    {
-      "id": "tip-23f143c0afa10a",
-      "title": "Plan Ahead for Severe Weather",
-      "category": "other",
-      "summary": "Assess risks and prepare for sudden severe weather events.",
-      "steps": [
-        "Identify local severe weather hazards",
-        "Create a shelter plan",
-        "Stock essential supplies"
-      ],
-      "warnings": [],
-      "evidence_excerpt": "Know your risks and plan ahead",
-      "sources": [
-        {
-          "title": "Plan Ahead for Disasters | Ready.gov",
-          "url": "https://www.ready.gov/",
-          "domain": "ready.gov",
-          "retrieved_at": "2026-10-29T17:34:52+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:52+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": []
-    },
-    {
-      "id": "tip-155786be60cdfd",
-      "title": "Enable Wireless Emergency Alerts",
-      "category": "other",
-      "summary": "Activate alerts to receive life‑saving information quickly.",
-      "steps": [
-        "Turn on emergency alerts in phone settings",
-        "Subscribe to local alert services"
-      ],
-      "warnings": [],
-      "evidence_excerpt": "Wireless emergency alerts allow officials to provide the public with life‑saving information quickly",
-      "sources": [
-        {
-          "title": "Plan Ahead for Disasters | Ready.gov",
-          "url": "https://www.ready.gov/",
-          "domain": "ready.gov",
-          "retrieved_at": "2026-10-29T17:34:52+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:52+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": []
-    },
-    {
-      "id": "tip-47dd1efe45ee58",
-      "title": "Create a Family Communication Plan",
-      "category": "other",
-      "summary": "Develop a quick, easy plan for staying in touch during emergencies.",
-      "steps": [
-        "Choose primary contact person",
-        "List alternate contacts",
-        "Agree on meeting points"
-      ],
-      "warnings": [],
-      "evidence_excerpt": "Make a family communication plan quickly and easily with our fillable form",
-      "sources": [
-        {
-          "title": "Plan Ahead for Disasters | Ready.gov",
-          "url": "https://www.ready.gov/",
-          "domain": "ready.gov",
-          "retrieved_at": "2026-10-29T17:34:52+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:52+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": []
-    },
-    {
-      "id": "tip-e2e8cf6c566da0",
-      "title": "Build an Emergency Kit",
-      "category": "other",
-      "summary": "Stock your kit with essential items for emergencies.",
-      "steps": [
-        "Include water, food, first aid, flashlight, batteries",
-        "Add personal documents",
-        "Check expiration dates regularly"
-      ],
-      "warnings": [],
-      "evidence_excerpt": "Make sure your emergency kit is stocked with the right items",
-      "sources": [
-        {
-          "title": "Plan Ahead for Disasters | Ready.gov",
-          "url": "https://www.ready.gov/",
-          "domain": "ready.gov",
-          "retrieved_at": "2026-10-29T17:34:52+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:52+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": [
-        "01-drr"
-      ]
-    },
-    {
-      "id": "tip-73c9b828fbd532",
-      "title": "Download the FEMA Mobile App",
-      "category": "other",
-      "summary": "Use the FEMA app for preparedness strategies and real‑time alerts.",
-      "steps": [
-        "Install the FEMA app",
-        "Enable notifications",
-        "Review preparedness guides"
-      ],
-      "warnings": [],
-      "evidence_excerpt": "Download the newly updated FEMA App to get preparedness strategies and real‑time weather and emergency alerts",
-      "sources": [
-        {
-          "title": "Plan Ahead for Disasters | Ready.gov",
-          "url": "https://www.ready.gov/",
-          "domain": "ready.gov",
-          "retrieved_at": "2026-10-29T17:34:52+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:52+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": [
-        "01-drr"
-      ]
-    },
-    {
       "id": "tip-f03df031c28d44",
       "title": "Define Clear Objectives for Your Home Garden",
       "category": "planning",
@@ -1392,6 +1138,51 @@
         }
       ],
       "retrieved_at": "2026-10-29T17:34:50+00:00",
+      "ai_provider": "groq",
+      "verification": {
+        "status": "needs_review",
+        "confidence": "high",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stage_ids": [
+        "01-drr"
+      ]
+    },
+    {
+      "id": "tip-ba0d2d2a284ab8",
+      "title": "Avoid Crossing Flooded Roads or Walkways",
+      "content_type": "plan",
+      "category": "first_aid",
+      "summary": "If you encounter a flooded road or walkway, do not cross; instead turn around to avoid drowning.",
+      "steps": [
+        "If you approach a flooded road or walkway, turn around and do not cross."
+      ],
+      "materials": [],
+      "tools": [],
+      "prerequisites": [
+        "Presence of a flooded road or walkway"
+      ],
+      "expected_result": "Avoid drowning and potential injury.",
+      "failure_modes": [
+        "Ignoring the rule and crossing the flooded area."
+      ],
+      "safety_notes": [],
+      "identification_criteria": [],
+      "edible_parts": [],
+      "preparation_requirements": [],
+      "lookalikes_or_uncertainty": [],
+      "warnings": [],
+      "evidence_excerpt": "If you approach a flooded road or walkway, follow this rule: turn around, don't drown!",
+      "sources": [
+        {
+          "title": "Plan Ahead for Disasters | Ready.gov",
+          "url": "https://www.ready.gov/",
+          "domain": "ready.gov",
+          "retrieved_at": "2026-10-29T17:34:52+00:00"
+        }
+      ],
+      "retrieved_at": "2026-10-29T17:34:52+00:00",
       "ai_provider": "groq",
       "verification": {
         "status": "needs_review",
