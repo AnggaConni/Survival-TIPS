@@ -1,0 +1,49 @@
+{
+  "queries": [
+    "site:ready.gov emergency water food shelter preparedness",
+    "site:cdc.gov emergency drinking water sanitation preparedness",
+    "site:who.int emergency first aid preparedness disaster",
+    "site:ifrc.org emergency preparedness household survival",
+    "site:fao.org home gardening food security guide",
+    "site:unhcr.org emergency shelter water sanitation guidance",
+    "emergency preparedness official guidance water treatment food storage"
+  ],
+  "trusted_domains": [
+    "ready.gov",
+    "cdc.gov",
+    "who.int",
+    "ifrc.org",
+    "redcross.org",
+    "fao.org",
+    "unhcr.org",
+    "reliefweb.int",
+    "gov.uk",
+    "ec.europa.eu",
+    "weather.gov",
+    "noaa.gov",
+    "usgs.gov",
+    "nps.gov",
+    "fema.gov"
+  ],
+  "rss_feeds": [
+    {
+      "name": "Ready.gov",
+      "url": "https://www.ready.gov/feeds/all"
+    },
+    {
+      "name": "ReliefWeb Updates",
+      "url": "https://reliefweb.int/updates/rss.xml"
+    },
+    {
+      "name": "WHO News",
+      "url": "https://www.who.int/rss-feeds/news-english.xml"
+    }
+  ],
+  "gbif_taxa": [
+    "Quercus",
+    "Moringa oleifera",
+    "Cocos nucifera",
+    "Ipomoea batatas",
+    "Amaranthus"
+  ]
+}
