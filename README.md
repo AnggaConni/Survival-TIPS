@@ -2,7 +2,7 @@
 
 Python-first, source-linked survival knowledge base inspired by rebuilding civilization from first principles.
 
-**Current phase:** source collection, eight-stage knowledge taxonomy, stage filters, and offline PDF export. Frontend remains a later phase.
+**Current phase:** source collection, eight-stage knowledge taxonomy, stage filters, and automatic offline PDF export. Frontend remains a later phase.
 
 ## Knowledge stages
 
@@ -19,6 +19,18 @@ Each stage is a separate filter and can be exported as its own handbook:
 
 Stage definitions live in `config/stages.json`. Tips receive `stage_ids`; the shared classifier in `scripts/stages.py` powers stage filters and PDF exports. A cross-cutting entry may appear in more than one stage.
 
+## Automated data → PDF flow
+
+The intended flow is:
+
+1. The scraper discovers and fetches sources.
+2. AI extraction saves source-linked candidate entries to `data/*.json`.
+3. The collection workflow validates the JSON and generates all eight PDFs during the same run.
+4. A separate `.github/workflows/generate-pdfs.yml` workflow also runs on pushes that change JSON data or the stage/PDF generator files. This covers manual data edits and commits made outside the collection workflow.
+5. Generated handbooks are committed to `docs/pdf/`.
+
+**GitHub Actions detail:** commits pushed using GitHub Actions' default `GITHUB_TOKEN` do not normally trigger another `push` workflow. That's why the collection workflow itself also generates PDFs before committing its data and PDF outputs. The separate push-triggered workflow is for direct pushes and other qualifying changes, not the only path for PDF generation.
+
 ## Repository layout
 
 - `config/sources.json` — search queries, trusted domains, RSS feeds, GBIF taxon queries.
@@ -32,7 +44,8 @@ Stage definitions live in `config/stages.json`. Tips receive `stage_ids`; the sh
 - `scripts/validate_data.py` — data-integrity checks.
 - `data/sources.json`, `data/tips.json`, `data/species.json` — collected records.
 - `docs/pdf/` — generated stage handbooks.
-- `.github/workflows/collect-data.yml` — manual and weekly pipeline.
+- `.github/workflows/collect-data.yml` — manual and weekly scraper pipeline.
+- `.github/workflows/generate-pdfs.yml` — PDF regeneration on qualifying pushes.
 
 ## Generate PDFs locally
 
@@ -69,7 +82,7 @@ python -m scripts.export_pdfs --all
 pytest -q
 ```
 
-GitHub Actions can also run the pipeline manually: Actions → **Collect survival data** → Run workflow. The workflow exports and commits stage PDFs alongside updated JSON and licensed assets.
+GitHub Actions can run the pipeline manually: Actions → **Collect survival data** → Run workflow. The pipeline exports and commits stage PDFs alongside updated JSON and licensed assets.
 
 ## GitHub Actions secrets
 
@@ -93,4 +106,4 @@ Optional: `TAVILY_API_KEY` for dedicated web search. Model overrides may be conf
 
 ## PDF output
 
-The exporter is deterministic in content selection: stage membership comes from explicit `stage_ids` or transparent category/keyword rules. It includes warnings, review status, and source links. It does not mark AI output as verified.
+The exporter selects content using explicit `stage_ids` or transparent category/keyword rules. It includes warnings, review status, and source links. It does not mark AI output as verified.
