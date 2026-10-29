@@ -107,15 +107,30 @@ def normalize_tip(raw,source,provider):
 
 def extract(source):
     errors=[]
-    for name,func in (("groq",call_groq),("deepseek",call_deepseek),("openrouter",call_openrouter)):
+    providers=(("groq",call_groq),("deepseek",call_deepseek),("openrouter",call_openrouter))
+    for name,func in providers:
         try:
-            rows=func(source).get("tips")
+            payload=func(source)
+            rows=payload.get("tips")
             if not isinstance(rows,list): raise ValueError("JSON lacks tips array")
-            return [x for x in (normalize_tip(r,source,name) for r in rows if isinstance(r,dict)) if x],name
+            if not rows:
+                # A valid, explicit empty result means this source yielded no usable tip.
+                print(f"[ai] {name} found no sufficiently supported tips.")
+                return [],name
+            accepted=[tip for tip in (normalize_tip(row,source,name) for row in rows if isinstance(row,dict)) if tip]
+            if accepted:
+                rejected=len(rows)-len(accepted)
+                if rejected:
+                    print(f"[ai] {name}: accepted {len(accepted)} tip(s), rejected {rejected} failing evidence/step checks.")
+                return accepted,name
+            # A syntactically valid response is not enough: try the next provider
+            # when every candidate fails deterministic validation.
+            errors.append(f"{name}: all {len(rows)} candidate(s) failed local validation")
+            print(f"[ai] {name} returned candidates, but none passed validation; trying next provider.")
         except Exception as exc:
             errors.append(f"{name}: {type(exc).__name__}: {exc}")
-            print(f"[ai] {name} failed: {exc}")
-    print("[ai] All providers failed; source retained without fabricated tips. "+" | ".join(errors))
+            print(f"[ai] {name} failed: {exc}; trying next provider.")
+    print("[ai] All providers failed validation or API calls; source retained without fabricated tips. "+" | ".join(errors))
     return [],"none"
 
 def process_saved_sources(max_sources=5):
