@@ -36,7 +36,8 @@ The intended flow is:
 - `config/sources.json` — search queries, trusted domains, RSS feeds, GBIF taxon queries.
 - `config/stages.json` — stage catalogue, order, descriptions, category and keyword rules.
 - `scripts/collect_sources.py` — search, RSS, article fetching.
-- `scripts/extract_tips.py` — AI extraction with Groq → DeepSeek → OpenRouter fallback; assigns stage IDs.
+- `scripts/extract_tips.py` — evidence-first AI extraction with Groq → DeepSeek → OpenRouter fallback; rejects tips whose evidence excerpt is not verbatim in stored source text or that have no practical steps.
+- `scripts/audit_tips.py` — deterministic quality audit for missing fields, unsupported evidence, generic advice, duplicate titles, and stage mismatches; optional AI re-extraction repair.
 - `scripts/stages.py` — shared stage classification and filtering.
 - `scripts/export_pdfs.py` — creates a separate PDF for each stage.
 - `scripts/collect_gbif.py` — GBIF occurrence records and license-gated image downloads.
@@ -77,12 +78,16 @@ Copy `.env.example` to `.env`, add your keys locally, and never commit `.env`.
 
 ```powershell
 python -m scripts.run_pipeline --limit 8 --gbif-limit 3
+python -m scripts.audit_tips
+python -m scripts.audit_tips --repair
 python -m scripts.validate_data
 python -m scripts.export_pdfs --all
-pytest -q
+python -m pytest -q
 ```
 
-GitHub Actions can run the pipeline manually: Actions → **Collect survival data** → Run workflow. The pipeline exports and commits stage PDFs alongside updated JSON and licensed assets.
+GitHub Actions can run the pipeline manually: Actions → **Collect survival data** → Run workflow. The workflow audits tip quality each run. Enable the `repair_tips` input to re-extract flagged source pages with the configured AI providers (this may consume API credits). Repair replaces existing tips from a source only when new candidates pass evidence/step validation; if no replacement passes, existing data is kept. The pipeline exports and commits stage PDFs alongside updated JSON and licensed assets.
+
+The extractor falls back from Groq to DeepSeek to OpenRouter when a provider errors or all its candidate tips fail local validation. A valid empty response is treated as the model finding no sufficiently supported tips, not as an API failure. The audit is a screening aid, not a substitute for human review.
 
 ## GitHub Actions secrets
 
