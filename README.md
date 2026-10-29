@@ -35,7 +35,8 @@ The intended flow is:
 
 - `config/sources.json` — search queries, trusted domains, RSS feeds, GBIF taxon queries.
 - `config/stages.json` — stage catalogue, order, descriptions, category and keyword rules.
-- `scripts/collect_sources.py` — search, RSS, article fetching.
+- `scripts/collect_sources.py` — search, RSS, article fetching; ranks practical manuals/guides ahead of announcement-style news where detectable.
+- `config/sources.json` — prioritizes practical technical queries across emergency preparedness, water, food production/preservation, and shelter construction.
 - `scripts/extract_tips.py` — evidence-first AI extraction with Groq → DeepSeek → OpenRouter fallback; requires a verbatim evidence excerpt, practical steps, an assigned stage, and structured action-type fields. Wild-food consumption tips are rejected unless key safety fields are supplied.
 - `scripts/audit_tips.py` — deterministic quality audit for missing fields, unsupported evidence, generic advice, duplicate titles, stage mismatches, missing food-safety details, and incomplete build/make recipes; optional AI re-extraction repair.
 - `scripts/stages.py` — shared stage classification and filtering.
