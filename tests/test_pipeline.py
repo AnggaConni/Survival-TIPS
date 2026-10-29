@@ -17,3 +17,23 @@ def test_tip_requires_source():
     assert tip["sources"][0]["url"]==src["url"]
     assert "03-water-sanitation" in tip["stage_ids"]
     assert normalize_tip({"title":"No source"},{}, "test") is None
+
+
+def test_prompt_rejects_heading_only_and_requires_verbatim_evidence():
+    from scripts.extract_tips import PROMPT
+    assert "navigation headings" in PROMPT
+    assert "verbatim excerpt" in PROMPT
+    assert "return no tip" in PROMPT
+    assert "Never invent thresholds" in PROMPT
+
+def test_normalize_tip_keeps_unreviewed_status_and_rejects_empty_steps_shape():
+    src={"url":"https://example.org/water","title":"Water guide","domain":"example.org","retrieved_at":"2026-10-29T00:00:00+00:00"}
+    tip=normalize_tip({
+        "title":"Treat drinking water","category":"water",
+        "summary":"Use the source-supported water treatment method.",
+        "steps":["Follow the stated procedure."],"warnings":[],
+        "evidence_excerpt":"Boil water before drinking.","confidence":"high"
+    },src,"test")
+    assert tip["verification"]["status"] == "needs_review"
+    assert tip["verification"]["confidence"] == "high"
+    assert tip["evidence_excerpt"] == "Boil water before drinking."
