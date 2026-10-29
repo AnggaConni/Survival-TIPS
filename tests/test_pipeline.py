@@ -60,8 +60,8 @@ def test_normalize_tip_accepts_verbatim_evidence_and_steps():
 def test_extract_falls_back_when_first_provider_fails_validation(monkeypatch):
     import scripts.extract_tips as extractor
     source={"url":"https://example.org/guide","title":"Guide","domain":"example.org","retrieved_at":"2026-10-29T00:00:00+00:00","text":"Boil water for one minute before drinking."}
-    bad={"tips":[{"title":"Treat water","category":"water","summary":"Boil water.","steps":["Boil water."],"warnings":[],"evidence_excerpt":"Boiling water removes every contaminant.","confidence":"high"}]}
-    good={"tips":[{"title":"Boil water before drinking","category":"water","summary":"Boil water before use.","steps":["Bring water to a boil for one minute."],"warnings":[],"evidence_excerpt":"Boil water for one minute before drinking.","confidence":"medium"}]}
+    bad={"tips":[{"title":"Treat water","content_type":"treat","category":"water","summary":"Boil water.","steps":["Boil water."],"warnings":[],"evidence_excerpt":"Boiling water removes every contaminant.","confidence":"high"}]}
+    good={"tips":[{"title":"Boil water before drinking","content_type":"treat","category":"water","summary":"Boil water before use.","steps":["Bring water to a boil for one minute."],"warnings":[],"evidence_excerpt":"Boil water for one minute before drinking.","confidence":"medium"}]}
     monkeypatch.setattr(extractor, "call_groq", lambda source: bad)
     monkeypatch.setattr(extractor, "call_deepseek", lambda source: good)
     monkeypatch.setattr(extractor, "call_openrouter", lambda source: {"tips":[]})
