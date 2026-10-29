@@ -51,10 +51,26 @@ def build_pdf(stage, tips, output_path):
         block = [Paragraph(f"{index}. {safe(tip.get('title', 'Untitled'))}", styles["TipTitle"])]
         if tip.get("summary"):
             block.append(Paragraph(safe(tip["summary"]), styles["BodyText"]))
+        if tip.get("content_type"):
+            block.append(Paragraph("Action type: " + safe(tip["content_type"]), styles["SmallNote"]))
+        for field, label in (("materials", "Materials / ingredients"), ("tools", "Tools / equipment"), ("prerequisites", "Prerequisites")):
+            values = tip.get(field, [])
+            if values:
+                block.append(Paragraph("<b>" + label + "</b>", styles["BodyText"]))
+                for value in values:
+                    block.append(Paragraph("• " + safe(value), styles["BodyText"]))
         if tip.get("steps"):
             block.append(Paragraph("<b>Steps</b>", styles["BodyText"]))
             for step_num, step in enumerate(tip["steps"], 1):
                 block.append(Paragraph(f"{step_num}. {safe(step)}", styles["BodyText"]))
+        if tip.get("expected_result"):
+            block.append(Paragraph("<b>Expected result</b>: " + safe(tip["expected_result"]), styles["BodyText"]))
+        for field, label in (("failure_modes", "Failure modes / limitations"), ("safety_notes", "Safety notes"), ("identification_criteria", "Identification criteria"), ("edible_parts", "Edible parts stated by source"), ("preparation_requirements", "Preparation requirements"), ("lookalikes_or_uncertainty", "Look-alikes / uncertainty")):
+            values = tip.get(field, [])
+            if values:
+                block.append(Paragraph("<b>" + label + "</b>", styles["BodyText"]))
+                for value in values:
+                    block.append(Paragraph("• " + safe(value), styles["BodyText"]))
         if tip.get("warnings"):
             block.append(Paragraph("<b>Warnings</b>", styles["BodyText"]))
             for warning in tip["warnings"]:
