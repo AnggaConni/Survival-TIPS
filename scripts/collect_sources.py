@@ -33,10 +33,27 @@ def collect_candidates(per_query=4):
                 if is_http_url(url):
                     candidates.setdefault(url,{"url":url,"title":entry.get("title",""),"snippet":BeautifulSoup(entry.get("summary",""),"html.parser").get_text(" ",strip=True),"source_type":"rss","feed_name":feed.get("name",""),"search_provider":None})
         except Exception as exc: print(f"[rss] Failed {feed.get('url')}: {exc}")
+    practical_title_terms = (
+        "guide", "manual", "handbook", "how to", "toolbox", "treatment",
+        "shelter solutions", "standards", "technical", "field guide",
+        "factsheet", "procedure", "cultivation", "food safety", "water storage",
+        "handwashing", "repair", "construction", "irrigation", "compost",
+        "seed saving", "preservation", "maintenance", "design specification",
+    )
+    news_title_terms = (
+        "news", "statement", "signing ceremony", "contribution agreement",
+        "funding", "pledge", "donation", "appoint", "visit", "meeting",
+        "press release", "partnership", "launches", "announces",
+    )
     def rank(item):
         domain=safe_domain(item["url"])
         trusted=any(domain==d or domain.endswith("."+d) for d in TRUSTED_DOMAINS)
-        return (0 if trusted else 1,item["url"])
+        title=str(item.get("title", "")).casefold()
+        query=str(item.get("query", "")).casefold()
+        practical=any(term in title for term in practical_title_terms) or any(term in query for term in practical_title_terms)
+        likely_news=any(term in title for term in news_title_terms)
+        # Put practical manuals/guides first; de-prioritize announcement-style RSS/news.
+        return (1 if likely_news and not practical else 0, 0 if practical else 1, 0 if trusted else 1, item["url"])
     return sorted(candidates.values(),key=rank)
 def extract_page(candidate):
     session=get_session()
