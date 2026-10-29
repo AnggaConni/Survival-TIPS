@@ -36,8 +36,8 @@ The intended flow is:
 - `config/sources.json` — search queries, trusted domains, RSS feeds, GBIF taxon queries.
 - `config/stages.json` — stage catalogue, order, descriptions, category and keyword rules.
 - `scripts/collect_sources.py` — search, RSS, article fetching.
-- `scripts/extract_tips.py` — evidence-first AI extraction with Groq → DeepSeek → OpenRouter fallback; rejects tips whose evidence excerpt is not verbatim in stored source text or that have no practical steps.
-- `scripts/audit_tips.py` — deterministic quality audit for missing fields, unsupported evidence, generic advice, duplicate titles, and stage mismatches; optional AI re-extraction repair.
+- `scripts/extract_tips.py` — evidence-first AI extraction with Groq → DeepSeek → OpenRouter fallback; requires a verbatim evidence excerpt, practical steps, an assigned stage, and structured action-type fields. Wild-food consumption tips are rejected unless key safety fields are supplied.
+- `scripts/audit_tips.py` — deterministic quality audit for missing fields, unsupported evidence, generic advice, duplicate titles, stage mismatches, missing food-safety details, and incomplete build/make recipes; optional AI re-extraction repair.
 - `scripts/stages.py` — shared stage classification and filtering.
 - `scripts/export_pdfs.py` — creates a separate PDF for each stage.
 - `scripts/collect_gbif.py` — GBIF occurrence records and license-gated image downloads.
@@ -144,7 +144,7 @@ Look first in these stages:
 - **Water & Sanitation:** safe collection, treatment and storage of water, toilets, and hygiene facilities.
 - **Disaster Risk Reduction:** emergency shelters, kits, evacuation and first-aid preparedness.
 
-These are **target categories for building the knowledge base**, not a claim that the current dataset already contains complete how-to recipes for each. For a build/make guide, require a bill of materials, tools, step-by-step method, critical temperatures/measurements where source-backed, expected result, failure modes, and safety warnings. Avoid synthesizing operational instructions from unrelated sources when key details are missing.
+These are **target categories for building the knowledge base**, not a claim that the current dataset already contains complete how-to recipes for each. For a build/make guide, require a bill of materials, tools, step-by-step method, critical temperatures/measurements where source-backed, expected result, failure modes, and safety warnings. The extraction schema now records `content_type`, `materials`, `tools`, `prerequisites`, `expected_result`, `failure_modes`, and `safety_notes` where the source supports them. Avoid synthesizing operational instructions from unrelated sources when key details are missing.
 
 ## Is the filter good enough?
 
@@ -157,8 +157,10 @@ Recommended quality gates before content is promoted from `needs_review`:
 2. **Evidence match:** exact excerpt is stored; each actionable step can be traced to the source (not just the general topic).
 3. **Practicality:** enough detail to reproduce the procedure; no generic slogans or missing critical steps.
 4. **Safety-critical review:** qualified human review for wild foods, water treatment, first aid, chemicals, electricity, combustion, construction and food preservation.
-5. **Classification:** explicit reviewed stage assignment and a distinct content type such as `identify`, `eat`, `grow`, `build`, `make`, `repair`, or `maintain`.
-6. **Status discipline:** keep new AI items at `needs_review`; change status only after an actual review, with reviewer, date and review notes.
+5. **Classification:** a distinct action type such as `identify`, `eat`, `grow`, `build`, `make`, `repair`, or `maintain`, plus a reviewed stage assignment. The Python audit flags missing action types and incomplete build/make records.
+6. **Reproducibility:** for build/make guides, check materials, tools, prerequisites, method, expected result, failure modes, and safety notes. Missing details must remain marked incomplete, not be filled in by AI guesses.
+7. **Wild-food safety gate:** an `eat` candidate is rejected unless the structured record includes identification criteria, edible parts, preparation requirements, and look-alikes/uncertainties. These fields still require expert review; passing the field check does not establish edibility.
+8. **Status discipline:** keep new AI items at `needs_review`; change status only after an actual review, with reviewer, date and review notes.
 
 ### Audit and repair commands
 
@@ -173,4 +175,4 @@ Audit mode only reports flags. Repair mode may call AI providers and consume API
 
 ## PDF output
 
-The exporter selects content using explicit `stage_ids` or transparent category/keyword rules. It includes warnings, review status, and source links. A PDF can exist while its stage contains few or zero tips. PDF generation is a formatting/export step, not an accuracy or safety certification.
+The exporter selects content using explicit `stage_ids` or transparent category/keyword rules. It includes action type, source-stated materials/tools, prerequisites, expected results, failure modes, food identification/preparation fields where available, warnings, review status, and source links. Existing legacy tips do not automatically gain these fields: run the audit and use the optional AI repair workflow, then manually review results. A PDF can exist while its stage contains few or zero tips. PDF generation is a formatting/export step, not an accuracy or safety certification.
