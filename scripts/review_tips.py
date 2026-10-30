@@ -1,6 +1,7 @@
 from __future__ import annotations
 import argparse
 from .common import ROOT, read_json, write_json, now_iso
+from .stages import get_stages
 
 def main():
     parser = argparse.ArgumentParser(description="Apply human review decisions to Survival-TIPS candidates.")
@@ -46,6 +47,22 @@ def main():
             reviewed_steps.append({"instruction": instruction, "evidence_excerpt": excerpt, "source_url": url})
         tip = dict(original)
         tip["steps"] = reviewed_steps
+        requested_stages = decision.get("stage_ids") or tip.get("stage_ids", [])
+        valid_stage_ids = {stage["id"] for stage in get_stages()}
+        if not isinstance(requested_stages, list) or not requested_stages or any(stage_id not in valid_stage_ids for stage_id in requested_stages):
+            raise SystemExit(f"{tip_id}: stage_ids must contain valid configured stage IDs")
+        tip["stage_ids"] = list(dict.fromkeys(requested_stages))
+        tip["primary_stage_id"] = tip["stage_ids"][0]
+        tip["secondary_stage_ids"] = tip["stage_ids"][1:]
+        tip["stage_classification"] = {
+            "suggested_stage_ids": original.get("stage_classification", {}).get("suggested_stage_ids", original.get("stage_ids", [])),
+            "approved_stage_ids": tip["stage_ids"],
+            "method": original.get("stage_classification", {}).get("method", "legacy_or_human_supplied"),
+            "review_status": "human_reviewed",
+            "reviewed_by": reviewer,
+            "reviewed_at": decision.get("reviewed_at") or now_iso(),
+            "reason": decision.get("stage_review_notes", "Reviewer confirmed or adjusted stage classification.")
+        }
         tip["quality_status"] = "human_verified"
         tip["verification"] = {
             "status": "approved",
