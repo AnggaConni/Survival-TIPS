@@ -1,6 +1,7 @@
 from __future__ import annotations
 import hashlib
 import re
+import unicodedata
 from datetime import datetime, timezone
 from difflib import SequenceMatcher
 from urllib.parse import urlparse
@@ -30,6 +31,29 @@ def normalized_text(value):
 
 def content_hash(text):
     return hashlib.sha256(normalized_text(text).encode("utf-8")).hexdigest()
+
+
+def evidence_matches(evidence, source_text):
+    """Match verbatim evidence, allowing explicit ellipses between quoted fragments."""
+    def normalize(value):
+        value = unicodedata.normalize("NFKC", str(value or ""))
+        return re.sub(r"\s+", " ", value).strip().casefold().rstrip(".,;:!?")
+
+    source = normalize(source_text)
+    raw = unicodedata.normalize("NFKC", str(evidence or ""))
+    fragments = [normalize(part) for part in re.split(r"\.{3,}|…+", raw)]
+    fragments = [part for part in fragments if part]
+    if not fragments:
+        return False
+    cursor = 0
+    for fragment in fragments:
+        if len(fragment) < 8:
+            return False
+        position = source.find(fragment, cursor)
+        if position < 0:
+            return False
+        cursor = position + len(fragment)
+    return True
 
 def _domain_matches(host, domains):
     return any(host == d or host.endswith("." + d) for d in domains)
@@ -140,7 +164,7 @@ OPPOSITE_PAIRS = (
     ("safe", "unsafe"), ("edible", "inedible"), ("potable", "nonpotable"),
     ("increase", "decrease"), ("increases", "decreases"),
     ("add", "remove"), ("wet", "dry"), ("boil", "do not boil"),
-    ("recommended", "not recommended"), ("use", "avoid"),
+    ("recommended", "not recommended"),
 )
 
 def _contains_phrase(text, phrase):
@@ -162,10 +186,23 @@ def possible_conflict_pairs(tips):
             for a, b in OPPOSITE_PAIRS:
                 if (_contains_phrase(left_text, a) and _contains_phrase(right_text, b)) or (_contains_phrase(left_text, b) and _contains_phrase(right_text, a)):
                     opposite.append(f"{a}/{b}")
-            # Different explicit numeric values about a shared topic are review leads only.
-            nums_left = set(re.findall(r"\b\d+(?:\.\d+)?\s*(?:°c|°f|minutes?|hours?|days?|lit(?:re|er)s?|mg|g|kg|%)?", left_text))
-            nums_right = set(re.findall(r"\b\d+(?:\.\d+)?\s*(?:°c|°f|minutes?|hours?|days?|lit(?:re|er)s?|mg|g|kg|%)?", right_text))
-            numeric_signal = bool(nums_left and nums_right and nums_left != nums_right and len(shared) >= 5)
+            # Compare numeric values only when both records use the same explicit unit.
+            # This avoids treating unrelated dimensions (e.g. floor area, height, and kW)
+            # as contradictions merely because their numbers differ.
+            def numeric_values(text):
+                pattern = r"\b(\d+(?:\.\d+)?)\s*(°\s*[cf]|km²|km2|m²|m2|cm|mm|kw|w|minutes?|hours?|days?|lit(?:re|er)s?|mg|kg|g|%)"
+                values = {}
+                for value, unit in re.findall(pattern, text):
+                    key = re.sub(r"\s+", "", unit).casefold()
+                    values.setdefault(key, set()).add(float(value))
+                return values
+
+            nums_left, nums_right = numeric_values(left_text), numeric_values(right_text)
+            shared_units = set(nums_left) & set(nums_right)
+            numeric_signal = bool(
+                len(shared) >= 5
+                and any(nums_left[unit] != nums_right[unit] for unit in shared_units)
+            )
             if opposite or numeric_signal:
                 pairs.append({"left_id": left.get("id"), "right_id": right.get("id"),
                               "shared_topic_terms": sorted(shared)[:12],
