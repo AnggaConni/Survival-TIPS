@@ -10,6 +10,7 @@ on:
       - "config/*.json"
       - "requirements.txt"
       - ".github/workflows/test.yml"
+      - ".github/workflows/approve-candidates.yml"
   pull_request:
     paths:
       - "scripts/**"

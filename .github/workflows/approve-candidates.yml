@@ -1,0 +1,74 @@
+name: Review and approve candidate tips
+
+on:
+  workflow_dispatch:
+    inputs:
+      decisions_json:
+        description: "Completed review JSON (create a starter locally with scripts.approve_candidates --template)"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: survival-tip-approval
+  cancel-in-progress: false
+
+jobs:
+  approve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Write submitted review decisions
+        env:
+          DECISIONS_JSON: ${{ inputs.decisions_json }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          payload = json.loads(os.environ["DECISIONS_JSON"])
+          if not isinstance(payload, dict) or not isinstance(payload.get("decisions"), list) or not payload["decisions"]:
+              raise SystemExit("Input must be a JSON object containing a non-empty decisions array.")
+          serialized = json.dumps(payload, ensure_ascii=False, indent=2)
+          Path("/tmp/review_decisions.json").write_text(serialized, encoding="utf-8")
+          Path("data/review_decisions.json").write_text(serialized, encoding="utf-8")
+          PY
+
+      - name: Approve selected candidates (human evidence required)
+        run: python -m scripts.approve_candidates --apply --decisions-file /tmp/review_decisions.json
+
+      - name: Validate approved dataset
+        run: python -m scripts.validate_data
+
+      - name: Run test suite
+        run: python -m pytest -q
+
+      - name: Regenerate stage PDFs
+        run: python -m scripts.export_pdfs --all
+
+      - name: Commit approved tips, updated candidate queue, and PDFs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/review_decisions.json data/approved_tips.json data/candidate_tips.json docs/pdf
+          if git diff --cached --quiet; then
+            echo "No publication changes to commit."
+          else
+            git commit -m "data: approve human-reviewed candidate tips"
+            git push origin main
+          fi
