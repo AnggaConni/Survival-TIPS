@@ -191,7 +191,7 @@
       "warnings": [
         "Do not shorten a message in a way that removes essential protective instructions."
       ],
-      "evidence_excerpt": "Brief messages are appropriate for: On-screen scroll, Text message systems, Social media, etc.",
+      "evidence_excerpt": "Brief messages are appropriate for:",
       "sources": [
         {
           "title": "Preparing an Advisory Drinking Water Advisory Communications Toolbox | Water, Sanitation, & Hygiene-related Emergencies & and Outbreaks | Healthy Water | CDC",
@@ -341,7 +341,7 @@
       "warnings": [
         "These figures have different climate contexts and are not interchangeable; the UNHCR entry is marked outdated and under revision."
       ],
-      "evidence_excerpt": "Minimum 3.5m2 of covered living space per person in tropical or warm climates... Minimum 4.5m2 to 5.5m2 indoor living space per person in cold climates.",
+      "evidence_excerpt": "Minimum 3.5m2 of covered living space per person in tropical or warm climates... Minimum 4.5m2 to 5.5m2 indoor living space per person.",
       "sources": [
         {
           "title": "Emergency Shelter Solutions and Standards | UNHCR",
