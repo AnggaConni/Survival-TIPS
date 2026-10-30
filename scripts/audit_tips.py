@@ -110,6 +110,7 @@ def main():
         "dataset": tip_path.name,
         "tip_count": len(tips),
         "flagged_tip_count": len(issues),
+        "flagged_issues": {tip_id: sorted(set(items)) for tip_id, items in issues.items()},
         "possible_duplicate_pairs": duplicates,
         "possible_conflict_pairs": conflicts,
         "source_tier_counts": dict(source_tiers),
