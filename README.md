@@ -93,7 +93,7 @@ python -m scripts.export_pdfs --all
 python -m pytest -q
 ```
 
-GitHub Actions can run the pipeline manually: Actions → **Collect survival data** → Run workflow. The workflow audits tip quality each run. Enable the `repair_tips` input to re-extract flagged source pages with the configured AI providers (this may consume API credits). Repair replaces existing tips from a source only when new candidates pass evidence/step validation; if no replacement passes, existing data is kept. The pipeline exports and commits stage PDFs alongside updated JSON and licensed assets.
+GitHub Actions can run the pipeline manually: Actions → **Collect survival data** → Run workflow. The workflow audits tip quality each run. Enable the `repair_tips` input to re-extract flagged source pages into the unreviewed candidate queue with the configured AI providers (this may consume API credits). Repair does not replace active review records or approve/publish content. The pipeline exports and commits stage PDFs alongside updated JSON and licensed assets.
 
 The extractor falls back from Groq to DeepSeek to OpenRouter when a provider errors or all its candidate tips fail local validation. A valid empty response is treated as the model finding no sufficiently supported tips, not as an API failure. The audit is a screening aid, not a substitute for human review. PDF export reads only `data/approved_tips.json`; approval requires a reviewer, date, notes, and a verbatim evidence excerpt/source URL for every actionable step.
 
