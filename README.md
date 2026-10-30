@@ -54,7 +54,10 @@ The intended flow is:
 - `scripts/run_pipeline.py` — data collection orchestrator.
 - `scripts/validate_data.py` — data-integrity checks.
 - `scripts/knowledge_validation.py` — field-level source evidence and domain-schema validation for Phase 3 catalogues.
+- `scripts/review_knowledge.py` — human approval of structured technical knowledge records.
+- `scripts/export_knowledge.py` — four PDFs built only from human-approved technical records.
 - `data/recipes.json`, `data/materials.json`, `data/biodiversity_profiles.json`, `data/agriculture_profiles.json` — structured technical knowledge catalogues.
+- `.github/workflows/review-knowledge.yml` — manual human-review and publication workflow for Phase 3 catalogues.
 - `data/sources.json`, `data/tips.json`, `data/species.json` — collected records.
 - `docs/pdf/` — generated stage handbooks.
 - `.github/workflows/collect-data.yml` — manual and weekly scraper pipeline.
@@ -99,6 +102,8 @@ python -m scripts.audit_tips --repair
 python -m scripts.review_tips --apply
 python -m scripts.validate_data
 python -m scripts.knowledge_validation
+python -m scripts.review_knowledge --list
+python -m scripts.export_knowledge
 python -m scripts.review_tips --apply
 python -m scripts.export_pdfs --all
 python -m pytest -q
@@ -215,3 +220,20 @@ Run the Phase 3 catalogue validator with:
 ```powershell
 python -m scripts.knowledge_validation
 ```
+
+
+### Review and publish Phase 3 knowledge
+
+List records awaiting review:
+
+```powershell
+python -m scripts.review_knowledge --list
+```
+
+Create a template for a selected record:
+
+```powershell
+python -m scripts.review_knowledge --template recipes.json:record-id
+```
+
+Complete the reviewer and review notes, then use **Actions → Review and publish technical knowledge → Run workflow** with the JSON. The workflow validates field-level source evidence, runs tests, and generates the four approved-only PDFs in `docs/knowledge-pdf/`.
