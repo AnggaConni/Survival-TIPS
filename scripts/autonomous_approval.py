@@ -193,9 +193,12 @@ def run_autonomous_approval(root: Path = ROOT, reviewer=None, model: str | None 
         entry = {"tip_id": tip_id, "reviewed_at": reviewed_at, "provider": "deepseek",
                  "model": model, "prompt_version": PROMPT_VERSION}
         try:
-            if not tip_id or tip_id in approved:
-                entry.update({"decision": "needs_human_review", "reason": "missing ID or already exists in approved dataset"})
+            if not tip_id:
+                entry.update({"decision": "needs_human_review", "reason": "candidate has no ID"})
                 kept.append(tip)
+            elif tip_id in approved:
+                # Recover safely from an interrupted prior run: approved is authoritative.
+                entry.update({"decision": "already_approved", "reason": "ID already exists in approved dataset; removing stale queue copy"})
             else:
                 deterministic_risks = _risk_reasons(tip)
                 source_ok, source_reasons = _source_gate(tip, source_by_url)
@@ -259,9 +262,11 @@ def run_autonomous_approval(root: Path = ROOT, reviewer=None, model: str | None 
     approved_payload["tips"] = list(approved.values())
     approved_payload["generated_at"] = reviewed_at
     log_payload.update({"schema_version": "1.0", "generated_at": reviewed_at, "reviews": log[-10000:]})
-    write_json(candidate_path, candidate_payload)
+    # Persist publication and its audit record before removing queue entries.
+    # If a later write fails, a duplicate queue copy is safer than losing a candidate.
     write_json(approved_path, approved_payload)
     write_json(log_path, log_payload)
+    write_json(candidate_path, candidate_payload)
     result = {"reviewed": len(candidates), "auto_approved": newly_approved, "remaining_candidates": len(kept),
               "approved_total": len(approved), "log_file": log_path.name}
     print("[autonomous-approval] " + json.dumps(result))
