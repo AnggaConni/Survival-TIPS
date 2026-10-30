@@ -44,7 +44,7 @@ jobs:
           payload = json.loads(os.environ["DECISIONS_JSON"])
           if not isinstance(payload, dict) or not isinstance(payload.get("decisions"), list) or not payload["decisions"]:
               raise SystemExit("Input must be a JSON object containing a non-empty decisions array.")
-          serialized = json.dumps(payload, ensure_ascii=False, indent=2) + "\\n"
+          serialized = json.dumps(payload, ensure_ascii=False, indent=2)
           Path("/tmp/review_decisions.json").write_text(serialized, encoding="utf-8")
           Path("data/review_decisions.json").write_text(serialized, encoding="utf-8")
           PY
