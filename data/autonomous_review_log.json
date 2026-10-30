@@ -9,7 +9,16 @@
       "prompt_version": "1.0",
       "decision": "needs_human_review",
       "reason": "high-risk category: shelter; safety-sensitive wording detected"
+    },
+    {
+      "tip_id": "tip-68f30bee9b33c6",
+      "reviewed_at": "2026-10-30T18:10:25+00:00",
+      "provider": "deepseek",
+      "model": "deepseek-chat",
+      "prompt_version": "1.0",
+      "decision": "needs_human_review",
+      "reason": "high-risk category: shelter; safety-sensitive wording detected"
     }
   ],
-  "generated_at": "2026-10-30T17:18:29+00:00"
+  "generated_at": "2026-10-30T18:10:25+00:00"
 }
