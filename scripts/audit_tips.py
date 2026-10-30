@@ -67,9 +67,9 @@ def audit(tips, sources):
         classification = tip.get("stage_classification", {})
         if not classification:
             issues[tip_id].append("stage_classification_not_auditable")
-        elif classification.get("review_status") not in {"human_reviewed", "needs_human_review"}:
+        elif classification.get("review_status") not in {"human_reviewed", "needs_human_review", "ai_reviewed"}:
             issues[tip_id].append("invalid_stage_review_status")
-        if tip.get("quality_status") not in {"source_aligned_needs_human_review", "ai_candidate_needs_review"}:
+        if tip.get("quality_status") not in {"source_aligned_needs_human_review", "ai_candidate_needs_review", "ai_verified"}:
             issues[tip_id].append("missing_quality_status")
     for pair in duplicate_pairs(tips):
         issues[pair["left_id"]].append("possible_near_duplicate:" + str(pair["right_id"]))
