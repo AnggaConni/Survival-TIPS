@@ -43,6 +43,7 @@ The intended flow is:
 - `scripts/stages.py` — shared stage classification and filtering.
 - `scripts/export_pdfs.py` — creates a separate PDF for each stage from `data/approved_tips.json` only.
 - `scripts/review_tips.py` — promotes a tip only after a reviewer supplies verbatim source evidence for every step.
+- `docs/HUMAN_REVIEW.md` — review checklist, decision JSON format, and publication procedure.
 - `data/review_decisions.json` — human review decision manifest.
 - `data/approved_tips.json` — publication dataset; only approved tips appear in PDFs.
 - `scripts/collect_gbif.py` — GBIF occurrence records and license-gated image downloads.
