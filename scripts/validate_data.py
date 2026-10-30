@@ -1,6 +1,6 @@
 from __future__ import annotations
-from pathlib import Path
-from .common import ROOT, read_json
+from .common import ROOT, read_json, is_http_url
+from .stages import get_stages
 
 VALID_CONTENT_TYPES = {
     "identify", "eat", "grow", "build", "make", "repair", "maintain",
@@ -11,57 +11,95 @@ VALID_CONTENT_TYPES = {
 VALID_QUALITY_STATUSES = {"source_aligned_needs_human_review", "ai_candidate_needs_review"}
 
 def validate():
-    errors=[]
-    data={name:read_json(ROOT/"data"/f"{name}.json",{}) for name in ("sources","tips","species")}
-    for name,payload in data.items():
-        if not isinstance(payload.get(name),list):
+    errors = []
+    data = {name: read_json(ROOT / "data" / f"{name}.json", {}) for name in ("sources", "tips", "species")}
+    for name, payload in data.items():
+        if not isinstance(payload.get(name), list):
             errors.append(f"data/{name}.json must have '{name}' array")
-    optional = {
-        "candidate_tips": read_json(ROOT/"data"/"candidate_tips.json", {"tips": []}),
-        "tips.quarantine": read_json(ROOT/"data"/"tips.quarantine.json", {"tips": []}),
-    }
-    active=data["tips"].get("tips",[])
-    candidates=optional["candidate_tips"].get("tips",[])
-    quarantined=optional["tips.quarantine"].get("tips",[])
-    all_groups=(("active",active),("candidate",candidates),("quarantine",quarantined))
-    ids=set()
-    for group,rows in all_groups:
-        if not isinstance(rows,list):
+    active = data["tips"].get("tips", []) if isinstance(data["tips"].get("tips"), list) else []
+    candidates = read_json(ROOT / "data" / "candidate_tips.json", {"tips": []}).get("tips", [])
+    quarantined = read_json(ROOT / "data" / "tips.quarantine.json", {"tips": []}).get("tips", [])
+    approved = read_json(ROOT / "data" / "approved_tips.json", {"tips": []}).get("tips", [])
+    sources = data["sources"].get("sources", [])
+    source_text = {s.get("url"): s.get("text", "") for s in sources if s.get("url")}
+    valid_stages = {s.get("id") for s in get_stages()}
+    ids = set()
+    for group, rows in (("active", active), ("candidate", candidates), ("quarantine", quarantined)):
+        if not isinstance(rows, list):
             errors.append(f"{group} tips must be an array")
             continue
         for tip in rows:
-            tip_id=tip.get("id")
+            if not isinstance(tip, dict):
+                errors.append(f"{group} contains a non-object tip")
+                continue
+            tip_id = tip.get("id")
             if not tip_id or not tip.get("title") or not tip.get("summary"):
                 errors.append(f"{group} tip missing id/title/summary: {tip_id}")
             if tip_id in ids:
                 errors.append(f"duplicate tip ID across active/candidate/quarantine: {tip_id}")
             ids.add(tip_id)
-            if not isinstance(tip.get("sources"),list) or not tip.get("sources"):
+            refs = tip.get("sources")
+            if not isinstance(refs, list) or not refs:
                 errors.append(f"{group} tip missing non-empty sources: {tip_id}")
+            elif any(not isinstance(s, dict) or not is_http_url(s.get("url", "")) for s in refs):
+                errors.append(f"{group} tip has invalid source URL: {tip_id}")
             if group == "quarantine":
                 if not tip.get("quarantine_reason"):
                     errors.append(f"quarantine tip missing quarantine_reason: {tip_id}")
                 continue
-            for field in ("steps","stage_ids"):
-                if not isinstance(tip.get(field),list) or not tip.get(field):
+            for field in ("steps", "stage_ids"):
+                if not isinstance(tip.get(field), list) or not tip.get(field):
                     errors.append(f"{group} tip missing non-empty {field}: {tip_id}")
-            if not tip.get("content_type") or tip.get("content_type") not in VALID_CONTENT_TYPES:
+            if tip.get("content_type") not in VALID_CONTENT_TYPES:
                 errors.append(f"{group} tip has missing/invalid content_type: {tip_id}")
             if tip.get("quality_status") not in VALID_QUALITY_STATUSES:
                 errors.append(f"{group} tip has missing/invalid quality_status: {tip_id}")
-            verification=tip.get("verification",{})
+            if any(stage_id not in valid_stages for stage_id in tip.get("stage_ids", [])):
+                errors.append(f"{group} tip has unknown stage ID: {tip_id}")
+            verification = tip.get("verification", {})
             if verification.get("status") != "needs_review":
                 errors.append(f"{group} tip must remain needs_review until human approval: {tip_id}")
             if verification.get("reviewed_by") or verification.get("reviewed_at"):
-                errors.append(f"{group} tip has reviewer metadata without an approval workflow: {tip_id}")
-    for row in data["species"].get("species",[]):
-        for field in ("image_path","image_license","image_source_url"):
-            if not row.get(field): errors.append(f"species missing {field}: {row.get('id')}")
+                errors.append(f"{group} tip has reviewer metadata without approval: {tip_id}")
+    approved_ids = set()
+    for tip in approved:
+        if not isinstance(tip, dict):
+            errors.append("approved dataset contains a non-object tip")
+            continue
+        tip_id = tip.get("id")
+        if not tip_id or tip_id in approved_ids:
+            errors.append(f"approved dataset has missing/duplicate ID: {tip_id}")
+        approved_ids.add(tip_id)
+        verification = tip.get("verification", {})
+        if verification.get("status") != "approved" or tip.get("quality_status") != "human_verified":
+            errors.append(f"approved tip lacks approved/human_verified status: {tip_id}")
+        if not verification.get("reviewed_by") or not verification.get("reviewed_at") or not verification.get("review_notes"):
+            errors.append(f"approved tip missing reviewer, date, or review notes: {tip_id}")
+        refs = {s.get("url") for s in tip.get("sources", []) if isinstance(s, dict)}
+        if not refs or any(not is_http_url(url or "") for url in refs):
+            errors.append(f"approved tip has invalid sources: {tip_id}")
+        steps = tip.get("steps", [])
+        if not isinstance(steps, list) or not steps:
+            errors.append(f"approved tip has no steps: {tip_id}")
+            continue
+        for number, step in enumerate(steps, 1):
+            if not isinstance(step, dict):
+                errors.append(f"approved tip step {number} must have structured evidence: {tip_id}")
+                continue
+            excerpt, url = step.get("evidence_excerpt", ""), step.get("source_url", "")
+            if not step.get("instruction") or not excerpt or url not in refs:
+                errors.append(f"approved tip step {number} missing instruction/evidence/source: {tip_id}")
+            elif excerpt not in source_text.get(url, ""):
+                errors.append(f"approved tip step {number} evidence not found verbatim in stored source: {tip_id}")
+    for row in data["species"].get("species", []):
+        for field in ("image_path", "image_license", "image_source_url"):
+            if not row.get(field):
+                errors.append(f"species missing {field}: {row.get('id')}")
     if errors:
         print("\n".join(errors))
         return False
-    print(f"Data OK: {len(data['sources']['sources'])} sources, {len(active)} active tips, {len(candidates)} candidates, {len(quarantined)} quarantined tips, {len(data['species']['species'])} species/images.")
+    print(f"Data OK: {len(sources)} sources, {len(active)} active review items, {len(candidates)} candidates, {len(quarantined)} quarantined, {len(approved)} approved tips, {len(data['species']['species'])} species/images.")
     return True
 
-if __name__=="__main__":
+if __name__ == "__main__":
     raise SystemExit(0 if validate() else 1)
