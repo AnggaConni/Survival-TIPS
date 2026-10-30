@@ -36,11 +36,15 @@ The intended flow is:
 
 - `config/sources.json` — search queries, trusted domains, RSS feeds, GBIF taxon queries.
 - `config/stages.json` — stage catalogue, order, descriptions, category and keyword rules.
-- `scripts/collect_sources.py` — search, RSS, article fetching; ranks practical manuals/guides ahead of announcement-style news where detectable.
+- `scripts/collect_sources.py` — search, RSS, source refresh, and content-version tracking.
+- `scripts/source_quality.py` — heuristic source tiers, document type, technical-depth triage, duplicate detection, and possible-conflict signals.
+- `scripts/enrich_sources.py` — backfills source metadata, content hashes, version baselines, and legacy stage-classification records.
 - `config/sources.json` — prioritizes practical technical queries across emergency preparedness, water, food production/preservation, and shelter construction.
 - `scripts/extract_tips.py` — evidence-first AI extraction with Groq → DeepSeek → OpenRouter fallback; requires a verbatim evidence excerpt, practical steps, an assigned stage, and structured action-type fields. Wild-food consumption tips are rejected unless key safety fields are supplied.
-- `scripts/audit_tips.py` — deterministic quality audit for missing fields, unsupported evidence, generic advice, duplicate titles, stage mismatches, missing food-safety details, and incomplete build/make recipes; optional AI re-extraction repair.
-- `scripts/stages.py` — shared stage classification and filtering.
+- `scripts/audit_tips.py` — deterministic evidence audit, near-duplicate screening, possible-conflict screening, and machine-readable `data/quality_report.json`; optional AI repair remains candidate-only.
+- `data/source_versions.json` — source content-change event history.
+- `data/quality_report.json` — latest tip-quality triage report.
+- `scripts/stages.py` — shared stage classification and filtering; new tips retain suggested stage IDs, classifier method, and review status.
 - `scripts/export_pdfs.py` — creates a separate PDF for each stage from `data/approved_tips.json` only.
 - `scripts/review_tips.py` — promotes a tip only after a reviewer supplies verbatim source evidence for every step.
 - `docs/HUMAN_REVIEW.md` — review checklist, decision JSON format, and publication procedure.
@@ -84,6 +88,7 @@ Copy `.env.example` to `.env`, add your keys locally, and never commit `.env`.
 
 ```powershell
 python -m scripts.run_pipeline --limit 8 --gbif-limit 3
+python -m scripts.enrich_sources
 python -m scripts.audit_tips
 python -m scripts.audit_tips --repair
 # Edit data/review_decisions.json, then apply human approvals
@@ -117,6 +122,13 @@ Optional: `TAVILY_API_KEY` for dedicated web search. Model overrides may be conf
 - Images are downloaded only when license metadata explicitly permits redistribution (CC0/public domain, CC BY, or CC BY-SA); attribution is retained.
 - Site terms and robots rules still apply. The collector avoids copying whole articles into tips.
 - Practical content involving drinking water, wild foods, chemicals, electricity, lime kilns, or construction must be reviewed for local conditions and safety before being treated as instructions.
+
+
+## Phase 2 — source and content quality controls
+
+Phase 2 adds heuristic source-quality triage, source-content version history, extraction/prompt version tags, auditable stage suggestions, near-duplicate screening, and possible-conflict signals. See [Phase 2 quality workflow](docs/PHASE_2_QUALITY.md).
+
+**Important:** source scores, similarity matches, and lexical conflict signals are review aids only. They are not fact-checking, proof of contradiction, or automatic grounds for deleting or publishing content. Source assessments remain unreviewed until a human checks them.
 
 ## Download the eight stage handbooks
 
