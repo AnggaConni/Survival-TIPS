@@ -128,6 +128,8 @@ def test_existing_approved_id_is_removed_from_stale_candidate_queue(tmp_path):
 
 def test_review_limit_leaves_unprocessed_candidates_in_queue(tmp_path):
     tips = [safe_candidate("candidate-" + str(i)) for i in range(3)]
+    for i, tip in enumerate(tips):
+        tip["title"] += " " + str(i)
     save(tmp_path, "sources.json", {"sources": [source()]})
     save(tmp_path, "candidate_tips.json", {"tips": tips})
     save(tmp_path, "approved_tips.json", {"tips": []})
