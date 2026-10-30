@@ -200,6 +200,8 @@ def test_approved_tip_requires_step_level_verbatim_evidence(monkeypatch):
         "candidate_tips":{"tips":[]}, "tips.quarantine":{"tips":[]},
         "approved_tips":{"tips":[{
             "id":"approved-1","title":"Boil water","summary":"Boil water.",
+            "stage_ids":["01-drr"],"primary_stage_id":"01-drr","secondary_stage_ids":[],
+            "stage_classification":{"suggested_stage_ids":["01-drr"],"approved_stage_ids":["01-drr"],"review_status":"human_reviewed","reviewed_by":"Reviewer"},
             "sources":[{"url":"https://example.org/guide"}],
             "steps":[{"instruction":"Boil water.","evidence_excerpt":"Boil water for one minute.","source_url":"https://example.org/guide"}],
             "verification":{"status":"approved","reviewed_by":"Reviewer","reviewed_at":"2026-10-30","review_notes":"Checked"},
