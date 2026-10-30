@@ -66,6 +66,9 @@ jobs:
           fi
       - name: Validate JSON
         run: python -m scripts.validate_data
+
+      - name: Validate technical knowledge catalogues
+        run: python -m scripts.knowledge_validation
       - name: Test
         run: python -m pytest -q
       - name: Generate separate stage PDFs from active reviewed dataset only
