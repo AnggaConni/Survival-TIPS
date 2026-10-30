@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1",
-  "generated_at": "2026-10-30T10:12:00+00:00",
+  "generated_at": "2026-10-30T17:18:28+00:00",
   "sources": [
     {
       "id": "src-b1f1918a3368ec",
@@ -1667,6 +1667,201 @@
         "score_components": {
           "authority": 40,
           "technical_depth": 0,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
+    },
+    {
+      "id": "src-aa0c7074295475",
+      "url": "https://extension.oregonstate.edu/food/home-food-safety-storage",
+      "title": "Home food safety and storage | OSU Extension Service",
+      "domain": "extension.oregonstate.edu",
+      "text": "English Español Share Featured Resources There are Dangers Lurking in Your Flour Many don’t realize that raw flour can transmit foodborne illnesses. This publication outlines the risks of flour-based crafts and steps you can take to keep people safe. Stephanie A. Smith, Rachel Beck | Jan 2022 | OSU Extension Catalog Peer reviewed (Orange level) You Can Prevent Foodborne Illness What is a foodborne illness? What causes it? How can you reduce your risk of getting it? Known causes of foodborne illnesses, practicing good personal hygiene, cooking foods adequately, keeping foods at safe ... Val Hillers, Mary Aegerter, PhD, Carolyn Raab, PhD, Sandra McCurdy, PhD, Dong-Hyun Kang, PhD | Apr 2009 | OSU Extension Catalog Peer reviewed (Orange level) Safely Canning Foods: Pressure Canners, Pressure Cookers and Electric Pressure Cookers This illustrated fact sheet explains the difference between pressure canners, pressure cookers and electric pressure cookers. Pressure canners are recommended for food preservation but pressure cookers and electric pressure cookers are not. Jeanne Brandt, Nellie Oehler | Jun 2023 | OSU Extension Catalog Peer reviewed (Orange level) Pickling Fish and Other Aquatic Foods for Home Use Preserving seafood with vinegar or citrus juices is one of the easiest food preservation methods known, but can yield a dangerous product if not properly prepared. Fish with high oil content (Chinook salmon, ... Kenneth S. Hildebrand, Jr | Apr 2009 | OSU Extension Catalog Peer reviewed (Orange level) Proper Egg Handling: From Farm or Grocery Store to Table From the chicken to the table, this publication provides an easy-to-follow overview for those handling, storing or consuming eggs. Stephanie A. Smith, Rachael Beck | Dec 2022 | OSU Extension Catalog Peer reviewed (Orange level) Big Game from Hunt to Home Describes techniques to handle game in the field, to butcher, and to store meat. Dana Sanchez, Joy Waite-Cusic | Mar 2023 | OSU Extension Catalog Peer reviewed (Orange level) Browse all resources Food Safety Helplines OSU Food Safety and Preservation Helpline at 1-800-354-7319 The OSU Extension Food Safety and Preservation Helpline is staffed Monday through Friday during the height of the growing season, July through mid-October (9:00 AM - 4:00 PM) During the off season, voicemails are checked weekly. Our experts in food safety and preservation are available to respond to your questions online at Ask Extension USDA Meat and Poultry Hotline at 1-888-674-6854 Monday-Friday from 10 a.m. to 6 p.m. ET (English or Spanish). FDA Food Safety Hotline at 1-888-723-3366 10:00 AM - 4:00 PM EST, closed Thursdays 12:30 PM – 1:30 PM EST Learn more Storing Food for Safety and Quality Proper food storage ensures that the food you bring home remains safe to eat and retains its high quality. Learn about storing meat, vegetables, fruit, leftovers, home-preserved food and more. Read more Photo: USDA (Cropped from original) Latest Resources Turkey basics : Turkey is a low-cost, low-fat, nutritious food you can serve year around. But preparing a whole turkey requires care to ensure it's safe and delicious. From thawing, stuffing, roasting, and brining here's how to do it. Infusing honey safely Try these low-risk methods to add flavor with herbs, spices and other additions : Turn everyday honey into something extraordinary — safely. Learn how to infuse honey with bold flavors with herbs, fruits and spices while avoiding hidden risks like spoilage and botulism. Foods that do not freeze well : Some foods don't take well to freezing: lettuce and cabbage lose texture, egg whites get tough and cooked macaroni becomes mushy. Learn more about which foods to keep out of the freezer. Browse all resources Become a Master Food Preserver! Master Food Preservers are trained and certified volunteers who assist OSU Extension Service in their efforts to provide up-to-date food safety and preservation information to Oregonians. After a comprehensive, hands-on training, volunteers serve as a local community resource providing food preservation information to community members. Learn more Survival Basics: Food — How to Stock Up and Prepare for Natural Disasters Scientists say that a major earthquake could hit the Pacific Northwest in the next 50 years. When disaster strikes, you will need a variety of healthy foods at hand. Being able to feed yourself and your family will help you keep calm, keep an optimistic outlook and make good survival decisions. This resource will help you gather and store life-saving food provisions. Also, see: Survival Basics: Water to explore a variety of methods for purifying and storing water for an extended emergency. Learn the survival basics for food Photo Credit: Mikhailov Studio - Adobe Stock (Cropped from original) Latest News Credit: Lynn Ketchum (Cropped from original) OSU Extension expands food safety and preservation helpline for canning season Oregon State University Extension Service is expanding its food safety and preservation helpline, and it's open for the season on July 6. Grace Xue | Jul 8, 2026 | News story Credit: Daniela Garcia (Cropped from original) Josephine County residents learn safe food preservation skills Hands-on classes rebuild trusted canning and fermentation support. Daniela Garcia | Jun 2026 | Impact story Credit: Deb Warnock (Cropped from original) OSU Extension grows library partnerships for access to food preservation Borrowable equipment helps households save money and reduce waste. Jared Hibbard-Swanson | Apr 2026 | Impact story All News Explore more resources Local, regional and community food systems Food security Home food preservation Nutrition and healthy eating Recipes Family emergency preparedness Meet Our Experts Cindy Brown 4-H Program Coordinator Contact me for questions on 4-H youth development and healthy living programming in Sherman County as well as healthy living topics such as MyPlate, gardening, food preservation and food storage! Sarah \"Sarita\" Contreras Food Security and Safety Outreach Coordinator Contact me with questions about Food Security and Safety from Marion and Yamhill counties Stormi Dykes Education Program Assistant 2, Community Food Systems Contact for questions about Lincoln County Master Gardener™ and Home Food Safety & Preservation programs. Jared Hibbard-Swanson Food Security and Safety Manager See All Home food safety and storage Experts Have a question? Ask Extension! Ask Extension is a way for you to get answers from the Oregon State University Extension Service. We have experts in family and health, community development, food and agriculture, coastal issues, forestry, programs for young people, and gardening. Ask us a question Credit: stock.adobe.com (Cropped from original) Is my drinking water safe after a wildfire? Q: If a wildfire has burned near my home, how do I know whether my drinking water is safe? What should I do if I have a private well, and what should I know if my water comes from a municipal system? A: View answer | View all featured questions See More Questions",
+      "snippet": "Master Food Preservers are trained and certified volunteers who assist OSU Extension Service in their efforts to provide up-to-date food safety and preservation information to Oregonians. After a comprehensive, hands-on training, volunteers serve as a local community resource providing food preservation information to community members.",
+      "source_type": "search",
+      "feed_name": null,
+      "search_provider": "duckduckgo",
+      "retrieved_at": "2026-10-30T17:17:11+00:00",
+      "first_seen_at": "2026-10-30T17:17:11+00:00",
+      "version": 1,
+      "content_hash": "0467e2df84021366fa0adc8a1dd7c9e890b2551cbaa35d9b9347dc07d4da98c9",
+      "last_checked_at": "2026-10-30T17:17:11+00:00",
+      "content_changed_at": "2026-10-30T17:17:11+00:00",
+      "quality_assessment": {
+        "authority_tier": "B_technical_or_humanitarian_organization",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 3,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 30,
+          "technical_depth": 30,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
+    },
+    {
+      "id": "src-da1d61b9051357",
+      "url": "https://extension.oregonstate.edu/food/preservation",
+      "title": "Home food preservation | OSU Extension Service",
+      "domain": "extension.oregonstate.edu",
+      "text": "English Español Share Description: OSU Extension provides trusted, research-based information to help Oregonians preserve food safely and confidently at home. We offer step-by-step guides, tested recipes and hands-on classes covering canning, freezing and drying methods that protect flavor and reduce waste. Become a Master Food Preserver! Master Food Preservers are trained and certified volunteers who assist OSU Extension Service in their efforts to provide up-to-date food safety and preservation information to Oregonians. After a comprehensive, hands-on training, volunteers serve as a local community resource providing food preservation information to community members. Learn more Canning vegetables Canning can be a great way to get full benefit from your garden vegetables – from asparagus to potatoes. When prepared properly, foods will retain their nutrients and flavor. Done improperly, they can kill, cause serious illness, or just plain taste bad. See this publication for the home canner to select equipment, prepare and pack appropriate amounts, seal, cool, and store vegetables. Includes a handy guide to processing methods for most commonly canned vegetables, plus some advice on what not to can. Learn more Credit: Amanda Loman (Cropped from original) Canning foods Credit: Terri Emrich, Clark County Washington Master Food Preservers (Cropped from original) Canning seafood Discover research-tested instructions for safely canning fish, clams, crab, oysters and shrimp. Learn about preparation, pressure canning, storage and safety measures. Jeanne Brandt | Feb 2025 | OSU Extension Catalog Peer reviewed (Gray level) Canning fruits This publication explains how to ensure both safety and quality when canning fresh fruits. Details covered include selecting and preparing equipment; preparing apples, apricots, berries, cherries, peaches, pears, and plums; sweetening fruit; processing methods; and storage. Lizann Powers-Hammond, Val Hillers | Apr 2018 | OSU Extension Catalog Peer reviewed (Orange level) Canning tomatoes and tomato products Get the most out of your tomatoes when you learn how to select and use equipment, complete the canning process, and store your creations safely. This guide includes six delicious recipes to try. Jeanne Brandt | Jul 2024 | OSU Extension Catalog Peer reviewed (Orange level) Learn about canning other foods OSU Food Safety and Preservation Helpline at 1-800-354-7319 The OSU Extension Food Safety and Preservation Helpline is staffed Monday through Friday during the height of the growing season, July through mid-October (9:00 AM - 4:00 PM) During the off season, voicemails are checked weekly. Our experts in food safety and preservation are available to respond to your questions online Ask Extension. Ask Extension Care and operation of your pressure canner Care and operation of your pressure canner Pressure canning is the only safe way to can meat, poultry, seafood, and vegetables. This booklet explains how to keep your pressure canner in top condition and use it safely. Also, note dial gauges should be checked for accuracy and overall condition every year prior to the beginning of canning season. Many of our Extension offices provide dial gauges tested for free! Freezing fruits and vegetables This publication describes how to freeze fruits, vegetables, and juices, and how to refreeze frozen foods. Includes freezing fruit without sugar, with ascorbic acid, in syrup, and packed in sugar; and blanching vegetables. A chart lists freezing instructions for dozens of fruits and vegetables. View publication Photo Credit: Africa Studio - Adobe Stock (Cropped from original) Freezing foods Credit: Lynn Ketchum (Cropped from original) Home Freezing of Seafood Explains how stiffening (rigor mortis) and oxidation of unsaturated oils and pigments in freshly caught fish impact frozen fish quality. Describes how to clean and prepare fish (dressed, pan-dressed, steak, and fillet... Barbara Rasco, Kenneth S. Hildebrand, Jr | Apr 2006 | OSU Extension Catalog Peer reviewed (Orange level) Credit: Ann Murphy (Cropped from original) Preserving peppers With so many varieties of peppers grown in Oregon, it is fortunate that they can be preserved to enjoy all year long by canning, freezing, drying or pickling. Here's a how-to guide for all four preservation methods. Nellie Oehler | Jun 2025 | OSU Extension Catalog Peer reviewed (Gray level) Photo: University of Idaho (Cropped from original) Storing Food for Safety and Quality Proper food storage ensures that the food you bring home remains safe to eat and retains its high quality. Learn about storing meat, vegetables, fruit, leftovers, home-preserved food and more. Surine Greenway, Amy Robertson, Joe Peutz, Grace Wittman | Mar 2023 | OSU Extension Catalog Peer reviewed (Orange level) See all foods that you can freeze Drying fruits and vegetables Written primarily for drying in an electric dehydrator, this guide applies as well to oven drying. Sections cover selecting, preparing, and pretreating foods for drying as well as storing and using dried foods. A drying chart gives specific suggestions for drying dozens of different fruits and vegetables. Covers how to make fruit leathers and gives recipes using dried foods. View publication Credit: Amanda Loman (Cropped from original) Drying or dehydrating foods Credit: Allie Dearie on Unsplash (Cropped from original) Drying herbs Growing and drying your own herbs ensures that you have a constant fresh supply to use in the kitchen. Dried herbs can keep for up to a year if kept in a cool, dark and dry place. Here's how to dry herbs at home. Nellie Oehler | Jan 2025 | OSU Extension Catalog Peer reviewed (Gray level) Credit: Jennifer Alexander, Oregon State University (Cropped from original) Preserving foods: Apples Apples lend themselves to preserving whether they're canned, frozen, dried or made into jelly or butter. Here's a how-to guide with recipes for apple sauce, spiced apple rings, apple butter and more. Nellie Oehler | Nov 2024 | OSU Extension Catalog Peer reviewed (Gray level) Credit: Glenda Hyde (Cropped from original) Making jerky at home safely Traditional jerky preparation methods, in which raw meat is dried at about 140 to 155 degrees Fahrenheit won't kill pathogens present in the meat. Learn the steps in making tasty meat jerky at home, including a choice of three techniques that ensure your jerky is safe to eat. Laura L. Sant, Carol Hampton, Sandra M. McCurdy | Aug 2020 | OSU Extension Catalog Peer reviewed (Orange level) See more foods to preserve by drying Other ways to preserve your harvest or catch Pickling vegetables Learn what you need to know to pickle vegetables at home. Get tips on packing jars, processing vegetables and storing the results. Includes 17 recipes, processing times for various altitudes and a safety checklist. Jeanne Brandt | Feb 2024 | OSU Extension Catalog Peer reviewed (Orange level) Credit: Glenda Hyde (Cropped from original) Smoking Fish at Home Safely This guide succinctly explains how to prepare and preserve any type of fish to use as part of a delicious, safe, and healthy meal. Specific temperatures, quantities, and timings are provided for optimal results. Barbara Rasco, Carolyn A. Raab, Sandra M. McCurdy, Kenneth S. Hilderbrand, Jr. | Nov 2009 | OSU Extension Catalog Peer reviewed (Orange level) Photo Credit: vm2002 - Adobe Stock (Cropped from original) Kimchi basics Kimchi is a flavorful mix of fermented vegetables and seasonings that plays an important role in Korean culture. Kimchi dates back thousands of years. Its original name, chimchae, translates to \"salted vegetables.\" Nellie Oehler | Nov 2024 | OSU Extension Catalog Peer reviewed (Gray level) Credit: Lightfield Studios - stock.adobe.com (Cropped from original) Making Garlic- and Herb-infused Oils at Home Describes safe and simple procedures for flavoring oils from spices in your own garden. Barbara Abo, Josh Bevan, Surine Greenway, Beverly Healy, Sandra M. McCurdy, Joe Peutz, Grace Wittman | Oct 2014 | OSU Extension Catalog Peer reviewed (Orange level) Fresh Cheese Made Safely Queso fresco, a fresh, crumbly, white cheese, can be made at home! Step-by-step process for making this cheese safely included. Lizann Powers-Hammond | Nov 2019 | OSU Extension Catalog Peer reviewed (Orange level) See all home food preservation resources Latest News Credit: Daniela Garcia (Cropped from original) Josephine County residents learn safe food preservation skills Hands-on classes rebuild trusted canning and fermentation support. Daniela Garcia | Jun 2026 | Impact story Credit: Deb Warnock (Cropped from original) OSU Extension grows library partnerships for access to food preservation Borrowable equipment helps households save money and reduce waste. Jared Hibbard-Swanson | Apr 2026 | Impact story Credit: Alyson Yates (Cropped from original) OSU Extension meets growing demand for safe home food preservation Safety-first canning guidance reached 206,574 Oregonians in 2025. Jared Hibbard-Swanson | Mar 2026 | Impact story All News Latest Resources Turkey basics : Turkey is a low-cost, low-fat, nutritious food you can serve year around. But preparing a whole turkey requires care to ensure it's safe and delicious. From thawing, stuffing, roasting, and brining here's how to do it. Preserving foods: berries : Oregon is rich in berries. Strawberries are first to arrive every year, followed by raspberries, currants and the many varieties of blackberries. Here's how to preserve that bounty, either whole or as spreads and syrups. Steam Canners: Using to process high-acid or acidified foods : Foods naturally high in acid — most fruits, pickles and salsas — can be processed in a steam canner. Steam canners require less water but processing time is limited. Here's how to use steam canners for high-acid foods. Browse all resources Explore more resources Food security Home food safety and storage Nutrition and healthy eating Recipes Garden vegetables and herbs Family emergency preparedness Meet Our Experts Jared Hibbard-Swanson Food Security and Safety Manager Joy Waite-Cusic Professor of Food Safety Systems, Statewide Specialist for Home Food Safety and Preservation Program Samantha Clayburn Master Gardener/Master Food Preserver Program Volunteer Coordinator Contact for food preservation and gardening questions in Coos County. Buffy Rhoades Health Extension Education Program Assistant Contact me with questions about food preservation or volunteering in Clackamas County. See All Home food preservation Experts Have a question? Ask Extension! Ask Extension is a way for you to get answers from the Oregon State University Extension Service. We have experts in family and health, community development, food and agriculture, coastal issues, forestry, programs for young people, and gardening. Ask us a question Credit: Glenda Hyde (Cropped from original) Is it safe to can kosher or halal meat at home? Q: I’ve heard that cured, corned or brined meats aren’t recommended for pressure canning. Because kosher meat is salted and washed to remove blood, does that make it unsafe to can at home? Does the same apply to halal meat? A: View answer | View all featured questions See More Questions",
+      "snippet": "OSU Extension provides trusted, research-based information to help Oregonians preserve food safely and confidently at home. We offer step-by-step guides, tested recipes and hands-on classes covering canning, freezing and drying methods that protect flavor and reduce waste.",
+      "source_type": "search",
+      "feed_name": null,
+      "search_provider": "duckduckgo",
+      "retrieved_at": "2026-10-30T17:17:14+00:00",
+      "first_seen_at": "2026-10-30T17:17:14+00:00",
+      "version": 1,
+      "content_hash": "ddd7b51a9a606fe9cfe40aaf7cc504f87e594944c02016db8c859e1da8392443",
+      "last_checked_at": "2026-10-30T17:17:14+00:00",
+      "content_changed_at": "2026-10-30T17:17:14+00:00",
+      "quality_assessment": {
+        "authority_tier": "B_technical_or_humanitarian_organization",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 3,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 30,
+          "technical_depth": 30,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
+    },
+    {
+      "id": "src-643f5185cacb4f",
+      "url": "https://extension.oregonstate.edu/mfp",
+      "title": "Home Food Safety and Preservation Program | OSU Extension Service",
+      "domain": "extension.oregonstate.edu",
+      "text": "English Español Share Print Good food is worth preserving Food safety and preservation resources and classes, provided through the Oregon State University Health Extension, ensure Oregonians have access to the most reliable information available. It is critical that those who prepare food and practice preserving and processing foods at home have access to research-based information on safe food handling. Publications OSU Extension Catalog has a number of publications that provide comprehensive information related to food safety and storage and food preservation . Publications are used by our Master Food Preservers for quick reference on a variety of topics. See our food safety and preservation publications Credit: Amanda Loman (Cropped from original) Resources Canning Timer & Checklist App Select from over 50 popular foods used in home canning to generate a checklist and timer for processing. This app lets set you set your jar size, pack type, canning method, and elevation. It also reminds you of the steps necessary to prepare jars and canning pots. Jeanne Brandt | Jun 2023 | OSU Extension Catalog Peer reviewed (Orange level) Photo by: Lynn Ketchum (Cropped from original) How to use the canning timer and checklist app Video shows how to use the Oregon State University Extension Canning Timer and Checklist app to help you safely can your favorite fruits, vegetables, and meats. Jeanne Brandt | Aug 2018 | Video Find local food preservation programs and workshops near you Many of our county offices offer food preservation programs and workshops, including our Master Food Preserver program. Contact your county extension office for more information, or see any upcoming events . For those interested in learning how to volunteer to offer these food preservation workshops, check out our Master Food Preserver program. Learn more about Master Food Preserver program Credit: Amanda Loman (Cropped from original) Events Volunteer En Español Resources Credit: Lynn Ketchum (Cropped from original) County Gauge Testing Resources Dial gauges should be checked for accuracy and overall condition every year prior to the beginning of canning season. New gauges should also be checked for accuracy before first use. Many of our Extension offices provide dial gauge testing for free! Please note that All American brand gauges should be removed from the lid prior to testing. Click to view or download county specific information. Home Food Safety and Preservation Program Pressure regulators It is also recommended that you convert your single weight to the 3 part weight for Presto canners. For All American it is a round weight that replaces the vent pipe with a petcock. It has 3 holes for 5lb, 10lb and 15lb pressure. Weights never need to be calibrated, and the gauge becomes an indicator when you can safely remove the lid. Please contact the manufacturer to ensure you order the correct one. Using a weighted gauge on a dial gauge canner Transcript Hi, I'm Buffy Rhoades with Oregon State University Extension Service, Family and Community Health Program, in Clackamas County. In this video, we will demonstrate how to use a weighted gauge regulator to safely can food items. While dial gauges are more commonly used, they must be tested annually for accuracy to ensure food safety. Extension offices will check your dial gauge for free, but not everyone lives in an area convenient for testing. Pressure canners with a weighted gauge do not need to be tested for accuracy because they cannot go out of calibration. A weighted gauge pressure canner regulates pressure inside the canner by allowing some air to be released from the canner during processing. It is designed to gently rock when it is maintaining the correct pressure. This is the 15-pound counter- or dead-weight that comes with your pressure canner. This weight allows you to correctly use the dial gauge. During processing, the weight won't start rocking unless your canner exceeds 15 pounds of pressure. This one is a 15-pound weight that disassembles to allow for increments of 5, 10, and 15 pounds of pressure. This is a pressure canner with a dial gauge that has already vented steam for 10 minutes. At this point, we place the adjustable weight on the steam vent instead of using the counter- or dead-weight. For this example, we're using a 10-pound weight. Recipes calling for 11 pounds of pressure on a dial gauge will use the 10-pound weighted gauge. Once the weighted gauge starts to rock, the 10 pounds of pressure has been reached. Ignore the dial. If you are at a higher altitude, you will need to process at 15 pounds using the weighted gauge. This is an example of the weighted gauge rocking too fast. If you run your canner at this speed, you're likely to run the canner dry. Adjust the heat source so the weighted gauge will slow down, but not stop. This level of motion is just right. The rocking may increase slightly if you're using an electric stove due to its cycle, but it should come back to this rhythm. When the weighted gauge is rocking at this rate, there is no need to add extra water to the canner. However, if you're running the canner for a long processing time, such as for tuna, adding an extra quart certainly won't hurt. It's important not to run the canner dry. Here are some other important tips to keep in mind: set your timer for the recipe appropriate to your product and elevation. If the weight stops jiggling or moving at any time during processing, the canner must be brought back to the proper pressure, and the processing time must start over from the beginning. In order to ensure your product is safe and of the best quality, always use approved resources such as the National Center for Home Food Preservation, any state extension publication, and the Ball Blue Book published after 1987. We hope this information is helpful in preserving foods at their peak to be enjoyed all year round. To learn more about pressure canning, visit the Clackamas County Extension YouTube channel, where you will find videos on canning tuna along with other food preservation methods. You will also find us on social media! Be sure to subscribe, comment, and share! Meet our team Samantha Clayburn Master Gardener/Master Food Preserver Program Volunteer Coordinator Contact for food preservation and gardening questions in Coos County. Stormi Dykes Education Program Assistant 2, Community Food Systems Contact for questions about Lincoln County Master Gardener™ and Home Food Safety & Preservation programs. Daniela Garcia Health Extension Program Coordinator Jared Hibbard-Swanson Food Security and Safety Manager Elizabeth \"Lizzie\" McDougal Southern Willamette Valley Food Security and Safety Outreach Coordinator Was this page helpful? Yes No",
+      "snippet": "OSU Health Extension ensures Oregonians have access to the most reliable information available on safe food handling at home. We offer food safety and preservation resources and classes, including our Master Food Preserver program.",
+      "source_type": "search",
+      "feed_name": null,
+      "search_provider": "duckduckgo",
+      "retrieved_at": "2026-10-30T17:17:18+00:00",
+      "first_seen_at": "2026-10-30T17:17:18+00:00",
+      "version": 1,
+      "content_hash": "2a847402c98c56cbbd89db07c1c249287d223f63b48cd35f5e264a33474600bd",
+      "last_checked_at": "2026-10-30T17:17:18+00:00",
+      "content_changed_at": "2026-10-30T17:17:18+00:00",
+      "quality_assessment": {
+        "authority_tier": "B_technical_or_humanitarian_organization",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 3,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 30,
+          "technical_depth": 30,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
+    },
+    {
+      "id": "src-e8700f80c41405",
+      "url": "https://nutrition.extension.oregonstate.edu/healthy-eating-links",
+      "title": "Healthy Eating Links | Nutrition Education and Outreach Programs",
+      "domain": "nutrition.extension.oregonstate.edu",
+      "text": "ChooseMyPlate – USDA Dietary Guidelines for Americans 2015-2020 Dietary Guidelines Family Meals Oregon Shared Meals Initiative – Cook Together, Eat Together, Talk Together. Make Mealtime a Shared Time. Food Preservation OSU Extension Food Preservation USDA Complete Guide to Home Canning National Center for Home Food Preservation Food Safety OSU Extension Food Safety Fight Bac! Clean, Separate, Cook & Chill to Keep Food Safe Is It Done Yet? You can't tell by looking - use a food thermometer! Ask the Experts – contact a government Food Safety Specialist Interactive Nutrition Calculate Your Body Mass Index (BMI) National Nutrient Database, USDA – Look up calories & nutrients in foods Nutrition Facts Label Food Label Education Tools & General Information Understand the Food Label Make Your Calories Count Physical Activity Physical Activity Guidelines for Americans Recipes Food Hero – Where healthy food is fun, fast, tasty, and fits your budget! What's Cooking? USDA Mixing Bowl",
+      "snippet": "Food Preservation OSU Extension Food Preservation USDA Complete Guide to Home Canning National Center for Home Food Preservation Food Safety OSU Extension Food Safety Fight Bac! Clean, Separate, Cook & Chill to Keep Food Safe Is It Done Yet? You can't tell by looking - use a food thermometer! Ask the Experts – contact a government Food Safety ...",
+      "source_type": "search",
+      "feed_name": null,
+      "search_provider": "duckduckgo",
+      "retrieved_at": "2026-10-30T17:17:21+00:00",
+      "first_seen_at": "2026-10-30T17:17:21+00:00",
+      "version": 1,
+      "content_hash": "b2b37fc55d4543272a280f94b8df5a8f77510c808d8d12b596ec0349ffe0523c",
+      "last_checked_at": "2026-10-30T17:17:21+00:00",
+      "content_changed_at": "2026-10-30T17:17:21+00:00",
+      "quality_assessment": {
+        "authority_tier": "B_technical_or_humanitarian_organization",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 1,
+        "quality_score": 40,
+        "score_components": {
+          "authority": 30,
+          "technical_depth": 10,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
+    },
+    {
+      "id": "src-f6dc4d32e0b141",
+      "url": "https://www.fao.org/4/ag101e/ag101e00.htm",
+      "title": "Home gardens key to improved nutritional well-being",
+      "domain": "fao.org",
+      "text": "RAP PUBLICATION 2006/14 HOME GARDENS KEY TO IMPROVED NUTRITIONAL WELL-BEING Home gardens key to improved nutritional well-being \"Promotion of home gardens for improved nutritional well-being\" L. Bhattacharjee, S. Phithayaphone and B.K. Nandi in collaboration with the Project Team Department of Agriculture Ministry of Agriculture and Forestry Lao People's Democratic Republic Food and Agriculture Organization of the United Nations Regional Office for Asia and the Pacific Bangkok, 2006 Download Report (280KB) The designations employed and the presentation of material in this publication do not imply the expression of any opinion whatsoever on the part of the Food and Agriculture Organization of the United Nations concerning the legal status of any country, territory, city or area or of its authorities, or concerning the delimitation of its frontiers or boundaries. NOTICE OF COPYRIGHT All rights reserved. Reproduction and dissemination of material in this information product for educational or other non-commercial purposes are authorized without any prior written permission from the copyright holders provided the source is fully acknowledged. Reproduction of material in this information product for resale or other commercial purposes is prohibited without written permission of the copyright holders. Applications for such permission, with a statement of the purpose and extent of the reproduction, should be addressed to Senior Food and Nutrition Officer, Food and Agriculture Organization of the United Nations, Regional Office for Asia and the Pacific, 39 Phra Atit Road, Bangkok 10200, Thailand. © FAO 2006 For copies write to: Biplab K. Nandi Senior Food and Nutrition Officer FAO Regional Office for Asia and the Pacific 39 Phra Atit Road, Bangkok 10200, Thailand Tel: (+66-2) 697 4143 or 697 4265 Fax: (+66-2) 697 4445 or 697 4405 E-mail: [email protected] Abstract FAO recognizes that healthy, well-nourished people are both the outcome of successful social and economic development and constitute an essential input to the development process. Achieving nutrition related goals requires that national and sectoral development policies and programmes are complemented by effective community-based action aimed at improving household food security and promoting the year-round consumption of nutritionally adequate diets. These activities are being actively pursued by FAO as part of its field programme. This report provides an account of one such pilot project in the Lao People's Democratic Republic. The objective was to promote integrated home gardening, including small livestock and aquaculture. The project activities targeted poor and food-insecure families with under-five-year-old children with moderate or severe undernourishment. Post-project evaluations found increased production of vegetables, fruits, poultry and fish among the targeted households and a decline in the rates of undernutrition in children under five years of age. The project demonstrates an effective and sustainable method for improving nutritional standards of low income rural families through integrated household food production, which can be extended to the national level.",
+      "snippet": "The objective was to promote integrated home gardening, including small livestock and aquaculture. The project activities targeted poor and food-insecure families with under-five-year-old children with moderate or severe undernourishment.",
+      "source_type": "search",
+      "feed_name": null,
+      "search_provider": "duckduckgo",
+      "retrieved_at": "2026-10-30T17:17:22+00:00",
+      "first_seen_at": "2026-10-30T17:17:22+00:00",
+      "version": 1,
+      "content_hash": "58241bb567ee0e171921c7f7449269d980df510fbe9c2a0c93e3de1678a8ca89",
+      "last_checked_at": "2026-10-30T17:17:22+00:00",
+      "content_changed_at": "2026-10-30T17:17:22+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 20,
           "date_present": 0
         },
         "classification_method": "heuristic_v1",

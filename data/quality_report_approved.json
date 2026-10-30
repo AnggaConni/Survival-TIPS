@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T10:12:00+00:00",
+  "generated_at": "2026-10-30T17:18:29+00:00",
   "dataset": "approved_tips.json",
   "tip_count": 0,
   "flagged_tip_count": 0,
@@ -7,8 +7,8 @@
   "possible_duplicate_pairs": [],
   "possible_conflict_pairs": [],
   "source_tier_counts": {
-    "A_official_public_authority": 36,
-    "B_technical_or_humanitarian_organization": 1,
+    "A_official_public_authority": 37,
+    "B_technical_or_humanitarian_organization": 5,
     "C_or_unassessed": 6
   },
   "review_note": "Similarity and lexical conflict signals are triage leads only; they do not prove duplication or factual contradiction."

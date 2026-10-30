@@ -301,7 +301,42 @@
       "content_hash": "3c7657d17566cfe767fb8d99b2aace0e5675e1cfe09f85b0aad4c2cf570ce4c3",
       "changed_at": "2026-10-30T10:10:51+00:00",
       "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://extension.oregonstate.edu/food/home-food-safety-storage",
+      "version": 1,
+      "content_hash": "0467e2df84021366fa0adc8a1dd7c9e890b2551cbaa35d9b9347dc07d4da98c9",
+      "changed_at": "2026-10-30T17:17:11+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://extension.oregonstate.edu/food/preservation",
+      "version": 1,
+      "content_hash": "ddd7b51a9a606fe9cfe40aaf7cc504f87e594944c02016db8c859e1da8392443",
+      "changed_at": "2026-10-30T17:17:14+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://extension.oregonstate.edu/mfp",
+      "version": 1,
+      "content_hash": "2a847402c98c56cbbd89db07c1c249287d223f63b48cd35f5e264a33474600bd",
+      "changed_at": "2026-10-30T17:17:18+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://nutrition.extension.oregonstate.edu/healthy-eating-links",
+      "version": 1,
+      "content_hash": "b2b37fc55d4543272a280f94b8df5a8f77510c808d8d12b596ec0349ffe0523c",
+      "changed_at": "2026-10-30T17:17:21+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.fao.org/4/ag101e/ag101e00.htm",
+      "version": 1,
+      "content_hash": "58241bb567ee0e171921c7f7449269d980df510fbe9c2a0c93e3de1678a8ca89",
+      "changed_at": "2026-10-30T17:17:22+00:00",
+      "event": "baseline_snapshot"
     }
   ],
-  "generated_at": "2026-10-30T10:12:00+00:00"
+  "generated_at": "2026-10-30T17:18:28+00:00"
 }

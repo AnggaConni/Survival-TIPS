@@ -37,7 +37,19 @@
       ],
       "quality_status": "source_aligned_needs_human_review",
       "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
-      "content_type": "communication_guidance"
+      "content_type": "communication_guidance",
+      "stage_classification": {
+        "suggested_stage_ids": [
+          "08-infrastructure"
+        ],
+        "method": "legacy_existing_assignment",
+        "review_status": "needs_human_review",
+        "reason": "Backfilled from previously stored stage_ids; a reviewer has not confirmed this classification."
+      },
+      "primary_stage_id": "08-infrastructure",
+      "secondary_stage_ids": [],
+      "prompt_version": "legacy_unversioned",
+      "extractor_version": "legacy_unversioned"
     },
     {
       "id": "tip-061d9fcf1a2956",
@@ -73,7 +85,19 @@
       ],
       "quality_status": "source_aligned_needs_human_review",
       "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
-      "content_type": "communication_guidance"
+      "content_type": "communication_guidance",
+      "stage_classification": {
+        "suggested_stage_ids": [
+          "08-infrastructure"
+        ],
+        "method": "legacy_existing_assignment",
+        "review_status": "needs_human_review",
+        "reason": "Backfilled from previously stored stage_ids; a reviewer has not confirmed this classification."
+      },
+      "primary_stage_id": "08-infrastructure",
+      "secondary_stage_ids": [],
+      "prompt_version": "legacy_unversioned",
+      "extractor_version": "legacy_unversioned"
     },
     {
       "id": "tip-c558e20efe052f",
@@ -109,7 +133,19 @@
       ],
       "quality_status": "source_aligned_needs_human_review",
       "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
-      "content_type": "communication_guidance"
+      "content_type": "communication_guidance",
+      "stage_classification": {
+        "suggested_stage_ids": [
+          "08-infrastructure"
+        ],
+        "method": "legacy_existing_assignment",
+        "review_status": "needs_human_review",
+        "reason": "Backfilled from previously stored stage_ids; a reviewer has not confirmed this classification."
+      },
+      "primary_stage_id": "08-infrastructure",
+      "secondary_stage_ids": [],
+      "prompt_version": "legacy_unversioned",
+      "extractor_version": "legacy_unversioned"
     },
     {
       "id": "tip-3b2380254df3c2",
@@ -144,7 +180,19 @@
       ],
       "quality_status": "source_aligned_needs_human_review",
       "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
-      "content_type": "communication_guidance"
+      "content_type": "communication_guidance",
+      "stage_classification": {
+        "suggested_stage_ids": [
+          "08-infrastructure"
+        ],
+        "method": "legacy_existing_assignment",
+        "review_status": "needs_human_review",
+        "reason": "Backfilled from previously stored stage_ids; a reviewer has not confirmed this classification."
+      },
+      "primary_stage_id": "08-infrastructure",
+      "secondary_stage_ids": [],
+      "prompt_version": "legacy_unversioned",
+      "extractor_version": "legacy_unversioned"
     },
     {
       "id": "tip-07eec989d89f71",
@@ -177,7 +225,19 @@
       ],
       "quality_status": "source_aligned_needs_human_review",
       "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
-      "content_type": "communication_guidance"
+      "content_type": "communication_guidance",
+      "stage_classification": {
+        "suggested_stage_ids": [
+          "08-infrastructure"
+        ],
+        "method": "legacy_existing_assignment",
+        "review_status": "needs_human_review",
+        "reason": "Backfilled from previously stored stage_ids; a reviewer has not confirmed this classification."
+      },
+      "primary_stage_id": "08-infrastructure",
+      "secondary_stage_ids": [],
+      "prompt_version": "legacy_unversioned",
+      "extractor_version": "legacy_unversioned"
     },
     {
       "id": "tip-6c7b66bce59298",
@@ -213,7 +273,19 @@
       ],
       "quality_status": "source_aligned_needs_human_review",
       "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
-      "content_type": "communication_guidance"
+      "content_type": "communication_guidance",
+      "stage_classification": {
+        "suggested_stage_ids": [
+          "08-infrastructure"
+        ],
+        "method": "legacy_existing_assignment",
+        "review_status": "needs_human_review",
+        "reason": "Backfilled from previously stored stage_ids; a reviewer has not confirmed this classification."
+      },
+      "primary_stage_id": "08-infrastructure",
+      "secondary_stage_ids": [],
+      "prompt_version": "legacy_unversioned",
+      "extractor_version": "legacy_unversioned"
     },
     {
       "id": "tip-567ca80a65ae8b",
@@ -249,7 +321,19 @@
       ],
       "quality_status": "source_aligned_needs_human_review",
       "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
-      "content_type": "communication_guidance"
+      "content_type": "communication_guidance",
+      "stage_classification": {
+        "suggested_stage_ids": [
+          "08-infrastructure"
+        ],
+        "method": "legacy_existing_assignment",
+        "review_status": "needs_human_review",
+        "reason": "Backfilled from previously stored stage_ids; a reviewer has not confirmed this classification."
+      },
+      "primary_stage_id": "08-infrastructure",
+      "secondary_stage_ids": [],
+      "prompt_version": "legacy_unversioned",
+      "extractor_version": "legacy_unversioned"
     },
     {
       "id": "tip-96e23df23326cc",
@@ -287,7 +371,22 @@
       ],
       "quality_status": "source_aligned_needs_human_review",
       "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
-      "content_type": "planning_guidance"
+      "content_type": "planning_guidance",
+      "stage_classification": {
+        "suggested_stage_ids": [
+          "01-drr",
+          "06-materials"
+        ],
+        "method": "legacy_existing_assignment",
+        "review_status": "needs_human_review",
+        "reason": "Backfilled from previously stored stage_ids; a reviewer has not confirmed this classification."
+      },
+      "primary_stage_id": "01-drr",
+      "secondary_stage_ids": [
+        "06-materials"
+      ],
+      "prompt_version": "legacy_unversioned",
+      "extractor_version": "legacy_unversioned"
     },
     {
       "id": "tip-81b3140a1ba6a6",
@@ -326,7 +425,22 @@
       ],
       "quality_status": "source_aligned_needs_human_review",
       "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
-      "content_type": "material_guidance"
+      "content_type": "material_guidance",
+      "stage_classification": {
+        "suggested_stage_ids": [
+          "01-drr",
+          "06-materials"
+        ],
+        "method": "legacy_existing_assignment",
+        "review_status": "needs_human_review",
+        "reason": "Backfilled from previously stored stage_ids; a reviewer has not confirmed this classification."
+      },
+      "primary_stage_id": "01-drr",
+      "secondary_stage_ids": [
+        "06-materials"
+      ],
+      "prompt_version": "legacy_unversioned",
+      "extractor_version": "legacy_unversioned"
     },
     {
       "id": "tip-51f89e91128b12",
@@ -363,7 +477,19 @@
       ],
       "quality_status": "source_aligned_needs_human_review",
       "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
-      "content_type": "shelter_standard"
+      "content_type": "shelter_standard",
+      "stage_classification": {
+        "suggested_stage_ids": [
+          "01-drr"
+        ],
+        "method": "legacy_existing_assignment",
+        "review_status": "needs_human_review",
+        "reason": "Backfilled from previously stored stage_ids; a reviewer has not confirmed this classification."
+      },
+      "primary_stage_id": "01-drr",
+      "secondary_stage_ids": [],
+      "prompt_version": "legacy_unversioned",
+      "extractor_version": "legacy_unversioned"
     },
     {
       "id": "tip-95cfc8902d1210",
@@ -400,7 +526,19 @@
       ],
       "quality_status": "source_aligned_needs_human_review",
       "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
-      "content_type": "shelter_standard"
+      "content_type": "shelter_standard",
+      "stage_classification": {
+        "suggested_stage_ids": [
+          "01-drr"
+        ],
+        "method": "legacy_existing_assignment",
+        "review_status": "needs_human_review",
+        "reason": "Backfilled from previously stored stage_ids; a reviewer has not confirmed this classification."
+      },
+      "primary_stage_id": "01-drr",
+      "secondary_stage_ids": [],
+      "prompt_version": "legacy_unversioned",
+      "extractor_version": "legacy_unversioned"
     },
     {
       "id": "tip-c9a9806cec7247",
@@ -437,7 +575,22 @@
       ],
       "quality_status": "source_aligned_needs_human_review",
       "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
-      "content_type": "cold_climate_shelter_guidance"
+      "content_type": "cold_climate_shelter_guidance",
+      "stage_classification": {
+        "suggested_stage_ids": [
+          "01-drr",
+          "06-materials"
+        ],
+        "method": "legacy_existing_assignment",
+        "review_status": "needs_human_review",
+        "reason": "Backfilled from previously stored stage_ids; a reviewer has not confirmed this classification."
+      },
+      "primary_stage_id": "01-drr",
+      "secondary_stage_ids": [
+        "06-materials"
+      ],
+      "prompt_version": "legacy_unversioned",
+      "extractor_version": "legacy_unversioned"
     },
     {
       "id": "tip-a3a5a2db3880e0",
@@ -475,7 +628,22 @@
       ],
       "quality_status": "source_aligned_needs_human_review",
       "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
-      "content_type": "heating_reference"
+      "content_type": "heating_reference",
+      "stage_classification": {
+        "suggested_stage_ids": [
+          "01-drr",
+          "05-energy"
+        ],
+        "method": "legacy_existing_assignment",
+        "review_status": "needs_human_review",
+        "reason": "Backfilled from previously stored stage_ids; a reviewer has not confirmed this classification."
+      },
+      "primary_stage_id": "01-drr",
+      "secondary_stage_ids": [
+        "05-energy"
+      ],
+      "prompt_version": "legacy_unversioned",
+      "extractor_version": "legacy_unversioned"
     },
     {
       "id": "tip-f03df031c28d44",
@@ -509,7 +677,19 @@
       ],
       "quality_status": "source_aligned_needs_human_review",
       "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
-      "content_type": "planning_guidance"
+      "content_type": "planning_guidance",
+      "stage_classification": {
+        "suggested_stage_ids": [
+          "04-agriculture"
+        ],
+        "method": "legacy_existing_assignment",
+        "review_status": "needs_human_review",
+        "reason": "Backfilled from previously stored stage_ids; a reviewer has not confirmed this classification."
+      },
+      "primary_stage_id": "04-agriculture",
+      "secondary_stage_ids": [],
+      "prompt_version": "legacy_unversioned",
+      "extractor_version": "legacy_unversioned"
     },
     {
       "id": "tip-ba0d2d2a284ab8",
@@ -558,7 +738,19 @@
         "01-drr"
       ],
       "quality_status": "source_aligned_needs_human_review",
-      "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use."
+      "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
+      "stage_classification": {
+        "suggested_stage_ids": [
+          "01-drr"
+        ],
+        "method": "legacy_existing_assignment",
+        "review_status": "needs_human_review",
+        "reason": "Backfilled from previously stored stage_ids; a reviewer has not confirmed this classification."
+      },
+      "primary_stage_id": "01-drr",
+      "secondary_stage_ids": [],
+      "prompt_version": "legacy_unversioned",
+      "extractor_version": "legacy_unversioned"
     }
   ]
 }

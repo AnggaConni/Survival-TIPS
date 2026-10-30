@@ -1,35 +1,14 @@
 {
-  "generated_at": "2026-10-30T10:12:00+00:00",
+  "generated_at": "2026-10-30T17:18:28+00:00",
   "dataset": "tips.json",
   "tip_count": 15,
-  "flagged_tip_count": 9,
+  "flagged_tip_count": 3,
   "flagged_issues": {
-    "tip-6c7b66bce59298": [
-      "evidence_not_found_verbatim_in_any_referenced_source",
-      "possible_conflict_review:tip-061d9fcf1a2956"
-    ],
-    "tip-567ca80a65ae8b": [
-      "evidence_not_found_verbatim_in_any_referenced_source"
-    ],
-    "tip-81b3140a1ba6a6": [
-      "evidence_not_found_verbatim_in_any_referenced_source"
-    ],
-    "tip-51f89e91128b12": [
-      "evidence_not_found_verbatim_in_any_referenced_source",
-      "possible_conflict_review:tip-95cfc8902d1210",
-      "possible_conflict_review:tip-a3a5a2db3880e0"
-    ],
-    "tip-c9a9806cec7247": [
-      "evidence_not_found_verbatim_in_any_referenced_source"
-    ],
     "tip-ba0d2d2a284ab8": [
       "source_text_unavailable_for_audit"
     ],
-    "tip-061d9fcf1a2956": [
-      "possible_conflict_review:tip-6c7b66bce59298"
-    ],
-    "tip-95cfc8902d1210": [
-      "possible_conflict_review:tip-51f89e91128b12"
+    "tip-51f89e91128b12": [
+      "possible_conflict_review:tip-a3a5a2db3880e0"
     ],
     "tip-a3a5a2db3880e0": [
       "possible_conflict_review:tip-51f89e91128b12"
@@ -37,34 +16,6 @@
   },
   "possible_duplicate_pairs": [],
   "possible_conflict_pairs": [
-    {
-      "left_id": "tip-061d9fcf1a2956",
-      "right_id": "tip-6c7b66bce59298",
-      "shared_topic_terms": [
-        "message",
-        "messages",
-        "through"
-      ],
-      "signals": [
-        "use/avoid"
-      ],
-      "status": "human_review_required"
-    },
-    {
-      "left_id": "tip-51f89e91128b12",
-      "right_id": "tip-95cfc8902d1210",
-      "shared_topic_terms": [
-        "check",
-        "cited",
-        "minimum",
-        "unhcr",
-        "warm"
-      ],
-      "signals": [
-        "different_numeric_values"
-      ],
-      "status": "human_review_required"
-    },
     {
       "left_id": "tip-51f89e91128b12",
       "right_id": "tip-a3a5a2db3880e0",
@@ -82,8 +33,8 @@
     }
   ],
   "source_tier_counts": {
-    "A_official_public_authority": 36,
-    "B_technical_or_humanitarian_organization": 1,
+    "A_official_public_authority": 37,
+    "B_technical_or_humanitarian_organization": 5,
     "C_or_unassessed": 6
   },
   "review_note": "Similarity and lexical conflict signals are triage leads only; they do not prove duplication or factual contradiction."
