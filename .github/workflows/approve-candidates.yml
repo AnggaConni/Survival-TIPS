@@ -45,7 +45,7 @@ jobs:
           if not isinstance(payload, dict) or not isinstance(payload.get("decisions"), list) or not payload["decisions"]:
               raise SystemExit("Input must be a JSON object containing a non-empty decisions array.")
           Path("/tmp/review_decisions.json").write_text(
-              json.dumps(payload, ensure_ascii=False, indent=2) + "\\n",
+              json.dumps(payload, ensure_ascii=False, indent=2),
               encoding="utf-8"
           )
           PY
