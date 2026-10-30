@@ -2,7 +2,7 @@
 
 Python-first, source-linked survival knowledge base inspired by rebuilding civilization from first principles.
 
-**Current phase:** source collection, eight-stage knowledge taxonomy, stage filters, and automatic offline PDF export. Frontend remains a later phase.
+**Current phase:** Phase 3 — structured technical knowledge catalogues for recipes, materials, biodiversity, and agriculture. Source collection, human review, and approved-only PDF export remain the publication foundation.
 
 ## Knowledge stages
 
@@ -53,6 +53,8 @@ The intended flow is:
 - `scripts/collect_gbif.py` — GBIF occurrence records and license-gated image downloads.
 - `scripts/run_pipeline.py` — data collection orchestrator.
 - `scripts/validate_data.py` — data-integrity checks.
+- `scripts/knowledge_validation.py` — field-level source evidence and domain-schema validation for Phase 3 catalogues.
+- `data/recipes.json`, `data/materials.json`, `data/biodiversity_profiles.json`, `data/agriculture_profiles.json` — structured technical knowledge catalogues.
 - `data/sources.json`, `data/tips.json`, `data/species.json` — collected records.
 - `docs/pdf/` — generated stage handbooks.
 - `.github/workflows/collect-data.yml` — manual and weekly scraper pipeline.
@@ -96,6 +98,7 @@ python -m scripts.audit_tips --repair
 # Edit data/review_decisions.json, then apply human approvals
 python -m scripts.review_tips --apply
 python -m scripts.validate_data
+python -m scripts.knowledge_validation
 python -m scripts.review_tips --apply
 python -m scripts.export_pdfs --all
 python -m pytest -q
@@ -199,3 +202,16 @@ Audit mode only reports flags. Repair mode may call AI providers and consume API
 ## PDF output
 
 The exporter selects content using explicit `stage_ids` or transparent category/keyword rules. It includes action type, source-stated materials/tools, prerequisites, expected results, failure modes, food identification/preparation fields where available, warnings, review status, and source links. Existing legacy tips do not automatically gain these fields: run the audit and use the optional AI repair workflow, then manually review results. A PDF can exist while its stage contains few or zero tips. PDF generation is a formatting/export step, not an accuracy or safety certification.
+
+
+## Phase 3 — Technical Knowledge
+
+Phase 3 adds four separate, source-backed catalogues: reproducible recipes, material profiles, biodiversity profiles, and crop/agriculture profiles. The initial JSON catalogues are intentionally empty; no unsourced or synthetic practical instructions are published. See [Phase 3 technical knowledge standards](docs/PHASE_3_TECHNICAL_KNOWLEDGE.md).
+
+Every populated technical field must be traceable to an exact excerpt in a stored source. The validator checks source references, stage IDs, required domain fields, reviewer metadata, and biodiversity safeguards. GBIF occurrence records and images remain separate from biological-use claims; they do not establish edibility, medicinal efficacy, or safety.
+
+Run the Phase 3 catalogue validator with:
+
+```powershell
+python -m scripts.knowledge_validation
+```
