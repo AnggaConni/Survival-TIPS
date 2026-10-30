@@ -128,8 +128,19 @@ def test_existing_approved_id_is_removed_from_stale_candidate_queue(tmp_path):
 
 def test_review_limit_leaves_unprocessed_candidates_in_queue(tmp_path):
     tips = [safe_candidate("candidate-" + str(i)) for i in range(3)]
-    for i, tip in enumerate(tips):
-        tip["title"] += " " + str(i)
+    distinct_titles = [
+        "Map the locations of community notice boards",
+        "Record the schedule for local coordination meetings",
+        "Prepare a contact list for volunteer coordinators",
+    ]
+    distinct_summaries = [
+        "Identify physical locations where residents can read community notices.",
+        "Document agreed meeting times for community coordination.",
+        "Compile the names and roles of volunteer coordination contacts.",
+    ]
+    for tip, title, summary in zip(tips, distinct_titles, distinct_summaries):
+        tip["title"] = title
+        tip["summary"] = summary
     save(tmp_path, "sources.json", {"sources": [source()]})
     save(tmp_path, "candidate_tips.json", {"tips": tips})
     save(tmp_path, "approved_tips.json", {"tips": []})
