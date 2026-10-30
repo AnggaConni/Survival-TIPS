@@ -88,10 +88,14 @@ def validate():
         if verification.get("status") != "approved" or tip.get("quality_status") != "human_verified":
             errors.append(f"approved tip lacks approved/human_verified status: {tip_id}")
         stage_review = tip.get("stage_classification", {})
-        if stage_review.get("review_status") != "human_reviewed" or not stage_review.get("reviewed_by"):
+        if stage_review.get("review_status") != "human_reviewed" or not stage_review.get("reviewed_by") or not stage_review.get("reviewed_at"):
             errors.append(f"approved tip lacks human-reviewed stage classification: {tip_id}")
         if not tip.get("primary_stage_id") or tip.get("primary_stage_id") not in valid_stages:
             errors.append(f"approved tip has invalid primary stage: {tip_id}")
+        if tip.get("primary_stage_id") != (tip.get("stage_ids") or [None])[0]:
+            errors.append(f"approved tip primary stage does not match stage_ids: {tip_id}")
+        if stage_review.get("approved_stage_ids") != tip.get("stage_ids"):
+            errors.append(f"approved tip stage review does not match published stage_ids: {tip_id}")
         if not verification.get("reviewed_by") or not verification.get("reviewed_at") or not verification.get("review_notes"):
             errors.append(f"approved tip missing reviewer, date, or review notes: {tip_id}")
         refs = {s.get("url") for s in tip.get("sources", []) if isinstance(s, dict)}
