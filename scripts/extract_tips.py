@@ -3,6 +3,7 @@ import json, os, re
 from urllib.parse import urlparse
 from .common import ROOT, now_iso, read_json, stable_id, write_json
 from .stages import classify_tip
+from .source_quality import evidence_matches
 
 CATEGORIES={"water","food","shelter","first_aid","sanitation","navigation","communication","energy","climate","planning","other"}
 CONTENT_TYPES={"identify","eat","grow","build","make","repair","maintain","treat","prepare","plan","other","communication_guidance","planning_guidance","material_guidance","shelter_standard","cold_climate_shelter_guidance","safety_rule","heating_reference"}
@@ -107,7 +108,7 @@ def normalize_tip(raw,source,provider):
     source_text=str(source.get("text",""))
     # Evidence must be found verbatim within the extracted source body; reject
     # hallucinated or paraphrased quotations before a candidate reaches JSON.
-    if not evidence or not source_text or evidence.casefold() not in source_text.casefold(): return None
+    if not evidence_matches(evidence, source_text): return None
     # No practical steps usually means we captured a heading or a broad slogan.
     # Keep procedural exceptions out of the corpus rather than padding them.
     if not steps: return None
