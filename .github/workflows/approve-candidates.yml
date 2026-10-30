@@ -55,6 +55,9 @@ jobs:
       - name: Validate approved dataset
         run: python -m scripts.validate_data
 
+      - name: Validate technical knowledge catalogues
+        run: python -m scripts.knowledge_validation
+
       - name: Run test suite
         run: python -m pytest -q
 
