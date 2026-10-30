@@ -92,7 +92,8 @@ def test_audit_accepts_tip_with_verbatim_evidence_and_stage():
         "summary":"Boil water before drinking.","steps":["Boil water."],
         "evidence_excerpt":"Boil water before drinking.",
         "sources":[{"url":"https://example.org/water"}],
-        "stage_ids":["03-water-sanitation"]
+        "stage_ids":["03-water-sanitation"],
+        "quality_status":"source_aligned_needs_human_review"
     }
     issues, _ = audit([tip], [source])
     assert "tip-2" not in issues
