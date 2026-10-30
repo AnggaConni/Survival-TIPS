@@ -54,7 +54,14 @@ def collect_candidates(per_query=4):
         likely_news=any(term in title for term in news_title_terms)
         # Put practical manuals/guides first; de-prioritize announcement-style RSS/news.
         return (1 if likely_news and not practical else 0, 0 if practical else 1, 0 if trusted else 1, item["url"])
-    return sorted(candidates.values(),key=rank)
+    # News and announcement feeds are useful context but poor primary evidence for
+    # reproducible survival procedures. Keep them out of the extraction queue.
+    practical_candidates = [
+        item for item in candidates.values()
+        if not (any(term in str(item.get("title", "")).casefold() for term in news_title_terms)
+                and not any(term in str(item.get("title", "")).casefold() for term in practical_title_terms))
+    ]
+    return sorted(practical_candidates,key=rank)
 def extract_page(candidate):
     session=get_session()
     if not robots_allowed(candidate["url"],session):
