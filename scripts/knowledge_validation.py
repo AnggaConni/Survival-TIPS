@@ -124,13 +124,22 @@ def validate_catalogues(root: Path = ROOT):
                     if field not in evidence_fields:
                         errors.append(f"{label} required field lacks field-level evidence: {field}")
 
+            metadata_fields = {
+                "id", "title", "summary", "stage_ids", "sources", "evidence",
+                "verification", "food_use_status", "use_claim_review_status",
+                "qualified_reviewer", "qualification_basis", "generated_at",
+            }
+            for field, value in row.items():
+                if field in metadata_fields or value in (None, "", []):
+                    continue
+                if field not in evidence_fields and field not in {"stage_classification"}:
+                    errors.append(f"{label} populated claim field lacks field-level evidence: {field}")
+
             for field in spec["list_fields"]:
                 value = row.get(field, [])
                 if value is not None and not isinstance(value, list):
                     errors.append(f"{label} field '{field}' must be an array")
                     continue
-                if value and field not in evidence_fields:
-                    errors.append(f"{label} populated field lacks field-level evidence: {field}")
                 if field == "steps":
                     for number, step in enumerate(value or [], 1):
                         if not isinstance(step, (str, dict)) or not (step.get("instruction") if isinstance(step, dict) else step.strip()):
@@ -151,12 +160,17 @@ def validate_catalogues(root: Path = ROOT):
                     errors.append(
                         f"{label} has invalid food_use_status; this catalogue cannot certify a species as safe to eat"
                     )
+                if food_status != "not_assessed" and "food_use_status" not in evidence_fields:
+                    errors.append(f"{label} food_use_status requires source evidence")
                 if row.get("uses") and row.get("use_claim_review_status") not in {
                     "requires_expert_review", "qualified_review_completed"
                 }:
                     errors.append(
                         f"{label} has use claims without an explicit expert-review status"
                     )
+                if row.get("uses") and row.get("use_claim_review_status") == "qualified_review_completed":
+                    if not row.get("qualified_reviewer") or not row.get("qualification_basis"):
+                        errors.append(f"{label} qualified use review lacks reviewer or qualification basis")
                 # Do not permit a field that turns a profile into a blanket edibility/safety certification.
                 if any(field in row for field in ("safe_to_eat", "edible_certified", "medicinally_safe")):
                     errors.append(f"{label} contains a prohibited blanket food/medicine safety assertion")
