@@ -25,6 +25,8 @@ The `step_reviews` array must have exactly one entry per step, in the same order
       "reviewer": "Reviewer name or role",
       "reviewed_at": "2026-10-30T09:00:00+07:00",
       "notes": "Read the source in context; checked scope, limitations, and local applicability.",
+      "stage_ids": ["03-water-sanitation"],
+      "stage_review_notes": "Confirmed the primary and secondary stage assignment against the tip's scope.",
       "step_reviews": [
         {
           "evidence_excerpt": "Exact sentence copied from the stored source text.",
@@ -40,4 +42,4 @@ Do not copy this example as an approval. Replace the ID, reviewer, notes, and ev
 
 ## Publication rule
 
-Approval records include reviewer, timestamp, notes, and evidence for every step. The generated PDFs show the review attribution, step evidence, and clickable source links. Keep the publication dataset empty when no item has completed review. A passing test or exact text match is not a scientific, legal, or safety certification.
+Approval records include reviewer, timestamp, notes, and evidence for every step. The reviewer should also confirm or override `stage_ids`; approved records must carry a human-reviewed stage classification. The generated PDFs show the review attribution, step evidence, and clickable source links. Keep the publication dataset empty when no item has completed review. A passing test or exact text match is not a scientific, legal, or safety certification.

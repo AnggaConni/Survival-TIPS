@@ -1,7 +1,9 @@
 from __future__ import annotations
 import os, time, feedparser, requests
+from datetime import datetime, timedelta, timezone
 from bs4 import BeautifulSoup
 from .common import ROOT, TIMEOUT, clean_text, get_session, is_http_url, now_iso, read_json, robots_allowed, safe_domain, stable_id, write_json
+from .source_quality import annotate_source, content_hash
 CONFIG=read_json(ROOT/"config"/"sources.json",{})
 TRUSTED_DOMAINS=set(CONFIG.get("trusted_domains",[]))
 def search_web(query,max_results=5):
@@ -87,17 +89,53 @@ def extract_page(candidate):
         print(f"[fetch] Failed {candidate['url']}: {exc}"); return None
     finally: time.sleep(.25)
 def collect_sources(limit=8):
-    candidates=collect_candidates(); old=read_json(ROOT/"data"/"sources.json",{"schema_version":"1.0","sources":[]})
-    merged={x.get("url"):x for x in old.get("sources",[]) if x.get("url")}; added=0
+    candidates=collect_candidates()
+    old=read_json(ROOT/"data"/"sources.json",{"schema_version":"1.0","sources":[]})
+    merged={x.get("url"):annotate_source(x) for x in old.get("sources",[]) if x.get("url")}
+    versions=read_json(ROOT/"data"/"source_versions.json",{"schema_version":"1.0","events":[]})
+    added=0; refreshed=0
+    refresh_days=max(1,int(os.getenv("SOURCE_REFRESH_DAYS","30")))
+    now=datetime.now(timezone.utc)
     for candidate in candidates:
-        if added>=max(1,limit): break
-        if candidate["url"] in merged and merged[candidate["url"]].get("text"): continue
+        if added+refreshed>=max(1,limit): break
+        existing=merged.get(candidate["url"])
+        if existing and existing.get("text"):
+            checked=existing.get("last_checked_at") or existing.get("retrieved_at")
+            try:
+                checked_at=datetime.fromisoformat(str(checked).replace("Z","+00:00"))
+                if checked_at.tzinfo is None: checked_at=checked_at.replace(tzinfo=timezone.utc)
+            except (TypeError,ValueError):
+                checked_at=now-timedelta(days=refresh_days+1)
+            if now-checked_at < timedelta(days=refresh_days): continue
         page=extract_page(candidate)
-        if page:
-            merged[page["url"]]=page; added+=1; print(f"[source] {page['title']} — {page['url']}")
-    payload={"schema_version":"1.0","generated_at":now_iso(),"sources":list(merged.values())[-2000:]}
+        if not page: continue
+        page=annotate_source(page)
+        if existing:
+            old_hash=existing.get("content_hash") or content_hash(existing.get("text",""))
+            new_hash=content_hash(page.get("text",""))
+            page["first_seen_at"]=existing.get("first_seen_at") or existing.get("retrieved_at")
+            page["last_checked_at"]=page.get("retrieved_at")
+            if old_hash == new_hash:
+                page["quality_assessment"]=existing.get("quality_assessment") or page.get("quality_assessment")
+                page["version"]=existing.get("version",1)
+                page["content_changed_at"]=existing.get("content_changed_at") or existing.get("retrieved_at")
+            else:
+                page["version"]=int(existing.get("version",1))+1
+                page["previous_content_hash"]=old_hash
+                page["content_changed_at"]=page.get("retrieved_at")
+                versions.setdefault("events",[]).append({"source_url":page["url"],"version":page["version"],"previous_content_hash":old_hash,"content_hash":new_hash,"changed_at":page.get("retrieved_at"),"event":"source_content_changed"})
+                print(f"[source] Content changed: {page['url']} (v{page['version']})")
+            merged[page["url"]]=page; refreshed+=1
+        else:
+            page["version"]=1
+            merged[page["url"]]=page; added+=1
+        print(f"[source] Stored {page['title']} — {page['url']}")
+    payload={"schema_version":"1.1","generated_at":now_iso(),"sources":list(merged.values())[-2000:]}
+    versions["generated_at"]=now_iso()
+    versions["events"]=versions.get("events",[])[-5000:]
     write_json(ROOT/"data"/"sources.json",payload)
-    print(f"[source] Added {added}; total {len(payload['sources'])}")
+    write_json(ROOT/"data"/"source_versions.json",versions)
+    print(f"[source] Added {added}; refreshed {refreshed}; total {len(payload['sources'])}")
     return payload["sources"]
 if __name__=="__main__":
     import argparse

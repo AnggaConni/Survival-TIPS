@@ -6,6 +6,7 @@ from collections import defaultdict
 from .common import ROOT, now_iso, read_json, write_json
 from .extract_tips import extract
 from .stages import get_stages
+from .source_quality import duplicate_pairs, possible_conflict_pairs
 
 GENERIC_PHRASES = (
     "be prepared", "improve resilience", "consult guidelines",
@@ -20,6 +21,7 @@ def audit(tips, sources):
     source_by_url = {s.get("url"): s for s in sources if s.get("url")}
     issues = defaultdict(list)
     seen_titles = {}
+    valid_stage_ids = {stage["id"] for stage in get_stages()}
     for tip in tips:
         tip_id = tip.get("id", "(missing-id)")
         title_key = norm(tip.get("title"))
@@ -35,45 +37,46 @@ def audit(tips, sources):
             if any(not isinstance(tip.get(field), list) or not tip.get(field) for field in food_fields):
                 issues[tip_id].append("wild_food_safety_details_missing")
         if content_type in {"build", "make"}:
-            if not tip.get("materials"):
-                issues[tip_id].append("build_recipe_missing_materials")
-            if not tip.get("tools"):
-                issues[tip_id].append("build_recipe_missing_tools")
-            if not tip.get("expected_result"):
-                issues[tip_id].append("build_recipe_missing_expected_result")
+            if not tip.get("materials"): issues[tip_id].append("build_recipe_missing_materials")
+            if not tip.get("tools"): issues[tip_id].append("build_recipe_missing_tools")
+            if not tip.get("expected_result"): issues[tip_id].append("build_recipe_missing_expected_result")
         if not isinstance(tip.get("steps"), list) or not tip.get("steps"):
             issues[tip_id].append("no_actionable_steps")
-        if not tip.get("sources"):
+        refs = tip.get("sources", [])
+        if not refs:
             issues[tip_id].append("missing_source")
         else:
-            matched_source = None
-            for source_ref in tip.get("sources", []):
-                source = source_by_url.get(source_ref.get("url"))
-                if source:
-                    matched_source = source
-                    break
-            if matched_source:
-                evidence = str(tip.get("evidence_excerpt", "")).strip()
-                body = str(matched_source.get("text", ""))
-                if not evidence or evidence.casefold() not in body.casefold():
-                    issues[tip_id].append("evidence_not_found_verbatim_in_source")
-            else:
+            evidence = str(tip.get("evidence_excerpt", "")).strip()
+            matched = [source_by_url.get(ref.get("url")) for ref in refs if isinstance(ref, dict) and source_by_url.get(ref.get("url"))]
+            if not matched:
                 issues[tip_id].append("source_text_unavailable_for_audit")
+            elif not evidence or not any(evidence.casefold() in str(source.get("text", "")).casefold() for source in matched):
+                issues[tip_id].append("evidence_not_found_verbatim_in_any_referenced_source")
         searchable = norm(tip.get("title")) + " " + norm(tip.get("summary"))
         if any(phrase in searchable for phrase in GENERIC_PHRASES):
             issues[tip_id].append("possibly_generic_advice")
         if title_key in seen_titles:
-            issues[tip_id].append("duplicate_title:" + seen_titles[title_key])
+            issues[tip_id].append("duplicate_title_exact:" + seen_titles[title_key])
         else:
             seen_titles[title_key] = tip_id
         current_stages = tip.get("stage_ids", [])
-        valid_stage_ids = {stage["id"] for stage in get_stages()}
         if not isinstance(current_stages, list) or not current_stages:
             issues[tip_id].append("unclassified_stage")
         elif any(stage_id not in valid_stage_ids for stage_id in current_stages):
             issues[tip_id].append("invalid_stage_id")
+        classification = tip.get("stage_classification", {})
+        if not classification:
+            issues[tip_id].append("stage_classification_not_auditable")
+        elif classification.get("review_status") not in {"human_reviewed", "needs_human_review"}:
+            issues[tip_id].append("invalid_stage_review_status")
         if tip.get("quality_status") not in {"source_aligned_needs_human_review", "ai_candidate_needs_review"}:
             issues[tip_id].append("missing_quality_status")
+    for pair in duplicate_pairs(tips):
+        issues[pair["left_id"]].append("possible_near_duplicate:" + str(pair["right_id"]))
+        issues[pair["right_id"]].append("possible_near_duplicate:" + str(pair["left_id"]))
+    for pair in possible_conflict_pairs(tips):
+        issues[pair["left_id"]].append("possible_conflict_review:" + str(pair["right_id"]))
+        issues[pair["right_id"]].append("possible_conflict_review:" + str(pair["left_id"]))
     return issues, source_by_url
 
 def main():
@@ -90,7 +93,31 @@ def main():
     sources = source_data.get("sources", [])
     issues, source_by_url = audit(tips, sources)
 
+    duplicates = duplicate_pairs(tips)
+    conflicts = possible_conflict_pairs(tips)
     print(f"[audit] Checked {len(tips)} tips; flagged {len(issues)} tip(s).")
+    print(f"[audit] Similarity screening: {len(duplicates)} possible duplicate pair(s); lexical conflict screening: {len(conflicts)} possible conflict pair(s).")
+    for pair in duplicates:
+        print(f"[duplicate-review] {pair['left_id']} <-> {pair['right_id']} (similarity={pair['similarity']})")
+    for pair in conflicts:
+        print(f"[conflict-review] {pair['left_id']} <-> {pair['right_id']} signals={','.join(pair['signals'])}")
+    source_tiers = defaultdict(int)
+    for source in sources:
+        assessment = source.get("quality_assessment", {})
+        source_tiers[assessment.get("authority_tier", "unassessed")] += 1
+    report = {
+        "generated_at": now_iso(),
+        "dataset": tip_path.name,
+        "tip_count": len(tips),
+        "flagged_tip_count": len(issues),
+        "flagged_issues": {tip_id: sorted(set(items)) for tip_id, items in issues.items()},
+        "possible_duplicate_pairs": duplicates,
+        "possible_conflict_pairs": conflicts,
+        "source_tier_counts": dict(source_tiers),
+        "review_note": "Similarity and lexical conflict signals are triage leads only; they do not prove duplication or factual contradiction."
+    }
+    write_json(ROOT / "data" / "quality_report.json", report)
+    print("[audit] Wrote data/quality_report.json")
     for tip in tips:
         problems = issues.get(tip.get("id", "(missing-id)"))
         if problems:
@@ -143,7 +170,7 @@ def main():
             "missing_or_invalid_content_type", "wild_food_safety_details_missing",
             "build_recipe_missing_materials", "build_recipe_missing_tools",
             "build_recipe_missing_expected_result", "missing_quality_status",
-            "invalid_stage_id",
+            "invalid_stage_id", "stage_classification_not_auditable",
         }
         rejected = {
             tip.get("id"): sorted(set(replacement_issues.get(tip.get("id"), [])) & severe)

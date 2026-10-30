@@ -79,10 +79,12 @@ def test_audit_flags_missing_verbatim_evidence():
         "summary":"Boil water before drinking.","steps":["Boil water."],
         "evidence_excerpt":"Boiling removes every contaminant.",
         "sources":[{"url":"https://example.org/water"}],
-        "stage_ids":["03-water-sanitation"]
+        "stage_ids":["03-water-sanitation"],
+        "stage_classification":{"suggested_stage_ids":["03-water-sanitation"],"method":"keyword_category_rules","review_status":"needs_human_review"},
+        "quality_status":"source_aligned_needs_human_review"
     }
     issues, _ = audit([tip], [source])
-    assert "evidence_not_found_verbatim_in_source" in issues["tip-1"]
+    assert "evidence_not_found_verbatim_in_any_referenced_source" in issues["tip-1"]
 
 def test_audit_accepts_tip_with_verbatim_evidence_and_stage():
     from scripts.audit_tips import audit
@@ -93,6 +95,7 @@ def test_audit_accepts_tip_with_verbatim_evidence_and_stage():
         "evidence_excerpt":"Boil water before drinking.",
         "sources":[{"url":"https://example.org/water"}],
         "stage_ids":["03-water-sanitation"],
+        "stage_classification":{"suggested_stage_ids":["03-water-sanitation"],"method":"keyword_category_rules","review_status":"needs_human_review"},
         "quality_status":"source_aligned_needs_human_review"
     }
     issues, _ = audit([tip], [source])
@@ -195,11 +198,14 @@ def test_pdf_export_uses_only_approved_dataset(monkeypatch, tmp_path):
 def test_approved_tip_requires_step_level_verbatim_evidence(monkeypatch):
     import scripts.validate_data as validator
     payloads = {
-        "sources": {"sources":[{"url":"https://example.org/guide","text":"Boil water for one minute."}]},
+        "sources": {"sources":[{"url":"https://example.org/guide","text":"Boil water for one minute.","version":1,"content_hash":"abc","quality_assessment":{"authority_tier":"C_or_unassessed","document_type":"web_article","technical_depth":1,"quality_score":25,"review_status":"needs_human_review"}}]},
+        "source_versions":{"events":[{"source_url":"https://example.org/guide","version":1}]},
         "tips": {"tips":[]}, "species":{"species":[]},
         "candidate_tips":{"tips":[]}, "tips.quarantine":{"tips":[]},
         "approved_tips":{"tips":[{
             "id":"approved-1","title":"Boil water","summary":"Boil water.",
+            "stage_ids":["01-drr"],"primary_stage_id":"01-drr","secondary_stage_ids":[],
+            "stage_classification":{"suggested_stage_ids":["01-drr"],"approved_stage_ids":["01-drr"],"review_status":"human_reviewed","reviewed_by":"Reviewer","reviewed_at":"2026-10-30"},
             "sources":[{"url":"https://example.org/guide"}],
             "steps":[{"instruction":"Boil water.","evidence_excerpt":"Boil water for one minute.","source_url":"https://example.org/guide"}],
             "verification":{"status":"approved","reviewed_by":"Reviewer","reviewed_at":"2026-10-30","review_notes":"Checked"},
@@ -226,6 +232,7 @@ def test_review_command_promotes_only_with_verbatim_evidence(monkeypatch, tmp_pa
     save("approved_tips.json", {"tips":[]})
     save("review_decisions.json", {"decisions":[{
         "tip_id":"tip-1","decision":"approve","reviewer":"Human reviewer","notes":"Checked against source.",
+        "stage_ids":["03-water-sanitation"],"stage_review_notes":"Reviewed stage.",
         "step_reviews":[{"evidence_excerpt":"Boil water for one minute.","source_url":"https://example.org/guide"}]
     }]})
     monkeypatch.setattr(sys, "argv", ["review_tips", "--apply"])
@@ -254,3 +261,108 @@ def test_review_command_rejects_non_verbatim_step_evidence(monkeypatch, tmp_path
     monkeypatch.setattr(sys, "argv", ["review_tips", "--apply"])
     with pytest.raises(SystemExit):
         reviewer.main()
+
+
+def test_source_quality_assessment_is_explicitly_heuristic():
+    from scripts.source_quality import assess_source, content_hash, annotate_source
+    source = {
+        "url":"https://www.cdc.gov/water/emergency.html",
+        "title":"Emergency Drinking Water Technical Guide",
+        "text":"Last Reviewed: June 30, 2025. " + ("Water treatment procedure and safety equipment. " * 80),
+        "retrieved_at":"2026-10-30T00:00:00+00:00"
+    }
+    assessment = assess_source(source)
+    assert assessment["authority_tier"] == "A_official_public_authority"
+    assert assessment["document_type"] == "technical_guide"
+    assert assessment["review_status"] == "needs_human_review"
+    assert assessment["classification_method"] == "heuristic_v1"
+    annotated = annotate_source(source)
+    assert annotated["version"] == 1
+    assert annotated["content_hash"] == content_hash(source["text"])
+
+
+def test_duplicate_detector_flags_near_duplicate_titles():
+    from scripts.source_quality import duplicate_pairs
+    tips = [
+        {"id":"a","title":"Boil drinking water safely","summary":"Boil water before drinking."},
+        {"id":"b","title":"Boil drinking water safely!","summary":"Boil water before drinking."},
+        {"id":"c","title":"Build a raised garden bed","summary":"Prepare a garden bed."}
+    ]
+    pairs = duplicate_pairs(tips)
+    assert len(pairs) == 1
+    assert {pairs[0]["left_id"], pairs[0]["right_id"]} == {"a","b"}
+
+
+def test_conflict_detector_only_emits_human_review_signals():
+    from scripts.source_quality import possible_conflict_pairs
+    tips = [
+        {"id":"a","title":"Water is safe to drink","summary":"The tested water is safe after treatment."},
+        {"id":"b","title":"Water is unsafe to drink","summary":"The tested water is unsafe after treatment."}
+    ]
+    pairs = possible_conflict_pairs(tips)
+    assert pairs
+    assert pairs[0]["status"] == "human_review_required"
+    assert "safe/unsafe" in pairs[0]["signals"]
+
+
+def test_audit_checks_evidence_across_all_referenced_sources():
+    from scripts.audit_tips import audit
+    sources = [
+        {"url":"https://example.org/first","text":"An unrelated overview."},
+        {"url":"https://example.org/second","text":"Boil water for one minute."}
+    ]
+    tip = {
+        "id":"multi-source","title":"Boil water","content_type":"treat","category":"water",
+        "summary":"Boil water before drinking.","steps":["Boil water."],
+        "evidence_excerpt":"Boil water for one minute.",
+        "sources":[{"url":"https://example.org/first"},{"url":"https://example.org/second"}],
+        "stage_ids":["03-water-sanitation"],
+        "stage_classification":{"review_status":"needs_human_review"}
+    }
+    issues, _ = audit([tip], sources)
+    assert "evidence_not_found_verbatim_in_any_referenced_source" not in issues["multi-source"]
+
+
+def test_reprocess_replaces_only_candidate_entries_for_selected_source(monkeypatch, tmp_path):
+    import json
+    import scripts.extract_tips as extractor
+    monkeypatch.setattr(extractor, "ROOT", tmp_path)
+    (tmp_path / "data").mkdir()
+    def save(name, payload):
+        (tmp_path / "data" / name).write_text(json.dumps(payload), encoding="utf-8")
+    source_url = "https://example.org/guide"
+    save("sources.json", {"sources":[{"url":source_url,"text":"Source text","version":2,"content_hash":"hash-v2"}]})
+    save("tips.json", {"tips":[{"id":"active-1","sources":[{"url":source_url}]}]})
+    save("tips.quarantine.json", {"tips":[]})
+    save("approved_tips.json", {"tips":[]})
+    save("candidate_tips.json", {"tips":[
+        {"id":"old-candidate","sources":[{"url":source_url}]},
+        {"id":"other-source","sources":[{"url":"https://example.org/other"}]}
+    ]})
+    replacement = {"id":"new-candidate","sources":[{"url":source_url}]}
+    monkeypatch.setattr(extractor, "extract", lambda source: ([replacement], "test"))
+    assert extractor.process_saved_sources(max_sources=1, reprocess=True) == 1
+    result = json.loads((tmp_path / "data" / "candidate_tips.json").read_text(encoding="utf-8"))["tips"]
+    ids = {tip["id"] for tip in result}
+    assert ids == {"new-candidate", "other-source"}
+    active = json.loads((tmp_path / "data" / "tips.json").read_text(encoding="utf-8"))["tips"]
+    assert active[0]["id"] == "active-1"
+
+
+def test_reprocess_keeps_existing_candidate_when_extraction_returns_no_tips(monkeypatch, tmp_path):
+    import json
+    import scripts.extract_tips as extractor
+    monkeypatch.setattr(extractor, "ROOT", tmp_path)
+    (tmp_path / "data").mkdir()
+    def save(name, payload):
+        (tmp_path / "data" / name).write_text(json.dumps(payload), encoding="utf-8")
+    source_url = "https://example.org/guide"
+    save("sources.json", {"sources":[{"url":source_url,"text":"Source text"}]})
+    save("tips.json", {"tips":[]})
+    save("tips.quarantine.json", {"tips":[]})
+    save("approved_tips.json", {"tips":[]})
+    save("candidate_tips.json", {"tips":[{"id":"old-candidate","sources":[{"url":source_url}]}]})
+    monkeypatch.setattr(extractor, "extract", lambda source: ([], "test"))
+    assert extractor.process_saved_sources(max_sources=1, reprocess=True) == 0
+    result = json.loads((tmp_path / "data" / "candidate_tips.json").read_text(encoding="utf-8"))["tips"]
+    assert [tip["id"] for tip in result] == ["old-candidate"]
