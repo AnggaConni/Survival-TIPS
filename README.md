@@ -24,10 +24,11 @@ Stage definitions live in `config/stages.json`. Tips receive `stage_ids`; the sh
 The intended flow is:
 
 1. The scraper discovers and fetches sources.
-2. AI extraction saves source-linked candidate entries to `data/*.json`.
-3. The collection workflow validates the JSON and generates all eight PDFs during the same run.
-4. A separate `.github/workflows/generate-pdfs.yml` workflow also runs on pushes that change JSON data or the stage/PDF generator files. This covers manual data edits and commits made outside the collection workflow.
-5. Generated handbooks are committed to `docs/pdf/`.
+2. AI extraction saves source-linked, unreviewed entries to `data/candidate_tips.json` (and retains the legacy review backlog in `data/tips.json`).
+3. A human reviewer records step-by-step evidence in `data/review_decisions.json` and runs `python -m scripts.review_tips --apply`; only approved entries enter `data/approved_tips.json`.
+4. The collection workflow validates the JSON and generates all eight PDFs from the approved dataset only.
+5. A separate `.github/workflows/generate-pdfs.yml` workflow also runs on pushes that change JSON data or the stage/PDF generator files. This covers manual data edits and commits made outside the collection workflow.
+6. Generated handbooks are committed to `docs/pdf/`.
 
 **GitHub Actions detail:** commits pushed using GitHub Actions' default `GITHUB_TOKEN` do not normally trigger another `push` workflow. That's why the collection workflow itself also generates PDFs before committing its data and PDF outputs. The separate push-triggered workflow is for direct pushes and other qualifying changes, not the only path for PDF generation.
 
@@ -40,7 +41,10 @@ The intended flow is:
 - `scripts/extract_tips.py` — evidence-first AI extraction with Groq → DeepSeek → OpenRouter fallback; requires a verbatim evidence excerpt, practical steps, an assigned stage, and structured action-type fields. Wild-food consumption tips are rejected unless key safety fields are supplied.
 - `scripts/audit_tips.py` — deterministic quality audit for missing fields, unsupported evidence, generic advice, duplicate titles, stage mismatches, missing food-safety details, and incomplete build/make recipes; optional AI re-extraction repair.
 - `scripts/stages.py` — shared stage classification and filtering.
-- `scripts/export_pdfs.py` — creates a separate PDF for each stage.
+- `scripts/export_pdfs.py` — creates a separate PDF for each stage from `data/approved_tips.json` only.
+- `scripts/review_tips.py` — promotes a tip only after a reviewer supplies verbatim source evidence for every step.
+- `data/review_decisions.json` — human review decision manifest.
+- `data/approved_tips.json` — publication dataset; only approved tips appear in PDFs.
 - `scripts/collect_gbif.py` — GBIF occurrence records and license-gated image downloads.
 - `scripts/run_pipeline.py` — data collection orchestrator.
 - `scripts/validate_data.py` — data-integrity checks.
@@ -81,14 +85,17 @@ Copy `.env.example` to `.env`, add your keys locally, and never commit `.env`.
 python -m scripts.run_pipeline --limit 8 --gbif-limit 3
 python -m scripts.audit_tips
 python -m scripts.audit_tips --repair
+# Edit data/review_decisions.json, then apply human approvals
+python -m scripts.review_tips --apply
 python -m scripts.validate_data
+python -m scripts.review_tips --apply
 python -m scripts.export_pdfs --all
 python -m pytest -q
 ```
 
 GitHub Actions can run the pipeline manually: Actions → **Collect survival data** → Run workflow. The workflow audits tip quality each run. Enable the `repair_tips` input to re-extract flagged source pages with the configured AI providers (this may consume API credits). Repair replaces existing tips from a source only when new candidates pass evidence/step validation; if no replacement passes, existing data is kept. The pipeline exports and commits stage PDFs alongside updated JSON and licensed assets.
 
-The extractor falls back from Groq to DeepSeek to OpenRouter when a provider errors or all its candidate tips fail local validation. A valid empty response is treated as the model finding no sufficiently supported tips, not as an API failure. The audit is a screening aid, not a substitute for human review.
+The extractor falls back from Groq to DeepSeek to OpenRouter when a provider errors or all its candidate tips fail local validation. A valid empty response is treated as the model finding no sufficiently supported tips, not as an API failure. The audit is a screening aid, not a substitute for human review. PDF export reads only `data/approved_tips.json`; approval requires a reviewer, date, notes, and a verbatim evidence excerpt/source URL for every actionable step.
 
 ## GitHub Actions secrets
 
@@ -125,9 +132,9 @@ The latest generated PDFs are stored in [`docs/pdf/`](docs/pdf/). Click a handbo
 
 ## Is the data accurate? What can be eaten or made?
 
-**Treat the current corpus as a research collection, not a field-verified survival manual.** Every stored tip is currently marked `needs_review`. The AI's `confidence` field expresses the model's estimate of how directly the source supports a tip; it is not independent verification that the advice is true, safe, locally applicable, or complete.
+**Treat the current corpus as a research collection, not a field-verified survival manual.** Every item in the review backlog is marked `needs_review`; publication requires a separate human approval record. The AI's `confidence` field expresses the model's estimate of how directly the source supports a tip; it is not independent verification that the advice is true, safe, locally applicable, or complete.
 
-A review of the current `data/tips.json` snapshot found **40 tips, all `needs_review`**. Some have useful water, sanitation, emergency-shelter, preparedness, and home-gardening content. However, a number of entries focus on communicating public advisories or applying humanitarian guidance rather than giving a direct, reproducible survival procedure. Eight tips also have no assigned stage in this snapshot. The dataset is still small and uneven: categories such as `other` dominate, while several stages have no or very little content. Do not infer that a stage PDF is complete just because the file exists.
+The cleaned review backlog currently contains 15 entries, all marked `needs_review`; quarantined records are retained separately. None is automatically treated as approved. The published handbook dataset is `data/approved_tips.json`, and it remains empty until a human reviewer explicitly approves entries with step-level evidence. Some review-backlog entries concern public advisory communication rather than direct survival procedures.
 
 ### Can I eat it?
 
@@ -172,7 +179,7 @@ python -m scripts.validate_data
 python -m pytest -q
 ```
 
-Audit mode only reports flags. Repair mode may call AI providers and consume API credits; it re-extracts flagged source pages and replaces tips only when new candidates pass the configured checks. A passing automatic check is not the same as human approval.
+Audit mode only reports flags. Repair mode may call AI providers and consume API credits; it writes candidate items only. It does not approve or publish tips. A passing automatic check is not the same as human approval.
 
 ## PDF output
 
