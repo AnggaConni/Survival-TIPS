@@ -183,24 +183,46 @@ def extract(source):
     print("[ai] All providers failed validation or API calls; source retained without fabricated tips. "+" | ".join(errors))
     return [],"none"
 
-def process_saved_sources(max_sources=5):
+def process_saved_sources(max_sources=5, reprocess=False):
     source_data=read_json(ROOT/"data"/"sources.json",{"sources":[]})
     active=read_json(ROOT/"data"/"tips.json",{"schema_version":"1.0","tips":[]})
     candidates=read_json(ROOT/"data"/"candidate_tips.json",{"schema_version":"1.0","tips":[]})
     quarantine=read_json(ROOT/"data"/"tips.quarantine.json",{"schema_version":"1.0","tips":[]})
+    approved=read_json(ROOT/"data"/"approved_tips.json",{"schema_version":"1.0","tips":[]})
     merged={x.get("id"):x for x in candidates.get("tips",[]) if x.get("id")}
-    protected={x.get("id") for x in active.get("tips",[]) if x.get("id")}
-    protected.update(x.get("id") for x in quarantine.get("tips",[]) if x.get("id"))
-    processed={s.get("url") for group in (active.get("tips",[]),candidates.get("tips",[]),quarantine.get("tips",[])) for tip in group for s in tip.get("sources",[]) if s.get("url")}
-    todo=[s for s in source_data.get("sources",[]) if s.get("text") and s.get("url") not in processed][:max(1,max_sources)]
-    added=0
+    protected={x.get("id") for group in (active.get("tips",[]),quarantine.get("tips",[]),approved.get("tips",[])) for x in group if x.get("id")}
+    processed={s.get("url") for group in (active.get("tips",[]),candidates.get("tips",[]),quarantine.get("tips",[]),approved.get("tips",[])) for tip in group for s in tip.get("sources",[]) if s.get("url")}
+    stored=[s for s in source_data.get("sources",[]) if s.get("text") and s.get("url")]
+    todo=stored[:max(1,max_sources)] if reprocess else [s for s in stored if s.get("url") not in processed][:max(1,max_sources)]
+    added=0; replaced=0
     for source in todo:
         tips,_=extract(source)
+        if not tips:
+            continue
+        source_url=source.get("url")
+        if reprocess:
+            prior_ids=[
+                tip_id for tip_id,tip in merged.items()
+                if any(ref.get("url")==source_url for ref in tip.get("sources",[]) if isinstance(ref,dict))
+            ]
+            for tip_id in prior_ids:
+                merged.pop(tip_id,None)
+            replaced+=len(prior_ids)
         for tip in tips:
             if tip["id"] not in merged and tip["id"] not in protected:
-                merged[tip["id"]]=tip; added+=1
+                merged[tip["id"]]=tip
+                added+=1
     write_json(ROOT/"data"/"candidate_tips.json",{"schema_version":"1.0","generated_at":now_iso(),"tips":list(merged.values())[-5000:]})
-    print(f"[tips] Processed {len(todo)} sources; added {added} candidate(s); candidate queue total {len(merged)}. Active tips were not changed.")
+    mode="reprocessed" if reprocess else "new"
+    print(f"[tips] {mode}: {len(todo)} source(s); added {added} candidate(s); replaced {replaced} previous candidate(s); queue total {len(merged)}. Active, quarantined, and approved datasets were not changed.")
     return added
+
+if __name__=="__main__":
+    import argparse
+    parser=argparse.ArgumentParser(description="Extract tips from stored sources.")
+    parser.add_argument("--limit",type=int,default=5)
+    parser.add_argument("--reprocess",action="store_true",help="Re-run extraction on stored sources using the current prompt/extractor version. Only candidate entries are replaced.")
+    args=parser.parse_args()
+    process_saved_sources(max_sources=args.limit,reprocess=args.reprocess)
 
 if __name__=="__main__": process_saved_sources()
