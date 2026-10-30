@@ -34,14 +34,21 @@ def write_template(items: list[str]):
         payload = read_json(path, {spec["key"]: []})
         if not any(row.get("id") == record_id for row in payload.get(spec["key"], [])):
             raise SystemExit(f"Record not found: {item}")
-        decisions.append({
+        item = {
             "catalogue": filename,
             "record_id": record_id,
             "decision": "approve",
             "reviewer": "REPLACE_WITH_REVIEWER",
             "reviewed_at": "",
             "review_notes": "REPLACE_WITH_REVIEW_NOTES",
-        })
+        }
+        if filename == "biodiversity_profiles.json" and row.get("uses"):
+            item.update({
+                "use_claim_review_status": row.get("use_claim_review_status", "requires_expert_review"),
+                "qualified_reviewer": row.get("qualified_reviewer", "REPLACE_WITH_QUALIFIED_REVIEWER"),
+                "qualification_basis": row.get("qualification_basis", "REPLACE_WITH_QUALIFICATION_BASIS"),
+            })
+        decisions.append(item)
     print(json.dumps({"schema_version": "1.0", "decisions": decisions}, ensure_ascii=False, indent=2))
 
 
@@ -77,8 +84,8 @@ def apply_decisions(decisions_path: Path) -> int:
 
         reviewer = str(decision.get("reviewer", "")).strip()
         notes = str(decision.get("review_notes", "")).strip()
-        if not reviewer or not notes:
-            raise SystemExit(f"{filename}:{record.get('id')} requires reviewer and review_notes.")
+        if not reviewer or not notes or "REPLACE_WITH" in reviewer or "REPLACE_WITH" in notes:
+            raise SystemExit(f"{filename}:{record.get('id')} requires completed reviewer and review_notes.")
 
         refs = {
             source.get("url")
@@ -119,6 +126,9 @@ def apply_decisions(decisions_path: Path) -> int:
                 raise SystemExit(f"{filename}:{record.get('id')} food_use_status requires source evidence")
 
         if filename == "biodiversity_profiles.json" and record.get("uses"):
+            for field in ("use_claim_review_status", "qualified_reviewer", "qualification_basis"):
+                if decision.get(field) and "REPLACE_WITH" not in str(decision[field]):
+                    record[field] = decision[field]
             if record.get("use_claim_review_status") != "qualified_review_completed":
                 raise SystemExit(
                     f"{filename}:{record.get('id')} use claims require qualified review before approval."
