@@ -5,7 +5,7 @@ from collections import defaultdict
 
 from .common import ROOT, now_iso, read_json, write_json
 from .extract_tips import extract
-from .stages import classify_tip
+from .stages import get_stages
 
 GENERIC_PHRASES = (
     "be prepared", "improve resilience", "consult guidelines",
@@ -67,7 +67,7 @@ def audit(tips, sources):
         else:
             seen_titles[title_key] = tip_id
         current_stages = tip.get("stage_ids", [])
-        valid_stage_ids = {stage["id"] for stage in __import__("scripts.stages", fromlist=["get_stages"]).get_stages()}
+        valid_stage_ids = {stage["id"] for stage in get_stages()}
         if not isinstance(current_stages, list) or not current_stages:
             issues[tip_id].append("unclassified_stage")
         elif any(stage_id not in valid_stage_ids for stage_id in current_stages):
@@ -142,7 +142,8 @@ def main():
             "possibly_generic_advice", "unclassified_stage",
             "missing_or_invalid_content_type", "wild_food_safety_details_missing",
             "build_recipe_missing_materials", "build_recipe_missing_tools",
-            "build_recipe_missing_expected_result",
+            "build_recipe_missing_expected_result", "missing_quality_status",
+            "invalid_stage_id",
         }
         rejected = {
             tip.get("id"): sorted(set(replacement_issues.get(tip.get("id"), [])) & severe)
@@ -152,18 +153,20 @@ def main():
         if rejected:
             print(f"[repair] Kept existing tips for {url}: replacement candidates still failed quality checks: {rejected}")
             continue
-        before = len(updated_tips)
-        old_count = len(source_tips)
-        updated_tips = [
-            tip for tip in updated_tips
-            if not any(ref.get("url") == url for ref in tip.get("sources", []))
-        ]
+        flagged_for_url = {
+            tip.get("id") for tip in source_tips
+            if issues.get(tip.get("id", "(missing-id)"))
+        }
+        old_count = len(flagged_for_url)
+        # Preserve unflagged records from the same source; only replace records
+        # that the audit actually identified as problematic.
+        updated_tips = [tip for tip in updated_tips if tip.get("id") not in flagged_for_url]
         for replacement in replacements:
             replacement["quality_status"] = "ai_candidate_needs_review"
             replacement["quality_notes"] = "AI repair candidate. Not human-reviewed or approved for operational use."
         updated_tips.extend(replacements)
         repaired += 1
-        print(f"[repair] Replaced source tips for {url}: {old_count} old candidate(s) -> {len(replacements)} new candidate(s) from {provider}.")
+        print(f"[repair] Replaced {old_count} flagged tip(s) for {url} with {len(replacements)} candidate(s) from {provider}.")
 
     if repaired:
         write_json(tip_path, {
