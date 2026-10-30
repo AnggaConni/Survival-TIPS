@@ -1,6 +1,7 @@
 from __future__ import annotations
 import hashlib
 import re
+import unicodedata
 from datetime import datetime, timezone
 from difflib import SequenceMatcher
 from urllib.parse import urlparse
@@ -30,6 +31,29 @@ def normalized_text(value):
 
 def content_hash(text):
     return hashlib.sha256(normalized_text(text).encode("utf-8")).hexdigest()
+
+
+def evidence_matches(evidence, source_text):
+    """Match verbatim evidence, allowing explicit ellipses between quoted fragments."""
+    def normalize(value):
+        value = unicodedata.normalize("NFKC", str(value or ""))
+        return re.sub(r"\\s+", " ", value).strip().casefold()
+
+    source = normalize(source_text)
+    raw = unicodedata.normalize("NFKC", str(evidence or ""))
+    fragments = [normalize(part) for part in re.split(r"\\.{3,}|…+", raw)]
+    fragments = [part for part in fragments if part]
+    if not fragments:
+        return False
+    cursor = 0
+    for fragment in fragments:
+        if len(fragment) < 8:
+            return False
+        position = source.find(fragment, cursor)
+        if position < 0:
+            return False
+        cursor = position + len(fragment)
+    return True
 
 def _domain_matches(host, domains):
     return any(host == d or host.endswith("." + d) for d in domains)
@@ -140,7 +164,7 @@ OPPOSITE_PAIRS = (
     ("safe", "unsafe"), ("edible", "inedible"), ("potable", "nonpotable"),
     ("increase", "decrease"), ("increases", "decreases"),
     ("add", "remove"), ("wet", "dry"), ("boil", "do not boil"),
-    ("recommended", "not recommended"), ("use", "avoid"),
+    ("recommended", "not recommended"),
 )
 
 def _contains_phrase(text, phrase):
