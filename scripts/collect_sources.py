@@ -115,8 +115,8 @@ def collect_sources(limit=8):
             new_hash=content_hash(page.get("text",""))
             page["first_seen_at"]=existing.get("first_seen_at") or existing.get("retrieved_at")
             page["last_checked_at"]=page.get("retrieved_at")
-            page["quality_assessment"]=existing.get("quality_assessment") or page.get("quality_assessment")
             if old_hash == new_hash:
+                page["quality_assessment"]=existing.get("quality_assessment") or page.get("quality_assessment")
                 page["version"]=existing.get("version",1)
                 page["content_changed_at"]=existing.get("content_changed_at") or existing.get("retrieved_at")
             else:
