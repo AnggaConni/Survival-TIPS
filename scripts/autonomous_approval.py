@@ -161,7 +161,7 @@ def _build_approved_tip(tip: dict, review: dict, model: str, reviewed_at: str) -
     return result
 
 
-def run_autonomous_approval(root: Path = ROOT, reviewer=None, model: str | None = None) -> dict:
+def run_autonomous_approval(root: Path = ROOT, reviewer=None, model: str | None = None, limit: int = 5) -> dict:
     model = model or os.getenv("DEEPSEEK_MODEL") or MODEL_DEFAULT
     candidate_path = root / "data" / "candidate_tips.json"
     approved_path = root / "data" / "approved_tips.json"
@@ -186,7 +186,10 @@ def run_autonomous_approval(root: Path = ROOT, reviewer=None, model: str | None 
     newly_approved = 0
     reviewed_at = now_iso()
 
-    for tip in candidates:
+    for index, tip in enumerate(candidates):
+        if index >= max(1, limit):
+            kept.extend(candidates[index:])
+            break
         tip_id = tip.get("id")
         entry = {"tip_id": tip_id, "reviewed_at": reviewed_at, "provider": "deepseek",
                  "model": model, "prompt_version": PROMPT_VERSION}
@@ -268,8 +271,9 @@ def run_autonomous_approval(root: Path = ROOT, reviewer=None, model: str | None 
 def main():
     parser = argparse.ArgumentParser(description="Run DeepSeek low-risk autonomous candidate approval.")
     parser.add_argument("--model", default=None, help="Optional DeepSeek model override.")
+    parser.add_argument("--limit", type=int, default=5, help="Maximum candidates to send for review per run (default: 5).")
     args = parser.parse_args()
-    result = run_autonomous_approval(model=args.model)
+    result = run_autonomous_approval(model=args.model, limit=args.limit)
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
