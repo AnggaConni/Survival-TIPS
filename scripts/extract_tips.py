@@ -4,7 +4,7 @@ from .common import ROOT, now_iso, read_json, stable_id, write_json
 from .stages import classify_tip
 
 CATEGORIES={"water","food","shelter","first_aid","sanitation","navigation","communication","energy","climate","planning","other"}
-CONTENT_TYPES={"identify","eat","grow","build","make","repair","maintain","treat","prepare","plan","other"}
+CONTENT_TYPES={"identify","eat","grow","build","make","repair","maintain","treat","prepare","plan","other","communication_guidance","planning_guidance","material_guidance","shelter_standard","cold_climate_shelter_guidance","safety_rule","heating_reference"}
 GENERIC_TIP_PHRASES=("be prepared","improve resilience","use appropriate materials","grow nutritious crops","consult guidelines","plan ahead","ensure proper")
 PROMPT="""You are an evidence-first survival knowledge editor for Survival-TIPS, a practical guide to rebuilding and sustaining communities after disasters or infrastructure failure.
 
@@ -37,7 +37,7 @@ STRICT SOURCE-EVIDENCE RULES
 
 QUALITY BAR
 A good tip is a self-contained practice a reader can understand and act on. Prefer concrete procedures, decision criteria, checklists, measurable recommendations with source-stated context, troubleshooting, maintenance, or repeatable methods.
-Every tip must declare one content_type: identify, eat, grow, build, make, repair, maintain, treat, prepare, plan, or other. Prefer action-specific labels rather than category=other.
+Every tip must declare one content_type from: identify, eat, grow, build, make, repair, maintain, treat, prepare, plan, communication_guidance, planning_guidance, material_guidance, shelter_standard, cold_climate_shelter_guidance, safety_rule, heating_reference, or other. Use a label that describes the actual knowledge format; do not force a standard or communication principle into a how-to procedure.
 Reject vague advice such as "be prepared", "improve resilience", "use appropriate materials", "grow nutritious crops", or "consult guidelines" unless the source provides concrete steps that make the advice operational.
 Reject tips whose only action is to download a document, visit an app, share a notice, follow a generic link, or comply with a broad policy. Extract the substantive procedure from the source itself when present; otherwise return no tip.
 Do not create multiple near-duplicate tips from one page. Prefer a small number of high-value, distinct tips over a long list of shallow ones. Usually return 0-5 tips per source; return fewer when evidence is thin.
@@ -51,7 +51,7 @@ Confidence is not a claim that the advice has been independently verified. All t
 
 OUTPUT
 Return valid JSON only in this exact shape:
-{"tips":[{"title":"Specific action-oriented title","content_type":"identify|eat|grow|build|make|repair|maintain|treat|prepare|plan|other","category":"water|food|shelter|first_aid|sanitation|navigation|communication|energy|climate|planning|other","summary":"One concise paragraph describing the supported practice and its limits.","steps":["Actionable step supported by the source"],"materials":["Source-stated materials or ingredients"],"tools":["Source-stated tools or equipment"],"prerequisites":["Source-stated prerequisites or conditions"],"expected_result":"Expected result supported by the source, or empty string if not stated","failure_modes":["Source-stated failure mode or limitation"],"safety_notes":["Source-supported safety warning"],"identification_criteria":["Required for eat tips: source-supported identification details"],"edible_parts":["Required for eat tips: exact part explicitly identified as edible"],"preparation_requirements":["Required for eat tips: source-stated preparation requirements"],"lookalikes_or_uncertainty":["Required for eat tips: source-stated look-alikes, limitations, or explicit uncertainty"],"warnings":["Source-supported warning or limitation"],"evidence_excerpt":"Short verbatim passage from SOURCE TEXT","confidence":"low|medium|high"}]}
+{"tips":[{"title":"Specific action-oriented title","content_type":"identify|eat|grow|build|make|repair|maintain|treat|prepare|plan|communication_guidance|planning_guidance|material_guidance|shelter_standard|cold_climate_shelter_guidance|safety_rule|heating_reference|other","category":"water|food|shelter|first_aid|sanitation|navigation|communication|energy|climate|planning|other","summary":"One concise paragraph describing the supported practice and its limits.","steps":["Actionable step supported by the source"],"materials":["Source-stated materials or ingredients"],"tools":["Source-stated tools or equipment"],"prerequisites":["Source-stated prerequisites or conditions"],"expected_result":"Expected result supported by the source, or empty string if not stated","failure_modes":["Source-stated failure mode or limitation"],"safety_notes":["Source-supported safety warning"],"identification_criteria":["Required for eat tips: source-supported identification details"],"edible_parts":["Required for eat tips: exact part explicitly identified as edible"],"preparation_requirements":["Required for eat tips: source-stated preparation requirements"],"lookalikes_or_uncertainty":["Required for eat tips: source-stated look-alikes, limitations, or explicit uncertainty"],"warnings":["Source-supported warning or limitation"],"evidence_excerpt":"Short verbatim passage from SOURCE TEXT","confidence":"low|medium|high"}]}
 If no sufficiently supported, relevant practical advice exists, return {"tips":[]}."""
 
 def parse_json(text):
@@ -134,7 +134,7 @@ def normalize_tip(raw,source,provider):
     confidence=raw.get("confidence","low")
     if confidence not in {"low","medium","high"}: confidence="low"
     # Confidence remains an AI estimate only; all candidates require human review.
-    tip={"id":stable_id(source["url"]+"|"+title.casefold(),"tip"),"title":title,"content_type":content_type,"category":category,"summary":summary,"steps":steps,"materials":materials,"tools":tools,"prerequisites":prerequisites,"expected_result":expected_result,"failure_modes":failure_modes,"safety_notes":safety_notes,"identification_criteria":identification_criteria,"edible_parts":edible_parts,"preparation_requirements":preparation_requirements,"lookalikes_or_uncertainty":lookalikes_or_uncertainty,"warnings":warnings,"evidence_excerpt":evidence,"sources":[{"title":source.get("title",""),"url":source["url"],"domain":source.get("domain",""),"retrieved_at":source.get("retrieved_at")}],"retrieved_at":source.get("retrieved_at") or now_iso(),"ai_provider":provider,"verification":{"status":"needs_review","confidence":confidence,"reviewed_by":None,"reviewed_at":None}}
+    tip={"id":stable_id(source["url"]+"|"+title.casefold(),"tip"),"title":title,"content_type":content_type,"quality_status":"ai_candidate_needs_review","quality_notes":"AI-extracted candidate. Not human-reviewed or approved for operational use.","category":category,"summary":summary,"steps":steps,"materials":materials,"tools":tools,"prerequisites":prerequisites,"expected_result":expected_result,"failure_modes":failure_modes,"safety_notes":safety_notes,"identification_criteria":identification_criteria,"edible_parts":edible_parts,"preparation_requirements":preparation_requirements,"lookalikes_or_uncertainty":lookalikes_or_uncertainty,"warnings":warnings,"evidence_excerpt":evidence,"sources":[{"title":source.get("title",""),"url":source["url"],"domain":source.get("domain",""),"retrieved_at":source.get("retrieved_at")}],"retrieved_at":source.get("retrieved_at") or now_iso(),"ai_provider":provider,"verification":{"status":"needs_review","confidence":confidence,"reviewed_by":None,"reviewed_at":None}}
     tip["stage_ids"]=classify_tip(tip)
     # Unclassified content is not publishable as a stage-filtered survival tip.
     if not tip["stage_ids"]:
@@ -170,17 +170,23 @@ def extract(source):
     return [],"none"
 
 def process_saved_sources(max_sources=5):
-    source_data=read_json(ROOT/"data"/"sources.json",{"sources":[]}); old=read_json(ROOT/"data"/"tips.json",{"schema_version":"1.0","tips":[]})
-    merged={x.get("id"):x for x in old.get("tips",[]) if x.get("id")}
-    processed={s.get("url") for tip in merged.values() for s in tip.get("sources",[]) if s.get("url")}
+    source_data=read_json(ROOT/"data"/"sources.json",{"sources":[]})
+    active=read_json(ROOT/"data"/"tips.json",{"schema_version":"1.0","tips":[]})
+    candidates=read_json(ROOT/"data"/"candidate_tips.json",{"schema_version":"1.0","tips":[]})
+    quarantine=read_json(ROOT/"data"/"tips.quarantine.json",{"schema_version":"1.0","tips":[]})
+    merged={x.get("id"):x for x in candidates.get("tips",[]) if x.get("id")}
+    protected={x.get("id") for x in active.get("tips",[]) if x.get("id")}
+    protected.update(x.get("id") for x in quarantine.get("tips",[]) if x.get("id"))
+    processed={s.get("url") for group in (active.get("tips",[]),candidates.get("tips",[]),quarantine.get("tips",[])) for tip in group for s in tip.get("sources",[]) if s.get("url")}
     todo=[s for s in source_data.get("sources",[]) if s.get("text") and s.get("url") not in processed][:max(1,max_sources)]
     added=0
     for source in todo:
         tips,_=extract(source)
         for tip in tips:
-            if tip["id"] not in merged: merged[tip["id"]]=tip; added+=1
-    write_json(ROOT/"data"/"tips.json",{"schema_version":"1.0","generated_at":now_iso(),"tips":list(merged.values())[-5000:]})
-    print(f"[tips] Processed {len(todo)} sources; added {added}; total {len(merged)}")
+            if tip["id"] not in merged and tip["id"] not in protected:
+                merged[tip["id"]]=tip; added+=1
+    write_json(ROOT/"data"/"candidate_tips.json",{"schema_version":"1.0","generated_at":now_iso(),"tips":list(merged.values())[-5000:]})
+    print(f"[tips] Processed {len(todo)} sources; added {added} candidate(s); candidate queue total {len(merged)}. Active tips were not changed.")
     return added
 
 if __name__=="__main__": process_saved_sources()
