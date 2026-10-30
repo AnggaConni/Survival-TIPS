@@ -36,7 +36,13 @@ def validate():
             if tip_id in ids:
                 errors.append(f"duplicate tip ID across active/candidate/quarantine: {tip_id}")
             ids.add(tip_id)
-            for field in ("sources","steps","stage_ids"):
+            if not isinstance(tip.get("sources"),list) or not tip.get("sources"):
+                errors.append(f"{group} tip missing non-empty sources: {tip_id}")
+            if group == "quarantine":
+                if not tip.get("quarantine_reason"):
+                    errors.append(f"quarantine tip missing quarantine_reason: {tip_id}")
+                continue
+            for field in ("steps","stage_ids"):
                 if not isinstance(tip.get(field),list) or not tip.get(field):
                     errors.append(f"{group} tip missing non-empty {field}: {tip_id}")
             if not tip.get("content_type") or tip.get("content_type") not in VALID_CONTENT_TYPES:
