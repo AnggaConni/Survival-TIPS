@@ -107,3 +107,41 @@ def test_fabricated_or_nonverbatim_step_evidence_cannot_be_approved(tmp_path):
     assert result["auto_approved"] == 0
     assert len(read(tmp_path, "candidate_tips.json")["tips"]) == 1
     assert read(tmp_path, "approved_tips.json")["tips"] == []
+
+
+def test_existing_approved_id_is_removed_from_stale_candidate_queue(tmp_path):
+    tip = safe_candidate()
+    approved = {
+        **tip,
+        "quality_status": "ai_verified",
+        "verification": {"status": "approved", "review_type": "automated_low_risk_only"},
+    }
+    save(tmp_path, "sources.json", {"sources": [source()]})
+    save(tmp_path, "candidate_tips.json", {"tips": [tip]})
+    save(tmp_path, "approved_tips.json", {"tips": [approved]})
+
+    result = run_autonomous_approval(tmp_path, reviewer=lambda *args: None)
+    assert result["auto_approved"] == 0
+    assert read(tmp_path, "candidate_tips.json")["tips"] == []
+    assert read(tmp_path, "approved_tips.json")["tips"][0]["id"] == tip["id"]
+
+
+def test_review_limit_leaves_unprocessed_candidates_in_queue(tmp_path):
+    tips = [safe_candidate("candidate-" + str(i)) for i in range(3)]
+    save(tmp_path, "sources.json", {"sources": [source()]})
+    save(tmp_path, "candidate_tips.json", {"tips": tips})
+    save(tmp_path, "approved_tips.json", {"tips": []})
+
+    calls = []
+    def reviewer(tip, sources, model):
+        calls.append(tip["id"])
+        return {
+            "decision": "needs_human_review", "risk_level": "low", "confidence": 0.5,
+            "stage_ids": ["08-infrastructure"], "reason": "Needs a person to check context.",
+            "step_reviews": [],
+        }
+
+    result = run_autonomous_approval(tmp_path, reviewer=reviewer, limit=1)
+    assert len(calls) == 1
+    assert result["remaining_candidates"] == 3
+    assert len(read(tmp_path, "candidate_tips.json")["tips"]) == 3
