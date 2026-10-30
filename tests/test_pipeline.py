@@ -79,10 +79,12 @@ def test_audit_flags_missing_verbatim_evidence():
         "summary":"Boil water before drinking.","steps":["Boil water."],
         "evidence_excerpt":"Boiling removes every contaminant.",
         "sources":[{"url":"https://example.org/water"}],
-        "stage_ids":["03-water-sanitation"]
+        "stage_ids":["03-water-sanitation"],
+        "stage_classification":{"suggested_stage_ids":["03-water-sanitation"],"method":"keyword_category_rules","review_status":"needs_human_review"},
+        "quality_status":"source_aligned_needs_human_review"
     }
     issues, _ = audit([tip], [source])
-    assert "evidence_not_found_verbatim_in_source" in issues["tip-1"]
+    assert "evidence_not_found_verbatim_in_any_referenced_source" in issues["tip-1"]
 
 def test_audit_accepts_tip_with_verbatim_evidence_and_stage():
     from scripts.audit_tips import audit
@@ -229,6 +231,7 @@ def test_review_command_promotes_only_with_verbatim_evidence(monkeypatch, tmp_pa
     save("approved_tips.json", {"tips":[]})
     save("review_decisions.json", {"decisions":[{
         "tip_id":"tip-1","decision":"approve","reviewer":"Human reviewer","notes":"Checked against source.",
+        "stage_ids":["03-water-sanitation"],"stage_review_notes":"Reviewed stage.",
         "step_reviews":[{"evidence_excerpt":"Boil water for one minute.","source_url":"https://example.org/guide"}]
     }]})
     monkeypatch.setattr(sys, "argv", ["review_tips", "--apply"])
