@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "data/*.json"
+      - "scripts/validate_data.py"
       - "config/stages.json"
       - "scripts/export_pdfs.py"
       - "scripts/stages.py"
