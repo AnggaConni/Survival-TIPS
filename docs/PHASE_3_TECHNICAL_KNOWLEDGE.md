@@ -42,7 +42,7 @@ Cultivation guidance must retain its stated climate, soil, variety, region, seas
 Run:
 
 ```powershell
-python -m scripts.validate_knowledge
+python -m scripts.knowledge_validation
 python -m pytest -q
 python -m scripts.validate_data
 ```
