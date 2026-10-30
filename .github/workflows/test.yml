@@ -1,4 +1,4 @@
-name: Test, audit, and validate data
+name: Test, audit, and validate data (quarantine schema)
 
 on:
   push:
