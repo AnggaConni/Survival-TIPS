@@ -45,6 +45,9 @@ jobs:
       - name: Validate publication dataset
         run: python -m scripts.validate_data
 
+      - name: Validate technical knowledge catalogues
+        run: python -m scripts.knowledge_validation
+
       - name: Generate one PDF per stage
         run: python -m scripts.export_pdfs --all
 
