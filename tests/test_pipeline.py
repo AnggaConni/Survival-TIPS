@@ -211,3 +211,46 @@ def test_approved_tip_requires_step_level_verbatim_evidence(monkeypatch):
     assert validator.validate()
     payloads["approved_tips"]["tips"][0]["steps"][0]["evidence_excerpt"] = "Invented evidence."
     assert not validator.validate()
+
+
+def test_review_command_promotes_only_with_verbatim_evidence(monkeypatch, tmp_path):
+    import json, sys
+    import scripts.review_tips as reviewer
+    monkeypatch.setattr(reviewer, "ROOT", tmp_path)
+    (tmp_path / "data").mkdir()
+    def save(name, payload):
+        (tmp_path / "data" / name).write_text(json.dumps(payload), encoding="utf-8")
+    save("sources.json", {"sources":[{"url":"https://example.org/guide","text":"Boil water for one minute."}]})
+    save("tips.json", {"tips":[{"id":"tip-1","title":"Boil water","summary":"Boil water safely.","steps":["Bring water to a boil."],"sources":[{"url":"https://example.org/guide"}],"verification":{"status":"needs_review","confidence":"medium"},"quality_status":"source_aligned_needs_human_review"}]})
+    save("candidate_tips.json", {"tips":[]})
+    save("approved_tips.json", {"tips":[]})
+    save("review_decisions.json", {"decisions":[{
+        "tip_id":"tip-1","decision":"approve","reviewer":"Human reviewer","notes":"Checked against source.",
+        "step_reviews":[{"evidence_excerpt":"Boil water for one minute.","source_url":"https://example.org/guide"}]
+    }]})
+    monkeypatch.setattr(sys, "argv", ["review_tips", "--apply"])
+    reviewer.main()
+    approved = json.loads((tmp_path / "data" / "approved_tips.json").read_text(encoding="utf-8"))["tips"]
+    assert len(approved) == 1
+    assert approved[0]["verification"]["status"] == "approved"
+    assert approved[0]["steps"][0]["evidence_excerpt"] == "Boil water for one minute."
+
+
+def test_review_command_rejects_non_verbatim_step_evidence(monkeypatch, tmp_path):
+    import json, sys, pytest
+    import scripts.review_tips as reviewer
+    monkeypatch.setattr(reviewer, "ROOT", tmp_path)
+    (tmp_path / "data").mkdir()
+    def save(name, payload):
+        (tmp_path / "data" / name).write_text(json.dumps(payload), encoding="utf-8")
+    save("sources.json", {"sources":[{"url":"https://example.org/guide","text":"Boil water for one minute."}]})
+    save("tips.json", {"tips":[{"id":"tip-2","title":"Boil water","summary":"Boil water.","steps":["Boil water."],"sources":[{"url":"https://example.org/guide"}],"verification":{"status":"needs_review"},"quality_status":"source_aligned_needs_human_review"}]})
+    save("candidate_tips.json", {"tips":[]})
+    save("approved_tips.json", {"tips":[]})
+    save("review_decisions.json", {"decisions":[{
+        "tip_id":"tip-2","decision":"approve","reviewer":"Human reviewer","notes":"Checked.",
+        "step_reviews":[{"evidence_excerpt":"Boiling water removes all toxins.","source_url":"https://example.org/guide"}]
+    }]})
+    monkeypatch.setattr(sys, "argv", ["review_tips", "--apply"])
+    with pytest.raises(SystemExit):
+        reviewer.main()
