@@ -1,6 +1,6 @@
 {
-  "schema_version": "1.0",
-  "generated_at": "2026-10-29T18:04:07+00:00",
+  "schema_version": "1.1",
+  "generated_at": "2026-10-30T09:26:10+00:00",
   "sources": [
     {
       "id": "src-b1f1918a3368ec",
@@ -12,7 +12,34 @@
       "source_type": "search",
       "feed_name": null,
       "search_provider": "duckduckgo",
-      "retrieved_at": "2026-10-29T17:34:42+00:00"
+      "retrieved_at": "2026-10-29T17:34:42+00:00",
+      "first_seen_at": "2026-10-29T17:34:42+00:00",
+      "version": 1,
+      "content_hash": "ebb953bb1fd37862bf95643cfa01a70d05b3c8310fe9158758cf0e463e1fffa3",
+      "last_checked_at": "2026-10-29T17:34:42+00:00",
+      "content_changed_at": "2026-10-29T17:34:42+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "toolkit",
+        "publication_date": "2022-06-30",
+        "last_updated": "2022-06-30",
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 70,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 20,
+          "date_present": 10
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-0c8745be7d7aaa",
@@ -24,7 +51,34 @@
       "source_type": "search",
       "feed_name": null,
       "search_provider": "duckduckgo",
-      "retrieved_at": "2026-10-29T17:34:42+00:00"
+      "retrieved_at": "2026-10-29T17:34:42+00:00",
+      "first_seen_at": "2026-10-29T17:34:42+00:00",
+      "version": 1,
+      "content_hash": "428eed3218e648d2fb5664901599cd2b78019ce15ce1b51db94355d7851d07af",
+      "last_checked_at": "2026-10-29T17:34:42+00:00",
+      "content_changed_at": "2026-10-29T17:34:42+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": "2020-10-14",
+        "last_updated": "2020-10-14",
+        "jurisdiction": "not_stated",
+        "technical_depth": 3,
+        "quality_score": 80,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 30,
+          "date_present": 10
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-f6c6d921548fd6",
@@ -36,7 +90,34 @@
       "source_type": "search",
       "feed_name": null,
       "search_provider": "duckduckgo",
-      "retrieved_at": "2026-10-29T17:34:45+00:00"
+      "retrieved_at": "2026-10-29T17:34:45+00:00",
+      "first_seen_at": "2026-10-29T17:34:45+00:00",
+      "version": 1,
+      "content_hash": "85173c5e214799f3848cd9cfbe76266924cea63e385180aa6322ac03a554711a",
+      "last_checked_at": "2026-10-29T17:34:45+00:00",
+      "content_changed_at": "2026-10-29T17:34:45+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "standard",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 3,
+        "quality_score": 70,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 30,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-cf758a0fd6437b",
@@ -48,7 +129,34 @@
       "source_type": "search",
       "feed_name": null,
       "search_provider": "duckduckgo",
-      "retrieved_at": "2026-10-29T17:34:47+00:00"
+      "retrieved_at": "2026-10-29T17:34:47+00:00",
+      "first_seen_at": "2026-10-29T17:34:47+00:00",
+      "version": 1,
+      "content_hash": "6e265feec20c1fd56007cab8483c2e8c5901e41fa51293824ffac8b731405151",
+      "last_checked_at": "2026-10-29T17:34:47+00:00",
+      "content_changed_at": "2026-10-29T17:34:47+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-fe55e9b4634d52",
@@ -60,7 +168,34 @@
       "source_type": "search",
       "feed_name": null,
       "search_provider": "duckduckgo",
-      "retrieved_at": "2026-10-29T17:34:49+00:00"
+      "retrieved_at": "2026-10-29T17:34:49+00:00",
+      "first_seen_at": "2026-10-29T17:34:49+00:00",
+      "version": 1,
+      "content_hash": "997d555b28df8682212627341e53a7a4b543fb758c3bc0e091910144f3208bb9",
+      "last_checked_at": "2026-10-29T17:34:49+00:00",
+      "content_changed_at": "2026-10-29T17:34:49+00:00",
+      "quality_assessment": {
+        "authority_tier": "B_technical_or_humanitarian_organization",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 3,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 30,
+          "technical_depth": 30,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-05f4d715ff737f",
@@ -72,7 +207,34 @@
       "source_type": "search",
       "feed_name": null,
       "search_provider": "duckduckgo",
-      "retrieved_at": "2026-10-29T17:34:50+00:00"
+      "retrieved_at": "2026-10-29T17:34:50+00:00",
+      "first_seen_at": "2026-10-29T17:34:50+00:00",
+      "version": 1,
+      "content_hash": "ca26a8f5020624fc3545c8d1a553cdd2de69ef0c7e252a8a44d6061f932611f3",
+      "last_checked_at": "2026-10-29T17:34:50+00:00",
+      "content_changed_at": "2026-10-29T17:34:50+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 3,
+        "quality_score": 70,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 30,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-7098d2211982ae",
@@ -84,7 +246,34 @@
       "source_type": "search",
       "feed_name": null,
       "search_provider": "duckduckgo",
-      "retrieved_at": "2026-10-29T17:34:51+00:00"
+      "retrieved_at": "2026-10-29T17:34:51+00:00",
+      "first_seen_at": "2026-10-29T17:34:51+00:00",
+      "version": 1,
+      "content_hash": "54ee8338f3e783191ab20f693e154d9a44ef8a1c52c04858541443f0a1d7fa22",
+      "last_checked_at": "2026-10-29T17:34:51+00:00",
+      "content_changed_at": "2026-10-29T17:34:51+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-789ce07d4ccfc1",
@@ -96,7 +285,34 @@
       "source_type": "search",
       "feed_name": null,
       "search_provider": "duckduckgo",
-      "retrieved_at": "2026-10-29T17:34:52+00:00"
+      "retrieved_at": "2026-10-29T17:34:52+00:00",
+      "first_seen_at": "2026-10-29T17:34:52+00:00",
+      "version": 1,
+      "content_hash": "29b26fecf9b76d232c7b549428623daf200f52cbbd15949a7906e245f42e1b7e",
+      "last_checked_at": "2026-10-29T17:34:52+00:00",
+      "content_changed_at": "2026-10-29T17:34:52+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 1,
+        "quality_score": 50,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 10,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-fabb69e1d71762",
@@ -108,7 +324,34 @@
       "source_type": "search",
       "feed_name": null,
       "search_provider": "duckduckgo",
-      "retrieved_at": "2026-10-29T17:40:48+00:00"
+      "retrieved_at": "2026-10-29T17:40:48+00:00",
+      "first_seen_at": "2026-10-29T17:40:48+00:00",
+      "version": 1,
+      "content_hash": "92f57fed4e3f9ba3c39ded72b29c24069eb8b4eb7778f1832b5f555e5e3a3fb7",
+      "last_checked_at": "2026-10-29T17:40:48+00:00",
+      "content_changed_at": "2026-10-29T17:40:48+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 3,
+        "quality_score": 70,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 30,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-41ef9afeac0316",
@@ -120,7 +363,34 @@
       "source_type": "search",
       "feed_name": null,
       "search_provider": "duckduckgo",
-      "retrieved_at": "2026-10-29T17:40:49+00:00"
+      "retrieved_at": "2026-10-29T17:40:49+00:00",
+      "first_seen_at": "2026-10-29T17:40:49+00:00",
+      "version": 1,
+      "content_hash": "3c5a5cab758b1c276d32beb4be6fa69461e2540fc55243e52ab6f8b3eb3a09e5",
+      "last_checked_at": "2026-10-29T17:40:49+00:00",
+      "content_changed_at": "2026-10-29T17:40:49+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 3,
+        "quality_score": 70,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 30,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-ee224b30201163",
@@ -132,7 +402,34 @@
       "source_type": "search",
       "feed_name": null,
       "search_provider": "duckduckgo",
-      "retrieved_at": "2026-10-29T17:40:49+00:00"
+      "retrieved_at": "2026-10-29T17:40:49+00:00",
+      "first_seen_at": "2026-10-29T17:40:49+00:00",
+      "version": 1,
+      "content_hash": "082575b94f02e38bfaad9e80cdc9ed45fcc661c28dfb96abb873fb12af4ba0de",
+      "last_checked_at": "2026-10-29T17:40:49+00:00",
+      "content_changed_at": "2026-10-29T17:40:49+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-5e162f84b8d790",
@@ -144,7 +441,34 @@
       "source_type": "search",
       "feed_name": null,
       "search_provider": "duckduckgo",
-      "retrieved_at": "2026-10-29T17:40:50+00:00"
+      "retrieved_at": "2026-10-29T17:40:50+00:00",
+      "first_seen_at": "2026-10-29T17:40:50+00:00",
+      "version": 1,
+      "content_hash": "0f6f91fd53c0f7a70f2dad1fe9ee3553411daa616ed5cc2f5595fca668561404",
+      "last_checked_at": "2026-10-29T17:40:50+00:00",
+      "content_changed_at": "2026-10-29T17:40:50+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-426e78d6a1b314",
@@ -156,7 +480,34 @@
       "source_type": "search",
       "feed_name": null,
       "search_provider": "duckduckgo",
-      "retrieved_at": "2026-10-29T17:40:50+00:00"
+      "retrieved_at": "2026-10-29T17:40:50+00:00",
+      "first_seen_at": "2026-10-29T17:40:50+00:00",
+      "version": 1,
+      "content_hash": "1157389487678d3f3d6b6de6126b46bba8e81f667ff545ca4d6711c7e95c5b36",
+      "last_checked_at": "2026-10-29T17:40:50+00:00",
+      "content_changed_at": "2026-10-29T17:40:50+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 3,
+        "quality_score": 70,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 30,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-5d165d25c37378",
@@ -168,7 +519,34 @@
       "source_type": "rss",
       "feed_name": "WHO News",
       "search_provider": null,
-      "retrieved_at": "2026-10-29T17:40:53+00:00"
+      "retrieved_at": "2026-10-29T17:40:53+00:00",
+      "first_seen_at": "2026-10-29T17:40:53+00:00",
+      "version": 1,
+      "content_hash": "707fd7c461d3f57469e43767ff171dc7edb857e6ce2aec6b8e560714024c9dc3",
+      "last_checked_at": "2026-10-29T17:40:53+00:00",
+      "content_changed_at": "2026-10-29T17:40:53+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 1,
+        "quality_score": 50,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 10,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-8e14d4f3b07439",
@@ -180,7 +558,34 @@
       "source_type": "rss",
       "feed_name": "WHO News",
       "search_provider": null,
-      "retrieved_at": "2026-10-29T17:40:54+00:00"
+      "retrieved_at": "2026-10-29T17:40:54+00:00",
+      "first_seen_at": "2026-10-29T17:40:54+00:00",
+      "version": 1,
+      "content_hash": "45016c54dac3f1d9fe12e6fd97da34fb80f520399b4c1fbffa24ad8b44b22ca5",
+      "last_checked_at": "2026-10-29T17:40:54+00:00",
+      "content_changed_at": "2026-10-29T17:40:54+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 1,
+        "quality_score": 50,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 10,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-af67239cfe14f3",
@@ -192,7 +597,34 @@
       "source_type": "rss",
       "feed_name": "WHO News",
       "search_provider": null,
-      "retrieved_at": "2026-10-29T17:40:55+00:00"
+      "retrieved_at": "2026-10-29T17:40:55+00:00",
+      "first_seen_at": "2026-10-29T17:40:55+00:00",
+      "version": 1,
+      "content_hash": "30cbcf0388a6b42c7e27ab95d6f059098583b25e585f01aca0781009523b9e19",
+      "last_checked_at": "2026-10-29T17:40:55+00:00",
+      "content_changed_at": "2026-10-29T17:40:55+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-baad57b0df7f85",
@@ -204,7 +636,34 @@
       "source_type": "search",
       "feed_name": null,
       "search_provider": "duckduckgo",
-      "retrieved_at": "2026-10-29T17:50:54+00:00"
+      "retrieved_at": "2026-10-29T17:50:54+00:00",
+      "first_seen_at": "2026-10-29T17:50:54+00:00",
+      "version": 1,
+      "content_hash": "91081ed19872ea2c7a7484dbe693c116090dad28eab59a60dffadb66ca62f1ef",
+      "last_checked_at": "2026-10-29T17:50:54+00:00",
+      "content_changed_at": "2026-10-29T17:50:54+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-f133e35a7babde",
@@ -216,7 +675,34 @@
       "source_type": "search",
       "feed_name": null,
       "search_provider": "duckduckgo",
-      "retrieved_at": "2026-10-29T17:50:58+00:00"
+      "retrieved_at": "2026-10-29T17:50:58+00:00",
+      "first_seen_at": "2026-10-29T17:50:58+00:00",
+      "version": 1,
+      "content_hash": "d964b82b3ce96040ddeb2ab90e208a40bc2be6f201993a096dc360f52dbff4b2",
+      "last_checked_at": "2026-10-29T17:50:58+00:00",
+      "content_changed_at": "2026-10-29T17:50:58+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-c1c85e9ebb250d",
@@ -228,7 +714,34 @@
       "source_type": "rss",
       "feed_name": "WHO News",
       "search_provider": null,
-      "retrieved_at": "2026-10-29T17:50:58+00:00"
+      "retrieved_at": "2026-10-29T17:50:58+00:00",
+      "first_seen_at": "2026-10-29T17:50:58+00:00",
+      "version": 1,
+      "content_hash": "fdc24ac4dd0282f47138b5f1fe89c9554cac3047b8e9a9da9af3ca90d1f22074",
+      "last_checked_at": "2026-10-29T17:50:58+00:00",
+      "content_changed_at": "2026-10-29T17:50:58+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-5dcc274f579bb8",
@@ -240,7 +753,34 @@
       "source_type": "rss",
       "feed_name": "WHO News",
       "search_provider": null,
-      "retrieved_at": "2026-10-29T17:50:59+00:00"
+      "retrieved_at": "2026-10-29T17:50:59+00:00",
+      "first_seen_at": "2026-10-29T17:50:59+00:00",
+      "version": 1,
+      "content_hash": "85243c326d7cba5125e3cb0265fd799741f7b815d549d1c4967cdf727d16eb2d",
+      "last_checked_at": "2026-10-29T17:50:59+00:00",
+      "content_changed_at": "2026-10-29T17:50:59+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-02fe2a38cabd51",
@@ -252,7 +792,34 @@
       "source_type": "rss",
       "feed_name": "WHO News",
       "search_provider": null,
-      "retrieved_at": "2026-10-29T17:51:00+00:00"
+      "retrieved_at": "2026-10-29T17:51:00+00:00",
+      "first_seen_at": "2026-10-29T17:51:00+00:00",
+      "version": 1,
+      "content_hash": "0ce907d57e862b70d4a1e7a65d4202fa7e97dd1bf368a8dfb66d95b33b5c2894",
+      "last_checked_at": "2026-10-29T17:51:00+00:00",
+      "content_changed_at": "2026-10-29T17:51:00+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-7bc82581b3ae2c",
@@ -264,7 +831,34 @@
       "source_type": "rss",
       "feed_name": "WHO News",
       "search_provider": null,
-      "retrieved_at": "2026-10-29T17:51:01+00:00"
+      "retrieved_at": "2026-10-29T17:51:01+00:00",
+      "first_seen_at": "2026-10-29T17:51:01+00:00",
+      "version": 1,
+      "content_hash": "4a05508a299cdf0c72627e375a5bb026dadf3d05e3a4fbe8df2918843f552c7b",
+      "last_checked_at": "2026-10-29T17:51:01+00:00",
+      "content_changed_at": "2026-10-29T17:51:01+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-88ed000e9bfd12",
@@ -276,7 +870,34 @@
       "source_type": "rss",
       "feed_name": "WHO News",
       "search_provider": null,
-      "retrieved_at": "2026-10-29T17:51:01+00:00"
+      "retrieved_at": "2026-10-29T17:51:01+00:00",
+      "first_seen_at": "2026-10-29T17:51:01+00:00",
+      "version": 1,
+      "content_hash": "66d14c1266297821e5266044a192e26128b558e46e4b4de30a3810c4e9d4cbb3",
+      "last_checked_at": "2026-10-29T17:51:01+00:00",
+      "content_changed_at": "2026-10-29T17:51:01+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "news_or_announcement",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 30,
+        "score_components": {
+          "authority": 10,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-56fdb2a16d58fb",
@@ -288,7 +909,34 @@
       "source_type": "rss",
       "feed_name": "WHO News",
       "search_provider": null,
-      "retrieved_at": "2026-10-29T17:51:02+00:00"
+      "retrieved_at": "2026-10-29T17:51:02+00:00",
+      "first_seen_at": "2026-10-29T17:51:02+00:00",
+      "version": 1,
+      "content_hash": "bacdf61057968509a2ae2acab7260f7dc576a4dc861ff5c8dd05365b3e3e8083",
+      "last_checked_at": "2026-10-29T17:51:02+00:00",
+      "content_changed_at": "2026-10-29T17:51:02+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-45fbfcb7c716c6",
@@ -300,7 +948,34 @@
       "source_type": "search",
       "feed_name": null,
       "search_provider": "duckduckgo",
-      "retrieved_at": "2026-10-29T18:03:59+00:00"
+      "retrieved_at": "2026-10-29T18:03:59+00:00",
+      "first_seen_at": "2026-10-29T18:03:59+00:00",
+      "version": 1,
+      "content_hash": "5b4e2654f6482317700310e4cf23ff291d07d324665bd54d465dffe4e9121852",
+      "last_checked_at": "2026-10-29T18:03:59+00:00",
+      "content_changed_at": "2026-10-29T18:03:59+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-2c42feca673a99",
@@ -312,7 +987,34 @@
       "source_type": "search",
       "feed_name": null,
       "search_provider": "duckduckgo",
-      "retrieved_at": "2026-10-29T18:03:59+00:00"
+      "retrieved_at": "2026-10-29T18:03:59+00:00",
+      "first_seen_at": "2026-10-29T18:03:59+00:00",
+      "version": 1,
+      "content_hash": "22d7781c0f2c81b6187679432ed8d425425cc5fb9a49a7bc7a7605f6c9a60b1c",
+      "last_checked_at": "2026-10-29T18:03:59+00:00",
+      "content_changed_at": "2026-10-29T18:03:59+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 0,
+        "quality_score": 40,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 0,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-bdbda12f33e675",
@@ -324,7 +1026,34 @@
       "source_type": "search",
       "feed_name": null,
       "search_provider": "duckduckgo",
-      "retrieved_at": "2026-10-29T18:04:00+00:00"
+      "retrieved_at": "2026-10-29T18:04:00+00:00",
+      "first_seen_at": "2026-10-29T18:04:00+00:00",
+      "version": 1,
+      "content_hash": "7535fcae0fe8a308cb23328cada294b5fbae47f8b0f4e040ab3a30d8814169c4",
+      "last_checked_at": "2026-10-29T18:04:00+00:00",
+      "content_changed_at": "2026-10-29T18:04:00+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-3f409a5d27f5d3",
@@ -336,7 +1065,34 @@
       "source_type": "rss",
       "feed_name": "WHO News",
       "search_provider": null,
-      "retrieved_at": "2026-10-29T18:04:02+00:00"
+      "retrieved_at": "2026-10-29T18:04:02+00:00",
+      "first_seen_at": "2026-10-29T18:04:02+00:00",
+      "version": 1,
+      "content_hash": "8ac3fd83f614e6408054f01167f00975852717de4e9ec3d18d26c3fa8871a3b5",
+      "last_checked_at": "2026-10-29T18:04:02+00:00",
+      "content_changed_at": "2026-10-29T18:04:02+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-e1cd448e840766",
@@ -348,7 +1104,34 @@
       "source_type": "search",
       "feed_name": null,
       "search_provider": "duckduckgo",
-      "retrieved_at": "2026-10-29T18:04:03+00:00"
+      "retrieved_at": "2026-10-29T18:04:03+00:00",
+      "first_seen_at": "2026-10-29T18:04:03+00:00",
+      "version": 1,
+      "content_hash": "b519a919dc86ff4adb99eda417dcc28d1040aa3ef96fb32ad227902eb3a88c88",
+      "last_checked_at": "2026-10-29T18:04:03+00:00",
+      "content_changed_at": "2026-10-29T18:04:03+00:00",
+      "quality_assessment": {
+        "authority_tier": "C_or_unassessed",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 3,
+        "quality_score": 45,
+        "score_components": {
+          "authority": 15,
+          "technical_depth": 30,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-da5a457363c594",
@@ -360,7 +1143,34 @@
       "source_type": "search",
       "feed_name": null,
       "search_provider": "duckduckgo",
-      "retrieved_at": "2026-10-29T18:04:06+00:00"
+      "retrieved_at": "2026-10-29T18:04:06+00:00",
+      "first_seen_at": "2026-10-29T18:04:06+00:00",
+      "version": 1,
+      "content_hash": "a33f73bf24531ae6ba9bdf78be0fadb18d244bc88c89fa6a426934da1f8d3f92",
+      "last_checked_at": "2026-10-29T18:04:06+00:00",
+      "content_changed_at": "2026-10-29T18:04:06+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-ec4ffaace9e3e9",
@@ -372,7 +1182,34 @@
       "source_type": "rss",
       "feed_name": "WHO News",
       "search_provider": null,
-      "retrieved_at": "2026-10-29T18:04:07+00:00"
+      "retrieved_at": "2026-10-29T18:04:07+00:00",
+      "first_seen_at": "2026-10-29T18:04:07+00:00",
+      "version": 1,
+      "content_hash": "cf7cdfca8839ee061a4a8e4a1aad2d2ace7b9eb91447d88dacb4de5bfa4fd7b0",
+      "last_checked_at": "2026-10-29T18:04:07+00:00",
+      "content_changed_at": "2026-10-29T18:04:07+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     },
     {
       "id": "src-0808e8303db82e",
@@ -384,7 +1221,346 @@
       "source_type": "rss",
       "feed_name": "WHO News",
       "search_provider": null,
-      "retrieved_at": "2026-10-29T18:04:07+00:00"
+      "retrieved_at": "2026-10-29T18:04:07+00:00",
+      "first_seen_at": "2026-10-29T18:04:07+00:00",
+      "version": 1,
+      "content_hash": "d9a868f9f7dd362863dc2550c6f637b0e821c664577e269c9967175af6b8e23c",
+      "last_checked_at": "2026-10-29T18:04:07+00:00",
+      "content_changed_at": "2026-10-29T18:04:07+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
+    },
+    {
+      "id": "src-fdd482ad80fa1e",
+      "url": "https://dictionary.cambridge.org/dictionary/english/technical",
+      "title": "TECHNICAL | English meaning - Cambridge Dictionary",
+      "domain": "dictionary.cambridge.org",
+      "text": "Meaning of technical in English technical adjective uk Your browser doesn't support HTML5 audio / ˈtek.nɪ.k ə l / us Your browser doesn't support HTML5 audio / ˈtek.nɪ.k ə l / Add to word list Add to word list B2 relating to the knowledge , machines , or methods used in science and industry : a few technical problems relating to the knowledge and methods of a particular subject or job : Personally, I found some parts of the book a little too technical to follow . B2 relating to practical skills and methods that are used in a particular activity : In her performance as the Snow Queen she showed great technical brilliance . The space shuttle remained earthbound because of a technical fault . The instruction booklet is written in very technical language which is almost impossible to understand . Before she could begin the project she had to work her way through the huge amount of technical papers . There are still a few technical problems to be dealt with before the product can be put on sale to the public . He currently holds the position of technical manager . Subjects & disciplines academic subject Africanist Afrocentrism agricultural science Americanist ECE econ EFL ell ELT neuroscience non-language non-major non-scientist non-subject specialist subject sports science sports scientist stem sub-department See more results » You can also find related words, phrases, and synonyms in the topics: Inventing, designing and innovation Efficient and effective (Definition of technical from the Cambridge Advanced Learner's Dictionary & Thesaurus © Cambridge University Press) technical | American Dictionary technical adjective us Your browser doesn't support HTML5 audio / ˈtek·nɪ·kəl / Add to word list Add to word list involving or needing special skills or knowledge , esp . in science or engineering (= the design and building of machines , equipment , and structures ) : The computer company ran into some last-minute technical problems with its new disk drives . (Definition of technical from the Cambridge Academic Content Dictionary © Cambridge University Press) technical | Business English technical adjective uk Your browser doesn't support HTML5 audio / ˈteknɪk ə l / us Your browser doesn't support HTML5 audio Add to word list Add to word list relating to science or industry : They have both the best entrepreneurs and the best technical people . a technical company /the technical sector Only 3% of the workforce has gone through technical education . relating to the knowledge used in a particular subject or type of work : The undergraduate programs in Economics and Accounting emphasize technical expertise . a technical subject , word, etc. is difficult to understand without special knowledge of a subject : The language is too technical for most people to understand . Try to avoid too many technical terms if possible . relating to machines , systems , etc. or to the practical way in which something works : technical problems / errors / glitches He's head of our technical support team . Please consult the technical manual . based on a very exact and detailed way of understanding a law or a rule : It is an overly technical interpretation of the regulations that has caused this problem . The technical definition of a multinational fails to convey the scope and diversity of global business . technical noun uk Your browser doesn't support HTML5 audio / ˈteknɪk ə l / us Your browser doesn't support HTML5 audio technicals [ plural ] STOCK MARKET signs relating to the way markets typically behave , rather than those relating to the real profits of companies whose shares are traded , the real economy , etc.: The technicals suggest we should sell . The technicals are very bullish . Compare fundamentals → tech noun (Definition of technical from the Cambridge Business English Dictionary © Cambridge University Press) Examples of technical technical We must raise the standards of the secondary technicals. From the Hansard archive Example from the Hansard archive. Contains Parliamentary information licensed under the Open Parliament Licence v3.0 His research focuses on the architectural imagination in technical drawing. From the Cambridge English Corpus As to more technical aspects, an index would have been very helpful. From the Cambridge English Corpus On a technical note, the maps are so blurred as to be sometimes unreadable and the print quality is light and indistinct on some pages. From the Cambridge English Corpus Developments do not simply follow on from technical demands if an impetus towards formmaking reliant on deep form-images and formworlds is already present. From the Cambridge English Corpus Although his arguments are rather technical , the book is intended for a nonscientist audience. From the Cambridge English Corpus Technical regulation and enforcement may have actually declined in effectiveness until recent reforms were implemented. From the Cambridge English Corpus We had to exclude eight couples from our secondary analysis due to technical problems or changes in marital status since the re-interview stage. From the Cambridge English Corpus The editors have striven to give the floor to competing points of view without losing technical focus. From the Cambridge English Corpus When a draft law arrives, it is considered by the appropriate technical commissions. From the Cambridge English Corpus The great technical problem of such a system is the critical mass of a fission chain reaction, making it difficult to miniaturize a fission explosion. From the Cambridge English Corpus First, however, three technical terms require special comment. From the Cambridge English Corpus The writing credit was repeated at the end, along with the acting and technical credits. From the Cambridge English Corpus There is a clear ambivalence in the use of technical devices. From the Cambridge English Corpus The second part of the book contains only two chapters, each dealing with more technical aspects of the production process. From the Cambridge English Corpus See all examples of technical These examples are from corpora and from sources on the web. Any opinions in the examples do not represent the opinion of the Cambridge Dictionary editors or of Cambridge University Press or its licensors. What is the pronunciation of technical ? Translations of technical in Chinese (Traditional) 技術的, 專門性的, 技能的，技巧的… See more in Chinese (Simplified) 技术的, 专门性的, 技能的，技巧的… See more in Spanish técnico, técnico/ca [masculine-feminine, singular]… See more in Portuguese técnico, técnico/-ca… See more in Marathi in Japanese in Turkish in French in Catalan in Dutch in Tamil in Hindi in Gujarati in Danish in Swedish in Malay in German in Norwegian in Urdu in Ukrainian in Telugu in Bengali in Czech in Indonesian in Thai in Vietnamese in Polish in Korean in Italian तांत्रिक… See more （科学的・工業的な）技術の, 技術的な, （芸術などの）テクニックの… See more teknik, yöntem, bilimsel… See more technique… See more tècnic… See more technisch, formeel… See more அறிவியல் மற்றும் தொழில்துறையில் பயன்படுத்தப்படும் அறிவு, இயந்திரங்கள் அல்லது முறைகள் தொடர்பானது, ஒரு குறிப்பிட்ட பொருள் அல்லது வேலையின் அறிவு மற்றும் முறைகள் தொடர்பானது… See more तकनीकी, विशेष विषय या कार्य संबंधी, विशेष-विद्या संबंधी… See more તકનીકી, ટેકનિકલ, પ્રાવિધિક… See more teknisk… See more teknisk, fackmässig, fack… See more teknikal… See more technisch, Fach-…, (rein) formell… See more teknisk, fag-, faglig… See more تکنیکی, تکنیکی (کسی خاص شعبہ علم سے متعلق تکنیکی صطلاحات یا باتیں), تکنیکی (عملی مہارت کے سیاق میں)… See more технічний, спеціальний, формально-юридичний… See more సాంకేతికమైన, ఏదైనా ఒక నిర్దిష్ట విషయానికి లేక పనికి సంబంధించిన, సాంకేతిక… See more প্রযুক্তিগত, প্রযুক্তিগত জ্ঞান, ব্যবহারিক দক্ষতা… See more technický, odborný, podle norem… See more teknik, teknis… See more เกี่ยวกับวิชาช่าง, เกี่ยวกับวิชาการเฉพาะเรื่อง, ตามกฎระเบียบ… See more kỹ thuật, liên quan đến khoa học hoặc nghệ thuật, theo quy tắc… See more techniczny, fachowy, specjalistyczny… See more 과학기술의, 기술적인… See more tecnico… See more Need a translator? Get a quick, free translation! Translator tool Browse techie techlash techMARK technetium technical technical analysis technical area technical college technical correction",
+      "snippet": "TECHNICAL definition: 1. relating to the knowledge, machines, or methods used in science and industry: 2. relating to…. Learn more.",
+      "source_type": "search",
+      "feed_name": null,
+      "search_provider": "duckduckgo",
+      "retrieved_at": "2026-10-30T09:24:53+00:00",
+      "first_seen_at": "2026-10-30T09:24:53+00:00",
+      "version": 1,
+      "content_hash": "680a95c5d19deb25d765141e14fdd35ec5469fe94889050c8d96d93c4ef5b422",
+      "last_checked_at": "2026-10-30T09:24:53+00:00",
+      "content_changed_at": "2026-10-30T09:24:53+00:00",
+      "quality_assessment": {
+        "authority_tier": "C_or_unassessed",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 35,
+        "score_components": {
+          "authority": 15,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
+    },
+    {
+      "id": "src-6981f2c8bb5210",
+      "url": "https://en.wikipedia.org/wiki/Technical",
+      "title": "Technical - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "text": "From Wikipedia, the free encyclopedia Look up technical or technical term in Wiktionary, the free dictionary. Technical may refer to: Technical (vehicle) , an improvised fighting vehicle Technical accounting , field of accounting to evaluate compliance with accounting rules and complex accounting entries Technical area , an area which a manager, other coaching personnel, and substitutes are allowed to occupy during a football match Technical advisor , a person who advises the director on the convincing portrayal of a subject in a film production Technical agrologist , professional in the science, practice, and management of agriculture and agribusiness Technical analysis , a discipline for forecasting the future direction of prices through the study of past market data Technical drawing , showing how something is constructed or functions (also known as drafting) Technical file , a set of technical drawings Technical death metal , a subgenre of death metal that focuses on complex rhythms, riffs, and song structures Technical foul , an infraction of the rules in basketball usually concerning unsportsmanlike non-contact behavior Technical geography , one of the main branches of geography Technical rehearsal for a performance, often simply referred to as a technical Technical support , a range of services providing assistance with technology products Vocational education , often known as technical education Legal technicality , an aspect of law See also [ edit ] Lego Technic , a line of Lego toys Technikal , British disc jockey and record producer Tech (disambiguation) Technicals (disambiguation) Technics (disambiguation) Technique (disambiguation) Technology (disambiguation) All pages with titles containing Technical Topics referred to by the same term This disambiguation page lists articles associated with the title Technical . If an internal link incorrectly led you here, you may wish to change the link to point directly to the intended article. Retrieved from \" https://en.wikipedia.org/w/index.php?title=Technical&oldid=1381667749 \" Category : Disambiguation pages Hidden categories: Short description is different from Wikidata All article disambiguation pages All disambiguation pages",
+      "snippet": "Technical advisor, a person who advises the director on the convincing portrayal of a subject in a film production Technical agrologist, professional in the science, practice, and management of agriculture and agribusiness Technical analysis, a discipline for forecasting the future direction of prices through the study of past market data",
+      "source_type": "search",
+      "feed_name": null,
+      "search_provider": "duckduckgo",
+      "retrieved_at": "2026-10-30T09:24:54+00:00",
+      "first_seen_at": "2026-10-30T09:24:54+00:00",
+      "version": 1,
+      "content_hash": "19697066518d8ed644099baa4bf97df6c1bb283b6be5c94ecd29cffc8c2daedd",
+      "last_checked_at": "2026-10-30T09:24:54+00:00",
+      "content_changed_at": "2026-10-30T09:24:54+00:00",
+      "quality_assessment": {
+        "authority_tier": "C_or_unassessed",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 35,
+        "score_components": {
+          "authority": 15,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
+    },
+    {
+      "id": "src-e2b675e8e7a58e",
+      "url": "https://en.wikipedia.org/wiki/Technical_(vehicle)",
+      "title": "Technical (vehicle) - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "text": "From Wikipedia, the free encyclopedia Improvised fighting vehicle A Niger Armed Forces Toyota Land Cruiser technical armed with a mounted Type 77 heavy machine gun in N'Gourti , Niger , 2019 A technical , known as a non-standard tactical vehicle ( NSTV ) in United States military parlance, is a light improvised fighting vehicle which has been modified to mount small arms and light weapons (SALW) and heavy weaponry. The vehicles most commonly used to make technicals are open-backed civilian pickup trucks and vehicles with four-wheel drive capabilities. Armaments used include machine guns , automatic grenade launchers , anti-aircraft autocannons , rotary cannons , anti-tank weapons , anti-tank guns , anti-tank guided missiles , mortars , multiple rocket launchers , recoilless rifles , and other support weaponry. Technicals perform a similar function to gun trucks and self-propelled guns , but are helpless against more advanced weaponry and superior air power . Etymology [ edit ] The neologism technical describing such a vehicle is believed to have originated in Somalia during the Somali Civil War in the early 1990s. [ 1 ] [ 2 ] Barred from bringing in private security , non-governmental organizations hired local gunmen to protect their personnel, using money defined as \"technical assistance grants\". The term broadened to include any vehicle carrying armed men. [ 3 ] An alternative account is given by Michael Maren , who says the term was first used in Somalia in the 1980s, after engineers from Soviet arms manufacturer Tekniko mounted weapons on vehicles for the Somali National Movement during the Somaliland War of Independence . [ 1 ] Technicals have also been referred to as battlewagons and gunwagons . [ 4 ] In Russia and Ukraine, technicals are often referred to as tachanka , a reference to horse-drawn machine gun platforms from the First World War and Russian Civil War . Features [ edit ] Among irregular militaries , often centered on the perceived strength and charisma of male warlords , the prestige of technicals is strong. According to one article, \"The Technical is the most significant symbol of power in southern Somalia . It is a small truck with large tripod machine guns mounted on the back. A warlord's power is measured by how many of these vehicles he has.\" [ 5 ] Technicals are not commonly used by well-funded militaries that are able to procure purpose-built combat vehicles , because the soft-skinned civilian vehicles that technicals are based on do not offer much armor protection to crew and passengers. Technicals fill the niche of traditional light cavalry . Generally costing much less than purpose-built combat vehicles, the major asset of technicals is speed and mobility, as well as their ability to strike from unexpected directions with automatic fire and light troop deployment. The reliability of vehicles such as the Toyota Hilux is useful for forces that lack the repair-related infrastructure of a conventional military on land. In direct engagements they are no match for heavier vehicles, such as tanks or other armored fighting vehicles , and they are mostly helpless against any air support from a proper military. [ citation needed ] History [ edit ] Prototypes and early usage [ edit ] \"L\" Detachment SAS in armed jeeps during the North African campaign of World War II Light improvised fighting vehicles date back to the first use of automobiles, and to the horse-drawn tachankas mounting machine guns in eastern Europe and Russia. At the Bombardment of Papeete in World War I, the French armed several Ford trucks with 37 mm guns to bolster their defense of the city. [ 6 ] During the Spanish Civil War, field guns were fixed to trucks to act as improvised self-propelled guns, and improvised armored cars were constructed by attaching steel plates to trucks. [ 7 ] In World War II , various British and Commonwealth units, including the Long Range Desert Group (LRDG), the No. 1 Demolition Squadron or 'PPA' ( Popski's Private Army ), and the Special Air Service (SAS) were noted for their exploits in the deserts of Egypt, Libya and Chad using unarmored motor vehicles, often fitted with machine guns. [ 8 ] Examples of LRDG vehicles include the Chevrolet WB 30 cwt Patrol Truck [ 9 ] and the Willys MB Jeep. [ 10 ] U.S. Marines launching a TOW missile from a M151 ¼-ton 4×4 utility truck during a 1980s training exercise at the Marine Corps Air Ground Combat Center SAS Land Rover series IIa 'Pink Panther' The SAS' use of heavily armed Land Rovers continued post-war, with their use of Series I Land Rovers and later Series IIA 1968 Land Rovers in the Dhofar Rebellion . The SAS painted their Land Rovers pink, as it was found to provide excellent camouflage in the desert and they were nicknamed 'Pink Panthers' or Pinkies. The SAS used a more modern Land Rover Desert Patrol Vehicle (DPV) during the Gulf War . [ 11 ] Western Sahara [ edit ] Tactics for employing technicals were pioneered by the Sahrawi People's Liberation Army , the armed wing of the Polisario Front , fighting for independence against Mauritania (1975–79) and Morocco (1975–present) from headquarters in Tindouf, Algeria . Algeria provided arms and Land Rovers to Sahrawi guerrillas , who successfully used them in long-range desert raids against the less agile conventional armies of their opponents, recalling Sahrawi tribal raids ( ghazis ) of the pre-colonial period. Polisario later gained access to heavier equipment, but four-wheel drive vehicles remain a staple of their arsenal. [ citation needed ] The Moroccan army quickly changed their strategy and created mounted units using technicals [ 12 ] to challenge Polisario speed and hit and run strategies in the large desert, where the Moroccan units proved their efficiency. Chadian–Libyan conflict [ edit ] Main article: Toyota War A Chadian Toyota Land Cruiser Pickup technical. In 1987, Chadian troops equipped with technicals drove the heavily mechanized Libyan army from the Aozou Strip . The vehicles were instrumental in the victory at the Battle of Fada , and were driven over 150 km (93 mi) into Libya to raid military bases . It was discovered that these light vehicles could ride through anti-tank minefields without detonating the mines when driven at speeds over 100 km/h. The vehicles became so famous that, in 1984, Time dubbed early stages of the conflict the \" Great Toyota War \". [ 13 ] The Toyota War was unusual in that the force equipped with improvised vehicles prevailed over the force equipped with purpose-built fighting vehicles. MILAN anti-tank guided missiles provided by France were key to the Chadian success, while the Libyan forces were poorly deployed and organized. The Troubles in Northern Ireland [ edit ] Main article: Improvised tactical vehicles of the Provisional IRA Throughout the conflict in Northern Ireland (1960s-1998) , the Provisional IRA fitted vehicles, especially vans and trucks, with automatic weapons, heavy machine guns, [ 14 ] and improvised mortars . [ 15 ] [ 16 ] Sometimes the vehicles were armored with welded plates and sandbags. [ 17 ] [ 18 ] The IRA employed tractors and trailers to transport and fire improvised mortars, and heavy equipment to tear down fences and barbed wire and break into fortified security bases. [ 19 ] [ 18 ] [ 20 ] Improvised flamethrowers were usually modified manure spreaders pulled to their targets by tractor. [ 21 ] [ 22 ] Somali Civil War [ edit ] A Toyota Land Cruiser technical in Mogadishu at the time of the UNOSOM II mission Technicals played an important role in the 1990s Somali Civil War and the War in Somalia (2006–2009) . Even prior to the collapse of the Somali Democratic Republic , camouflaged Toyota pickup trucks with mounted M2 Browning machine guns appeared in Somali military parades in the 1980s. After the fall of the Siad Barre regime and the collapse of the Somali National Army (SNA) , it was rare for any Somali force to field armored fighting vehicles . However, technicals were very common. In September 1995, Somali faction leader Mohamed Farrah Aidid used 30 technicals and a force of 600 militia to capture Baidoa . [ 23 ] It was reported that after his death in 1996, his body was carried to his funeral on a Toyota pickup. [ 24 ] In 2006, proving their susceptibility to heavy weapons and their value as a military prize, the Islamic Courts Union (ICU) captured 30 \"battlewagons\" during the defeat of warlord Abdi Qeybdid 's militia in the Second Battle of Mogadishu . [ 25 ] That September, an impressive array of 130 technicals was used to take Kismayo from the forces of the Juba Valley Alliance . [ 26 ] In November 2006, then President of Puntland , General Adde Musa , personally led fifty technicals to Galkacyo to confront the Islamists. They were used a month later against the army of the Islamic Courts Union at the Battle of Bandiradley alongside Abdi Qeybdiid's reconstituted militia. [ 27 ] Forced into conventional battles in the War in Somalia (2006–2009) , the unarmored technicals of the ICU proved no match for the T-55 tanks, Mil Mi-24 helicopter gunships and fighter-bombers employed by Ethiopia . [ citation needed ] War in Afghanistan [ edit ] An Afghan National Police Ford technical with a U.S. Army Humvee during a patrol in Zabul Province , Afghanistan . In the War in Afghanistan , U.S. special operations forces units such as the Green Berets were known to use technicals for patrol, because of the rugged terrain and the nature of their clandestine operations . [ 28 ] [ citation needed ] The Taliban also use technicals in the bulk of their mobile fighting force. [ 29 ] [ 30 ] Iraq War [ edit ] Iraqi National Guard troops with a PK machine gun mounted on a fourth generation Ford Courier Technicals were used by Iraqi military forces in the 2003 invasion of Iraq . [ 31 ] The Iraqi Republican Guard and Fedayeen emulated tactics of the Somali National Alliance with limited success, [ 32 ] [ 33 ] but were outmatched by Coalition armor and aviation. [ 34 ] [ 35 ] In the aftermath of the invasion, technicals were used by Iraqi insurgents for transporting personnel and quick raids against the Iraqi police forces . The insurgent use of technicals increased after the Iraq Spring Fighting of 2004 . [ citation needed ] Many military utility vehicles were modified to serve as gun trucks to protect Coalition convoys. The Humvee allows for weapon mounts by design, so it is not considered a technical. The Coalition supplied technicals to the Iraqi police . [ 36 ] Private military contractors used technicals and the United States military used modified Toyota Hiluxes , Land Cruisers , and other trucks as well. [ 37 ] Darfur conflict [ edit ] Janjaweed militias use technicals on their raids against civilian villages in Darfur , Sudan , [ 38 ] as do the Sudan Liberation Army (SLA) and Justice and Equality Movement (JEM) rebel troops in defense of their areas of operations. [ 39 ] Light vehicles such as technicals are often thought to be more mobile than armored vehicles, but on one occasion an African peace-keeper driving a Grizzly AVGP whose guns had jammed, succeeded in catching up with, ramming and rolling over a fleeing Sudanese technical. [ 40 ] Lebanon [ edit ] Introduced by the Palestine Liberation Organization (PLO) guerrilla groups, technicals were extensively employed by all factions involved in the Lebanese Civil War between 1975 and 1990, including the Christian Lebanese Front and the Lebanese National Movement (LNM) irregular militias, the Lebanese Army and the Internal Security Forces (ISF). Opposition forces used technicals in the fighting for the Chouf District during the May 2008 clashes in Lebanon . [ 41 ] Libyan Civil War [ edit ] A Toyota Land Cruiser equipped with a ZU-23-2 anti-aircraft gun technical used by the forces of the National Transitional Council , October 2011 During the First Libyan Civil War , both regime loyalist forces as well as the anti-Gaddafi forces used technicals extensively. The type of warfare in the conflict—wherein highly mobile groups of soldiers and rebels continued to move to and from on the desert terrain, retreating at a time and then suddenly attacking to regain control of small towns and villages in the Eastern rebel held parts of Libya—led to the technical becoming a vehicle of choice for both sides. Technicals were widely used by the rebels while setting up checkpoints. They formed a vast percentage of the rebel inventory, which was limited to light weapons, light body armor and very few tanks. Some medium flatbed trucks carried the Soviet-made ZPU and ZU-23-2 towed anti-aircraft twin or quad barreled guns, and recoilless rifles and S-5 rocket helicopter rocket launcher pods. [ 42 ] Some rebels improvised with captured heavy weaponry, like BMP-1 turrets [ 43 ] and helicopter rocket pods, and lower-tech methods such as using doorbells to ignite rocket-launched ammunition. [ 44 ] Rebel technicals frequently employed BM-21 Grad rockets. Rocket tubes were salvaged from damaged regime Ural-375D trucks and mounted on the backs of pickups, with the technicals able to fire anywhere from one to six rockets. [ 45 ] [ 46 ] [ 47 ] Syrian Civil War [ edit ] An SDF Toyota Land Cruiser technical in a village captured from ISIL near Raqqa , Syria Toyota Hilux non-standard Tactical Vehicles (NSTVs) used by U.S. troops in Syria In the Syrian Civil War , technicals are extensively used as improvised fighting vehicles, especially by former opposition forces such as Jaysh al-Thuwar , who largely lack conventional fighting vehicles. Syrian government forces used technicals, but on a smaller scale. The kind of weapons mounted on technicals varies widely, including machine guns , recoilless rifles , anti-aircraft autocannons (commonly ZPU and ZU-23-2 ) and even BMP-1 turrets . The Military of ISIL extensively used technicals in Iraq and Syria. Peshmerga forces have used technicals to surround and attack ISIS targets. [ 48 ] Russo-Ukrainian War [ edit ] War in Donbas [ edit ] During the 2014 war in Donbas , both sides were using home-made military vehicles. [ 49 ] OSCE monitors recorded 15 Russian armored utility vehicles ( UAZ-23632-148 Esaul ) in a training area near non-government-controlled Oleksandrivska in April 2021. [ 50 ] [ 51 ] Russian invasion of Ukraine [ edit ] Ukrainian Territorial Defense Forces soldiers using a Ford Ranger technical with a DShK in an anti-aircraft role during the Russian invasion of Ukraine . Technicals were seen being used by Spetsnaz in Gomel, Belarus in February 2022. [ 52 ] Ukrainian forces used rocket launchers recovered from downed helicopters, mounted on technicals. [ 53 ] Yemeni Civil War [ edit ] In the Yemeni Civil War , The Houthis , the internationally-recognized Yemeni government and the Southern separatists use technicals. Composition [ edit ] Technicals consist of weapons mounted on a civilian vehicle, such as a four-wheel drive pickup truck . Many pickups have been used as technicals including Ford Ranger and Mitsubishi Triton , but the most favoured are the Toyota Hilux and Toyota Land Cruiser . They are typically fitted with heavy machine guns (especially the DShK , Type 77 or M2 Browning ), anti-aircraft artillery (usually the ZPU or ZU-23-2 ), recoilless rifles (usually the SPG-9 or M40 recoilless rifle ), anti-tank missiles launchers, multiple rocket launchers such as the Type 63 or the M-63 Plamen and in rare occasions rocket pods salvaged from downed attack helicopters like the S-5 rocket . Due to being soft-skinned vehicles, optional add-on hardware include ballistic glass , turret gun shields and improvised vehicle armor made of welded steel plates, as defence against small arms fire to increase survival chances. Some technicals have their original tyres changed to off-road tyres , run-flat tyres or specialised tyres with central tyre inflation system . The modified tyres improve technicals' performance on different terrains. Run-flat tyres, or central tyre inflation system equipped tyres give the technicals opportunity to quickly get out of dangerous situations, even when tyres are damaged. See also [ edit ] Armadillo armored fighting vehicle Boghammar Chariot – ancient equivalent Hit-and-run tactics Mini-Grad Narco tank Portee Tachanka Zamburak – Late medieval equivalent References [ edit ] 1 2 Neville, L.; Dennis, P. (2018). Technicals: Non-Standard Tactical Vehicles from the Great Toyota War to modern Special Forces . New Vanguard. Bloomsbury Publishing. pp. 4, 21. ISBN 978-1-4728-2252-9 . Retrieved January 23, 2019 . ↑ Drysdale, J. (2001). Whatever happened to Somalia? . HAAN. p. 47. ISBN 978-1-874209-51-5 . Retrieved January 23, 2019 . ↑ Somaiya, Ravi (October 14, 2010). \"Guerrilla Trucks: Why rebels and insurgent groups the world over love the Toyota Hilux pickup as much as their AK-47s\" . Newsweek . Retrieved October 25, 2010 . ↑ \"Somalia transitional government soldiers keep watch from a battlewagon over the parliament at Baidoa in November 2006, AFP Photo\" . Yahoo! News . Retrieved July 6, 2011 . ↑ \"United States Psyop in Somalia, Herbert A. Friedman\" . Psywarrior.com . Retrieved July 6, 2011 . ↑ Gudmundsson, Bruce I. (2004). On Armor . Westport, CT: Praeger Publishers. p. 2. ISBN 0-275-95019-0 . ↑ Beevor, Antony. The Battle for Spain: The Spanish Civil War 1936–1939. Hachette UK, 2012. ↑ This is the SAS: A Pictorial History of the Special Air Service Regiment , 1982, p.36-37 ISBN 0853685223 ↑ \"Long Range Desert Group (LRDG)/ Special Air Services (SAS) Willys MB Jeep\" . War Wheels . Retrieved October 1, 2013 . ↑ \"Long Range Desert Group (LRDG)/ Special Air Services (SAS) Willys MB Jeep\" . War Wheels . Retrieved October 1, 2013 . ↑ \"Mobility Troop – SAS Land Rovers\" . ↑ \"Une petite vidéo de Aida Ould Tamek le résistant et colonel major des FAR décédé récemment | Sahara Question\" . sahara-question.com . Retrieved October 11, 2021 . ↑ \"The Great Toyota War\" . Time . April 23, 1984. Archive",
+      "snippet": "A technical, known as a non-standard tactical vehicle (NSTV) in United States military parlance, is a light improvised fighting vehicle which has been modified to mount small arms and light weapons (SALW) and heavy weaponry.",
+      "source_type": "search",
+      "feed_name": null,
+      "search_provider": "duckduckgo",
+      "retrieved_at": "2026-10-30T09:24:54+00:00",
+      "first_seen_at": "2026-10-30T09:24:54+00:00",
+      "version": 1,
+      "content_hash": "c6185800b4b67296b8d2d7b01a1289ae11b063e18bff58a32aba38498001f196",
+      "last_checked_at": "2026-10-30T09:24:54+00:00",
+      "content_changed_at": "2026-10-30T09:24:54+00:00",
+      "quality_assessment": {
+        "authority_tier": "C_or_unassessed",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 3,
+        "quality_score": 45,
+        "score_components": {
+          "authority": 15,
+          "technical_depth": 30,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
+    },
+    {
+      "id": "src-3e252994a72cfb",
+      "url": "https://archive.cdc.gov/www_cdc_gov/healthywater/emergency/planning-training-response/planning-training.html",
+      "title": "Planning & Training for a Water, Sanitation, & Hygiene (WASH)-related Emergency | Water, Sanitation, & Hygiene-related Emergencies & and Outbreaks | Healthy Water | CDC",
+      "domain": "archive.cdc.gov",
+      "text": "Planning & Training for a Water, Sanitation, & Hygiene (WASH)-related Emergency Print Minus Related Pages This page contains links to webpages, toolkits, reports, and other relevant information to help public health professionals, water utilities, first responders, health care professionals, and others plan, prepare, and train for WASH-related emergencies. Planning and Training for a WASH-related Emergency Environmental Health The Twin Cities Metro Advanced Practice Center. Environmental Health Emergency Response Guide. [PDF – 72 pages] A guide for responding to environmental health issues associated with disasters. Water, sanitation, and hygiene information can be found in Chapters 1, 2, 4, 5, 13. World Health Organization (WHO). Public Health and Environment. WHO. Environmental Health in Emergencies and Disasters: A Practical Guide. Chapter 7 – Water Supply. [PDF – 35 pages] Chapter 8 – Sanitation. [PDF – 21 pages] NEHA. Environmental Health Training in Emergency Response. Introductory level training that addresses a range of environmental health topics commonly faced in response to emergency events, including assessing shelter operations, food, water, wastewater, building environments, and vector control. Water Security CDC. Water Security. Links to information on planning for the protection of water supplies and responding to contamination threats and incidents. EPA. Water Security. The U.S. Environmental Protection Agency’s (EPA) Emergency/Incident Planning enables responders from a variety of jurisdictions to work together effectively when responding to an emergency. Vulnerability Assessments . Tools and training to aid water utilities in assessing their vulnerabilities to adversarial actions. Emergency/Incident Planning . Tools and training to help water utilities develop a plan to respond to emergencies. Emergency Response Plan Guidance for Small and Medium Community Water Systems. [PDF – 45 pages] Tools and Technical Assistance. Water Contaminant Information Tool . A secure, online database developed by the U.S. EPA that provides information on contaminants of concern for water security. As a planning tool, WCIT can be used to help create and update emergency response plans and site-specific response guidelines. As a response tool, WCIT can be used to provide real-time data on water contaminants to help utilities make decisions if contamination occurs. Tabletop Exercise Tool for Water Systems: Emergency Preparedness, Response, and Climate Resiliency (TTX Tool) Overview. Exercises to train water and wastewater utility workers and health officials in preparing and carrying out emergency response plans. Drinking Water and Communications CDC. Water Advisory Planning Resources & Case Studies. Guidance around drinking water advisory communication, emergency water supply planning for health care facilities, planning for an emergency water supply, and pipe breakage. CDC. Community Drinking Water Systems. Guidance for how community drinking water systems can prepare for an emergency situation. Gelting RJ, Miller MD. Linking Public Health and Water Utilities to Improve Emergency Response. [PDF – 5 pages] J Contemp Water Res Educ. 2004;(129):22-26. Drought CDC. When Every Drop Counts: Protecting Public Health During Drought Conditions. This guide is intended to assist public health officials, practitioners, and other stakeholders in their efforts first to understand and then to prepare for drought in their communities. Wastewater CDC. Community Wastewater Systems. This page includes documents to help public wastewater utility facilities with planning, training, and responding to emergency incidents. Healthcare CDC. Emergency Water Supply Planning Guide for Hospitals and Health Care Facilities. [PDF – 95 pages] In order to maintain daily operations and patient care services, health care facilities need to develop an Emergency Water Supply Plan (EWSP) to prepare for, respond to, and recover from a total or partial interruption of the facilities’ normal water supply. Water Health Connection. Recognizing Waterborne Disease and the Health Effects of Water Pollution. Resources and educational tools to assist physicians in the recognition of waterborne disease and the health effects of water pollution (for example, evaluation and management of disease resulting from waterborne pathogens, chemical contaminants, etc.) and health risk communication. Water Health Connection. Physician Preparedness for Acts of Water Terrorism. A guide for physicians to recognize and treat waterborne disease and respond to the symptoms of exposure to water contamination. Educational Materials Podcast: Planning for an Emergency Running Time: 3:09 Release Date: 12/20/14 Summary: An emergency kit can help you survive during a disaster. This podcast discusses supplies to include in your kit. More Information CDC. Emergency Preparedness and Response. U.S. Federal Emergency Management Agency (FEMA). U.S. Environmental Protection Agency (EPA). U.S. Department of Health and Human Services (DHHS). Last Reviewed: October 14, 2020 Source: Centers for Disease Control and Prevention , National Center for Emerging and Zoonotic Infectious Diseases (NCEZID) , Division of Foodborne, Waterborne, and Environmental Diseases (DFWED) , National Center for Environmental Health (NCEH)",
+      "snippet": "The Twin Cities Metro Advanced Practice Center. Environmental Health Emergency Response Guide. [PDF - 72 pages] A guide for responding to environmental health issues associated with disasters. Water, sanitation, and hygiene information can be found in Chapters 1, 2, 4, 5, 13. World Health Organization (WHO). Public Health and Environment. WHO. Environmental Health in Emergencies and ...",
+      "source_type": "search",
+      "feed_name": null,
+      "search_provider": "duckduckgo",
+      "retrieved_at": "2026-10-30T09:24:55+00:00",
+      "first_seen_at": "2026-10-30T09:24:55+00:00",
+      "version": 1,
+      "content_hash": "274686747e92888a4832a2577ef33d8d4b11deb1a3af915dac621fbe2e6304b5",
+      "last_checked_at": "2026-10-30T09:24:55+00:00",
+      "content_changed_at": "2026-10-30T09:24:55+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": "2020-10-14",
+        "last_updated": "2020-10-14",
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 70,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 20,
+          "date_present": 10
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
+    },
+    {
+      "id": "src-e3a3442953df69",
+      "url": "https://www.who.int/news/item/29-08-2024-the-republic-of-korea-and-who-discuss-joint-priorities--challenges-and-trends-around-global-health",
+      "title": "The Republic of Korea and WHO discuss joint priorities, challenges and trends around global health",
+      "domain": "who.int",
+      "text": "The World Health Organization (WHO) and the Republic of Korea have a long-standing partnership spanning over 75 years. As a result of their fruitful collaboration, there has been significant progress in health and development all around the world. The Republic of Korea has gone from being a donor-recipient country to a donor-country and is now a leader in global health and playing a critical role on the world stage. Dr Catharina Boehme, Assistant Director-General for External Relations and Governance (WHO) and Dr Hye-Jin Kim, Deputy Minister for Planning and Coordination (Ministry of Health and Welfare, Republic of Korea), together with counterparts from WHO and the Government of the Republic of Korea. © WHO To further strengthen this partnership and our commitment to working jointly to address global health challenges, WHO and the Republic of Korea convened their second Strategic Dialogue in Seoul from 28 to 29 August 2024. Dr Catharina Boehme, Assistant Directory-General for External Relations and Governance, led the WHO delegation and was accompanied by an in-person team and colleagues participating virtually from the three levels of the Organization (headquarters, regional, and country offices). Dr Hye-Jin Kim, Deputy Minister for Planning and Coordination, Ministry of Health, led the Republic of Korea delegation and was joined by senior officials including Dr Young-Mee Jee, Commissioner, Korea Disease Control and Prevention Agency, as well as senior counterparts from the Ministry of Foreign Affairs, and the Ministry of Food and Drug Safety. In addition, in line with WHO's work to enhance collaboration with parliamentarians, the WHO delegation also met with various Members of the National Assembly that are championing the global health agenda. The recently concluded two-day meeting resulted in an alignment of priorities and paved the way for enhanced collaboration between WHO and the Government of Korea. WHO delegation with Mr Jonghan Park, Director-General, Development Cooperation (Ministry of Foreign Affairs) - holding up the WHO Investment Case report . © WHO",
+      "snippet": "The World Health Organization (WHO) and the Republic of Korea have a long-standing partnership spanning over 75 years. As a result of their fruitful collaboration, there has been significant progress in health and development all around the world. The Republic of Korea has gone from being a donor-recipient country to a donor-country and is now a leader in global health and playing a critical role on the world stage. Dr Catharina Boehme, Assistant Director-General for External Relations and Governance (WHO) and Dr Hye-Jin Kim, Deputy Minister for Planning and Coordination (Ministry of Health and Welfare, Republic of Korea), together with counterparts from WHO and the Government of the Republic of Korea. © WHO To further strengthen this partnership and our commitment to working jointly to address global health challenges, WHO and the Republic of Korea convened their second Strategic Dialogue in Seoul from 28 to 29 August 2024. Dr Catharina Boehme, Assistant Directory-General for External Relations and Governance, led the WHO delegation and was accompanied by an in-person team and colleagues participating virtually from the three levels of the Organization (headquarters, regional, and",
+      "source_type": "rss",
+      "feed_name": "WHO News",
+      "search_provider": null,
+      "retrieved_at": "2026-10-30T09:24:56+00:00",
+      "first_seen_at": "2026-10-30T09:24:56+00:00",
+      "version": 1,
+      "content_hash": "bcc234bfc4d33db86d1507cbc9df15b23db41bda9e8fbb992c77bca920560d83",
+      "last_checked_at": "2026-10-30T09:24:56+00:00",
+      "content_changed_at": "2026-10-30T09:24:56+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
+    },
+    {
+      "id": "src-1224025378fc2b",
+      "url": "https://www.who.int/news/item/31-07-2024-india-commits-usd-85-million-to-who-global-traditional-medicine-centre",
+      "title": "India commits US$ 85 million to WHO Global Traditional Medicine Centre",
+      "domain": "who.int",
+      "text": "Worldwide, traditional medicine is used by billions of people for their health and well-being. At a signing ceremony in Geneva, the Government of India committed US$ 85 million over 10 years, 2022–2032, to support the programming of the WHO Global Traditional Medicine Centre. India’s 10-year financial contribution will support a cross-sectoral program of work to strengthen the evidence base for traditional medicine by providing data and evidence on traditional medicine policies, practice, products, and public use. The WHO-India donor agreement is part of a US$ 250 million investment from India in support of the establishment of the WHO Global Centre of Traditional Medicine in 2022, which includes financial support for the workplan of the Centre, interim premises and a new building. This support will scale up WHO’s capacities on traditional medicine across technical divisions and regions in the spirit of global collaboration and solidarity. Part of this substantial contribution from the Government of India will also be included in WHO’s Investment Round to resource WHO’s core work during 2025–2028. Photo: WHO/Lindsay Mackenzie “India’s commitment and leadership in expanding the evidence-based contribution of traditional medicine to the health and well-being of all people and the planet, comes at an opportune moment,” said Dr Bruce Aylward, Assistant Director-General of the Universal Health Coverage and Life Course division of WHO. “Traditional medicine, supported within national health systems, can allow us to reach those most often left behind. Integration of traditional practice and knowledge is critical to achieving health for all.” “The signing of this donor agreement is a major milestone towards achieving the shared vision of Honourable Prime Minister of India Shri Narendra Modi and WHO Director-General Tedros for the development of the WHO Global Traditional Medicine Centre at Jamnagar in India,” said Vice Minister Vaidya Rajesh Kotecha, Secretary of the Ministry of Ayush, Government of India. “India remains committed to supporting WHO in its work to strengthen traditional medicine systems globally for achieving universal health coverage and serving the entire humanity, especially through this Global Centre in Jamnagar, which would help focus these efforts to benefit all Member States,” said Ambassador Arindam Bagchi, Permanent Representative of India to the UN and other International Organizations in Geneva. The WHO Global Traditional Medicine Centre is is a knowledge hub focusing on five inter-connected areas of work: research and evidence; primary health care and universal health coverage; Indigenous Knowledges and biodiversity; digital health applications; and the biennial WHO Global Traditional Medicine Summit and collaborations. The Centre is led by Dr Shyama Kuruvilla, Director a.i. The first WHO traditional medicine global summit was held in August 2023 in Gujarat, resulting in the a multistakeholder action agenda, the Gujarat Declaration . The next WHO Global Summit is planned for November 2025, following up on the anticipated launch of the 2025–2034 Global Strategy for Traditional Medicine at the 78 th World Health Assembly in May 2025. India’s support for traditional medicine has been expressed through a variety of long-standing partnerships with WHO. In 2023, India signed a five-year agreement to support the technical work of WHO’s Traditional, Complementary and Integrative Medicine (TCI) unit . The unit is supporting the development of the Member State-requested new WHO traditional medicine global strategy (2025 - 2034), and publishes key benchmark documents, standardized terminologies, and other evidence-informed technical products to support the safe and effective integration of traditional medicine in national health systems. The Centre and TCI collaborate closely with teams across WHO to advance WHO’s multisectoral agenda on traditional medicine, including through regular meetings of the WHO Technical Expert Network, coordinated by the WHO Global Traditional Medicine Centre and TCI, to promote a One WHO approach on traditional medicine across headquarters, regional and country office.",
+      "snippet": "The WHO-India donor agreement is part of a US$ 250 million investment from India in support of the establishment of the WHO Global Centre of Traditional Medicine in 2022, which includes financial support for the workplan of the Centre, interim premises and a new building. This support will scale up WHO’s capacities on traditional medicine across technical divisions and regions in the spirit of global collaboration and solidarity. Part of this substantial contribution from the Government of India will also be included in WHO’s Investment Round to resource WHO’s core work during 2025–2028.",
+      "source_type": "rss",
+      "feed_name": "WHO News",
+      "search_provider": null,
+      "retrieved_at": "2026-10-30T09:24:57+00:00",
+      "first_seen_at": "2026-10-30T09:24:57+00:00",
+      "version": 1,
+      "content_hash": "adcd25dca30f7e23be54fd9129491c9c31b8e0e8dcc8b08937840f674c68f95f",
+      "last_checked_at": "2026-10-30T09:24:57+00:00",
+      "content_changed_at": "2026-10-30T09:24:57+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
+    },
+    {
+      "id": "src-1a706264516712",
+      "url": "https://doyouremember.com/158561/emergency-cast-then-now",
+      "title": "The 'Emergency' Cast: Looking at the Actors, Then and Now 2024",
+      "domain": "doyouremember.com",
+      "text": "Stories The Cast Of ‘Emergency!’ Then And Now 2024 by Dana Daly • Published April 11, 2024 Add as a preferred source on Google The cast of 'Emergency!' then and now UPDATED 4/11/2024 911, emergency! Actually, in this case it’s not an emergency, more a celebratory call to fondly remember a phenomenal hit medical drama from the 1970s: Emergency! It followed two rescuers—John Gage and Roy DeSoto—as they saved lives as paramedics. The duo form Squad 51, a medical and rescue unit of the LA County Fire Department, teamed up with the Rampart General Hospital medical staff. Related: Bruce Willis’ Wife Celebrates ‘Die Hard’s’ 35th Anniversary With A Video Of Bruce 85-Year-Old Dionne Warwick Shares Health Update After Pain Left Her Unable To Stand Or Walk It was both thrilling and offered a sincerely genuine feeling, a brilliant time capsule to the 1970s, and certainly a staple of Saturday night programming back in the day. Revisit the wonderful cast that took viewers on a pulsing adventure every week. Do you hear some sirens? It’s time for the cast of Emergency! to save some lives. Kevin Tighe (Roy DeSoto) Before appearing on Law & Order: SVU, Kevin Tighe was heading the cast of Emergency! / Everett Collection Roy DeSoto was one-half of the paramedic team from Station 51. DeSoto had all the medical knowledge and never hesitated to risk his life for another. Apparently, he and Mantooth acted such an accurate portrayal that some viewers witnessed their CPR techniques and actually saved lives from watching the show, recreating what they saw. Tighe in one of his most recent on-screen gigs / photo: Mario Perez / © ABC / Courtesy: Everett Collection RELATED: The Cast Of ‘Baywatch’ Then And Now 2021 Tighe began working in show business in 1967 as an extra in The Graduate . But it really was his Roy Desoto, first on Adam-12 then in the cast of Emergency! , that shot Kevin to fame. He and his partner, Mantooth, remained lifelong friends, with Tighe even serving as best man at Mantooth’s second wedding in 2002. The early ’80s were quiet but 1989 brought some films like Road House , K-9, and Another 48 Hrs. By the mid-’90s he was venturing back into television again, and working constantly, from six episodes of Murder One in 1995 to six episodes of LOST in the 2000s, Tighe has quite the resume. We last saw him in an episode of Law & Order: Special Victims Unit . He’s spent the last few years focusing on stage work, but he does have a movie announced called Spirt Water . Today he’s 79 years old and has been married to his second wife, Rebecca, since 1995. Tighe was also lifelong friends with the dearly departed actor John Ritter and cites Julie London as not only a best friend but his acting mentor. Robert Fuller (Dr. Brackett) Actor Robert Fuller then and now / Everett Collection / ImageCollect Dr. Brackett was a dedicated and no-nonsense senior ER physician at Rampart General. Viewers met Brackett in the pilot episode, where they learned he was very cautious in his work, and a bit hard-nosed, a bit surly, not quite Marcus Welby demeanor . But he sure had the best, furriest sideburns in the ER. He was quite handsome and had all the moms crushing hard. Fuller and his wife Jennifer Savidge / ImageCollect Robert Fuller began as an extra in 1952’s Above and Beyond and began doing that for dozen of films, including huge ones like The Ten Commandments . In 1957, Fuller’s friend, Chuck Courtney, got him a role in the film he was set to star in titled Teenage Thunder ; they even choreographed a fight to show the director. That same year he landed a role in the better-known sci-fi flick The Brain from Planet Arous . Then, he broke into the world of television, first as a guest star, but in 1959 he earned a starring role alongside John Smith in the rancher show Laramie , a uniquely popular show that successfully gave screentime to simple chores like taking care of the ranch. A very authentic western, Fuller played Jess Harper and gained millions of fans worldwide. Robert even said that this role was the best part he ever had. At this same time, Fuller was starring on Wagon Train , playing Cooper Smith for 60 episodes. He called NBC home at this point and was comfortable on a horse. In 1966, Fuller was tasked with filling the shoes of Steve McQueen for the Magnificent Seven follow-up film, Return of the Seven. Yul Brynner only agreed to the film if the King of Cool (McQueen) was NOT involved. It certainly couldn’t touch the original brilliance, but it did spark a lifelong friendship between Brynner and Fuller. Then it was time for 1972’s Emergency! Fuller was pretty reluctant to play the role of a doctor, but the persistent producer Jack Webb, of the famed Dragnet, convinced him to take the role—after he had politely rejected the offer twice. Webb kindly reminded Fuller that Westerns were on the decline. Years after the show ended, Robert Fuller guest-starred alongside Randolph Mantooth on a season five episode of Diagnosis Murder in 1997. His final acting role was playing a descendant of Jess Harper; the role was in the Chuck Norris-led show Walker, Texas Ranger , ending in 2001 for him when he retired. Robert’s first marriage to Patty Lyon ended in 1984 after 22 years. The couple had three kids: Robert Jr., Christine, and Patrick. In 2001, Fuller remarried actress Jennifer Savidge who played Nurse Lucy in St. Elsewhere . Fuller is 90 years old and has left the busy LA scene for a beautiful ranch in Texas. Once a cowboy, always a cowboy. Julie London (Dixie McCall) Joining the cast of Emergency! would be one of London’s final acting projects / Everett Collection Dixie McCall served as an army nurse during the Korean War and was the head nurse at Rampart. She was a bit cold in demeanor, but completely stunning and surely a draw for male viewers. Julie London began acting in 1944, mostly small roles, but was better known as a singer and frequent game show panelist. In fact, in the ’50s and ’60s, Julie was widely known for her distinctively sultry vocals and ​​recorded over 30 albums of pop and jazz standards. Her recording of “Cry Me a River” from 1955, was inducted into the Grammy Hall of Fame in 2001, and the tune is just hauntingly beautiful. EMERGENCY!, Julie London, 1972-77 / Everett Collection Additionally, London’s Dixie McCall led to a Golden Globe nomination in 1974. Other memorable roles include 1951’s The Fat Man alongside Rock Hudson, 1958’s Saddle the Wind with Robert Taylor, which is well-liked but was a flop at the box office, and 1959’s The Wonderful Country with Robert Mitchum, which was also a commercial failure. She then transitioned to TV for the ’60s and ’70s, joining the cast of Emergency! being her only regular job, and her final acting role. She was previously married to co-creator Jack Webb, from 1947 until 1954, but the pair forever remained friends. London met actor Bobby Troup, who she would co-star in Emergency! with just weeks after her divorce , and they were married in 1959 until Bobby passed in 1999. Her final album was released in 1969 called Yummy Yummy Yummy . At this point, she had lost vocal control due to years of smoking and drinking. She was a chain smoker from the age of 16 and smoked up to 3 packs a day. London suffered a stroke in 1995 and remained in poor health until she passed away in October of 2000 at the age of 74. She was a truly phenomenal talent through and through. Bobby Troup (Dr. Joe Early) Actor Bobby Troup / Everett Collection Dr. Joe Early was a direct contrast to Dr. Brackett—more low-key and tactful. He knew how to talk people down from hot-headedness. Bobby Troup began acting in 1950, and similar to his future wife London, he was also successful in music. His earliest musical success was 1941’s song “Daddy,” which was number one for eight weeks and the number five record of 1941. Other musicians have since recorded the song as well, including Bing Crosby , Glenn Miller, and The Andrews Sisters. But his best-known song was “Route 66,” which Nat King Cole perfected in 1946. MASH, (aka M*A*S*H), from left, Elliot Gould, Donald Sutherland, Bobby Troup, 1970, ©20th Century-Fox Film Corporation, TM & Copyright/courtesy Everett Collection In terms of acting, he portrayed musician Tommy Dorsey in 1959’s The Gene Krupa Story, as well as making three guest appearances on Perry Mason , two of them showcasing his musical talents as well. Troup met Julie London at the Celebrity Room where he was singing, encouraged her to pursue music, and in 1955 he produced her masterpiece “Cry Me a River,” which is easy to become of how beautiful it sounds. His work with the cast of Emergency! was one of his last projects, as well as playing as Sgt. Gorman in Robert Altman’s film, M*A*S*H . In February 1999, Bobby sadly died of a heart attack at the age of 80. Ron Pinkard (Dr. Mike Morton) Ron Pinkard on the cast of Emergency and after / YouTube screenshot Dr. Mike Morton is a young intern who served in the United States Navy. He usually wore an older-style physician’s uniform or the standard green surgical “scrubs.” Ron Pinkard / YouTube screenshot Pinkard stepped onto the scene in 1968 in, of course, Dragnet , crested by and starring Jack Webb, then completing three episodes of the Jack Webb co-created Adam-12 . Any patterns here actually make sense, as Emergency! is technically a spin-off of Adam-12 and Dragnet , all helming from the mind of Jack Webb, among others. He’d complete several Perry Mason TV movies in the 1990s but that would do it for acting. He served as a Lieutenant Commander in the United States Navy Reserve and retired as a Full Commander. He also was the head of the Denver Film Commission from 1991 until he retired in 2003. Today Ron is 83 and hopefully not having any emergencies anytime soon. Randolph Mantooth (John Gage) Randolph Mantooth then and now / Everett Collection / ImageCollect Paramedic John Gage usually rode shotgun in Squad 51, bolting to the Dodge, putting on that fireman’s helmet, and roaring off to the scene. Gage was a leader, strong but sensitive. His actor was sensitive too; Randolph Mantooth was forced to cut his hair in compliance with real LA County Fire Department standards, and told the technical adviser that they should, “Make room for long-haired firemen.” Actor Randolph Mantooth / Photo by Henry McGee-Globe Photos, inc. / ImageCollect He began acting in 1970, quickly landing Emergency!, as well as voicing the animated series Emergency +4 . Immediately after his time with the cast of Emergency! ended with the show, he joined Operation Petticoat for its second season, after a near-complete cast rehaul. Then he moved fast into the lone season of Detective School . His next mainstay on TV was in the hit soap Loving in the ‘80s as Alex Masters. From there he really got comfortable in the soap world, appearing on other soaps like As the World Turns and One Life to Live . His last prominent role came in 2011, completing two episodes of Sons of Anarchy . Mantooth has always been an advocate for firefighters, paramedics, EMTs , and other emergency services. He also often does speeches and personal appearances discussing the development of Emergency! and its impact on EMS. He also serves as a spokesperson for the International Association of Firefighters, and Honorary Chairman for the Non-Profit County of LA Fire Museum. Part of this is because his 13-1/2 acre ranch in the Lobo Canyon area of California got decimated in the Malibu Fire on October 15, 1978. Today, he’s 78 years old and in remission from cancer, for which he completed treatment in 2015. He revealed on his Facebook page that his sister had died of cancer that same year. We are wishing nothing but the best to this fine actor and an even finer human being. That was the cast of Emergency! , all of whom went on to do incredibly great things in the realm of the fine arts. Out of everyone, Bobby Troup and Julie London’s dual talents are quite impressive. Who was your favorite actor in this literally life-saving show? Did you ever watch the animated Emergency! series? Is this the best work of Jack Webb, or does that go to Dragnet or Adam-12 ? EMERGENCY!, Randolph Mantooth, Bobby Troup, Julie London, Robert Fuller, Kevin Tighe, 1972-77 / Everett Collection More Like This Where Was The Ponderosa Supposed To Be On ‘Bonanza’? The Map In The Opening Credits Had The Answer Dick York Collapsed On The ‘Bewitched’ Set Before Darrin Was Recast—Here’s What Happened In 1967 A Producer Called Out Two Words To Carole King—Aretha Franklin Turned Them Into A Classic 73-Year-Old Lauren Tewes Went From Waitress To ‘Love Boat’ Cruise Director, Then Traded Hollywood For A Kitchen About Dana Daly Dana Daly is DoYouRemember’s Editorial Manager. She has written and edited nostalgia stories and YouTube scripts for the site since 2019. View Author Website Facebook LinkedIn Previous Post: Teen Captures Friends With 100-Year-Old Camera And The Results Are Incredible Previous Post: 1999’s ‘The Mummy’ Rises Again In Theaters For Its 25th Anniversary",
+      "snippet": "Apr 11, 2024 · Actually, in this case it’s not an emergency, more a celebratory call to fondly remember a phenomenal hit medical drama from the 1970s: Emergency! It followed two rescuers—John Gage and Roy DeSoto—as they saved lives as paramedics.",
+      "source_type": "search",
+      "feed_name": null,
+      "search_provider": "duckduckgo",
+      "retrieved_at": "2026-10-30T09:24:57+00:00",
+      "first_seen_at": "2026-10-30T09:24:57+00:00",
+      "version": 1,
+      "content_hash": "5994c02e16a81d511e5e9b7dd828dd28cab6aa8a0aeb6a76a917238e3cc7e21f",
+      "last_checked_at": "2026-10-30T09:24:57+00:00",
+      "content_changed_at": "2026-10-30T09:24:57+00:00",
+      "quality_assessment": {
+        "authority_tier": "C_or_unassessed",
+        "document_type": "web_article",
+        "publication_date": "2024-04-11",
+        "last_updated": "2024-04-11",
+        "jurisdiction": "not_stated",
+        "technical_depth": 3,
+        "quality_score": 55,
+        "score_components": {
+          "authority": 15,
+          "technical_depth": 30,
+          "date_present": 10
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
+    },
+    {
+      "id": "src-e609b5d4c47f1b",
+      "url": "https://en.wikipedia.org/wiki/Emergency",
+      "title": "Emergency - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "text": "From Wikipedia, the free encyclopedia Situation requiring urgent intervention For other uses, see Emergency (disambiguation) . For Wikipedia's guidelines for dealing with emergencies on Wikipedia itself, see Wikipedia:Responding to threats of harm . Look up emergency in Wiktionary, the free dictionary. An emergency medical technician treats a woman who has collapsed in the street in New York. Dangers to life and health are serious enough that emergency response systems are considered vital. Emergency slides are deployed after the crash landing of British Airways Flight 38 An emergency is an urgent, unexpected, and usually dangerous situation that poses an immediate risk to health , life , property , or environment and requires immediate action. [ 1 ] Most emergencies require urgent intervention to prevent a worsening of the situation, although in some situations, mitigation may not be possible and agencies may only be able to offer palliative care for the aftermath. While some emergencies are self-evident (such as a natural disaster that threatens many lives), many smaller incidents require that an observer (or affected party) decide whether it qualifies as an emergency. The precise definition of an emergency, the agencies involved and the procedures used, vary by jurisdiction, and this is usually set by the government , whose agencies ( emergency services ) are responsible for emergency planning and management. Defining an emergency [ edit ] An incident, to be an emergency, conforms to one or more of the following, if it: Poses an immediate threat to life , health , property , or environment Has already caused loss of life, health detriments, property damage, or environmental damage has a high probability of escalating to cause immediate danger to life, health, property, or environment [ 2 ] In the United States, most states mandate that a notice be printed in each telephone book that requires that someone must relinquish use of a phone line, if a person requests the use of a telephone line (such as a party line ) to report an emergency. State statutes typically define an emergency as, \"...a condition where life, health, or property is in jeopardy, and the prompt summoning of aid is essential.\" [ 3 ] Whilst most emergency services agree on protecting human health, life and property, the environmental impacts are not considered sufficiently important by some agencies. [ citation needed ] This also extends to areas such as animal welfare , where some emergency organizations cover this element through the \"property\" definition, where animals owned by a person are threatened (although this does not cover wild animals). This means that some agencies do not mount an \"emergency\" response where it endangers wild animals or environment, [ citation needed ] though others respond to such incidents (such as oil spills at sea that threaten marine life). The attitude of the agencies involved is likely to reflect the predominant opinion of the government of the area. Types of emergency [ edit ] This section needs more citations . Please help improve this section by adding citations to reliable sources . Unsourced material may be challenged and removed . ( August 2014 ) ( Learn how and when to remove this message ) Dangers to life [ edit ] Many emergencies cause an immediate danger to the life of people involved. This can range from emergencies affecting a single person, such as the entire range of medical emergencies including heart attacks , strokes , cardiac arrest and trauma , to incidents that affect large numbers of people such as natural disasters including tornadoes , hurricanes , floods , earthquakes , mudslides and outbreaks of diseases such as coronavirus , cholera , Ebola , and malaria . Most agencies consider these the highest priority emergency, which follows the general school of thought that nothing is more important than human life. [ 4 ] Dangers to health [ edit ] Some emergencies are not necessarily immediately threatening to life, but might have serious implications for the continued health and well-being of a person or persons (though a health emergency can subsequently escalate to life-threatening). The causes of a health emergency are often very similar to the causes of an emergency threatening to life, which includes medical emergencies and natural disasters, although the range of incidents that can be categorized here is far greater than those that cause a danger to life (such as broken limbs, which do not usually cause death, but immediate intervention is required if the person is to recover properly). Many life emergencies, such as cardiac arrest, are also health emergencies. Dangers to the environment [ edit ] Some emergencies do not immediately endanger life, health or property, but do affect the natural environment and creatures living within it. Not all agencies consider this a genuine emergency, but it can have far-reaching effects on animals and the long term condition of the land. Examples would include forest fires and marine oil spills . Systems of classifying emergencies [ edit ] Agencies across the world have different systems for classifying incidents, but all of them serve to help them allocate finite resource, by prioritising between different emergencies. [ citation needed ] The first stage of any classification is likely to define whether the incident qualifies as an emergency, and consequently if it warrants an emergency response. Some agencies may still respond to non-emergency calls, depending on their remit and availability of resource. An example of this would be a fire department responding to help retrieve a cat from a tree, where no life, health or property is immediately at risk. Following this, many agencies assign a sub-classification to the emergency, prioritising incidents that have the most potential for risk to life, health or property (in that order). For instance, many ambulance services use a system called the Advanced Medical Priority Dispatch System (AMPDS) or a similar solution. [ 5 ] [ 6 ] The AMPDS categorises all calls to the ambulance service using it as either 'A' category (immediately life-threatening), 'B' Category (immediately health threatening) or 'C' category (non-emergency call that still requires a response). Some services have a fourth category, where they believe that no response is required after clinical questions are asked. Another system for prioritizing medical calls is known as Emergency Medical Dispatch (EMD). [ 7 ] [ 8 ] Jurisdictions that use EMD typically assign a code of \"alpha\" (low priority), \"bravo\" (medium priority), \"charlie\" (requiring advanced life support ), delta (high priority, requiring advanced life support ) or \"echo\" (maximum possible priority, e.g., witnessed cardiac arrests) to each inbound request for service; these codes are then used to determine the appropriate level of response. [ 9 ] [ 10 ] [ 11 ] Other systems (especially as regards major incidents ) use objective measures to direct resource. Two such systems are SAD CHALET and ETHANE , [ 12 ] which are both mnemonics to help emergency services staff classify incidents, and direct resource. [ 13 ] Each of these acronyms helps ascertain the number of casualties (usually including the number of dead and number of non-injured people involved), how the incident has occurred, and what emergency services are required. Agencies involved in dealing with emergencies [ edit ] Main article: Emergency service Most developed countries have a number of emergency services operating within them, whose purpose is to provide assistance in dealing with any emergency. They are often government operated, paid for from tax revenue as a public service, but in some cases, they may be private companies, responding to emergencies in return for payment, or they may be voluntary organisations, providing the assistance from funds raised from donations . Most developed countries operate three core emergency services [ citation needed ] : Police – handle mainly crime -related emergencies. Fire – handle fire -related emergencies and usually possess secondary rescue duties. Medical – handle medical -related emergencies. There may also be a number of specialized emergency services, which may be a part of one of the core agencies, or may be separate entities who assist the main agencies. This can include services, such as bomb disposal , search and rescue , and hazardous material operations. The Military and the Amateur Radio Emergency Service (ARES) or Radio Amateur Civil Emergency Service (RACES) help in large emergencies such as a disaster or major civil unrest. Summoning emergency services [ edit ] Main article: Emergency telephone number Most countries have an emergency telephone number , also known as the universal emergency number, which can be used to summon the emergency services to any incident. This number varies from country to country (and in some cases by region within a country), but in most cases, they are in a short number format, such as 911 (United States and many parts of Canada), [ 14 ] 999 (United Kingdom), [ 15 ] [ 16 ] 112 (Europe) [ 17 ] [ 18 ] and 000 (Australia). [ 19 ] The majority of mobile phones also dial the emergency services, even if the phone keyboard is locked, or if the phone has an expired or missing SIM card , although the provision of this service varies by country and network. [ 18 ] Civil emergency services [ edit ] In addition to those services provided specifically for emergencies, there may be a number of agencies who provide an emergency service as an incidental part of their normal 'day job' provision. This can include public utility workers, such as in provision of electricity or gas , who may be required to respond quickly, as both utilities have a large potential to cause danger to life, health and property if there is an infrastructure failure. [ 20 ] [ 21 ] Domestic emergency services [ edit ] Generally perceived as pay per use emergency services, domestic emergency services are small, medium or large businesses who tend to emergencies within the boundaries of licensing or capabilities. These tend to consist of emergencies where health or property is perceived to be at risk but may not qualify for official emergency response. Domestic emergency services are in principle similar to civil emergency services where public or private utility workers will perform corrective repairs to essential services and avail their service at all times; however, these are at a cost for the service. An example would be an emergency plumber. [ 22 ] Emergency action principles (EAP) [ edit ] This section needs more citations . Please help improve this section by adding citations to reliable sources . Unsourced material may be challenged and removed . ( August 2014 ) ( Learn how and when to remove this message ) Emergency action principles are key 'rules' that guide the actions of rescuers and potential rescuers. Because of the inherent nature of emergencies, no two are likely to be the same, so emergency action principles help to guide rescuers at incidents, by sticking to some basic tenets. The adherence to (and contents of) the principles by would-be rescuers varies widely based on the training the people involved in emergency have received, the support available from emergency services (and the time it takes to arrive) and the emergency itself. Key emergency principle [ edit ] The key principle taught in almost all systems is that the rescuer , whether a lay person or a professional , should assess the situation for danger . [ 23 ] [ 24 ] The reason that an assessment for danger is given such high priority is that it is core to emergency management that rescuers do not become secondary victims of any incident, as this creates a further emergency that must be dealt with. A typical assessment for danger would involve observation of the surroundings , starting with the cause of the accident (e.g. a falling object) and expanding outwards to include any situational hazards (e.g. fast moving traffic) and history or secondary information given by witnesses , bystanders or the emergency services (e.g. an attacker still waiting nearby). Once a primary danger assessment has been completed, this should not end the system of checking for danger, but should inform all other parts of the process. If at any time the risk from any hazard poses a significant danger (as a factor of likelihood and seriousness) to the rescuer, they should consider whether they should approach the scene (or leave the scene if appropriate). Managing an emergency [ edit ] A graphic representation of the four phases in emergency management. Main article: Emergency management There are many emergency services protocols that apply in an emergency, which usually start with planning before an emergency occurs. One commonly used system for demonstrating the phases is shown here on the right. The planning phase starts at preparedness , where the agencies decide how to respond to a given incident or set of circumstances. This should ideally include lines of command and control, and division of activities between agencies. This avoids potentially negative situations such as three separate agencies all starting an official emergency shelter for victims of a disaster. Following an emergency occurring, the agencies then move to a response phase, where they execute their plans, and may end up improvising some areas of their response (due to gaps in the planning phase, which are inevitable due to the individual nature of most incidents). Agencies may then be involved in recovery following the incident, where they assist in the clear up from the incident, or help the people involved overcome their mental trauma. The final phase in the circle is mitigation , which involves taking steps to ensure no re-occurrence is possible, or putting additional plans in place to ensure less damage is done. This should feed back into the preparedness stage, with updated plans in place to deal with future emergencies, thus completing the circle. State of emergency [ edit ] Main article: State of emergency In the event of a major incident, such as civil unrest or a major disaster, many governments maintain the right to declare a state of emergency , [ 25 ] which gives them extensive powers over the daily lives of their citizens, and may include temporary curtailment on certain civil rights , including the right to trial. For instance to discourage looting of an evacuated area, a shoot on sight policy, however unlikely to occur, may be publicized. See also [ edit ] Certified first responder First aid Emergency Communication System Emergency medical service Emergency Response Information Network Emergency sanitation Lockdown Prevention Natural disaster Maritime emergency SWAT (Special Weapons And Tactics) Faz'ah References [ edit ] ↑ \"UK Government Advice on Definition of an Emergency\" (PDF) . Archived from the original on 2007-06-06 . Retrieved 2007-05-30 . ↑ \"emergency\" . LII / Legal Information Institute . Retrieved 2023-04-25 . ↑ Some examples of state statutes defining emergency for this purpose: California Penal Code, Sec. 384; Colorado Revised Statutes 18-9-307 and 308; Wisconsin Statutes 941.35. ↑ \"UK Government document stating that life-saving activity is the highest priority in an emergency\" (PDF) . Archived from the original on 2007-06-06 . Retrieved 2007-05-30 . ↑ \"Tampa Fire Department EMS dispatch details\" . Archived from the original on May 5, 2006 . Retrieved 2007-05-30 . ↑ \"London Ambulance Service details of AMPDS use\" . Archived from the original on 2007-01-30 . Retrieved 2007-05-30 . ↑ \"EMD Resources\" . Archived from the original on 2007-07-06 . Retrieved 2007-07-07 . ↑ \"EMD Training Guide\" (PDF) . Utah Bureau of Emergency Medical Services. January 2005. Archived from the original (PDF) on 2007-09-25 . Retrieved 2007-07-07 . ↑ \"DEMSOC Annual Report - 2005\" . Delaware Emergency Medical Services Oversight Council. 2005. Archived from the original on September 23, 2006 . Retrieved 2007-07-08 . ↑ Brian Dale. \"Using the ECHO Determinant\" . Archived from the original on September 4, 2004 . Retrieved 2007-07-08 . ↑ Jeff J. Clawson. \"EMD: Making the Most of EMS\" . Archived from the original on 2007-08-10 . Retrieved 2007-07-08 . ↑ \"Patient Plus reference to CHALET and ETHANE systems\" . Archived from the original on 2007-09-27 . Retrieved 2007-05-30 . ↑ \"London Emergency planning committee use of CHALET\" . Archived from the original on 2007-06-26 . Retrieved 2007-05-30 . ↑ \"US National Emergency Number Association\" . Retrieved 2007-05-30 . ↑ \"History of the 999 System\" . Archived from the original on 2007-05-28 . Retrieved 2007-05-30 . ↑ \"Metropolitan Police advice on using 999\" . Archived from the original on 2007-06-09 . Retrieved 2007-05-30 . ↑ \"UK government advice on the use of 112 alongside 999\" . Archived from the original on 2007-04-03 . Retrieved 2007-05-30 . 1 2 \"European Commission document on the Implementation of the Single 112 emergency number\" (PDF) . Archived from the original (PDF) on 2007-06-14 . Retrieved 2007-05-30 . ↑ \"Australian Government Advice on Emergency Calls\" . Archived from the original on 2007-05-31 . Retrieved 2007-05-30 . ↑ \"UK National Gas Emergency Number\" . Archived from the original on 2007-06-29 . Retrieved 2007-05-30 . ↑ \"UK Government Gas and Electricity National Emergency Plan\" (PDF) . Archived from the original (PDF) on 2007-06-10 . Retrieved 2007-05-30 . ↑ \" http://www.silvaplumbing.com.au/ \"| 24-hour-emergency-plumbing-repairs. Retrieved 29/09/2016 ↑ \"UK Health and Safety Executive publication on dealing with emergencies - Danger assessment is the first point\" (PDF) . Retrieved 2007-05-30 . ↑ \"St John Ambulance UK Primary Assessment guide\" . Archived from the original on 2007-05-23 . Retrieved 2007-05-30 . ↑ \"UK Government Civil Contingencies Act, giving powers to declare a state of emergency\" . Retrieved 2007-05-30 . External ",
+      "snippet": "The precise definition of an emergency, the agencies involved and the procedures used, vary by jurisdiction, and this is usually set by the government, whose agencies (emergency services) are responsible for emergency planning and management.",
+      "source_type": "search",
+      "feed_name": null,
+      "search_provider": "duckduckgo",
+      "retrieved_at": "2026-10-30T09:24:58+00:00",
+      "first_seen_at": "2026-10-30T09:24:58+00:00",
+      "version": 1,
+      "content_hash": "5d5774d3f7ff05ca98791842a4f69bd3651dc6b944e29d94244dd74554a13219",
+      "last_checked_at": "2026-10-30T09:24:58+00:00",
+      "content_changed_at": "2026-10-30T09:24:58+00:00",
+      "quality_assessment": {
+        "authority_tier": "C_or_unassessed",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 35,
+        "score_components": {
+          "authority": 15,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
     }
   ]
 }

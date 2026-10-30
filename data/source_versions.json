@@ -1,4 +1,286 @@
 {
   "schema_version": "1.0",
-  "events": []
+  "events": [
+    {
+      "source_url": "https://archive.cdc.gov/www_cdc_gov/healthywater/emergency/dwa-comm-toolbox/during/preparing.html",
+      "version": 1,
+      "content_hash": "ebb953bb1fd37862bf95643cfa01a70d05b3c8310fe9158758cf0e463e1fffa3",
+      "changed_at": "2026-10-29T17:34:42+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://archive.cdc.gov/www_cdc_gov/healthywater/emergency/planning-training-response/responding.html",
+      "version": 1,
+      "content_hash": "428eed3218e648d2fb5664901599cd2b78019ce15ce1b51db94355d7851d07af",
+      "changed_at": "2026-10-29T17:34:42+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://emergency.unhcr.org/emergency-assistance/settlement-and-shelter/guidance-shelter/emergency-shelter-solutions-and-standards",
+      "version": 1,
+      "content_hash": "85173c5e214799f3848cd9cfbe76266924cea63e385180aa6322ac03a554711a",
+      "changed_at": "2026-10-29T17:34:45+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://openknowledge.fao.org/items/e2135500-73cb-4855-8cd0-a8bdecb971a5",
+      "version": 1,
+      "content_hash": "6e265feec20c1fd56007cab8483c2e8c5901e41fa51293824ffac8b731405151",
+      "changed_at": "2026-10-29T17:34:47+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://wash.ifrc.org/our-work/emergency-wash/",
+      "version": 1,
+      "content_hash": "997d555b28df8682212627341e53a7a4b543fb758c3bc0e091910144f3208bb9",
+      "changed_at": "2026-10-29T17:34:49+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.fao.org/4/V5290E/v5290e04.htm",
+      "version": 1,
+      "content_hash": "ca26a8f5020624fc3545c8d1a553cdd2de69ef0c7e252a8a44d6061f932611f3",
+      "changed_at": "2026-10-29T17:34:50+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.fao.org/4/X0051T/X0051t02.htm",
+      "version": 1,
+      "content_hash": "54ee8338f3e783191ab20f693e154d9a44ef8a1c52c04858541443f0a1d7fa22",
+      "changed_at": "2026-10-29T17:34:51+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.ready.gov/",
+      "version": 1,
+      "content_hash": "29b26fecf9b76d232c7b549428623daf200f52cbbd15949a7906e245f42e1b7e",
+      "changed_at": "2026-10-29T17:34:52+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://emergency.unhcr.org/emergency-assistance/water-sanitation-and-hygiene/wash-emergencies",
+      "version": 1,
+      "content_hash": "92f57fed4e3f9ba3c39ded72b29c24069eb8b4eb7778f1832b5f555e5e3a3fb7",
+      "changed_at": "2026-10-29T17:40:48+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.ready.gov/food",
+      "version": 1,
+      "content_hash": "3c5a5cab758b1c276d32beb4be6fa69461e2540fc55243e52ab6f8b3eb3a09e5",
+      "changed_at": "2026-10-29T17:40:49+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.ready.gov/publications",
+      "version": 1,
+      "content_hash": "082575b94f02e38bfaad9e80cdc9ed45fcc661c28dfb96abb873fb12af4ba0de",
+      "changed_at": "2026-10-29T17:40:49+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.ready.gov/shelter",
+      "version": 1,
+      "content_hash": "0f6f91fd53c0f7a70f2dad1fe9ee3553411daa616ed5cc2f5595fca668561404",
+      "changed_at": "2026-10-29T17:40:50+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.ready.gov/water",
+      "version": 1,
+      "content_hash": "1157389487678d3f3d6b6de6126b46bba8e81f667ff545ca4d6711c7e95c5b36",
+      "changed_at": "2026-10-29T17:40:50+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.who.int/news/item/06-03-2025-strengthening-public-health-across-lebanon-with-eib-global",
+      "version": 1,
+      "content_hash": "707fd7c461d3f57469e43767ff171dc7edb857e6ce2aec6b8e560714024c9dc3",
+      "changed_at": "2026-10-29T17:40:53+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.who.int/news/item/07-03-2025-who-and-switzerland-cement-cooperation-until-2028",
+      "version": 1,
+      "content_hash": "45016c54dac3f1d9fe12e6fd97da34fb80f520399b4c1fbffa24ad8b44b22ca5",
+      "changed_at": "2026-10-29T17:40:54+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.who.int/news/item/10-05-2024-governments-agree-to-continue-their-steady-progress-on-proposed-pandemic-agreement-ahead-of-the-world-health-assembly",
+      "version": 1,
+      "content_hash": "30cbcf0388a6b42c7e27ab95d6f059098583b25e585f01aca0781009523b9e19",
+      "changed_at": "2026-10-29T17:40:55+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.emro.who.int/about-who/public-health-functions/preparedness-and-public-health-response-to-disease-outbreaks-natural-disasters-and-other-emergencies.html",
+      "version": 1,
+      "content_hash": "91081ed19872ea2c7a7484dbe693c116090dad28eab59a60dffadb66ca62f1ef",
+      "changed_at": "2026-10-29T17:50:54+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.who.int/europe/emergencies/our-work-in-emergencies/preparedness",
+      "version": 1,
+      "content_hash": "d964b82b3ce96040ddeb2ab90e208a40bc2be6f201993a096dc360f52dbff4b2",
+      "changed_at": "2026-10-29T17:50:58+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.who.int/news/item/10-10-2024-who-and-the-netherlands-renew-their-partnership-on-climate-change-and-health",
+      "version": 1,
+      "content_hash": "fdc24ac4dd0282f47138b5f1fe89c9554cac3047b8e9a9da9af3ca90d1f22074",
+      "changed_at": "2026-10-29T17:50:58+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.who.int/news/item/11-03-2025-frank--in-depth-discussion-as-belgium-and-who-map-ahead-priorities-for-collaboration",
+      "version": 1,
+      "content_hash": "85243c326d7cba5125e3cb0265fd799741f7b815d549d1c4967cdf727d16eb2d",
+      "changed_at": "2026-10-29T17:50:59+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.who.int/news/item/17-10-2024-signing-ceremony-for-contribution-agreements-between-who-and-france",
+      "version": 1,
+      "content_hash": "0ce907d57e862b70d4a1e7a65d4202fa7e97dd1bf368a8dfb66d95b33b5c2894",
+      "changed_at": "2026-10-29T17:51:00+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.who.int/news/item/23-05-2024-Qatar-Fund-for-Development-(QFFD)-supports-the-implementation-of-WHO's-extended-13th-General-Programme-of-Work-with-flexible-funding",
+      "version": 1,
+      "content_hash": "4a05508a299cdf0c72627e375a5bb026dadf3d05e3a4fbe8df2918843f552c7b",
+      "changed_at": "2026-10-29T17:51:01+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.who.int/news/item/24-01-2026-who-statement-on-notification-of-withdrawal-of-the-united-states",
+      "version": 1,
+      "content_hash": "66d14c1266297821e5266044a192e26128b558e46e4b4de30a3810c4e9d4cbb3",
+      "changed_at": "2026-10-29T17:51:01+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.who.int/news/item/24-02-2025-who-and-the-kingdom-of-saudi-arabia-sign-agreements-in-support-of-health-priorities",
+      "version": 1,
+      "content_hash": "bacdf61057968509a2ae2acab7260f7dc576a4dc861ff5c8dd05365b3e3e8083",
+      "changed_at": "2026-10-29T17:51:02+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.ready.gov/be-informed",
+      "version": 1,
+      "content_hash": "5b4e2654f6482317700310e4cf23ff291d07d324665bd54d465dffe4e9121852",
+      "changed_at": "2026-10-29T18:03:59+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.ready.gov/collection/emergency-supply-kit-checklist",
+      "version": 1,
+      "content_hash": "22d7781c0f2c81b6187679432ed8d425425cc5fb9a49a7bc7a7605f6c9a60b1c",
+      "changed_at": "2026-10-29T18:03:59+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.ready.gov/evacuation",
+      "version": 1,
+      "content_hash": "7535fcae0fe8a308cb23328cada294b5fbae47f8b0f4e040ab3a30d8814169c4",
+      "changed_at": "2026-10-29T18:04:00+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.who.int/news/item/27-08-2020-new-who-technical-package-health-data-for-covid-19-response",
+      "version": 1,
+      "content_hash": "8ac3fd83f614e6408054f01167f00975852717de4e9ec3d18d26c3fa8871a3b5",
+      "changed_at": "2026-10-29T18:04:02+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.dmww.com/education/emergency_water_preparedness.php",
+      "version": 1,
+      "content_hash": "b519a919dc86ff4adb99eda417dcc28d1040aa3ef96fb32ad227902eb3a88c88",
+      "changed_at": "2026-10-29T18:04:03+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.ready.gov/kit",
+      "version": 1,
+      "content_hash": "a33f73bf24531ae6ba9bdf78be0fadb18d244bc88c89fa6a426934da1f8d3f92",
+      "changed_at": "2026-10-29T18:04:06+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.who.int/news/item/24-07-2025-timor-leste-certified-malaria-free-by-who",
+      "version": 1,
+      "content_hash": "cf7cdfca8839ee061a4a8e4a1aad2d2ace7b9eb91447d88dacb4de5bfa4fd7b0",
+      "changed_at": "2026-10-29T18:04:07+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.who.int/news/item/27-08-2024-fourteen-african-countries--key-partners-unite-to-provide-critical-resources-for-health-in-who-s-first-ever-investment-round",
+      "version": 1,
+      "content_hash": "d9a868f9f7dd362863dc2550c6f637b0e821c664577e269c9967175af6b8e23c",
+      "changed_at": "2026-10-29T18:04:07+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://dictionary.cambridge.org/dictionary/english/technical",
+      "version": 1,
+      "content_hash": "680a95c5d19deb25d765141e14fdd35ec5469fe94889050c8d96d93c4ef5b422",
+      "changed_at": "2026-10-30T09:24:53+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://en.wikipedia.org/wiki/Technical",
+      "version": 1,
+      "content_hash": "19697066518d8ed644099baa4bf97df6c1bb283b6be5c94ecd29cffc8c2daedd",
+      "changed_at": "2026-10-30T09:24:54+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://en.wikipedia.org/wiki/Technical_(vehicle)",
+      "version": 1,
+      "content_hash": "c6185800b4b67296b8d2d7b01a1289ae11b063e18bff58a32aba38498001f196",
+      "changed_at": "2026-10-30T09:24:54+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://archive.cdc.gov/www_cdc_gov/healthywater/emergency/planning-training-response/planning-training.html",
+      "version": 1,
+      "content_hash": "274686747e92888a4832a2577ef33d8d4b11deb1a3af915dac621fbe2e6304b5",
+      "changed_at": "2026-10-30T09:24:55+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.who.int/news/item/29-08-2024-the-republic-of-korea-and-who-discuss-joint-priorities--challenges-and-trends-around-global-health",
+      "version": 1,
+      "content_hash": "bcc234bfc4d33db86d1507cbc9df15b23db41bda9e8fbb992c77bca920560d83",
+      "changed_at": "2026-10-30T09:24:56+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.who.int/news/item/31-07-2024-india-commits-usd-85-million-to-who-global-traditional-medicine-centre",
+      "version": 1,
+      "content_hash": "adcd25dca30f7e23be54fd9129491c9c31b8e0e8dcc8b08937840f674c68f95f",
+      "changed_at": "2026-10-30T09:24:57+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://doyouremember.com/158561/emergency-cast-then-now",
+      "version": 1,
+      "content_hash": "5994c02e16a81d511e5e9b7dd828dd28cab6aa8a0aeb6a76a917238e3cc7e21f",
+      "changed_at": "2026-10-30T09:24:57+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://en.wikipedia.org/wiki/Emergency",
+      "version": 1,
+      "content_hash": "5d5774d3f7ff05ca98791842a4f69bd3651dc6b944e29d94244dd74554a13219",
+      "changed_at": "2026-10-30T09:24:58+00:00",
+      "event": "baseline_snapshot"
+    }
+  ],
+  "generated_at": "2026-10-30T09:26:10+00:00"
 }
