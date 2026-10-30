@@ -11,7 +11,7 @@ def _write(root, name, payload):
 def _source():
     return {"sources": [{
         "url": "https://example.org/guide",
-        "text": "Use dry, clean sand for this demonstration material.",
+        "text": "Use dry, clean sand as the material. Mix the material in a mixing container. Combine the dry sand carefully. The prepared demonstration mix is the expected result.",
     }]}
 
 
@@ -33,7 +33,22 @@ def _recipe():
         "evidence": [{
             "field": "materials",
             "source_url": "https://example.org/guide",
-            "excerpt": "Use dry, clean sand for this demonstration material.",
+            "excerpt": "Use dry, clean sand as the material.",
+        },
+        {
+            "field": "tools",
+            "source_url": "https://example.org/guide",
+            "excerpt": "Mix the material in a mixing container.",
+        },
+        {
+            "field": "steps",
+            "source_url": "https://example.org/guide",
+            "excerpt": "Combine the dry sand carefully.",
+        },
+        {
+            "field": "expected_result",
+            "source_url": "https://example.org/guide",
+            "excerpt": "The prepared demonstration mix is the expected result.",
         }],
         "verification": {"status": "needs_review"},
     }
