@@ -27,11 +27,11 @@ Similarity is not proof that two tips are duplicates. Lexical opposition or diff
 
 Source text is hashed after whitespace normalization. Each source records a version number, content hash, first-seen time, last-checked time, and last content-change time. The collector rechecks sources after `SOURCE_REFRESH_DAYS` (default 30). Changed text creates an event in `data/source_versions.json`; unchanged text updates the check timestamp without incrementing the version.
 
-This records changes in the extracted page text, not a complete archival copy of every historic page. The source page may change between checks.
+This records changes in the extracted page text, not a complete archival copy of every historic page. The source page may change between checks. Set `SOURCE_REFRESH_DAYS` to change the default 30-day refresh interval.
 
 ## Extraction and stage classification versions
 
-New tips record `prompt_version`, `extractor_version`, source version, and source content hash. Legacy tips are marked `legacy_unversioned`; their historic prompts cannot be reconstructed.
+New tips record `prompt_version`, `extractor_version`, source version, and source content hash. Legacy tips are marked `legacy_unversioned`; their historic prompts cannot be reconstructed. To deliberately rerun the current extractor on previously processed sources, use `python -m scripts.extract_tips --reprocess --limit 5`. This replaces only candidate entries for a source when the new extraction returns candidates; if no candidates are returned, existing candidates are preserved. Active, quarantined, and approved records are never rewritten by this command.
 
 Stage classification records the suggested IDs, method, reason, and review status. The reviewer may supply `stage_ids` and `stage_review_notes` in the approval decision. Approved entries must have a human-reviewed stage assignment, reviewer, and timestamp. The keyword/category classifier remains a suggestion engine, not a semantic authority.
 
