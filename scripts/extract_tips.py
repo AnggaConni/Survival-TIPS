@@ -251,4 +251,3 @@ if __name__=="__main__":
     args=parser.parse_args()
     process_saved_sources(max_sources=args.limit,reprocess=args.reprocess)
 
-if __name__=="__main__": process_saved_sources()
