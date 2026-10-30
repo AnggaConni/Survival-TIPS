@@ -11,7 +11,7 @@ GENERIC_PHRASES = (
     "be prepared", "improve resilience", "consult guidelines",
     "use appropriate", "plan ahead", "provide safe", "ensure proper",
 )
-VALID_CONTENT_TYPES = {"identify", "eat", "grow", "build", "make", "repair", "maintain", "treat", "prepare", "plan", "other"}
+VALID_CONTENT_TYPES = {"identify", "eat", "grow", "build", "make", "repair", "maintain", "treat", "prepare", "plan", "other", "communication_guidance", "planning_guidance", "material_guidance", "shelter_standard", "cold_climate_shelter_guidance", "safety_rule", "heating_reference"}
 
 def norm(value):
     return re.sub(r"\s+", " ", str(value or "")).strip().casefold()
@@ -66,20 +66,23 @@ def audit(tips, sources):
             issues[tip_id].append("duplicate_title:" + seen_titles[title_key])
         else:
             seen_titles[title_key] = tip_id
-        expected_stages = classify_tip({**tip, "stage_ids": []})
         current_stages = tip.get("stage_ids", [])
-        if expected_stages and set(expected_stages) != set(current_stages):
-            issues[tip_id].append("stage_assignment_mismatch")
-        if not current_stages:
+        valid_stage_ids = {stage["id"] for stage in __import__("scripts.stages", fromlist=["get_stages"]).get_stages()}
+        if not isinstance(current_stages, list) or not current_stages:
             issues[tip_id].append("unclassified_stage")
+        elif any(stage_id not in valid_stage_ids for stage_id in current_stages):
+            issues[tip_id].append("invalid_stage_id")
+        if tip.get("quality_status") not in {"source_aligned_needs_human_review", "ai_candidate_needs_review"}:
+            issues[tip_id].append("missing_quality_status")
     return issues, source_by_url
 
 def main():
     parser = argparse.ArgumentParser(description="Audit survival tips and optionally re-extract questionable source pages.")
-    parser.add_argument("--repair", action="store_true", help="Re-extract source pages associated with questionable tips; replace old tips only when valid replacements are found.")
+    parser.add_argument("--repair", action="store_true", help="Re-extract flagged source pages into the selected dataset; never auto-approve candidates.")
+    parser.add_argument("--candidates", action="store_true", help="Audit data/candidate_tips.json instead of the active data/tips.json.")
     args = parser.parse_args()
 
-    tip_path = ROOT / "data" / "tips.json"
+    tip_path = ROOT / "data" / ("candidate_tips.json" if args.candidates else "tips.json")
     source_path = ROOT / "data" / "sources.json"
     tip_data = read_json(tip_path, {"schema_version": "1.0", "tips": []})
     source_data = read_json(source_path, {"sources": []})
@@ -155,6 +158,9 @@ def main():
             tip for tip in updated_tips
             if not any(ref.get("url") == url for ref in tip.get("sources", []))
         ]
+        for replacement in replacements:
+            replacement["quality_status"] = "ai_candidate_needs_review"
+            replacement["quality_notes"] = "AI repair candidate. Not human-reviewed or approved for operational use."
         updated_tips.extend(replacements)
         repaired += 1
         print(f"[repair] Replaced source tips for {url}: {old_count} old candidate(s) -> {len(replacements)} new candidate(s) from {provider}.")
