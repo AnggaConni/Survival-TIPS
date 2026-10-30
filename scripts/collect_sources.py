@@ -21,6 +21,48 @@ def search_web(query,max_results=5):
         return [{"url":x.get("href",""),"title":x.get("title",""),"snippet":x.get("body",""),"search_provider":"duckduckgo"} for x in rows]
     except Exception as exc:
         print(f"[search] DuckDuckGo unavailable: {exc}"); return []
+def filter_candidates(items):
+    """Keep only trusted, topic-relevant sources; search rank alone is not a quality gate."""
+    practical_title_terms = (
+        "guide", "manual", "handbook", "how to", "toolbox", "treatment",
+        "shelter", "standard", "field guide", "factsheet", "procedure",
+        "cultivation", "food safety", "water storage", "handwashing", "repair",
+        "construction", "irrigation", "compost", "seed saving", "preservation",
+        "maintenance", "design specification", "checklist", "preparedness",
+        "evacuation", "emergency", "sanitation", "hygiene",
+    )
+    topic_terms = (
+        "emergency", "disaster", "water", "wash", "shelter", "food", "nutrition",
+        "agriculture", "garden", "crop", "seed", "soil", "irrigation", "preservation",
+        "sanitation", "hygiene", "first aid", "construction", "material", "energy",
+        "repair", "treatment", "preparedness", "evacuation", "compost", "livestock",
+        "fire", "safety", "biodiversity", "species", "ecology", "forest", "coastal",
+        "flood", "drought",
+    )
+    news_title_terms = (
+        "news", "statement", "signing ceremony", "contribution agreement",
+        "funding", "pledge", "donation", "appoint", "visit", "meeting",
+        "press release", "partnership", "launches", "announces", "cast",
+    )
+    accepted = []
+    for item in items:
+        domain = safe_domain(item.get("url", ""))
+        trusted = any(domain == d or domain.endswith("." + d) for d in TRUSTED_DOMAINS)
+        title = str(item.get("title", "")).casefold()
+        practical = any(term in title for term in practical_title_terms)
+        relevant = practical or any(term in title for term in topic_terms)
+        news_only = any(term in title for term in news_title_terms) and not practical
+        if trusted and relevant and not news_only:
+            accepted.append(item)
+
+    def rank(item):
+        title = str(item.get("title", "")).casefold()
+        practical = any(term in title for term in practical_title_terms)
+        return (0 if practical else 1, item.get("url", ""))
+
+    return sorted(accepted, key=rank)
+
+
 def collect_candidates(per_query=4):
     candidates={}
     for query in CONFIG.get("queries",[]):
@@ -35,35 +77,7 @@ def collect_candidates(per_query=4):
                 if is_http_url(url):
                     candidates.setdefault(url,{"url":url,"title":entry.get("title",""),"snippet":BeautifulSoup(entry.get("summary",""),"html.parser").get_text(" ",strip=True),"source_type":"rss","feed_name":feed.get("name",""),"search_provider":None})
         except Exception as exc: print(f"[rss] Failed {feed.get('url')}: {exc}")
-    practical_title_terms = (
-        "guide", "manual", "handbook", "how to", "toolbox", "treatment",
-        "shelter solutions", "standards", "technical", "field guide",
-        "factsheet", "procedure", "cultivation", "food safety", "water storage",
-        "handwashing", "repair", "construction", "irrigation", "compost",
-        "seed saving", "preservation", "maintenance", "design specification",
-    )
-    news_title_terms = (
-        "news", "statement", "signing ceremony", "contribution agreement",
-        "funding", "pledge", "donation", "appoint", "visit", "meeting",
-        "press release", "partnership", "launches", "announces",
-    )
-    def rank(item):
-        domain=safe_domain(item["url"])
-        trusted=any(domain==d or domain.endswith("."+d) for d in TRUSTED_DOMAINS)
-        title=str(item.get("title", "")).casefold()
-        query=str(item.get("query", "")).casefold()
-        practical=any(term in title for term in practical_title_terms) or any(term in query for term in practical_title_terms)
-        likely_news=any(term in title for term in news_title_terms)
-        # Put practical manuals/guides first; de-prioritize announcement-style RSS/news.
-        return (1 if likely_news and not practical else 0, 0 if practical else 1, 0 if trusted else 1, item["url"])
-    # News and announcement feeds are useful context but poor primary evidence for
-    # reproducible survival procedures. Keep them out of the extraction queue.
-    practical_candidates = [
-        item for item in candidates.values()
-        if not (any(term in str(item.get("title", "")).casefold() for term in news_title_terms)
-                and not any(term in str(item.get("title", "")).casefold() for term in practical_title_terms))
-    ]
-    return sorted(practical_candidates,key=rank)
+    return filter_candidates(candidates.values())
 def extract_page(candidate):
     session=get_session()
     if not robots_allowed(candidate["url"],session):
