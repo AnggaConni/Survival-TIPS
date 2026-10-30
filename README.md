@@ -40,7 +40,7 @@ The intended flow is:
 - `scripts/source_quality.py` — heuristic source tiers, document type, technical-depth triage, duplicate detection, and possible-conflict signals.
 - `scripts/enrich_sources.py` — backfills source metadata, content hashes, version baselines, and legacy stage-classification records.
 - `config/sources.json` — prioritizes practical technical queries across emergency preparedness, water, food production/preservation, and shelter construction.
-- `scripts/extract_tips.py` — evidence-first AI extraction with Groq → DeepSeek → OpenRouter fallback; requires a verbatim evidence excerpt, practical steps, an assigned stage, and structured action-type fields. Wild-food consumption tips are rejected unless key safety fields are supplied.
+- `scripts/extract_tips.py` — evidence-first AI extraction with Groq → DeepSeek → OpenRouter fallback, prompt/extractor version tags, and controlled `--reprocess` for candidate-only refreshes.
 - `scripts/audit_tips.py` — deterministic evidence audit, near-duplicate screening, possible-conflict screening, and machine-readable `data/quality_report.json`; optional AI repair remains candidate-only.
 - `data/source_versions.json` — source content-change event history.
 - `data/quality_report.json` — latest tip-quality triage report.
@@ -90,6 +90,8 @@ Copy `.env.example` to `.env`, add your keys locally, and never commit `.env`.
 python -m scripts.run_pipeline --limit 8 --gbif-limit 3
 python -m scripts.enrich_sources
 python -m scripts.audit_tips
+# Optional: re-run extraction after changing the prompt; candidates only
+python -m scripts.extract_tips --reprocess --limit 5
 python -m scripts.audit_tips --repair
 # Edit data/review_decisions.json, then apply human approvals
 python -m scripts.review_tips --apply
