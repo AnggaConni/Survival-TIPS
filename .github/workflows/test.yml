@@ -11,6 +11,7 @@ on:
       - "requirements.txt"
       - ".github/workflows/test.yml"
       - ".github/workflows/approve-candidates.yml"
+      - ".github/workflows/review-knowledge.yml"
   pull_request:
     paths:
       - "scripts/**"
