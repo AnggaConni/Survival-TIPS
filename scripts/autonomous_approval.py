@@ -103,20 +103,19 @@ def _risk_reasons(tip: dict) -> list[str]:
 def _source_gate(tip: dict, source_by_url: dict) -> tuple[bool, list[str]]:
     reasons = []
     refs = tip.get("sources", [])
-    matched = [source_by_url.get(r.get("url")) for r in refs if isinstance(r, dict)]
-    matched = [s for s in matched if s and s.get("text")]
-    if not matched:
-        return False, ["no referenced source text available"]
-    trusted = False
+    urls = [r.get("url") for r in refs if isinstance(r, dict) and r.get("url")]
+    matched = [source_by_url.get(url) for url in urls]
+    if not urls or len(matched) != len(refs) or any(not source or not source.get("text") for source in matched):
+        return False, ["one or more referenced source texts are unavailable"]
+    trusted_tiers = {"A_official_public_authority", "B_technical_or_humanitarian_organization", "B_academic_or_extension"}
     for source in matched:
         assessment = source.get("quality_assessment", {})
         tier = assessment.get("authority_tier", "")
         score = assessment.get("quality_score", 0)
-        if tier in {"A_official_public_authority", "B_technical_or_humanitarian_organization", "B_academic_or_extension"} and isinstance(score, (int, float)) and score >= MIN_SOURCE_SCORE:
-            trusted = True
-    if not trusted:
-        reasons.append("no referenced source meets authority tier A/B and quality score threshold")
-    return trusted, reasons
+        if tier not in trusted_tiers or not isinstance(score, (int, float)) or score < MIN_SOURCE_SCORE:
+            reasons.append("every cited source must meet authority tier A/B and quality score threshold")
+            break
+    return not reasons, reasons
 
 
 def _build_approved_tip(tip: dict, review: dict, model: str, reviewed_at: str) -> dict:
@@ -214,11 +213,12 @@ def run_autonomous_approval(root: Path = ROOT, reviewer=None, model: str | None 
                     refs = {r.get("url") for r in tip.get("sources", []) if isinstance(r, dict)}
                     evidence_ok = (
                         isinstance(steps, list) and len(steps) == len(tip.get("steps", []))
-                        and all(isinstance(x, dict) and x.get("source_url") in refs
+                        and all(isinstance(x, dict) and x.get("step_index") == i + 1
+                                and x.get("source_url") in refs
                                 and isinstance(x.get("evidence_excerpt"), str)
                                 and len(x["evidence_excerpt"].strip()) >= 8
                                 and x["evidence_excerpt"] in source_by_url.get(x.get("source_url"), {}).get("text", "")
-                                for x in steps)
+                                for i, x in enumerate(steps))
                     )
                     stage_ok = isinstance(stages, list) and bool(stages) and all(s in valid_stages for s in stages)
                     auto_ok = (
