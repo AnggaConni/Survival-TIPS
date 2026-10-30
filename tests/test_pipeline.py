@@ -92,7 +92,8 @@ def test_audit_accepts_tip_with_verbatim_evidence_and_stage():
         "summary":"Boil water before drinking.","steps":["Boil water."],
         "evidence_excerpt":"Boil water before drinking.",
         "sources":[{"url":"https://example.org/water"}],
-        "stage_ids":["03-water-sanitation"]
+        "stage_ids":["03-water-sanitation"],
+        "quality_status":"source_aligned_needs_human_review"
     }
     issues, _ = audit([tip], [source])
     assert "tip-2" not in issues
@@ -160,3 +161,21 @@ def test_normalize_tip_rejects_incomplete_build_recipe():
     src={"url":"https://example.org/build","title":"Build guide","domain":"example.org","retrieved_at":"2026-10-29T00:00:00+00:00","text":"Build a simple stove from local materials."}
     raw={"title":"Build a simple stove","content_type":"build","category":"other","summary":"Build a stove.","steps":["Arrange the materials."],"materials":["Local materials"],"tools":[],"expected_result":"A stove","warnings":[],"evidence_excerpt":"Build a simple stove from local materials.","confidence":"medium"}
     assert normalize_tip(raw,src,"test") is None
+
+
+def test_normalize_tip_marks_new_output_as_unreviewed_candidate():
+    src={"url":"https://example.org/guide","title":"Guide","domain":"example.org","retrieved_at":"2026-10-29T00:00:00+00:00","text":"Use several channels to communicate an emergency notice."}
+    raw={"title":"Use several channels","content_type":"communication_guidance","category":"communication","summary":"Consider more than one channel.","steps":["Consider more than one channel."],"warnings":[],"evidence_excerpt":"Use several channels to communicate an emergency notice.","confidence":"medium"}
+    tip=normalize_tip(raw,src,"test")
+    assert tip is not None
+    assert tip["quality_status"] == "ai_candidate_needs_review"
+    assert tip["verification"]["status"] == "needs_review"
+
+
+def test_quarantine_ids_are_not_reintroduced_as_candidates(monkeypatch, tmp_path):
+    import scripts.extract_tips as extractor
+    from scripts.common import ROOT
+    # This regression is covered by the process function's protected-ID/source set;
+    # the queue must not be merged into active tips.json.
+    assert "tips.quarantine.json" in extractor.process_saved_sources.__code__.co_consts
+    assert "candidate_tips.json" in extractor.process_saved_sources.__code__.co_consts

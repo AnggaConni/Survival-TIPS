@@ -1,19 +1,19 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-29T18:06:52+00:00",
+  "generated_at": "2026-10-30T08:30:55.017Z",
   "tips": [
     {
       "id": "tip-3104734432df54",
       "title": "Include All 10 Required Elements in a Public Notice",
       "category": "water",
-      "summary": "Ensure every public notice contains the EPA Public Notification Rule’s 10 mandatory elements to meet regulatory requirements and provide clear information to the public.",
+      "summary": "Prepare drinking-water public notices that clearly explain the violation and include all 10 elements identified in the EPA Public Notification Rule reference.",
       "steps": [
-        "Identify the 10 required elements: violation description, contaminant(s), timing, health effects, vulnerable populations, alternate water use, consumer actions, system response, compliance timeline, contact info.",
-        "Draft the notice incorporating each element.",
-        "Review for completeness before distribution."
+        "Explain the violation clearly and in plain language.",
+        "Include the 10 elements: violation, contaminant, timing, health effects, vulnerable populations, alternate water use, consumer actions, system response, compliance timeline, and contact information.",
+        "Check the notice against the EPA Public Notification Rule reference before distribution."
       ],
       "warnings": [
-        "Incomplete notices may violate EPA regulations and reduce public trust."
+        "This tip summarizes notice content; it is not a substitute for checking the current rule and jurisdiction-specific requirements."
       ],
       "evidence_excerpt": "All public notices must include a clear and readily understandable explanation of each violation containing the following 10 elements from EPA’s Public Notification Rule (PNR) Quick Reference Guide.",
       "sources": [
@@ -28,13 +28,16 @@
       "ai_provider": "groq",
       "verification": {
         "status": "needs_review",
-        "confidence": "high",
+        "confidence": "medium",
         "reviewed_by": null,
         "reviewed_at": null
       },
       "stage_ids": [
-        "03-water-sanitation"
-      ]
+        "08-infrastructure"
+      ],
+      "quality_status": "source_aligned_needs_human_review",
+      "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
+      "content_type": "communication_guidance"
     },
     {
       "id": "tip-061d9fcf1a2956",
@@ -42,13 +45,11 @@
       "category": "water",
       "summary": "Use trusted community partners or professional translators to produce accessible versions of advisories, avoiding automated translation tools.",
       "steps": [
-        "Identify local community organizations with language expertise.",
-        "Provide source material and context to translators.",
-        "Review translated drafts for accuracy and cultural relevance.",
-        "Distribute translated advisories via appropriate channels."
+        "Use community partners or professional translation services to translate the message.",
+        "Avoid relying on online dictionaries or generic computer translation software for the advisory."
       ],
       "warnings": [
-        "Online dictionaries or generic software can produce mistranslations that misinform the public."
+        "Have translations checked by people who understand the language and context before public release."
       ],
       "evidence_excerpt": "Use community partners or professional translation services to translate the message. Avoid using online dictionaries or other computer software.",
       "sources": [
@@ -63,13 +64,16 @@
       "ai_provider": "groq",
       "verification": {
         "status": "needs_review",
-        "confidence": "high",
+        "confidence": "medium",
         "reviewed_by": null,
         "reviewed_at": null
       },
       "stage_ids": [
-        "03-water-sanitation"
-      ]
+        "08-infrastructure"
+      ],
+      "quality_status": "source_aligned_needs_human_review",
+      "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
+      "content_type": "communication_guidance"
     },
     {
       "id": "tip-c558e20efe052f",
@@ -77,12 +81,11 @@
       "category": "water",
       "summary": "Disseminate advisories through a mix of traditional media, SMS, social media, and variable message signs to reach diverse audiences.",
       "steps": [
-        "Select channels based on audience demographics and message length constraints.",
-        "Prepare abbreviated messages for channels with limited space.",
-        "Schedule simultaneous releases across chosen platforms."
+        "Consider multiple communication channels in addition to traditional media.",
+        "Choose channels appropriate to the audience and the advisory context."
       ],
       "warnings": [
-        "Relying on a single channel may leave segments of the population uninformed."
+        "A single channel may not reach everyone; the source excerpt does not prescribe a universal channel mix."
       ],
       "evidence_excerpt": "Today’s communication channels are diverse. You will likely need to consider multiple channels in addition to traditional media.",
       "sources": [
@@ -102,8 +105,11 @@
         "reviewed_at": null
       },
       "stage_ids": [
-        "03-water-sanitation"
-      ]
+        "08-infrastructure"
+      ],
+      "quality_status": "source_aligned_needs_human_review",
+      "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
+      "content_type": "communication_guidance"
     },
     {
       "id": "tip-3b2380254df3c2",
@@ -111,12 +117,10 @@
       "category": "other",
       "summary": "Choose an authoritative spokesperson and rehearse key messages to ensure consistent, trustworthy communication during an advisory.",
       "steps": [
-        "Select a spokesperson with authority, credibility, and accessibility.",
-        "Use the SOCO Worksheet and Message Mapping Template to prepare key points.",
-        "Conduct mock press briefings to rehearse responses to anticipated questions."
+        "Designate a spokesperson who has authority and is honest, credible, competent, accessible, and sensitive to public concerns."
       ],
       "warnings": [
-        "An unprepared spokesperson can spread misinformation and erode public confidence."
+        "The source excerpt describes spokesperson qualities; it does not establish a specific rehearsal protocol."
       ],
       "evidence_excerpt": "The spokesperson should be someone in authority who is honest, credible, competent, accessible, and sensitive to public concerns.",
       "sources": [
@@ -135,7 +139,12 @@
         "reviewed_by": null,
         "reviewed_at": null
       },
-      "stage_ids": []
+      "stage_ids": [
+        "08-infrastructure"
+      ],
+      "quality_status": "source_aligned_needs_human_review",
+      "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
+      "content_type": "communication_guidance"
     },
     {
       "id": "tip-07eec989d89f71",
@@ -143,12 +152,9 @@
       "category": "water",
       "summary": "Include a statement urging recipients to forward the advisory to others, amplifying reach and community awareness.",
       "steps": [
-        "Add a brief encouragement line to the notice, e.g., \"Please share this notice with neighbors and friends.\"",
-        "Place the statement prominently in the notice and digital posts."
+        "Where applicable, include a statement encouraging recipients to share the notice with other people."
       ],
-      "warnings": [
-        "Omitting this step may limit the advisory’s dissemination beyond initial recipients."
-      ],
+      "warnings": [],
       "evidence_excerpt": "A statement encouraging the notice recipients to share the notice with other persons, where applicable.",
       "sources": [
         {
@@ -162,13 +168,16 @@
       "ai_provider": "groq",
       "verification": {
         "status": "needs_review",
-        "confidence": "high",
+        "confidence": "medium",
         "reviewed_by": null,
         "reviewed_at": null
       },
       "stage_ids": [
-        "03-water-sanitation"
-      ]
+        "08-infrastructure"
+      ],
+      "quality_status": "source_aligned_needs_human_review",
+      "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
+      "content_type": "communication_guidance"
     },
     {
       "id": "tip-6c7b66bce59298",
@@ -176,12 +185,11 @@
       "category": "water",
       "summary": "Craft concise messages that convey essential actions for channels like SMS, social media, and broadcast alerts.",
       "steps": [
-        "Identify the core action (e.g., boil water), location, contact info, and where to get more info.",
-        "Format the message to fit character limits of each channel.",
-        "Test readability before sending."
+        "Use brief messages for space-limited channels such as on-screen scrolling messages, text-message systems, and social media.",
+        "Keep essential safety information available through a fuller notice or linked channel."
       ],
       "warnings": [
-        "Too brief messages may omit critical safety information."
+        "Do not shorten a message in a way that removes essential protective instructions."
       ],
       "evidence_excerpt": "Brief messages are appropriate for: On-screen scroll, Text message systems, Social media, etc.",
       "sources": [
@@ -201,9 +209,11 @@
         "reviewed_at": null
       },
       "stage_ids": [
-        "03-water-sanitation",
         "08-infrastructure"
-      ]
+      ],
+      "quality_status": "source_aligned_needs_human_review",
+      "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
+      "content_type": "communication_guidance"
     },
     {
       "id": "tip-567ca80a65ae8b",
@@ -211,12 +221,11 @@
       "category": "water",
       "summary": "When chemical contaminants are involved, consult experts and tailor messages to specific health impacts and exposure routes.",
       "steps": [
-        "Engage chemical safety experts to assess health risks and exposure pathways.",
-        "Use the Message Mapping Template and Sample Message Map to adapt the advisory language.",
-        "Include specific guidance relevant to the contaminant type."
+        "For advisories involving chemical contaminants, consult relevant experts about potential health impacts and exposure routes.",
+        "Customize the message to the specific contaminant."
       ],
       "warnings": [
-        "Generic microbial advisories may not address chemical‑specific risks."
+        "Do not reuse a generic microbial-contamination message for a chemical contaminant without expert review."
       ],
       "evidence_excerpt": "Particularly when dealing with chemical contaminants, consult with experts to understand the potential health impact and impact routes... so messages are customized to the contaminant.",
       "sources": [
@@ -231,28 +240,29 @@
       "ai_provider": "groq",
       "verification": {
         "status": "needs_review",
-        "confidence": "high",
+        "confidence": "medium",
         "reviewed_by": null,
         "reviewed_at": null
       },
       "stage_ids": [
-        "03-water-sanitation"
-      ]
+        "08-infrastructure"
+      ],
+      "quality_status": "source_aligned_needs_human_review",
+      "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
+      "content_type": "communication_guidance"
     },
     {
       "id": "tip-96e23df23326cc",
       "title": "Use Local, Sustainable Materials",
       "category": "other",
-      "summary": "Prioritize locally sourced, sustainably harvested materials for shelter construction to reduce transport costs, environmental impact, and support local economies.",
+      "summary": "Plan emergency shelter solutions around locally available materials that can be sourced sustainably.",
       "steps": [
-        "Identify available local materials (wood, sand, etc.).",
-        "Assess sustainability and environmental impact.",
-        "Source materials responsibly.",
-        "Incorporate into shelter design."
+        "Identify locally available materials and construction methods.",
+        "Assess whether sourcing can be sustained without damaging local resources.",
+        "Use suitable locally available materials in the shelter design."
       ],
       "warnings": [
-        "Overharvesting can damage local ecosystems.",
-        "Unsustainable sourcing may increase costs."
+        "The UNHCR entry is marked outdated and under revision; check current national and technical guidance before applying it."
       ],
       "evidence_excerpt": "Emergency shelter needs are best met by using locally available, sustainably sourced materials and construction methods.",
       "sources": [
@@ -267,28 +277,31 @@
       "ai_provider": "groq",
       "verification": {
         "status": "needs_review",
-        "confidence": "high",
+        "confidence": "medium",
         "reviewed_by": null,
         "reviewed_at": null
       },
       "stage_ids": [
         "01-drr",
-        "04-agriculture"
-      ]
+        "06-materials"
+      ],
+      "quality_status": "source_aligned_needs_human_review",
+      "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
+      "content_type": "planning_guidance"
     },
     {
       "id": "tip-81b3140a1ba6a6",
       "title": "Employ Plastic Sheeting as Primary Shelter Component",
       "category": "other",
-      "summary": "Use lightweight, UV-resistant plastic sheeting as the main covering for shelters, combined with rigid framing for flexibility and cost-effectiveness.",
+      "summary": "Plastic sheeting can be an important emergency-shelter component, often combined with rigid materials; it needs suitable support and has limitations in severe weather.",
       "steps": [
-        "Acquire sufficient plastic sheeting.",
-        "Attach to framing or skeleton.",
-        "Seal edges with tape or staples."
+        "Consider plastic sheeting as one component of a shelter, potentially combined with rigid materials.",
+        "Provide an appropriate supporting frame or structure.",
+        "Assess local wind and rain exposure before relying on plastic sheeting as the main weather barrier."
       ],
       "warnings": [
-        "Not wind-resistant; may fail in heavy rain or high winds.",
-        "Improper disposal can harm the environment."
+        "Plastic sheeting alone does not provide strong resistance to high winds or heavy rain.",
+        "Consider environmental impacts and responsible disposal."
       ],
       "evidence_excerpt": "Plastic sheeting has become the most important shelter component in many humanitarian response operations, often in combination with rigid materials.",
       "sources": [
@@ -303,26 +316,30 @@
       "ai_provider": "groq",
       "verification": {
         "status": "needs_review",
-        "confidence": "high",
+        "confidence": "medium",
         "reviewed_by": null,
         "reviewed_at": null
       },
       "stage_ids": [
-        "01-drr"
-      ]
+        "01-drr",
+        "06-materials"
+      ],
+      "quality_status": "source_aligned_needs_human_review",
+      "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
+      "content_type": "material_guidance"
     },
     {
       "id": "tip-51f89e91128b12",
       "title": "Adhere to Minimum Covered Living Space Standards",
       "category": "other",
-      "summary": "Ensure shelters provide at least 3.5 m² per person in warm climates and 4.5–5.5 m² per person in cold climates to prevent overcrowding and maintain comfort.",
+      "summary": "UNHCR lists minimum covered living space of 3.5 m² per person in tropical or warm climates, and 4.5–5.5 m² indoor living space per person in cold climates.",
       "steps": [
-        "Calculate required area per person.",
-        "Design shelter layout accordingly.",
-        "Verify compliance before occupancy."
+        "For tropical or warm climates, use 3.5 m² per person as the cited minimum covered living-space figure.",
+        "For cold climates, use 4.5–5.5 m² per person as the cited indoor living-space range.",
+        "Check the full standard for scope, exclusions, and local requirements before applying the figures."
       ],
       "warnings": [
-        "Insufficient space leads to overcrowding and health risks."
+        "These figures have different climate contexts and are not interchangeable; the UNHCR entry is marked outdated and under revision."
       ],
       "evidence_excerpt": "Minimum 3.5m2 of covered living space per person in tropical or warm climates... Minimum 4.5m2 to 5.5m2 indoor living space per person in cold climates.",
       "sources": [
@@ -337,26 +354,29 @@
       "ai_provider": "groq",
       "verification": {
         "status": "needs_review",
-        "confidence": "high",
+        "confidence": "medium",
         "reviewed_by": null,
         "reviewed_at": null
       },
       "stage_ids": [
         "01-drr"
-      ]
+      ],
+      "quality_status": "source_aligned_needs_human_review",
+      "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
+      "content_type": "shelter_standard"
     },
     {
       "id": "tip-95cfc8902d1210",
       "title": "Maintain Minimum Shelter Height for Ventilation",
       "category": "other",
-      "summary": "Design shelters with a minimum of 2 m height at the lowest point to promote air circulation and reduce heat loss.",
+      "summary": "For warm-climate shelter guidance, UNHCR specifies a minimum height of 2 m at the lowest point, with greater height preferable for air circulation and ventilation.",
       "steps": [
-        "Set roof height to at least 2 m.",
-        "Ensure clearance for occupants and ventilation.",
-        "Adjust design for local climate if needed."
+        "Check the shelter height at its lowest point.",
+        "For the cited warm-climate guidance, provide at least 2 m at the lowest point where feasible.",
+        "Consider greater height to support air circulation and ventilation."
       ],
       "warnings": [
-        "Low height reduces airflow and can cause condensation."
+        "The cited 2 m figure is context-specific; do not treat it as a universal standard. The UNHCR entry is marked outdated and under revision."
       ],
       "evidence_excerpt": "Minimum height of 2m at the lowest point, with greater height being preferable to aid air circulation and ventilation.",
       "sources": [
@@ -371,27 +391,28 @@
       "ai_provider": "groq",
       "verification": {
         "status": "needs_review",
-        "confidence": "high",
+        "confidence": "medium",
         "reviewed_by": null,
         "reviewed_at": null
       },
       "stage_ids": [
         "01-drr"
-      ]
+      ],
+      "quality_status": "source_aligned_needs_human_review",
+      "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
+      "content_type": "shelter_standard"
     },
     {
       "id": "tip-c9a9806cec7247",
       "title": "Insulate and Seal Shelters in Cold Climates",
       "category": "other",
-      "summary": "Use plastic sheeting, tapes, and insulation on walls, roofs, and doors to retain heat and reduce wind and snow penetration.",
+      "summary": "In cold climates, UNHCR recommends covering windows and doors with translucent plastic sheeting and designing walls, ceilings, and floors to insulate against cold air.",
       "steps": [
-        "Seal windows and doors with plastic sheeting and tape.",
-        "Insulate walls, ceilings, and floors.",
-        "Check for gaps and seal them."
+        "Cover windows and doors with translucent plastic sheeting as described in the source.",
+        "Design walls, ceilings, and floors to provide insulation from cold air."
       ],
       "warnings": [
-        "Improper sealing can lead to fire hazards if heating sources are used.",
-        "Insulation must be fire‑rated."
+        "The cited entry is marked outdated and under revision. Consider ventilation and safe heating when improving insulation."
       ],
       "evidence_excerpt": "Windows and doors should be covered with translucent plastic sheeting and stapled on window and door frames. Walls, ceilings and floors of the living space should be designed to insulate from cold air.",
       "sources": [
@@ -406,27 +427,30 @@
       "ai_provider": "groq",
       "verification": {
         "status": "needs_review",
-        "confidence": "high",
+        "confidence": "medium",
         "reviewed_by": null,
         "reviewed_at": null
       },
       "stage_ids": [
-        "01-drr"
-      ]
+        "01-drr",
+        "06-materials"
+      ],
+      "quality_status": "source_aligned_needs_human_review",
+      "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
+      "content_type": "cold_climate_shelter_guidance"
     },
     {
       "id": "tip-a3a5a2db3880e0",
       "title": "Use Adequate Heating Stoves in Cold Environments",
       "category": "energy",
-      "summary": "Deploy 5–7 kW stoves capable of heating 40–70 m² to maintain indoor temperatures of 15–19 °C, ensuring stability and clean energy use.",
+      "summary": "UNHCR gives 5–7 kW as an indicative stove output for heating 40–70 m² in many cold areas, depending on conditions; it is not a universal sizing rule.",
       "steps": [
-        "Select a stove with 5–7 kW output.",
-        "Ensure stable installation and proper ventilation.",
-        "Use clean fuels and monitor for fire risk."
+        "Treat 5–7 kW for 40–70 m² only as an indicative reference from the cited UNHCR guidance.",
+        "Assess outside temperature, building construction, insulation, orientation, and actual stove performance before selecting heating equipment.",
+        "Follow appropriate installation, ventilation, and fire-safety requirements."
       ],
       "warnings": [
-        "Stove instability can cause fires.",
-        "Poor ventilation can lead to carbon monoxide buildup."
+        "Heating needs vary with conditions; the UNHCR entry is marked outdated and under revision. Poorly installed fuel-burning stoves can cause fire and carbon-monoxide hazards."
       ],
       "evidence_excerpt": "Depending on conditions, a stove with 5 to 7 kW performance should have the capacity to heat a space with a floor area of 40 to 70 m2 in most cold areas.",
       "sources": [
@@ -441,691 +465,26 @@
       "ai_provider": "groq",
       "verification": {
         "status": "needs_review",
-        "confidence": "high",
+        "confidence": "medium",
         "reviewed_by": null,
         "reviewed_at": null
       },
       "stage_ids": [
+        "01-drr",
         "05-energy"
-      ]
-    },
-    {
-      "id": "tip-4305b99103a614",
-      "title": "Rapid Assessment and Rehabilitation of Damaged Water Systems",
-      "category": "water",
-      "summary": "Quickly evaluate and repair broken water infrastructure to restore safe water supply.",
-      "steps": [
-        "Conduct rapid assessment of water system damage",
-        "Identify critical repair points",
-        "Mobilize repair teams and materials",
-        "Test water quality post-repair",
-        "Communicate status to community"
       ],
-      "warnings": [
-        "Requires trained personnel; risk of contamination if not properly sealed"
-      ],
-      "evidence_excerpt": "Rapid assessment and rehabilitation of damaged water systems",
-      "sources": [
-        {
-          "title": "Emergency WASH - IFRC's Water Security/WASH portal",
-          "url": "https://wash.ifrc.org/our-work/emergency-wash/",
-          "domain": "wash.ifrc.org",
-          "retrieved_at": "2026-10-29T17:34:49+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:49+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": [
-        "03-water-sanitation",
-        "08-infrastructure"
-      ]
-    },
-    {
-      "id": "tip-f23f7eed8aa93f",
-      "title": "Safe Drinking Water Provision via Water Treatment Tanks",
-      "category": "water",
-      "summary": "Construct water treatment tanks to provide safe drinking water in emergencies.",
-      "steps": [
-        "Identify suitable site",
-        "Build tank with appropriate materials",
-        "Install filtration and disinfection systems",
-        "Fill and test water",
-        "Distribute to community"
-      ],
-      "warnings": [
-        "Ensure proper maintenance to avoid contamination"
-      ],
-      "evidence_excerpt": "Providing safe drinking water and constructing water treatment tanks",
-      "sources": [
-        {
-          "title": "Emergency WASH - IFRC's Water Security/WASH portal",
-          "url": "https://wash.ifrc.org/our-work/emergency-wash/",
-          "domain": "wash.ifrc.org",
-          "retrieved_at": "2026-10-29T17:34:49+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:49+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": [
-        "03-water-sanitation"
-      ]
-    },
-    {
-      "id": "tip-6077d148f12ba6",
-      "title": "Building Toilets and Hygiene Facilities",
-      "category": "sanitation",
-      "summary": "Construct toilets and hygiene facilities to reduce disease spread.",
-      "steps": [
-        "Assess community needs",
-        "Design appropriate toilet type",
-        "Source materials",
-        "Build and install",
-        "Provide handwashing stations"
-      ],
-      "warnings": [
-        "Must consider cultural acceptance and waste disposal"
-      ],
-      "evidence_excerpt": "Building toilets and hygiene facilities",
-      "sources": [
-        {
-          "title": "Emergency WASH - IFRC's Water Security/WASH portal",
-          "url": "https://wash.ifrc.org/our-work/emergency-wash/",
-          "domain": "wash.ifrc.org",
-          "retrieved_at": "2026-10-29T17:34:49+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:49+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": [
-        "03-water-sanitation"
-      ]
-    },
-    {
-      "id": "tip-87910dadbb20c1",
-      "title": "Distributing Menstrual Hygiene Products",
-      "category": "other",
-      "summary": "Provide menstrual hygiene products to reduce health risks.",
-      "steps": [
-        "Identify target population",
-        "Procure products",
-        "Distribute through local channels",
-        "Educate on use"
-      ],
-      "warnings": [
-        "Ensure privacy and cultural sensitivity"
-      ],
-      "evidence_excerpt": "Distributing menstrual hygiene products",
-      "sources": [
-        {
-          "title": "Emergency WASH - IFRC's Water Security/WASH portal",
-          "url": "https://wash.ifrc.org/our-work/emergency-wash/",
-          "domain": "wash.ifrc.org",
-          "retrieved_at": "2026-10-29T17:34:49+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:49+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": []
-    },
-    {
-      "id": "tip-4e3e6a8ddbe453",
-      "title": "Boil Water During Advisories",
-      "category": "water",
-      "summary": "When a boil water advisory is issued, heat water to a rolling boil for at least one minute to kill pathogens such as Cryptosporidium.",
-      "steps": [
-        "Check local advisories for boil water orders.",
-        "Collect water from a safe source.",
-        "Heat water on a stove or other heat source until it reaches a rolling boil.",
-        "Maintain the boil for at least 1 minute.",
-        "Cool and store in clean containers.",
-        "Use the boiled water for drinking, cooking, and brushing teeth.",
-        "Reboil if water is stored for more than 24 hours."
-      ],
-      "warnings": [
-        "Do not use water that has been stored in contaminated containers.",
-        "Avoid boiling water that may contain chemical contaminants."
-      ],
-      "evidence_excerpt": "Boil Water Advisories. For Cryptosporidium, but applies to other organisms as well.",
-      "sources": [
-        {
-          "title": "Responding to a Water, Sanitation, & Hygiene (WASH)-related Emergency | Water, Sanitation, & Hygiene-related Emergencies & and Outbreaks | Healthy Water | CDC",
-          "url": "https://archive.cdc.gov/www_cdc_gov/healthywater/emergency/planning-training-response/responding.html",
-          "domain": "archive.cdc.gov",
-          "retrieved_at": "2026-10-29T17:34:42+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:42+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": [
-        "03-water-sanitation"
-      ]
-    },
-    {
-      "id": "tip-50274fdbea111f",
-      "title": "Follow Bulk Water Hauling Guidelines",
-      "category": "water",
-      "summary": "Use the Connecticut Department of Public Health bulk water hauling guidelines to safely transport large volumes of water during emergencies.",
-      "steps": [
-        "Obtain the bulk water hauling guidelines PDF.",
-        "Select appropriate containers and transport vehicles.",
-        "Ensure containers are clean and sealed.",
-        "Transport water to the destination following local regulations.",
-        "Store water in a cool, shaded area.",
-        "Label containers with contents and date.",
-        "Dispose of any contaminated water properly."
-      ],
-      "warnings": [
-        "Do not transport water in containers that have previously held chemicals.",
-        "Ensure vehicles are clean to avoid contamination."
-      ],
-      "evidence_excerpt": "Bulk Water Hauling Guidelines. [PDF – 4 pages]",
-      "sources": [
-        {
-          "title": "Responding to a Water, Sanitation, & Hygiene (WASH)-related Emergency | Water, Sanitation, & Hygiene-related Emergencies & and Outbreaks | Healthy Water | CDC",
-          "url": "https://archive.cdc.gov/www_cdc_gov/healthywater/emergency/planning-training-response/responding.html",
-          "domain": "archive.cdc.gov",
-          "retrieved_at": "2026-10-29T17:34:42+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:42+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": [
-        "03-water-sanitation",
-        "08-infrastructure"
-      ]
-    },
-    {
-      "id": "tip-5108cbb1899f56",
-      "title": "Clean and Disinfect Water Storage Tanks",
-      "category": "water",
-      "summary": "Use WHO guidelines to disinfect water storage tanks and tankers to prevent contamination during emergencies.",
-      "steps": [
-        "Gather WHO cleaning and disinfecting guidelines PDF.",
-        "Inspect tanks for cracks or leaks.",
-        "Clean interior surfaces with soap and water.",
-        "Apply disinfectant according to WHO instructions.",
-        "Rinse thoroughly to remove residues.",
-        "Refill with clean water.",
-        "Check for any remaining contamination before use."
-      ],
-      "warnings": [
-        "Do not use disinfectants that are not approved for potable water.",
-        "Avoid over‑dilution of disinfectant which reduces effectiveness."
-      ],
-      "evidence_excerpt": "Cleaning and Disinfecting Water Storage Tanks and Tankers. [PDF – 4 pages]",
-      "sources": [
-        {
-          "title": "Responding to a Water, Sanitation, & Hygiene (WASH)-related Emergency | Water, Sanitation, & Hygiene-related Emergencies & and Outbreaks | Healthy Water | CDC",
-          "url": "https://archive.cdc.gov/www_cdc_gov/healthywater/emergency/planning-training-response/responding.html",
-          "domain": "archive.cdc.gov",
-          "retrieved_at": "2026-10-29T17:34:42+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:42+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": [
-        "03-water-sanitation"
-      ]
-    },
-    {
-      "id": "tip-3bf699c33ed3dd",
-      "title": "Practice Handwashing and Diapering After Emergencies",
-      "category": "other",
-      "summary": "Follow CDC handwashing and diapering practices to reduce disease spread in emergency settings.",
-      "steps": [
-        "Wash hands with soap and water for at least 20 seconds.",
-        "Use hand sanitizer if soap is unavailable.",
-        "Set up diapering stations with clean diapers and wipes.",
-        "Dispose of diapers in sealed bags.",
-        "Clean diapering surfaces with disinfectant.",
-        "Wash hands after diapering."
-      ],
-      "warnings": [
-        "Avoid using contaminated water for handwashing.",
-        "Do not reuse diapers or wipes."
-      ],
-      "evidence_excerpt": "Hygiene, Handwashing, Diapering. Information on good hygiene, handwashing, and diapering practices after an emergency.",
-      "sources": [
-        {
-          "title": "Responding to a Water, Sanitation, & Hygiene (WASH)-related Emergency | Water, Sanitation, & Hygiene-related Emergencies & and Outbreaks | Healthy Water | CDC",
-          "url": "https://archive.cdc.gov/www_cdc_gov/healthywater/emergency/planning-training-response/responding.html",
-          "domain": "archive.cdc.gov",
-          "retrieved_at": "2026-10-29T17:34:42+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:42+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": [
-        "03-water-sanitation"
-      ]
-    },
-    {
-      "id": "tip-aa24101d40ec26",
-      "title": "Clean Flood Water Inside and Outside the Home",
-      "category": "other",
-      "summary": "Follow CDC cleanup guidelines to safely remove flood water and reduce health risks.",
-      "steps": [
-        "Wear protective gear (gloves, boots, mask).",
-        "Remove standing water using pumps or wet vacuums.",
-        "Dispose of contaminated water in accordance with local regulations.",
-        "Clean and disinfect surfaces with EPA‑approved disinfectants.",
-        "Dry areas thoroughly to prevent mold.",
-        "Check for structural damage before re‑occupying the space."
-      ],
-      "warnings": [
-        "Avoid contact with flood water that may contain sewage or chemicals.",
-        "Do not use contaminated water for cooking or drinking."
-      ],
-      "evidence_excerpt": "After a Hurricane or Flood: Cleanup of Flood Water. Information on cleaning up flood water inside and outside of the home.",
-      "sources": [
-        {
-          "title": "Responding to a Water, Sanitation, & Hygiene (WASH)-related Emergency | Water, Sanitation, & Hygiene-related Emergencies & and Outbreaks | Healthy Water | CDC",
-          "url": "https://archive.cdc.gov/www_cdc_gov/healthywater/emergency/planning-training-response/responding.html",
-          "domain": "archive.cdc.gov",
-          "retrieved_at": "2026-10-29T17:34:42+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:42+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": [
-        "01-drr"
-      ]
-    },
-    {
-      "id": "tip-1e65f9a5862072",
-      "title": "Handle Community Wastewater Systems After Emergencies",
-      "category": "other",
-      "summary": "Use CDC guidance to manage community wastewater systems and minimize disease spread.",
-      "steps": [
-        "Inspect systems for damage or overflow.",
-        "Seal off damaged sections to prevent contamination.",
-        "Use temporary sanitation solutions if needed.",
-        "Monitor water quality regularly.",
-        "Report any issues to local health authorities."
-      ],
-      "warnings": [
-        "Do not enter contaminated wastewater areas without proper protection.",
-        "Avoid using untreated wastewater for irrigation."
-      ],
-      "evidence_excerpt": "Community Wastewater Systems. Information on what to do with community wastewater systems after an emergency.",
-      "sources": [
-        {
-          "title": "Responding to a Water, Sanitation, & Hygiene (WASH)-related Emergency | Water, Sanitation, & Hygiene-related Emergencies & and Outbreaks | Healthy Water | CDC",
-          "url": "https://archive.cdc.gov/www_cdc_gov/healthywater/emergency/planning-training-response/responding.html",
-          "domain": "archive.cdc.gov",
-          "retrieved_at": "2026-10-29T17:34:42+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:42+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": [
-        "03-water-sanitation"
-      ]
-    },
-    {
-      "id": "tip-bb5dbb48c3f9f8",
-      "title": "Use the Environmental Health Shelter Assessment Tool",
-      "category": "other",
-      "summary": "Employ CDC’s 14‑area assessment form to quickly evaluate shelter conditions during emergencies.",
-      "steps": [
-        "Download the Environmental Health Shelter Assessment Tool.",
-        "Conduct a rapid assessment covering food safety, water quality, sanitation, etc.",
-        "Document findings and immediate needs.",
-        "Prioritize interventions based on assessment results.",
-        "Re‑assess after changes are made."
-      ],
-      "warnings": [
-        "Ensure the tool is adapted to local context before use.",
-        "Do not rely solely on the tool; use professional judgment."
-      ],
-      "evidence_excerpt": "CDC has developed an Environmental Health Shelter Assessment Tool to assist environmental health practitioners in conducting a rapid assessment of shelter conditions during emergencies and disasters.",
-      "sources": [
-        {
-          "title": "Responding to a Water, Sanitation, & Hygiene (WASH)-related Emergency | Water, Sanitation, & Hygiene-related Emergencies & and Outbreaks | Healthy Water | CDC",
-          "url": "https://archive.cdc.gov/www_cdc_gov/healthywater/emergency/planning-training-response/responding.html",
-          "domain": "archive.cdc.gov",
-          "retrieved_at": "2026-10-29T17:34:42+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:42+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": [
-        "01-drr"
-      ]
-    },
-    {
-      "id": "tip-cfd222d0061a1a",
-      "title": "Apply Infection Control Guidance in Evacuation Centers",
-      "category": "other",
-      "summary": "Implement CDC infection control recommendations to prevent disease spread in temporary community evacuation centers.",
-      "steps": [
-        "Set up handwashing stations with soap and water.",
-        "Provide hand sanitizer where water is scarce.",
-        "Ensure proper waste disposal and sanitation facilities.",
-        "Educate residents on hygiene practices.",
-        "Monitor for signs of illness and isolate if necessary."
-      ],
-      "warnings": [
-        "Do not neglect ventilation, which can spread airborne pathogens.",
-        "Avoid overcrowding of sanitation facilities."
-      ],
-      "evidence_excerpt": "Infection Control Guidance for Community Evacuation Centers Following Disasters. Recommendations for basic infection control guidance to prevent exposure to or transmission of infectious diseases in temporary community evacuation centers.",
-      "sources": [
-        {
-          "title": "Responding to a Water, Sanitation, & Hygiene (WASH)-related Emergency | Water, Sanitation, & Hygiene-related Emergencies & and Outbreaks | Healthy Water | CDC",
-          "url": "https://archive.cdc.gov/www_cdc_gov/healthywater/emergency/planning-training-response/responding.html",
-          "domain": "archive.cdc.gov",
-          "retrieved_at": "2026-10-29T17:34:42+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:42+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": [
-        "01-drr"
-      ]
-    },
-    {
-      "id": "tip-8edac0707a96b2",
-      "title": "Integrate Small Livestock and Aquaculture into Home Gardens",
-      "category": "other",
-      "summary": "Adding poultry and fish to home gardens boosts protein and micronutrient intake, especially for children.",
-      "steps": [
-        "Select suitable species (e.g., chickens, tilapia) that fit the local climate.",
-        "Provide clean water and proper housing to prevent disease.",
-        "Use organic waste from garden crops as feed.",
-        "Harvest eggs, meat, and fish for household consumption or sale.",
-        "Monitor animal health and adjust feeding as needed."
-      ],
-      "warnings": [
-        "Ensure biosecurity to avoid disease spread.",
-        "Avoid overstocking to prevent waste and pollution.",
-        "Use safe, non-toxic feed ingredients."
-      ],
-      "evidence_excerpt": "Post-project evaluations found increased production of vegetables, fruits, poultry and fish among the targeted households and a decline in the rates of undernutrition in children under five years of age.",
-      "sources": [
-        {
-          "title": "Improving  nutrition through home gardening",
-          "url": "https://openknowledge.fao.org/items/e2135500-73cb-4855-8cd0-a8bdecb971a5",
-          "domain": "openknowledge.fao.org",
-          "retrieved_at": "2026-10-29T17:34:47+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:47+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": []
-    },
-    {
-      "id": "tip-a26cefbc6c9bb8",
-      "title": "Plant Underutilized, Climate‑Resistant Crops for Micronutrients",
-      "category": "other",
-      "summary": "Growing low‑maintenance, nutrient‑rich local species can reduce micronutrient deficiencies.",
-      "steps": [
-        "Identify underutilized crops native to the region (e.g., certain leafy greens, legumes).",
-        "Prepare soil with compost or organic matter.",
-        "Plant during appropriate seasons and space for optimal growth.",
-        "Harvest when mature and incorporate into daily meals.",
-        "Share surplus with neighbors to build community resilience."
-      ],
-      "warnings": [
-        "Check for local pests or diseases that may affect these crops.",
-        "Avoid planting in contaminated soils.",
-        "Ensure proper storage to prevent spoilage."
-      ],
-      "evidence_excerpt": "In Sri Lanka, many crops in existing home gardens are under‑utilized, meaning that these species are not widely grown, rarely found in the market and not cultivated commercially, yet are low maintenance, climate resistant and contain high amounts of micronutrients.",
-      "sources": [
-        {
-          "title": "Improving  nutrition through home gardening",
-          "url": "https://openknowledge.fao.org/items/e2135500-73cb-4855-8cd0-a8bdecb971a5",
-          "domain": "openknowledge.fao.org",
-          "retrieved_at": "2026-10-29T17:34:47+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:47+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": [
-        "04-agriculture"
-      ]
-    },
-    {
-      "id": "tip-1fb4553eab12c0",
-      "title": "Maximize Food Production on Small Plots",
-      "category": "other",
-      "summary": "Even a modest garden can significantly improve household nutrition if managed well.",
-      "steps": [
-        "Design a layout that maximizes sun exposure and water use.",
-        "Use crop rotation and intercropping to maintain soil fertility.",
-        "Apply compost or organic fertilizers to enrich soil.",
-        "Implement drip or mulch irrigation to conserve water.",
-        "Harvest regularly to encourage continuous production."
-      ],
-      "warnings": [
-        "Avoid overuse of chemical fertilizers that can contaminate water.",
-        "Monitor soil pH and adjust as needed.",
-        "Prevent erosion on sloped plots."
-      ],
-      "evidence_excerpt": "Even a small plot of land, if well managed, can make a substantial contribution towards meeting household food needs and improving nutrition.",
-      "sources": [
-        {
-          "title": "Improving  nutrition through home gardening",
-          "url": "https://openknowledge.fao.org/items/e2135500-73cb-4855-8cd0-a8bdecb971a5",
-          "domain": "openknowledge.fao.org",
-          "retrieved_at": "2026-10-29T17:34:47+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:47+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": []
-    },
-    {
-      "id": "tip-578d4a07239e17",
-      "title": "Leverage Home Gardens for Income Generation",
-      "category": "other",
-      "summary": "Surplus produce from home gardens can create local income streams and support food security.",
-      "steps": [
-        "Grow a mix of high‑value crops (e.g., herbs, tomatoes).",
-        "Establish a small market stall or community sales group.",
-        "Use fair pricing and promote fresh, local produce.",
-        "Reinvest profits into garden improvements or livestock.",
-        "Track sales to identify best‑selling items."
-      ],
-      "warnings": [
-        "Ensure compliance with local market regulations.",
-        "Avoid over‑harvesting that depletes the garden.",
-        "Protect produce from pests during transport."
-      ],
-      "evidence_excerpt": "Home gardens in enhancing food security by providing direct access to a variety of nutritionally rich foods, as well as employment and income generation opportunities to households.",
-      "sources": [
-        {
-          "title": "Improving  nutrition through home gardening",
-          "url": "https://openknowledge.fao.org/items/e2135500-73cb-4855-8cd0-a8bdecb971a5",
-          "domain": "openknowledge.fao.org",
-          "retrieved_at": "2026-10-29T17:34:47+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:47+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": []
-    },
-    {
-      "id": "tip-86a38b85f9b3ca",
-      "title": "Promote Year‑Round Nutritional Diets through Community Gardening",
-      "category": "other",
-      "summary": "Community‑based home gardening programs support continuous access to diverse, nutritious foods.",
-      "steps": [
-        "Organize training workshops for local households.",
-        "Create shared garden plots or cooperative plots.",
-        "Develop a schedule for planting, harvesting, and storage.",
-        "Encourage participation of all age groups, especially children.",
-        "Monitor nutritional outcomes and adjust practices."
-      ],
-      "warnings": [
-        "Ensure equitable access to garden space.",
-        "Prevent conflicts over resource allocation.",
-        "Maintain hygiene to avoid foodborne illnesses."
-      ],
-      "evidence_excerpt": "Effective community‑based action aimed at improving household food security and promoting the year‑round consumption of nutritionally adequate diets.",
-      "sources": [
-        {
-          "title": "Improving  nutrition through home gardening",
-          "url": "https://openknowledge.fao.org/items/e2135500-73cb-4855-8cd0-a8bdecb971a5",
-          "domain": "openknowledge.fao.org",
-          "retrieved_at": "2026-10-29T17:34:47+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:47+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": [
-        "04-agriculture"
-      ]
-    },
-    {
-      "id": "tip-db1d4b0b18b7e0",
-      "title": "Use Home Gardens to Combat Micronutrient Deficiencies",
-      "category": "other",
-      "summary": "Diversifying fruit and vegetable production in home gardens can sustainably reduce micronutrient gaps.",
-      "steps": [
-        "Select a variety of colorful fruits and vegetables rich in vitamins and minerals.",
-        "Plant in succession to provide continuous harvests.",
-        "Educate families on the nutritional benefits of each crop.",
-        "Incorporate home‑grown produce into daily meals.",
-        "Track changes in dietary diversity and health indicators."
-      ],
-      "warnings": [
-        "Avoid over‑use of pesticides that may reduce nutrient quality.",
-        "Ensure safe irrigation water to prevent contamination.",
-        "Be mindful of seasonal availability of certain crops."
-      ],
-      "evidence_excerpt": "The policy brief suggests that promoting cultivation, harvesting and consumption of these under‑utilized food crops in home gardens is a feasible strategy to sustainably reduce micronutrient deficiencies.",
-      "sources": [
-        {
-          "title": "Improving  nutrition through home gardening",
-          "url": "https://openknowledge.fao.org/items/e2135500-73cb-4855-8cd0-a8bdecb971a5",
-          "domain": "openknowledge.fao.org",
-          "retrieved_at": "2026-10-29T17:34:47+00:00"
-        }
-      ],
-      "retrieved_at": "2026-10-29T17:34:47+00:00",
-      "ai_provider": "groq",
-      "verification": {
-        "status": "needs_review",
-        "confidence": "high",
-        "reviewed_by": null,
-        "reviewed_at": null
-      },
-      "stage_ids": [
-        "04-agriculture"
-      ]
+      "quality_status": "source_aligned_needs_human_review",
+      "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
+      "content_type": "heating_reference"
     },
     {
       "id": "tip-f03df031c28d44",
       "title": "Define Clear Objectives for Your Home Garden",
       "category": "planning",
-      "summary": "List the main outputs you want and the constraints you face to guide improvement decisions.",
+      "summary": "Before improving a home garden, list its intended outputs and identify constraints such as wild pigs, poor soil, or sloping land.",
       "steps": [
-        "Write a list of the main things you want your home garden to produce.",
-        "Identify major constraints such as wild pigs, poor soil or sloping land."
+        "List the main things you want your home garden to produce.",
+        "Identify major constraints you need to overcome, such as wild pigs, poor soil, or sloping land."
       ],
       "warnings": [],
       "evidence_excerpt": "STEP 2: SET OBJECTIVES Make a list of the main things you want your home garden to produce. You should also identify the major constraints you need to overcome, such as wild pigs, poor soil or sloping land.",
@@ -1141,20 +500,23 @@
       "ai_provider": "groq",
       "verification": {
         "status": "needs_review",
-        "confidence": "high",
+        "confidence": "medium",
         "reviewed_by": null,
         "reviewed_at": null
       },
       "stage_ids": [
-        "01-drr"
-      ]
+        "04-agriculture"
+      ],
+      "quality_status": "source_aligned_needs_human_review",
+      "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use.",
+      "content_type": "planning_guidance"
     },
     {
       "id": "tip-ba0d2d2a284ab8",
       "title": "Avoid Crossing Flooded Roads or Walkways",
-      "content_type": "plan",
+      "content_type": "safety_rule",
       "category": "first_aid",
-      "summary": "If you encounter a flooded road or walkway, do not cross; instead turn around to avoid drowning.",
+      "summary": "If you approach a flooded road or walkway, turn around rather than attempting to cross it.",
       "steps": [
         "If you approach a flooded road or walkway, turn around and do not cross."
       ],
@@ -1172,12 +534,14 @@
       "edible_parts": [],
       "preparation_requirements": [],
       "lookalikes_or_uncertainty": [],
-      "warnings": [],
+      "warnings": [
+        "Floodwater can conceal hazards and may be deeper or faster-moving than it appears."
+      ],
       "evidence_excerpt": "If you approach a flooded road or walkway, follow this rule: turn around, don't drown!",
       "sources": [
         {
-          "title": "Plan Ahead for Disasters | Ready.gov",
-          "url": "https://www.ready.gov/",
+          "title": "Floods | Ready.gov",
+          "url": "https://www.ready.gov/floods",
           "domain": "ready.gov",
           "retrieved_at": "2026-10-29T17:34:52+00:00"
         }
@@ -1186,13 +550,15 @@
       "ai_provider": "groq",
       "verification": {
         "status": "needs_review",
-        "confidence": "high",
+        "confidence": "medium",
         "reviewed_by": null,
         "reviewed_at": null
       },
       "stage_ids": [
         "01-drr"
-      ]
+      ],
+      "quality_status": "source_aligned_needs_human_review",
+      "quality_notes": "Evidence excerpt supports the central claim. This is not a human approval or a safety certification; review the full source and local applicability before operational use."
     }
   ]
 }
