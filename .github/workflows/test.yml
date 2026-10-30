@@ -52,3 +52,6 @@ jobs:
 
       - name: Validate stored data structure
         run: python -m scripts.validate_data
+
+      - name: Validate technical knowledge catalogues
+        run: python -m scripts.knowledge_validation
