@@ -36,6 +36,9 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Validate publication dataset
+        run: python -m scripts.validate_data
+
       - name: Generate one PDF per stage
         run: python -m scripts.export_pdfs --all
 
