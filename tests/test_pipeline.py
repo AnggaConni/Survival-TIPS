@@ -254,3 +254,63 @@ def test_review_command_rejects_non_verbatim_step_evidence(monkeypatch, tmp_path
     monkeypatch.setattr(sys, "argv", ["review_tips", "--apply"])
     with pytest.raises(SystemExit):
         reviewer.main()
+
+
+def test_source_quality_assessment_is_explicitly_heuristic():
+    from scripts.source_quality import assess_source, content_hash, annotate_source
+    source = {
+        "url":"https://www.cdc.gov/water/emergency.html",
+        "title":"Emergency Drinking Water Technical Guide",
+        "text":"Last Reviewed: June 30, 2025. " + ("Water treatment procedure and safety equipment. " * 80),
+        "retrieved_at":"2026-10-30T00:00:00+00:00"
+    }
+    assessment = assess_source(source)
+    assert assessment["authority_tier"] == "A_official_public_authority"
+    assert assessment["document_type"] == "technical_guide"
+    assert assessment["review_status"] == "needs_human_review"
+    assert assessment["classification_method"] == "heuristic_v1"
+    annotated = annotate_source(source)
+    assert annotated["version"] == 1
+    assert annotated["content_hash"] == content_hash(source["text"])
+
+
+def test_duplicate_detector_flags_near_duplicate_titles():
+    from scripts.source_quality import duplicate_pairs
+    tips = [
+        {"id":"a","title":"Boil drinking water safely","summary":"Boil water before drinking."},
+        {"id":"b","title":"Boil drinking water safely!","summary":"Boil water before drinking."},
+        {"id":"c","title":"Build a raised garden bed","summary":"Prepare a garden bed."}
+    ]
+    pairs = duplicate_pairs(tips)
+    assert len(pairs) == 1
+    assert {pairs[0]["left_id"], pairs[0]["right_id"]} == {"a","b"}
+
+
+def test_conflict_detector_only_emits_human_review_signals():
+    from scripts.source_quality import possible_conflict_pairs
+    tips = [
+        {"id":"a","title":"Water is safe to drink","summary":"The tested water is safe after treatment."},
+        {"id":"b","title":"Water is unsafe to drink","summary":"The tested water is unsafe after treatment."}
+    ]
+    pairs = possible_conflict_pairs(tips)
+    assert pairs
+    assert pairs[0]["status"] == "human_review_required"
+    assert "safe/unsafe" in pairs[0]["signals"]
+
+
+def test_audit_checks_evidence_across_all_referenced_sources():
+    from scripts.audit_tips import audit
+    sources = [
+        {"url":"https://example.org/first","text":"An unrelated overview."},
+        {"url":"https://example.org/second","text":"Boil water for one minute."}
+    ]
+    tip = {
+        "id":"multi-source","title":"Boil water","content_type":"treat","category":"water",
+        "summary":"Boil water before drinking.","steps":["Boil water."],
+        "evidence_excerpt":"Boil water for one minute.",
+        "sources":[{"url":"https://example.org/first"},{"url":"https://example.org/second"}],
+        "stage_ids":["03-water-sanitation"],
+        "stage_classification":{"review_status":"needs_human_review"}
+    }
+    issues, _ = audit([tip], sources)
+    assert "evidence_not_found_verbatim_in_any_referenced_source" not in issues["multi-source"]
