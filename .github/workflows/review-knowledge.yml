@@ -1,0 +1,74 @@
+name: Review and publish technical knowledge
+
+on:
+  workflow_dispatch:
+    inputs:
+      decisions_json:
+        description: "Completed human review JSON from scripts.review_knowledge --template"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: survival-knowledge-approval
+  cancel-in-progress: false
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Write review decisions
+        env:
+          DECISIONS_JSON: ${{ inputs.decisions_json }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          payload = json.loads(os.environ["DECISIONS_JSON"])
+          if not isinstance(payload, dict) or not isinstance(payload.get("decisions"), list) or not payload["decisions"]:
+              raise SystemExit("Input must be a JSON object containing a non-empty decisions array.")
+          serialized = json.dumps(payload, ensure_ascii=False, indent=2)
+          Path("/tmp/knowledge_review_decisions.json").write_text(serialized, encoding="utf-8")
+          Path("data/knowledge_review_decisions.json").write_text(serialized, encoding="utf-8")
+          PY
+
+      - name: Apply human review decisions
+        run: python -m scripts.review_knowledge --apply --decisions-file /tmp/knowledge_review_decisions.json
+
+      - name: Validate technical knowledge catalogues
+        run: python -m scripts.knowledge_validation
+
+      - name: Run tests
+        run: python -m pytest -q
+
+      - name: Export approved technical knowledge PDFs
+        run: python -m scripts.export_knowledge
+
+      - name: Commit reviewed knowledge and PDFs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/recipes.json data/materials.json data/biodiversity_profiles.json data/agriculture_profiles.json data/knowledge_review_decisions.json docs/knowledge-pdf
+          if git diff --cached --quiet; then
+            echo "No technical knowledge changes to commit."
+          else
+            git commit -m "data: publish human-reviewed technical knowledge"
+            git push origin main
+          fi

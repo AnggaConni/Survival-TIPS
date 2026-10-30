@@ -81,11 +81,22 @@ def audit(tips, sources):
 
 def main():
     parser = argparse.ArgumentParser(description="Audit survival tips and optionally re-extract questionable source pages.")
-    parser.add_argument("--repair", action="store_true", help="Re-extract flagged source pages into the selected dataset; never auto-approve candidates.")
-    parser.add_argument("--candidates", action="store_true", help="Audit data/candidate_tips.json instead of the active data/tips.json.")
+    parser.add_argument("--repair", action="store_true", help="Re-extract flagged source pages into the selected unapproved dataset; never auto-approve candidates.")
+    parser.add_argument("--dataset", choices=("tips", "candidates", "approved"), default="tips",
+                        help="Dataset to audit: active review backlog, AI candidates, or approved tips.")
+    parser.add_argument("--candidates", action="store_true", help="Backward-compatible alias for --dataset candidates.")
+    parser.add_argument("--report-file", default="quality_report.json", help="Report filename under data/.")
     args = parser.parse_args()
 
-    tip_path = ROOT / "data" / ("candidate_tips.json" if args.candidates else "tips.json")
+    dataset = "candidates" if args.candidates else args.dataset
+    if args.repair and dataset == "approved":
+        parser.error("--repair cannot modify the approved dataset.")
+    filenames = {
+        "tips": "tips.json",
+        "candidates": "candidate_tips.json",
+        "approved": "approved_tips.json",
+    }
+    tip_path = ROOT / "data" / filenames[dataset]
     source_path = ROOT / "data" / "sources.json"
     tip_data = read_json(tip_path, {"schema_version": "1.0", "tips": []})
     source_data = read_json(source_path, {"sources": []})
@@ -116,8 +127,9 @@ def main():
         "source_tier_counts": dict(source_tiers),
         "review_note": "Similarity and lexical conflict signals are triage leads only; they do not prove duplication or factual contradiction."
     }
-    write_json(ROOT / "data" / "quality_report.json", report)
-    print("[audit] Wrote data/quality_report.json")
+    report_path = ROOT / "data" / args.report_file
+    write_json(report_path, report)
+    print(f"[audit] Wrote {report_path.relative_to(ROOT)}")
     for tip in tips:
         problems = issues.get(tip.get("id", "(missing-id)"))
         if problems:

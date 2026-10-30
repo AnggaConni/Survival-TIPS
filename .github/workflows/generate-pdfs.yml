@@ -45,15 +45,21 @@ jobs:
       - name: Validate publication dataset
         run: python -m scripts.validate_data
 
+      - name: Validate technical knowledge catalogues
+        run: python -m scripts.knowledge_validation
+
       - name: Generate one PDF per stage
         run: python -m scripts.export_pdfs --all
+
+      - name: Generate approved technical knowledge PDFs
+        run: python -m scripts.export_knowledge
 
       - name: Commit generated PDFs if changed
         if: github.ref == 'refs/heads/main'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/pdf
+          git add docs/pdf docs/knowledge-pdf
           if git diff --cached --quiet; then
             echo "PDFs are already up to date."
           else

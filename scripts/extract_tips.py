@@ -1,5 +1,6 @@
 from __future__ import annotations
 import json, os, re
+from urllib.parse import urlparse
 from .common import ROOT, now_iso, read_json, stable_id, write_json
 from .stages import classify_tip
 
@@ -183,6 +184,26 @@ def extract(source):
     print("[ai] All providers failed validation or API calls; source retained without fabricated tips. "+" | ".join(errors))
     return [],"none"
 
+def source_is_relevant(source):
+    config = read_json(ROOT / "config" / "sources.json", {})
+    trusted_domains = set(config.get("trusted_domains", []))
+    host = (urlparse(str(source.get("url", ""))).hostname or "").lower().removeprefix("www.")
+    if not any(host == domain or host.endswith("." + domain) for domain in trusted_domains):
+        return False
+    title = str(source.get("title", "")).casefold()
+    relevant_terms = (
+        "emergency", "disaster", "water", "wash", "shelter", "food", "nutrition",
+        "agriculture", "garden", "crop", "seed", "soil", "irrigation", "preservation",
+        "sanitation", "hygiene", "first aid", "construction", "material", "energy",
+        "repair", "treatment", "preparedness", "evacuation", "compost", "livestock",
+        "fire", "safety", "biodiversity", "species", "ecology", "forest", "coastal",
+        "flood", "drought", "manual", "handbook", "guide", "technical standard",
+    )
+    news_terms = ("signing ceremony", "contribution agreement", "funding", "pledge",
+                  "donation", "press release", "partnership", "the cast", "then and now")
+    return any(term in title for term in relevant_terms) and not any(term in title for term in news_terms)
+
+
 def process_saved_sources(max_sources=5, reprocess=False):
     source_data=read_json(ROOT/"data"/"sources.json",{"sources":[]})
     active=read_json(ROOT/"data"/"tips.json",{"schema_version":"1.0","tips":[]})
@@ -193,11 +214,17 @@ def process_saved_sources(max_sources=5, reprocess=False):
     protected={x.get("id") for group in (active.get("tips",[]),quarantine.get("tips",[]),approved.get("tips",[])) for x in group if x.get("id")}
     processed={s.get("url") for group in (active.get("tips",[]),candidates.get("tips",[]),quarantine.get("tips",[]),approved.get("tips",[])) for tip in group for s in tip.get("sources",[]) if s.get("url")}
     stored=[s for s in source_data.get("sources",[]) if s.get("text") and s.get("url")]
-    todo=stored[:max(1,max_sources)] if reprocess else [s for s in stored if s.get("url") not in processed][:max(1,max_sources)]
-    added=0; replaced=0
+    # Explicit --reprocess is an operator override for a deliberate refresh of stored material.
+    eligible=stored if reprocess else [s for s in stored if source_is_relevant(s)]
+    excluded=len(stored)-len(eligible)
+    todo=eligible[:max(1,max_sources)] if reprocess else [s for s in eligible if s.get("url") not in processed][:max(1,max_sources)]
+    added=0; replaced=0; empty=0
     for source in todo:
-        tips,_=extract(source)
+        print(f"[tips] Extracting: {source.get('title', source.get('url'))}")
+        tips,provider=extract(source)
         if not tips:
+            empty+=1
+            print(f"[tips] No accepted candidate from this source (provider={provider}).")
             continue
         source_url=source.get("url")
         if reprocess:
@@ -214,7 +241,7 @@ def process_saved_sources(max_sources=5, reprocess=False):
                 added+=1
     write_json(ROOT/"data"/"candidate_tips.json",{"schema_version":"1.0","generated_at":now_iso(),"tips":list(merged.values())[-5000:]})
     mode="reprocessed" if reprocess else "new"
-    print(f"[tips] {mode}: {len(todo)} source(s); added {added} candidate(s); replaced {replaced} previous candidate(s); queue total {len(merged)}. Active, quarantined, and approved datasets were not changed.")
+    print(f"[tips] {mode}: {len(todo)} eligible source(s) attempted; {excluded} irrelevant/untrusted source(s) skipped; {empty} source(s) yielded no accepted candidate; added {added}; replaced {replaced}; queue total {len(merged)}. Active, quarantined, and approved datasets were not changed.")
     return added
 
 if __name__=="__main__":
@@ -225,4 +252,3 @@ if __name__=="__main__":
     args=parser.parse_args()
     process_saved_sources(max_sources=args.limit,reprocess=args.reprocess)
 
-if __name__=="__main__": process_saved_sources()
