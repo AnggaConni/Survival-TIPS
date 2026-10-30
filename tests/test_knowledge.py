@@ -24,7 +24,7 @@ def _recipe():
         "materials": ["Dry, clean sand"],
         "tools": ["Mixing container"],
         "prerequisites": [],
-        "steps": ["Use dry, clean sand for this demonstration material."],
+        "steps": ["Combine the dry sand carefully."],
         "measurements": [],
         "expected_result": "A prepared demonstration mix",
         "failure_modes": [],
