@@ -196,6 +196,7 @@ def test_approved_tip_requires_step_level_verbatim_evidence(monkeypatch):
     import scripts.validate_data as validator
     payloads = {
         "sources": {"sources":[{"url":"https://example.org/guide","text":"Boil water for one minute.","version":1,"content_hash":"abc","quality_assessment":{"authority_tier":"C_or_unassessed","document_type":"web_article","technical_depth":1,"quality_score":25,"review_status":"needs_human_review"}}]},
+        "source_versions":{"events":[{"source_url":"https://example.org/guide","version":1}]},
         "tips": {"tips":[]}, "species":{"species":[]},
         "candidate_tips":{"tips":[]}, "tips.quarantine":{"tips":[]},
         "approved_tips":{"tips":[{
@@ -210,7 +211,6 @@ def test_approved_tip_requires_step_level_verbatim_evidence(monkeypatch):
     }
     monkeypatch.setattr(validator, "read_json", lambda path, default: payloads.get(path.stem, default))
     monkeypatch.setattr(validator, "get_stages", lambda: [{"id":"01-drr"}])
-    monkeypatch.setattr(validator.ROOT.__class__, "exists", lambda self: True)
     assert validator.validate()
     payloads["approved_tips"]["tips"][0]["steps"][0]["evidence_excerpt"] = "Invented evidence."
     assert not validator.validate()
