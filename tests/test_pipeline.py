@@ -179,3 +179,35 @@ def test_quarantine_ids_are_not_reintroduced_as_candidates(monkeypatch, tmp_path
     # the queue must not be merged into active tips.json.
     assert "tips.quarantine.json" in extractor.process_saved_sources.__code__.co_consts
     assert "candidate_tips.json" in extractor.process_saved_sources.__code__.co_consts
+
+
+def test_pdf_export_uses_only_approved_dataset(monkeypatch, tmp_path):
+    import scripts.export_pdfs as exporter
+    payload = {"tips": [
+        {"id":"draft","title":"Draft","summary":"Not approved","steps":["Do not publish"],"stage_ids":["01-drr"],"verification":{"status":"needs_review"},"quality_status":"source_aligned_needs_human_review"},
+        {"id":"approved","title":"Approved","summary":"Reviewed","steps":[{"instruction":"Do it","evidence_excerpt":"Supported text","source_url":"https://example.org"}],"stage_ids":["01-drr"],"verification":{"status":"approved","reviewed_by":"Reviewer","reviewed_at":"2026-10-30","review_notes":"Checked"},"quality_status":"human_verified"}
+    ]}
+    monkeypatch.setattr(exporter, "read_json", lambda path, default: payload if path.name == "approved_tips.json" else default)
+    selected = [tip for tip in payload["tips"] if tip.get("verification", {}).get("status") == "approved" and tip.get("quality_status") == "human_verified"]
+    assert [tip["id"] for tip in selected] == ["approved"]
+
+
+def test_approved_tip_requires_step_level_verbatim_evidence(monkeypatch):
+    import scripts.validate_data as validator
+    payloads = {
+        "sources": {"sources":[{"url":"https://example.org/guide","text":"Boil water for one minute."}]},
+        "tips": {"tips":[]}, "species":{"species":[]},
+        "candidate_tips":{"tips":[]}, "tips.quarantine":{"tips":[]},
+        "approved_tips":{"tips":[{
+            "id":"approved-1","title":"Boil water","summary":"Boil water.",
+            "sources":[{"url":"https://example.org/guide"}],
+            "steps":[{"instruction":"Boil water.","evidence_excerpt":"Boil water for one minute.","source_url":"https://example.org/guide"}],
+            "verification":{"status":"approved","reviewed_by":"Reviewer","reviewed_at":"2026-10-30","review_notes":"Checked"},
+            "quality_status":"human_verified"
+        }]}
+    }
+    monkeypatch.setattr(validator, "read_json", lambda path, default: payloads.get(path.stem, default))
+    monkeypatch.setattr(validator, "get_stages", lambda: [{"id":"01-drr"}])
+    assert validator.validate()
+    payloads["approved_tips"]["tips"][0]["steps"][0]["evidence_excerpt"] = "Invented evidence."
+    assert not validator.validate()
