@@ -22,6 +22,15 @@ def validate():
     approved = read_json(ROOT / "data" / "approved_tips.json", {"tips": []}).get("tips", [])
     sources = data["sources"].get("sources", [])
     source_text = {s.get("url"): s.get("text", "") for s in sources if s.get("url")}
+    for source in sources:
+        assessment = source.get("quality_assessment", {})
+        if not source.get("content_hash") or not source.get("version"):
+            errors.append(f"source missing content version metadata: {source.get('url')}")
+        for field in ("authority_tier", "document_type", "technical_depth", "quality_score", "review_status"):
+            if field not in assessment:
+                errors.append(f"source missing quality assessment {field}: {source.get('url')}")
+        if assessment.get("review_status") != "needs_human_review":
+            errors.append(f"source heuristic assessment must remain unreviewed: {source.get('url')}")
     valid_stages = {s.get("id") for s in get_stages()}
     ids = set()
     for group, rows in (("active", active), ("candidate", candidates), ("quarantine", quarantined)):
@@ -73,6 +82,11 @@ def validate():
         verification = tip.get("verification", {})
         if verification.get("status") != "approved" or tip.get("quality_status") != "human_verified":
             errors.append(f"approved tip lacks approved/human_verified status: {tip_id}")
+        stage_review = tip.get("stage_classification", {})
+        if stage_review.get("review_status") != "human_reviewed" or not stage_review.get("reviewed_by"):
+            errors.append(f"approved tip lacks human-reviewed stage classification: {tip_id}")
+        if not tip.get("primary_stage_id") or tip.get("primary_stage_id") not in valid_stages:
+            errors.append(f"approved tip has invalid primary stage: {tip_id}")
         if not verification.get("reviewed_by") or not verification.get("reviewed_at") or not verification.get("review_notes"):
             errors.append(f"approved tip missing reviewer, date, or review notes: {tip_id}")
         refs = {s.get("url") for s in tip.get("sources", []) if isinstance(s, dict)}
