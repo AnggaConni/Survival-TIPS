@@ -101,6 +101,22 @@ def main():
         print(f"[duplicate-review] {pair['left_id']} <-> {pair['right_id']} (similarity={pair['similarity']})")
     for pair in conflicts:
         print(f"[conflict-review] {pair['left_id']} <-> {pair['right_id']} signals={','.join(pair['signals'])}")
+    source_tiers = defaultdict(int)
+    for source in sources:
+        assessment = source.get("quality_assessment", {})
+        source_tiers[assessment.get("authority_tier", "unassessed")] += 1
+    report = {
+        "generated_at": now_iso(),
+        "dataset": tip_path.name,
+        "tip_count": len(tips),
+        "flagged_tip_count": len(issues),
+        "possible_duplicate_pairs": duplicates,
+        "possible_conflict_pairs": conflicts,
+        "source_tier_counts": dict(source_tiers),
+        "review_note": "Similarity and lexical conflict signals are triage leads only; they do not prove duplication or factual contradiction."
+    }
+    write_json(ROOT / "data" / "quality_report.json", report)
+    print("[audit] Wrote data/quality_report.json")
     for tip in tips:
         problems = issues.get(tip.get("id", "(missing-id)"))
         if problems:
