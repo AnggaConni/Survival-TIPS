@@ -143,6 +143,9 @@ OPPOSITE_PAIRS = (
     ("recommended", "not recommended"), ("use", "avoid"),
 )
 
+def _contains_phrase(text, phrase):
+    return bool(re.search(r"(?<![a-z0-9])" + re.escape(phrase) + r"(?![a-z0-9])", text))
+
 def possible_conflict_pairs(tips):
     """Lexical screening only: emit review signals, never resolve or label a true contradiction."""
     pairs = []
@@ -157,7 +160,7 @@ def possible_conflict_pairs(tips):
                 continue
             opposite = []
             for a, b in OPPOSITE_PAIRS:
-                if (a in left_text and b in right_text) or (b in left_text and a in right_text):
+                if (_contains_phrase(left_text, a) and _contains_phrase(right_text, b)) or (_contains_phrase(left_text, b) and _contains_phrase(right_text, a)):
                     opposite.append(f"{a}/{b}")
             # Different explicit numeric values about a shared topic are review leads only.
             nums_left = set(re.findall(r"\b\d+(?:\.\d+)?\s*(?:°c|°f|minutes?|hours?|days?|lit(?:re|er)s?|mg|g|kg|%)?", left_text))
