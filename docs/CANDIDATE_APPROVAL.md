@@ -40,6 +40,6 @@ The action checks that every selected ID exists in `data/candidate_tips.json`, r
 - This workflow is candidate-only; it cannot approve entries from the legacy `tips.json` review backlog.
 - A candidate is removed from `candidate_tips.json` only after all approval checks pass and it is present in `approved_tips.json`.
 - Existing approved entries are not duplicated on reruns.
-- `data/review_decisions.json` remains the local audit manifest; the submitted action input is retained in the GitHub Actions run log/context, not silently written as a new approval source.
+- The GitHub Action persists the submitted decision manifest to `data/review_decisions.json` and commits it alongside the publication changes, preserving reviewer attribution and evidence for later audit.
 - Exact text matching is a mechanical check, not a judgment that the evidence truly supports the instruction. The reviewer must read the source in context and assess scope, local applicability, completeness, and safety.
 - Only `data/approved_tips.json` is used by PDF export.
