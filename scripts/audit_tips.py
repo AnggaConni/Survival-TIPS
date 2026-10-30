@@ -176,13 +176,15 @@ def main():
             continue
         replacement_issues, _ = audit(replacements, [source])
         severe = {
-            "evidence_not_found_verbatim_in_source", "no_actionable_steps",
-            "missing_title", "missing_summary", "missing_source",
-            "possibly_generic_advice", "unclassified_stage",
+            "evidence_not_found_verbatim_in_any_referenced_source",
+            "source_text_unavailable_for_audit",
+            "no_actionable_steps", "missing_title", "missing_summary",
+            "missing_source", "possibly_generic_advice", "unclassified_stage",
             "missing_or_invalid_content_type", "wild_food_safety_details_missing",
             "build_recipe_missing_materials", "build_recipe_missing_tools",
             "build_recipe_missing_expected_result", "missing_quality_status",
             "invalid_stage_id", "stage_classification_not_auditable",
+            "invalid_stage_review_status",
         }
         rejected = {
             tip.get("id"): sorted(set(replacement_issues.get(tip.get("id"), [])) & severe)
@@ -213,7 +215,7 @@ def main():
             "generated_at": now_iso(),
             "tips": updated_tips[-5000:],
         })
-        print(f"[repair] Saved updated tips.json after re-extracting {repaired} source page(s).")
+        print(f"[repair] Saved updated {tip_path.name} after re-extracting {repaired} source page(s).")
     else:
         print("[repair] No source was replaced; tips.json left unchanged.")
 
