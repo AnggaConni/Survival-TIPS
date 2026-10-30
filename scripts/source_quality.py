@@ -37,7 +37,7 @@ def evidence_matches(evidence, source_text):
     """Match verbatim evidence, allowing explicit ellipses between quoted fragments."""
     def normalize(value):
         value = unicodedata.normalize("NFKC", str(value or ""))
-        return re.sub(r"\s+", " ", value).strip().casefold()
+        return re.sub(r"\s+", " ", value).strip().casefold().rstrip(".,;:!?")
 
     source = normalize(source_text)
     raw = unicodedata.normalize("NFKC", str(evidence or ""))
