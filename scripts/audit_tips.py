@@ -6,7 +6,7 @@ from collections import defaultdict
 from .common import ROOT, now_iso, read_json, write_json
 from .extract_tips import extract
 from .stages import get_stages
-from .source_quality import duplicate_pairs, possible_conflict_pairs
+from .source_quality import duplicate_pairs, evidence_matches, possible_conflict_pairs
 
 GENERIC_PHRASES = (
     "be prepared", "improve resilience", "consult guidelines",
@@ -50,7 +50,7 @@ def audit(tips, sources):
             matched = [source_by_url.get(ref.get("url")) for ref in refs if isinstance(ref, dict) and source_by_url.get(ref.get("url"))]
             if not matched:
                 issues[tip_id].append("source_text_unavailable_for_audit")
-            elif not evidence or not any(evidence.casefold() in str(source.get("text", "")).casefold() for source in matched):
+            elif not evidence or not any(evidence_matches(evidence, str(source.get("text", ""))) for source in matched):
                 issues[tip_id].append("evidence_not_found_verbatim_in_any_referenced_source")
         searchable = norm(tip.get("title")) + " " + norm(tip.get("summary"))
         if any(phrase in searchable for phrase in GENERIC_PHRASES):
