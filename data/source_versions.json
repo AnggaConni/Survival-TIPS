@@ -280,7 +280,28 @@
       "content_hash": "5d5774d3f7ff05ca98791842a4f69bd3651dc6b944e29d94244dd74554a13219",
       "changed_at": "2026-10-30T09:24:58+00:00",
       "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://iris.who.int/items/f73a82f7-95a0-4e62-99a7-e5a00c55a88b",
+      "version": 1,
+      "content_hash": "c5f05c7f4fa4f5c53ea672e2bd9e2172e57ce7b0bcd013d01e45de444c80b106",
+      "changed_at": "2026-10-30T10:10:43+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.who.int/activities/strengthening-national-emergency-preparedness",
+      "version": 1,
+      "content_hash": "dea3c0b977f40edec2d53a94b7374d6f80c818ccf5de056bca2fe155b4c7c571",
+      "changed_at": "2026-10-30T10:10:50+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.who.int/publications/m/item/household-water-treatment-and-safe-storage-following-emergencies-and-disasters",
+      "version": 1,
+      "content_hash": "3c7657d17566cfe767fb8d99b2aace0e5675e1cfe09f85b0aad4c2cf570ce4c3",
+      "changed_at": "2026-10-30T10:10:51+00:00",
+      "event": "baseline_snapshot"
     }
   ],
-  "generated_at": "2026-10-30T09:26:10+00:00"
+  "generated_at": "2026-10-30T10:12:00+00:00"
 }
