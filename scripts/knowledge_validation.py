@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import argparse
-from collections import Counter
 from pathlib import Path
 
 from .common import ROOT, read_json, is_http_url
@@ -129,6 +128,9 @@ def validate_catalogues(root: Path = ROOT):
                 value = row.get(field, [])
                 if value is not None and not isinstance(value, list):
                     errors.append(f"{label} field '{field}' must be an array")
+                    continue
+                if value and field not in evidence_fields:
+                    errors.append(f"{label} populated field lacks field-level evidence: {field}")
                 if field == "steps":
                     for number, step in enumerate(value or [], 1):
                         if not isinstance(step, (str, dict)) or not (step.get("instruction") if isinstance(step, dict) else step.strip()):
