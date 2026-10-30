@@ -44,10 +44,9 @@ jobs:
           payload = json.loads(os.environ["DECISIONS_JSON"])
           if not isinstance(payload, dict) or not isinstance(payload.get("decisions"), list) or not payload["decisions"]:
               raise SystemExit("Input must be a JSON object containing a non-empty decisions array.")
-          Path("/tmp/review_decisions.json").write_text(
-              json.dumps(payload, ensure_ascii=False, indent=2),
-              encoding="utf-8"
-          )
+          serialized = json.dumps(payload, ensure_ascii=False, indent=2) + "\\n"
+          Path("/tmp/review_decisions.json").write_text(serialized, encoding="utf-8")
+          Path("data/review_decisions.json").write_text(serialized, encoding="utf-8")
           PY
 
       - name: Approve selected candidates (human evidence required)
@@ -66,7 +65,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/approved_tips.json data/candidate_tips.json docs/pdf
+          git add data/review_decisions.json data/approved_tips.json data/candidate_tips.json docs/pdf
           if git diff --cached --quiet; then
             echo "No publication changes to commit."
           else
