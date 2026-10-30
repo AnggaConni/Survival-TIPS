@@ -28,8 +28,8 @@ The intended flow is:
 3. DeepSeek independently reviews up to five candidates per collection run. Only low-risk planning/communication guidance can be auto-approved, and only when source authority, quality threshold, model confidence, configured stage IDs, and exact per-step source quotations all pass. Other candidates remain in the manual queue.
 4. A human reviewer can still approve candidates through `data/review_decisions.json` and `python -m scripts.review_tips --apply`. Both human-approved and narrowly AI-approved records are recorded distinctly in `data/approved_tips.json`.
 5. The collection workflow validates the JSON and generates all eight PDFs from the approved dataset only.
-5. A separate `.github/workflows/generate-pdfs.yml` workflow also runs on pushes that change JSON data or the stage/PDF generator files. This covers manual data edits and commits made outside the collection workflow.
-6. Generated handbooks are committed to `docs/pdf/`.
+6. A separate `.github/workflows/generate-pdfs.yml` workflow also runs on pushes that change JSON data or the stage/PDF generator files. This covers manual data edits and commits made outside the collection workflow.
+7. Generated handbooks are committed to `docs/pdf/`.
 
 **GitHub Actions detail:** commits pushed using GitHub Actions' default `GITHUB_TOKEN` do not normally trigger another `push` workflow. That's why the collection workflow itself also generates PDFs before committing its data and PDF outputs. The separate push-triggered workflow is for direct pushes and other qualifying changes, not the only path for PDF generation.
 
@@ -139,6 +139,8 @@ Optional: `TAVILY_API_KEY` for dedicated web search. Model overrides may be conf
 - Site terms and robots rules still apply. The collector avoids copying whole articles into tips.
 - Practical content involving drinking water, wild foods, chemicals, electricity, lime kilns, or construction must be reviewed for local conditions and safety before being treated as instructions.
 
+
+See [DeepSeek autonomous approval policy](docs/DEEPSEEK_AUTONOMOUS_APPROVAL.md) for eligibility, safety gates, and audit-trail details.
 
 ## Phase 2 — source and content quality controls
 
