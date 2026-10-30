@@ -179,3 +179,78 @@ def test_quarantine_ids_are_not_reintroduced_as_candidates(monkeypatch, tmp_path
     # the queue must not be merged into active tips.json.
     assert "tips.quarantine.json" in extractor.process_saved_sources.__code__.co_consts
     assert "candidate_tips.json" in extractor.process_saved_sources.__code__.co_consts
+
+
+def test_pdf_export_uses_only_approved_dataset(monkeypatch, tmp_path):
+    import scripts.export_pdfs as exporter
+    payload = {"tips": [
+        {"id":"draft","title":"Draft","summary":"Not approved","steps":["Do not publish"],"stage_ids":["01-drr"],"verification":{"status":"needs_review"},"quality_status":"source_aligned_needs_human_review"},
+        {"id":"approved","title":"Approved","summary":"Reviewed","steps":[{"instruction":"Do it","evidence_excerpt":"Supported text","source_url":"https://example.org"}],"stage_ids":["01-drr"],"verification":{"status":"approved","reviewed_by":"Reviewer","reviewed_at":"2026-10-30","review_notes":"Checked"},"quality_status":"human_verified"}
+    ]}
+    monkeypatch.setattr(exporter, "read_json", lambda path, default: payload if path.name == "approved_tips.json" else default)
+    selected = [tip for tip in payload["tips"] if tip.get("verification", {}).get("status") == "approved" and tip.get("quality_status") == "human_verified"]
+    assert [tip["id"] for tip in selected] == ["approved"]
+
+
+def test_approved_tip_requires_step_level_verbatim_evidence(monkeypatch):
+    import scripts.validate_data as validator
+    payloads = {
+        "sources": {"sources":[{"url":"https://example.org/guide","text":"Boil water for one minute."}]},
+        "tips": {"tips":[]}, "species":{"species":[]},
+        "candidate_tips":{"tips":[]}, "tips.quarantine":{"tips":[]},
+        "approved_tips":{"tips":[{
+            "id":"approved-1","title":"Boil water","summary":"Boil water.",
+            "sources":[{"url":"https://example.org/guide"}],
+            "steps":[{"instruction":"Boil water.","evidence_excerpt":"Boil water for one minute.","source_url":"https://example.org/guide"}],
+            "verification":{"status":"approved","reviewed_by":"Reviewer","reviewed_at":"2026-10-30","review_notes":"Checked"},
+            "quality_status":"human_verified"
+        }]}
+    }
+    monkeypatch.setattr(validator, "read_json", lambda path, default: payloads.get(path.stem, default))
+    monkeypatch.setattr(validator, "get_stages", lambda: [{"id":"01-drr"}])
+    assert validator.validate()
+    payloads["approved_tips"]["tips"][0]["steps"][0]["evidence_excerpt"] = "Invented evidence."
+    assert not validator.validate()
+
+
+def test_review_command_promotes_only_with_verbatim_evidence(monkeypatch, tmp_path):
+    import json, sys
+    import scripts.review_tips as reviewer
+    monkeypatch.setattr(reviewer, "ROOT", tmp_path)
+    (tmp_path / "data").mkdir()
+    def save(name, payload):
+        (tmp_path / "data" / name).write_text(json.dumps(payload), encoding="utf-8")
+    save("sources.json", {"sources":[{"url":"https://example.org/guide","text":"Boil water for one minute."}]})
+    save("tips.json", {"tips":[{"id":"tip-1","title":"Boil water","summary":"Boil water safely.","steps":["Bring water to a boil."],"sources":[{"url":"https://example.org/guide"}],"verification":{"status":"needs_review","confidence":"medium"},"quality_status":"source_aligned_needs_human_review"}]})
+    save("candidate_tips.json", {"tips":[]})
+    save("approved_tips.json", {"tips":[]})
+    save("review_decisions.json", {"decisions":[{
+        "tip_id":"tip-1","decision":"approve","reviewer":"Human reviewer","notes":"Checked against source.",
+        "step_reviews":[{"evidence_excerpt":"Boil water for one minute.","source_url":"https://example.org/guide"}]
+    }]})
+    monkeypatch.setattr(sys, "argv", ["review_tips", "--apply"])
+    reviewer.main()
+    approved = json.loads((tmp_path / "data" / "approved_tips.json").read_text(encoding="utf-8"))["tips"]
+    assert len(approved) == 1
+    assert approved[0]["verification"]["status"] == "approved"
+    assert approved[0]["steps"][0]["evidence_excerpt"] == "Boil water for one minute."
+
+
+def test_review_command_rejects_non_verbatim_step_evidence(monkeypatch, tmp_path):
+    import json, sys, pytest
+    import scripts.review_tips as reviewer
+    monkeypatch.setattr(reviewer, "ROOT", tmp_path)
+    (tmp_path / "data").mkdir()
+    def save(name, payload):
+        (tmp_path / "data" / name).write_text(json.dumps(payload), encoding="utf-8")
+    save("sources.json", {"sources":[{"url":"https://example.org/guide","text":"Boil water for one minute."}]})
+    save("tips.json", {"tips":[{"id":"tip-2","title":"Boil water","summary":"Boil water.","steps":["Boil water."],"sources":[{"url":"https://example.org/guide"}],"verification":{"status":"needs_review"},"quality_status":"source_aligned_needs_human_review"}]})
+    save("candidate_tips.json", {"tips":[]})
+    save("approved_tips.json", {"tips":[]})
+    save("review_decisions.json", {"decisions":[{
+        "tip_id":"tip-2","decision":"approve","reviewer":"Human reviewer","notes":"Checked.",
+        "step_reviews":[{"evidence_excerpt":"Boiling water removes all toxins.","source_url":"https://example.org/guide"}]
+    }]})
+    monkeypatch.setattr(sys, "argv", ["review_tips", "--apply"])
+    with pytest.raises(SystemExit):
+        reviewer.main()

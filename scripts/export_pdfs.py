@@ -8,7 +8,7 @@ from reportlab.lib.enums import TA_CENTER
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import mm
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, KeepTogether
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak
 from .common import ROOT, read_json
 from .stages import get_stages, tips_for_stage
 
@@ -62,7 +62,10 @@ def build_pdf(stage, tips, output_path):
         if tip.get("steps"):
             block.append(Paragraph("<b>Steps</b>", styles["BodyText"]))
             for step_num, step in enumerate(tip["steps"], 1):
-                block.append(Paragraph(f"{step_num}. {safe(step)}", styles["BodyText"]))
+                instruction = step.get("instruction", "") if isinstance(step, dict) else step
+                block.append(Paragraph(f"{step_num}. {safe(instruction)}", styles["BodyText"]))
+                if isinstance(step, dict) and step.get("evidence_excerpt"):
+                    block.append(Paragraph("<i>Evidence:</i> " + safe(step["evidence_excerpt"]), styles["SmallNote"]))
         if tip.get("expected_result"):
             block.append(Paragraph("<b>Expected result</b>: " + safe(tip["expected_result"]), styles["BodyText"]))
         for field, label in (("failure_modes", "Failure modes / limitations"), ("safety_notes", "Safety notes"), ("identification_criteria", "Identification criteria"), ("edible_parts", "Edible parts stated by source"), ("preparation_requirements", "Preparation requirements"), ("lookalikes_or_uncertainty", "Look-alikes / uncertainty")):
@@ -76,13 +79,17 @@ def build_pdf(stage, tips, output_path):
             for warning in tip["warnings"]:
                 block.append(Paragraph("• " + safe(warning), styles["BodyText"]))
         verification = tip.get("verification", {})
-        block.append(Paragraph(f"Review status: {safe(verification.get('status', 'needs_review'))} • Category: {safe(tip.get('category', 'other'))}", styles["SmallNote"]))
+        block.append(Paragraph(f"Review status: {safe(verification.get('status', 'approved'))} • Category: {safe(tip.get('category', 'other'))}", styles["SmallNote"]))
+        if verification.get("reviewed_by"):
+            block.append(Paragraph("Human reviewer: " + safe(verification.get("reviewed_by")) + " • " + safe(verification.get("reviewed_at", "")), styles["SmallNote"]))
         for source in tip.get("sources", []):
             url = str(source.get("url", ""))
             if url.startswith(("https://", "http://")):
-                block.append(Paragraph("Source: " + safe(source.get("title") or url) + " — " + safe(url), styles["SmallNote"]))
+                label = safe(source.get("title") or url)
+                block.append(Paragraph('Source: <link href="' + escape(url) + '" color="blue">' + label + '</link>', styles["SmallNote"]))
         block.append(Spacer(1, 3*mm))
-        story.append(KeepTogether(block))
+        # Long entries can split naturally across pages.
+        story.extend(block)
     doc.build(story, onFirstPage=footer, onLaterPages=footer)
 
 def main():
@@ -99,8 +106,13 @@ def main():
     selected = stages if args.all else [s for s in stages if s["id"] == args.stage]
     if not selected:
         parser.error(f"Unknown stage ID: {args.stage}. Available: " + ", ".join(s["id"] for s in stages))
-    tips_payload = read_json(ROOT / "data" / "tips.json", {"tips": []})
-    tips = tips_payload.get("tips", [])
+    # Public handbooks are built exclusively from the human-approved publication dataset.
+    tips_payload = read_json(ROOT / "data" / "approved_tips.json", {"tips": []})
+    tips = [
+        tip for tip in tips_payload.get("tips", [])
+        if tip.get("verification", {}).get("status") == "approved"
+        and tip.get("quality_status") == "human_verified"
+    ]
     out_dir = Path(args.output_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     for stage in selected:
