@@ -97,7 +97,8 @@ python -m scripts.enrich_sources
 python -m scripts.audit_tips --dataset tips --report-file quality_report_active.json
 python -m scripts.audit_tips --dataset candidates --report-file quality_report_candidates.json
 python -m scripts.audit_tips --dataset approved --report-file quality_report_approved.json
-# Optional: re-run extraction after changing the prompt; candidates only
+# Optional: re-run extraction after changing the prompt; candidates only.
+# Explicit --reprocess bypasses the normal relevance gate for this operator-requested refresh.
 python -m scripts.extract_tips --reprocess --limit 5
 python -m scripts.audit_tips --repair
 # Edit data/review_decisions.json, then apply human approvals
