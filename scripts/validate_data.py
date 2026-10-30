@@ -85,11 +85,13 @@ def validate():
             errors.append(f"approved dataset has missing/duplicate ID: {tip_id}")
         approved_ids.add(tip_id)
         verification = tip.get("verification", {})
-        if verification.get("status") != "approved" or tip.get("quality_status") != "human_verified":
-            errors.append(f"approved tip lacks approved/human_verified status: {tip_id}")
+        if verification.get("status") != "approved" or tip.get("quality_status") not in {"human_verified", "ai_verified"}:
+            errors.append(f"approved tip lacks approved/human_verified or ai_verified status: {tip_id}")
         stage_review = tip.get("stage_classification", {})
-        if stage_review.get("review_status") != "human_reviewed" or not stage_review.get("reviewed_by") or not stage_review.get("reviewed_at"):
-            errors.append(f"approved tip lacks human-reviewed stage classification: {tip_id}")
+        is_human_review = stage_review.get("review_status") == "human_reviewed"
+        is_ai_review = stage_review.get("review_status") == "ai_reviewed" and verification.get("review_type") == "automated_low_risk_only"
+        if not (is_human_review or is_ai_review) or not stage_review.get("reviewed_by") or not stage_review.get("reviewed_at"):
+            errors.append(f"approved tip lacks valid human or restricted AI-reviewed stage classification: {tip_id}")
         if not tip.get("primary_stage_id") or tip.get("primary_stage_id") not in valid_stages:
             errors.append(f"approved tip has invalid primary stage: {tip_id}")
         if tip.get("primary_stage_id") != (tip.get("stage_ids") or [None])[0]:

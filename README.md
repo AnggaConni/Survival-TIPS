@@ -25,10 +25,11 @@ The intended flow is:
 
 1. The scraper discovers and fetches sources.
 2. AI extraction saves source-linked, unreviewed entries to `data/candidate_tips.json` (and retains the legacy review backlog in `data/tips.json`).
-3. A human reviewer records step-by-step evidence in `data/review_decisions.json` and runs `python -m scripts.review_tips --apply`; only approved entries enter `data/approved_tips.json`.
-4. The collection workflow validates the JSON and generates all eight PDFs from the approved dataset only.
-5. A separate `.github/workflows/generate-pdfs.yml` workflow also runs on pushes that change JSON data or the stage/PDF generator files. This covers manual data edits and commits made outside the collection workflow.
-6. Generated handbooks are committed to `docs/pdf/`.
+3. DeepSeek independently reviews up to five candidates per collection run. Only low-risk planning/communication guidance can be auto-approved, and only when source authority, quality threshold, model confidence, configured stage IDs, and exact per-step source quotations all pass. Other candidates remain in the manual queue.
+4. A human reviewer can still approve candidates through `data/review_decisions.json` and `python -m scripts.review_tips --apply`. Both human-approved and narrowly AI-approved records are recorded distinctly in `data/approved_tips.json`.
+5. The collection workflow validates the JSON and generates all eight PDFs from the approved dataset only.
+6. A separate `.github/workflows/generate-pdfs.yml` workflow also runs on pushes that change JSON data or the stage/PDF generator files. This covers manual data edits and commits made outside the collection workflow.
+7. Generated handbooks are committed to `docs/pdf/`.
 
 **GitHub Actions detail:** commits pushed using GitHub Actions' default `GITHUB_TOKEN` do not normally trigger another `push` workflow. That's why the collection workflow itself also generates PDFs before committing its data and PDF outputs. The separate push-triggered workflow is for direct pushes and other qualifying changes, not the only path for PDF generation.
 
@@ -128,7 +129,9 @@ Optional: `TAVILY_API_KEY` for dedicated web search. Model overrides may be conf
 
 ## Quality and safety
 
-- AI-extracted content is a candidate, not verified advice. New tips start at `verification.status = "needs_review"`.
+- AI-extracted content starts as a candidate. DeepSeek autonomous publication is restricted to low-risk planning/communication guidance, maximum five candidates per run, and requires exact source evidence for every step plus a high confidence threshold. It is labelled `ai_verified`, never `human_verified`.
+- High-risk or operational advice (including food, species, water treatment, first aid, sanitation, chemicals, electricity, combustion, construction, and agriculture) always remains in the human-review queue.
+- Every automated decision, including deferrals and errors, is retained in `data/autonomous_review_log.json`. The audit log is committed with the collection output.
 - Each tip should preserve source URLs and review status in the PDF.
 - Search results are discovery leads, not proof of trustworthiness. Curated/trusted domains are prioritized.
 - GBIF occurrence records and photos do not establish that a species is edible, medicinal, non-toxic, or suitable for survival.
@@ -136,6 +139,8 @@ Optional: `TAVILY_API_KEY` for dedicated web search. Model overrides may be conf
 - Site terms and robots rules still apply. The collector avoids copying whole articles into tips.
 - Practical content involving drinking water, wild foods, chemicals, electricity, lime kilns, or construction must be reviewed for local conditions and safety before being treated as instructions.
 
+
+See [DeepSeek autonomous approval policy](docs/DEEPSEEK_AUTONOMOUS_APPROVAL.md) for eligibility, safety gates, and audit-trail details.
 
 ## Phase 2 — source and content quality controls
 
