@@ -13,6 +13,10 @@ def test_evidence_match_normalizes_unicode_and_whitespace():
     assert evidence_matches(excerpt, source)
 
 
+def test_evidence_match_allows_terminal_punctuation_difference():
+    assert evidence_matches("This is a supported sentence.", "This is a supported sentence; followed by more text.")
+
+
 def test_evidence_match_rejects_unsubstantiated_excerpt():
     assert not evidence_matches("Boiling removes every chemical.", "Boil water before drinking.")
 
