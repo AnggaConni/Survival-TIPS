@@ -214,7 +214,8 @@ def process_saved_sources(max_sources=5, reprocess=False):
     protected={x.get("id") for group in (active.get("tips",[]),quarantine.get("tips",[]),approved.get("tips",[])) for x in group if x.get("id")}
     processed={s.get("url") for group in (active.get("tips",[]),candidates.get("tips",[]),quarantine.get("tips",[]),approved.get("tips",[])) for tip in group for s in tip.get("sources",[]) if s.get("url")}
     stored=[s for s in source_data.get("sources",[]) if s.get("text") and s.get("url")]
-    eligible=[s for s in stored if source_is_relevant(s)]
+    # Explicit --reprocess is an operator override for a deliberate refresh of stored material.
+    eligible=stored if reprocess else [s for s in stored if source_is_relevant(s)]
     excluded=len(stored)-len(eligible)
     todo=eligible[:max(1,max_sources)] if reprocess else [s for s in eligible if s.get("url") not in processed][:max(1,max_sources)]
     added=0; replaced=0; empty=0
