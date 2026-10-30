@@ -22,6 +22,11 @@ def validate():
     approved = read_json(ROOT / "data" / "approved_tips.json", {"tips": []}).get("tips", [])
     sources = data["sources"].get("sources", [])
     source_text = {s.get("url"): s.get("text", "") for s in sources if s.get("url")}
+    version_events = read_json(ROOT / "data" / "source_versions.json", {"events": []}).get("events", [])
+    version_keys = {(event.get("source_url"), event.get("version")) for event in version_events}
+    for source in sources:
+        if (source.get("url"), source.get("version", 1)) not in version_keys:
+            errors.append(f"source version missing from history: {source.get('url')}")
     for source in sources:
         assessment = source.get("quality_assessment", {})
         if not source.get("content_hash") or not source.get("version"):
