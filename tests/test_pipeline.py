@@ -205,7 +205,7 @@ def test_approved_tip_requires_step_level_verbatim_evidence(monkeypatch):
         "approved_tips":{"tips":[{
             "id":"approved-1","title":"Boil water","summary":"Boil water.",
             "stage_ids":["01-drr"],"primary_stage_id":"01-drr","secondary_stage_ids":[],
-            "stage_classification":{"suggested_stage_ids":["01-drr"],"approved_stage_ids":["01-drr"],"review_status":"human_reviewed","reviewed_by":"Reviewer"},
+            "stage_classification":{"suggested_stage_ids":["01-drr"],"approved_stage_ids":["01-drr"],"review_status":"human_reviewed","reviewed_by":"Reviewer","reviewed_at":"2026-10-30"},
             "sources":[{"url":"https://example.org/guide"}],
             "steps":[{"instruction":"Boil water.","evidence_excerpt":"Boil water for one minute.","source_url":"https://example.org/guide"}],
             "verification":{"status":"approved","reviewed_by":"Reviewer","reviewed_at":"2026-10-30","review_notes":"Checked"},
@@ -321,3 +321,48 @@ def test_audit_checks_evidence_across_all_referenced_sources():
     }
     issues, _ = audit([tip], sources)
     assert "evidence_not_found_verbatim_in_any_referenced_source" not in issues["multi-source"]
+
+
+def test_reprocess_replaces_only_candidate_entries_for_selected_source(monkeypatch, tmp_path):
+    import json
+    import scripts.extract_tips as extractor
+    monkeypatch.setattr(extractor, "ROOT", tmp_path)
+    (tmp_path / "data").mkdir()
+    def save(name, payload):
+        (tmp_path / "data" / name).write_text(json.dumps(payload), encoding="utf-8")
+    source_url = "https://example.org/guide"
+    save("sources.json", {"sources":[{"url":source_url,"text":"Source text","version":2,"content_hash":"hash-v2"}]})
+    save("tips.json", {"tips":[{"id":"active-1","sources":[{"url":source_url}]}]})
+    save("tips.quarantine.json", {"tips":[]})
+    save("approved_tips.json", {"tips":[]})
+    save("candidate_tips.json", {"tips":[
+        {"id":"old-candidate","sources":[{"url":source_url}]},
+        {"id":"other-source","sources":[{"url":"https://example.org/other"}]}
+    ]})
+    replacement = {"id":"new-candidate","sources":[{"url":source_url}]}
+    monkeypatch.setattr(extractor, "extract", lambda source: ([replacement], "test"))
+    assert extractor.process_saved_sources(max_sources=1, reprocess=True) == 1
+    result = json.loads((tmp_path / "data" / "candidate_tips.json").read_text(encoding="utf-8"))["tips"]
+    ids = {tip["id"] for tip in result}
+    assert ids == {"new-candidate", "other-source"}
+    active = json.loads((tmp_path / "data" / "tips.json").read_text(encoding="utf-8"))["tips"]
+    assert active[0]["id"] == "active-1"
+
+
+def test_reprocess_keeps_existing_candidate_when_extraction_returns_no_tips(monkeypatch, tmp_path):
+    import json
+    import scripts.extract_tips as extractor
+    monkeypatch.setattr(extractor, "ROOT", tmp_path)
+    (tmp_path / "data").mkdir()
+    def save(name, payload):
+        (tmp_path / "data" / name).write_text(json.dumps(payload), encoding="utf-8")
+    source_url = "https://example.org/guide"
+    save("sources.json", {"sources":[{"url":source_url,"text":"Source text"}]})
+    save("tips.json", {"tips":[]})
+    save("tips.quarantine.json", {"tips":[]})
+    save("approved_tips.json", {"tips":[]})
+    save("candidate_tips.json", {"tips":[{"id":"old-candidate","sources":[{"url":source_url}]}]})
+    monkeypatch.setattr(extractor, "extract", lambda source: ([], "test"))
+    assert extractor.process_saved_sources(max_sources=1, reprocess=True) == 0
+    result = json.loads((tmp_path / "data" / "candidate_tips.json").read_text(encoding="utf-8"))["tips"]
+    assert [tip["id"] for tip in result] == ["old-candidate"]
