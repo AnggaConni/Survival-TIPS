@@ -103,9 +103,20 @@ def apply_decisions(decisions_path: Path) -> int:
         for field in required_fields:
             if record.get(field) not in (None, "", []) and field not in evidence_fields:
                 raise SystemExit(f"{filename}:{record.get('id')} required field lacks evidence: {field}")
-        for field in spec["list_fields"]:
-            if record.get(field) and field not in evidence_fields:
-                raise SystemExit(f"{filename}:{record.get('id')} populated field lacks evidence: {field}")
+        metadata_fields = {
+            "id", "title", "summary", "stage_ids", "sources", "evidence",
+            "verification", "food_use_status", "use_claim_review_status",
+            "qualified_reviewer", "qualification_basis", "generated_at",
+        }
+        for field, value in record.items():
+            if field in metadata_fields or value in (None, "", []):
+                continue
+            if field not in evidence_fields:
+                raise SystemExit(f"{filename}:{record.get('id')} populated claim field lacks evidence: {field}")
+        if filename == "biodiversity_profiles.json":
+            food_status = record.get("food_use_status", "not_assessed")
+            if food_status != "not_assessed" and "food_use_status" not in evidence_fields:
+                raise SystemExit(f"{filename}:{record.get('id')} food_use_status requires source evidence")
 
         if filename == "biodiversity_profiles.json" and record.get("uses"):
             if record.get("use_claim_review_status") != "qualified_review_completed":
