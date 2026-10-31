@@ -144,7 +144,7 @@ async function runIntegrityChecks(){
     host.append(row);
   }
   const count=document.getElementById('json-count');if(count)count.textContent=passed+'/'+files.length;
-  const summary=el('p','muted',failed?failed+' browser-level check(s) failed. This is a lightweight check, not the repository's full validator.':'All '+passed+' selected files passed lightweight browser checks.');
+  const summary=el("p","muted",failed?failed+" browser-level check(s) failed. This is a lightweight check, not the repository full validator.":"All "+passed+" selected files passed lightweight browser checks.");
   host.append(summary);
 }
 document.addEventListener('DOMContentLoaded',()=>{
