@@ -166,14 +166,10 @@ def test_normalize_tip_rejects_incomplete_build_recipe():
     assert normalize_tip(raw,src,"test") is None
 
 
-def test_normalize_tip_marks_new_output_as_unreviewed_candidate():
+def test_normalize_tip_rejects_communication_guidance_from_practical_dataset():
     src={"url":"https://example.org/guide","title":"Guide","domain":"example.org","retrieved_at":"2026-10-29T00:00:00+00:00","text":"Use several channels to communicate an emergency notice."}
     raw={"title":"Use several channels","content_type":"communication_guidance","category":"communication","summary":"Consider more than one channel.","steps":["Consider more than one channel."],"warnings":[],"evidence_excerpt":"Use several channels to communicate an emergency notice.","confidence":"medium"}
-    tip=normalize_tip(raw,src,"test")
-    assert tip is not None
-    assert tip["quality_status"] == "ai_candidate_needs_review"
-    assert tip["verification"]["status"] == "needs_review"
-
+    assert normalize_tip(raw,src,"test") is None
 
 def test_quarantine_ids_are_not_reintroduced_as_candidates(monkeypatch, tmp_path):
     import scripts.extract_tips as extractor
