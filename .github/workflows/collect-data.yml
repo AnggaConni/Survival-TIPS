@@ -10,13 +10,11 @@ on:
         description: "Maximum images per taxon query"
         required: false
         default: "2"
-      repair_tips:
-        description: "Re-extract flagged tip sources using AI (may use API credits)"
-        required: false
+      run_ai_extraction:
+        description: "Run technical AI extraction (uses configured model API credits)"
+        required: true
         type: boolean
         default: false
-  schedule:
-    - cron: "31 3 * * 1"
 permissions:
   contents: write
 concurrency:
@@ -46,31 +44,18 @@ jobs:
           MAX_ARTICLES_PER_RUN: ${{ github.event.inputs.source_limit || '8' }}
           MAX_GBIF_IMAGES_PER_RUN: ${{ github.event.inputs.gbif_limit || '2' }}
           USER_AGENT: "Survival-TIPS/0.1 (educational research)"
-        run: python -m scripts.run_pipeline --limit "$MAX_ARTICLES_PER_RUN" --gbif-limit "$MAX_GBIF_IMAGES_PER_RUN" --ai-limit 5
+        run: |
+          if [ "${{ inputs.run_ai_extraction }}" = "true" ]; then
+            python -m scripts.run_pipeline --limit "$MAX_ARTICLES_PER_RUN" --gbif-limit "$MAX_GBIF_IMAGES_PER_RUN" --ai-limit 5
+          else
+            python -m scripts.run_pipeline --limit "$MAX_ARTICLES_PER_RUN" --search-only
+          fi
       - name: Enrich source quality and version metadata
         run: python -m scripts.enrich_sources
       - name: Audit active review backlog
         run: python -m scripts.audit_tips --dataset tips --report-file quality_report_active.json
-      - name: Audit AI candidates (optional AI repair; never publishes candidates)
-        env:
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
-          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          GROQ_MODEL: ${{ vars.GROQ_MODEL }}
-          DEEPSEEK_MODEL: ${{ vars.DEEPSEEK_MODEL }}
-          OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL }}
-          REPAIR_TIPS: ${{ github.event.inputs.repair_tips || 'false' }}
-        run: |
-          if [ "$REPAIR_TIPS" = "true" ]; then
-            python -m scripts.audit_tips --dataset candidates --repair --report-file quality_report_candidates.json
-          else
-            python -m scripts.audit_tips --dataset candidates --report-file quality_report_candidates.json
-          fi
-      - name: DeepSeek autonomous approval (low-risk candidates only)
-        env:
-          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
-          DEEPSEEK_MODEL: ${{ vars.DEEPSEEK_MODEL }}
-        run: python -m scripts.autonomous_approval
+      - name: Audit AI candidates
+        run: python -m scripts.audit_tips --dataset candidates --report-file quality_report_candidates.json
       - name: Audit approved publication dataset
         run: python -m scripts.audit_tips --dataset approved --report-file quality_report_approved.json
       - name: Validate JSON
