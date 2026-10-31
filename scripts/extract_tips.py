@@ -127,7 +127,7 @@ def normalize_tip(raw,source,provider):
     source_title=str(source.get("title","")).casefold()
     combined_text=(source_title+" "+title+" "+summary).casefold()
     if any(term in combined_text for term in COMMUNICATION_ONLY_TERMS): return None
-    if content_type in {"treat","build","make","repair","maintain","grow"} and len(steps)<2: return None
+    if content_type in {"build","make","repair","maintain","grow"} and len(steps)<2: return None
     def clean_list(key, limit=12):
         value=raw.get(key, [])
         if not isinstance(value, list): value=[]
