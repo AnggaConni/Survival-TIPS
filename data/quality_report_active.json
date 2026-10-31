@@ -1,37 +1,11 @@
 {
-  "generated_at": "2026-10-31T06:54:48+00:00",
+  "generated_at": "2026-10-31T13:58:37+00:00",
   "dataset": "tips.json",
-  "tip_count": 15,
-  "flagged_tip_count": 3,
-  "flagged_issues": {
-    "tip-ba0d2d2a284ab8": [
-      "source_text_unavailable_for_audit"
-    ],
-    "tip-51f89e91128b12": [
-      "possible_conflict_review:tip-a3a5a2db3880e0"
-    ],
-    "tip-a3a5a2db3880e0": [
-      "possible_conflict_review:tip-51f89e91128b12"
-    ]
-  },
+  "tip_count": 0,
+  "flagged_tip_count": 0,
+  "flagged_issues": {},
   "possible_duplicate_pairs": [],
-  "possible_conflict_pairs": [
-    {
-      "left_id": "tip-51f89e91128b12",
-      "right_id": "tip-a3a5a2db3880e0",
-      "shared_topic_terms": [
-        "before",
-        "cited",
-        "cold",
-        "requirements",
-        "unhcr"
-      ],
-      "signals": [
-        "different_numeric_values"
-      ],
-      "status": "human_review_required"
-    }
-  ],
+  "possible_conflict_pairs": [],
   "source_tier_counts": {
     "A_official_public_authority": 40,
     "B_technical_or_humanitarian_organization": 5,
