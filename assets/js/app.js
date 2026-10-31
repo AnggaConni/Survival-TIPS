@@ -64,15 +64,125 @@ async function initExplorer(){
   document.getElementById('dataset-filter').addEventListener('change',renderExplorer);
   stageFilter.addEventListener('change',renderExplorer);
 }
+function detailDialog(){
+  let dialog=document.getElementById('record-detail-dialog');
+  if(dialog)return dialog;
+  dialog=el('dialog','record-dialog');
+  dialog.id='record-detail-dialog';
+  dialog.setAttribute('aria-labelledby','detail-title');
+  const shell=el('div','dialog-shell');
+  const header=el('div','dialog-header');
+  const heading=el('div','');
+  heading.append(el('p','eyebrow','RECORD REVIEW'));
+  heading.append(el('h2','','Record details'));
+  const close=el('button','dialog-close','×');
+  close.type='button';close.setAttribute('aria-label','Close details');
+  close.addEventListener('click',()=>dialog.close());
+  header.append(heading,close);
+  const body=el('div','dialog-body');body.id='record-detail-body';
+  shell.append(header,body);dialog.append(shell);
+  dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close();});
+  document.body.append(dialog);
+  return dialog;
+}
+function detailSection(host,title,value,ordered=false){
+  if(value===undefined||value===null||value===''||(Array.isArray(value)&&!value.length))return;
+  const section=el('section','detail-section');
+  section.append(el('h3','',title));
+  if(Array.isArray(value)){
+    const list=el(ordered?'ol':'ul','detail-list');
+    value.forEach(item=>{
+      const li=el('li','',typeof item==='object'?JSON.stringify(item):item);
+      list.append(li);
+    });
+    section.append(list);
+  }else{
+    section.append(el('p','detail-copy',value));
+  }
+  host.append(section);
+}
+function openRecordDetail(record,dataset){
+  const dialog=detailDialog();
+  const body=document.getElementById('record-detail-body');
+  body.replaceChildren();
+  const title=record.title||record.name||record.id||'Untitled record';
+  body.append(el('h2','detail-title',title));
+  const badges=el('div','record-meta');
+  badges.append(makeTag(dataset==='source'?'Source record':dataset));
+  badges.append(makeTag(statusOf(record,dataset),dataset==='quarantine'?'danger':dataset==='approved'?'':'warn'));
+  if(record.category)badges.append(makeTag(record.category));
+  if(record.content_type)badges.append(makeTag(record.content_type));
+  body.append(badges);
+  if(dataset==='quarantine'){
+    detailSection(body,'Quarantine reason',record.quarantine_reason||'This record is quarantined and its instructional content is intentionally restricted.');
+    detailSection(body,'Record ID',record.id);
+    detailSection(body,'Stage classification',record.stage_ids);
+    body.append(el('p','detail-warning','Instructional content is hidden because the source did not substantiate the operational detail. Re-source and review before restoring.'));
+    dialog.showModal();
+    return;
+  }
+  detailSection(body,'Summary',record.summary);
+  detailSection(body,'Tutorial / procedure',record.steps,true);
+  detailSection(body,'Materials',record.materials);
+  detailSection(body,'Tools',record.tools);
+  detailSection(body,'Prerequisites',record.prerequisites);
+  detailSection(body,'Expected result',record.expected_result);
+  detailSection(body,'Potential failure modes',record.failure_modes);
+  detailSection(body,'Safety notes',record.safety_notes);
+  detailSection(body,'Warnings and limitations',record.warnings);
+  detailSection(body,'Identification criteria',record.identification_criteria);
+  detailSection(body,'Edible parts',record.edible_parts);
+  detailSection(body,'Preparation requirements',record.preparation_requirements);
+  detailSection(body,'Lookalikes and uncertainty',record.lookalikes_or_uncertainty);
+  detailSection(body,'Evidence excerpt',record.evidence_excerpt);
+  detailSection(body,'Quality notes',record.quality_notes);
+  if(record.verification){
+    const v=record.verification;
+    detailSection(body,'Verification',[
+      'Status: '+(v.status||'Not specified'),
+      'Confidence: '+(v.confidence||'Not specified'),
+      'Reviewed by: '+(v.reviewed_by||'Not recorded'),
+      'Reviewed at: '+(v.reviewed_at||'Not recorded')
+    ]);
+  }
+  if(record.stage_classification){
+    detailSection(body,'Stage classification',[
+      'Suggested stages: '+(record.stage_classification.suggested_stage_ids||[]).join(', '),
+      'Review status: '+(record.stage_classification.review_status||'Not specified'),
+      'Method: '+(record.stage_classification.method||'Not specified'),
+      'Reason: '+(record.stage_classification.reason||'Not specified')
+    ]);
+  }
+  const sources=Array.isArray(record.sources)?record.sources:(record.url?[{title:record.title||record.name||record.url,url:record.url,domain:record.domain}]:[]);
+  if(sources.length){
+    const section=el('section','detail-section');section.append(el('h3','','Sources'));
+    sources.forEach(source=>{
+      const item=el('div','detail-source');
+      const link=el('a','',source.title||source.url||'Open source');
+      if(source.url){link.href=source.url;link.target='_blank';link.rel='noopener noreferrer';}
+      item.append(link);
+      if(source.domain)item.append(el('small','',source.domain));
+      if(source.retrieved_at)item.append(el('small','', 'Retrieved: '+source.retrieved_at));
+      section.append(item);
+    });
+    body.append(section);
+  }
+  if(dataset==='source'&&record.text)detailSection(body,'Extracted source text',record.text);
+  detailSection(body,'Record ID',record.id);
+  detailSection(body,'Last retrieved',record.retrieved_at);
+  if(dataset!=='approved')body.append(el('p','detail-warning','Review status: this record is not automatically approved for practical use. Check the cited source, local applicability, and safety requirements before acting.'));
+  else body.append(el('p','detail-note','Published record. Continue to follow local regulations and source guidance.'));
+  dialog.showModal();
+}
 function renderExplorer(){
-  const list=document.getElementById('record-list'); if(!list)return;
+  const list=document.getElementById('record-list');if(!list)return;
   const term=document.getElementById('record-search').value.trim().toLowerCase();
   const dataset=document.getElementById('dataset-filter').value;
   const stage=document.getElementById('stage-filter').value;
   const filtered=explorerRecords.filter(({record:r,dataset:d})=>{
-    if(dataset!=='all' && dataset!==d)return false;
-    if(stage && !(r.stage_ids||[]).includes(stage))return false;
-    if(term && ![r.title,r.summary,r.id,r.category,r.url,r.name].some(v=>String(v||'').toLowerCase().includes(term)))return false;
+    if(dataset!=='all'&&dataset!==d)return false;
+    if(stage&&!(r.stage_ids||r.stage_classification?.suggested_stage_ids||[]).includes(stage))return false;
+    if(term&&![r.title,r.summary,r.id,r.category,r.url,r.name].some(v=>String(v||'').toLowerCase().includes(term)))return false;
     return true;
   });
   document.getElementById('result-count').textContent=filtered.length+' records shown';
@@ -80,19 +190,23 @@ function renderExplorer(){
   if(!filtered.length){list.append(el('div','empty-state','No records match the selected filters.'));return;}
   const fragment=document.createDocumentFragment();
   filtered.slice(0,250).forEach(({record:r,dataset:d})=>{
-    const card=el('article','record-card');
+    const card=el('article','record-card record-card-clickable');
+    card.tabIndex=0;card.setAttribute('role','button');
+    card.setAttribute('aria-label','Open details for '+(r.title||r.name||r.id||'record'));
+    card.addEventListener('click',()=>openRecordDetail(r,d));
+    card.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();openRecordDetail(r,d);}});
     const top=el('div','record-top');top.append(el('span','tag neutral',d==='source'?'Source record':d),makeTag(statusOf(r,d),d==='approved'?'':d==='quarantine'?'danger':'warn'));card.append(top);
-    // Quarantined entries intentionally expose metadata only, never instructions or full summaries.
     const title=d==='quarantine'?(r.title||r.id||'Quarantined record'):(r.title||r.name||r.url||r.id||'Untitled record');
     card.append(el('h3','',title));
-    if(d!=='quarantine' && r.summary)card.append(el('p','',r.summary.slice(0,360)));
-    if(d==='quarantine')card.append(el('p','','Content preview hidden. Inspect the record in the repository with appropriate review access.'));
+    if(d!=='quarantine'&&r.summary)card.append(el('p','',r.summary.slice(0,360)));
+    if(d==='quarantine')card.append(el('p','','Instructional content hidden pending re-sourcing and review.'));
     const meta=el('div','record-meta');
     if(r.category)meta.append(makeTag(r.category));
     if(r.content_type)meta.append(makeTag(r.content_type));
     if(r.stage_ids?.length)meta.append(makeTag(stageLabel(r.stage_ids)));
     if(r.id)meta.append(makeTag('ID: '+r.id,'neutral'));
-    if(r.url){const link=el('a','tag', 'Open source ↗');link.href=r.url;link.target='_blank';link.rel='noopener noreferrer';meta.append(link);}
+    if(r.url){const link=el('a','tag','Open source ↗');link.href=r.url;link.target='_blank';link.rel='noopener noreferrer';link.addEventListener('click',event=>event.stopPropagation());meta.append(link);}
+    meta.append(makeTag('Click to inspect','neutral'));
     card.append(meta);fragment.append(card);
   });
   list.append(fragment);
