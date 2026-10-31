@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T18:10:25+00:00",
+  "generated_at": "2026-10-31T06:54:48+00:00",
   "dataset": "candidate_tips.json",
   "tip_count": 1,
   "flagged_tip_count": 0,
@@ -7,7 +7,7 @@
   "possible_duplicate_pairs": [],
   "possible_conflict_pairs": [],
   "source_tier_counts": {
-    "A_official_public_authority": 37,
+    "A_official_public_authority": 40,
     "B_technical_or_humanitarian_organization": 5,
     "C_or_unassessed": 6
   },

@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1",
-  "generated_at": "2026-10-30T18:10:25+00:00",
+  "generated_at": "2026-10-31T06:54:48+00:00",
   "sources": [
     {
       "id": "src-b1f1918a3368ec",
@@ -1851,6 +1851,123 @@
       "content_hash": "58241bb567ee0e171921c7f7449269d980df510fbe9c2a0c93e3de1678a8ca89",
       "last_checked_at": "2026-10-30T17:17:22+00:00",
       "content_changed_at": "2026-10-30T17:17:22+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 2,
+        "quality_score": 60,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 20,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
+    },
+    {
+      "id": "src-c31da32c042073",
+      "url": "https://www.fao.org/4/Y4358E/y4358e00.htm",
+      "title": "Handling and Preservation of Fruits and Vegetables by Combined Methods for Rural Areas",
+      "domain": "fao.org",
+      "text": "Handling and Preservation of Fruits and Vegetables by Combined Methods for Rural Areas TECHNICAL MANUAL FAO Agricultural Services Bulletin 149 by Gustavo V. Barbosa-Cánovas Juan J. Fernández-Molina Stella M. Alzamora Maria S. Tapia Aurelio López-Malo Jorge Welti Chanes FOOD AND AGRICULTURE ORGANIZATION OF THE UNITED NATIONS Rome, 2003 ISBN 92-5-104861-4 Table of Contents The designations employed and the presentation of material in this information product do not imply the expression of any opinion whatsoever on the part of the Food and Agriculture Organization of the United Nations concerning the legal status of any country, territory, city or area of its authorities, or concerning the delimitation of its frontiers or boundaries. All rights reserved. Reproduction and dissemination of material in this information product for educational or other non-commercial purposes are authorized without any prior written permission from the copyright holders provided the source is fully acknowledged. Reproduction of material in this information product for resale or other commercial purposes is prohibited without written permission of the copyright holders. Applications for such permission should be addressed to the Chief, Publishing Management Service, Information Division, FAO, Viale delle Terme di Caracalla, 00100 Rome, Italy or by e-mail to [email protected] mailto: [email protected] . FAO 2003 Table of Contents FOREWORD ACKNOWLEDGEMENTS INTRODUCTION CHAPTER 1. FRUITS AND VEGETABLES: AN OVERVIEW ON SOCIO-ECONOMICAL AND TECHNICAL ISSUES 1.1 Trade and global trends: Fruits and vegetables 1.2 Traditional consumption 1.3 Economic and social impact 1.4 Commercial constraints 1.5 Post-harvest losses and resource under-utilization in developing countries 1.5.1 Food losses after harvesting 1.5.2 Food losses due to social and economic reasons 1.6 Pre-processing to add value 1.7 Pre-processing to avoid losses 1.8 Alternative processing methods for fruits and vegetables in rural areas 1.8.1 Scalding or blanching in hot water 1.8.2 Cooling in trays 1.8.3 Sulphiting 1.8.4 Sun drying and osmotic dehydration 1.8.5 Fermentation 1.8.6 Storage 1.8.7 Sample calculation for adjusting fruit soluble solids and acid contents CHAPTER 2. BASIC HARVEST AND POST-HARVEST HANDLING CONSIDERATIONS FOR FRESH FRUITS AND VEGETABLES 2.1 Harvest handling 2.1.1 Maturity index for fruits and vegetables 2.1.2 Harvesting containers 2.1.3 Tools for harvesting 2.1.4 Packing in the field and transport to packinghouse 2.2 Post-harvest handling 2.2.1 Curing of roots, tubers, and bulb crops 2.2.2 Operations prior to packaging 2.2.3 Packaging 2.2.4 Cooling methods and temperatures 2.2.5 Storage 2.2.6 Pest control and decay CHAPTER 3. GENERAL CONSIDERATIONS FOR PRESERVATION OF FRUITS AND VEGETABLES 3.1 Water Activity (aw) concept and its role in food preservation 3.1.1 aw concept 3.1.2 Microorganisms vs. aw value 3.1.3 Enzymatic and chemical changes related to aw values 3.1.4 Recommended equipment for measuring aw 3.2 Intermediate Moisture Foods (IMF) concept 3.2.1 Fruits preserved under IMF concept 3.2.2 Advantages and disadvantages of IMF preservation 3.3 Combined methods for preservation of fruits and vegetables: a preservation concept 3.3.1 Why combined methods? 3.3.2 General description of combined methods for fruits and vegetables 3.3.3 Recommended substances to reduce aw in fruits 3.3.4 Recommended substances to reduce pH 3.3.5 Recommended chemicals to prevent browning 3.3.6 Recommended additives to inhibit microorganisms 3.3.7 Recommended thermal treatment for food preservation CHAPTER 4. EXTENSION OF THE INTERMEDIATE MOISTURE CONCEPT TO HIGH MOISTURE PRODUCTS 4.1 Preliminary operations 4.2 Desired aw and syrup formulation 4.2.1 Calculus required 4.2.2 Water content vs. aw relationship 4.3 Example of application 4.4 Packaging methods for minimally processed products 4.4.1 Packaging with small units 4.4.2 Transport the package 4.4.3 Loading packaging units 4.4.4 Vacuum and modified atmosphere packaging 4.5 Transport, storage, and use of fruits preserved by combined methods 4.5.1 Open vs. refrigerated vehicles 4.5.2 Unloading 4.5.3 Storage temperature vs. shelf life 4.5.4 Repackaging considerations 4.5.5 Syrup reconstitution and utilization 4.5.6 Optimal utilization of the final product 4.6 Quality control 4.6.1 Recommended microbiological tests 4.6.2 Nutritional changes 4.6.3 Changes in sensory attributes and acceptability CHAPTER 5. PROCEDURE FOR VEGETABLES PRESERVED BY COMBINED METHODS 5.1 Preliminary operations 5.2 Combined optional treatments 5.2.1 Irradiation 5.2.2 Refrigeration 5.2.3 Modified atmospheres 5.2.4 Pickling 5.2.5 Fermentation 5.3 Packaging methods 5.3.1 Plastic containers and bags 5.3.2 Vacuum packaging 5.3.3 Modified atmosphere packaging 5.4 Transport, storage, and use of vegetables preserved by combined methods 5.4.1 Open vs. refrigerated vehicles 5.4.2 Unloading 5.4.3 Storage temperature vs. shelf life 5.4.4 Repackaging considerations 5.4.5 Optimal utilization of the final product 5.5 Quality control 5.5.1 Recommended microbial tests 5.5.2 Nutritional changes 5.5.3 Changes in sensory attributes and acceptability REFERENCES GLOSSARY FAO TECHNICAL PAPERS BACK COVER",
+      "snippet": "INTRODUCTION CHAPTER 1. FRUITS AND VEGETABLES: AN OVERVIEW ON SOCIO-ECONOMICAL AND TECHNICAL ISSUES 1.1 Trade and global trends: Fruits and vegetables 1.2 Traditional consumption 1.3 Economic and social impact 1.4 Commercial constraints 1.5 Post-harvest losses and resource under-utilization in developing countries 1.5.1 Food losses after harvesting",
+      "source_type": "search",
+      "feed_name": null,
+      "search_provider": "duckduckgo",
+      "retrieved_at": "2026-10-31T06:53:32+00:00",
+      "first_seen_at": "2026-10-31T06:53:32+00:00",
+      "version": 1,
+      "content_hash": "4950532396b84a4c302db39cd6f3e66de787ddc835bf28ac99afe80ac440ef9f",
+      "last_checked_at": "2026-10-31T06:53:32+00:00",
+      "content_changed_at": "2026-10-31T06:53:32+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 3,
+        "quality_score": 70,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 30,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
+    },
+    {
+      "id": "src-d5ab3d6d835be1",
+      "url": "https://glis.fao.org/glis/csures/1405",
+      "title": "Global Information System",
+      "domain": "glis.fao.org",
+      "text": "English العربية Français Español Submit a resource! Feedback Home Login SEEDS TOOLKIT Module 6: Seed storage It is estimated that 25–33% of the world grain crop including seeds is lost each year during storage, and this has a significant effect on global food security. The impact is even greater in food-deficit developing countries, where every year farmers struggle to preserve their seeds as basic input needed for food crop production. Seed storage is the preservation of seeds under controlled environmental conditions to maintain seed viability (germination and vigour) for long periods from harvesting through to planting of the processed seed by the farmer. However, storage is often thought to mean simply keeping the seed in a physical “storage” structure. It is important to take into account other factors contributing to the maintenance of seed viability. This module is organized in five chapters to cover best practices throughout seed storage. Also available in French and in Spanish Theme Technical Resources Subject Seed system Publisher Food and Agriculture Organization of the United Nations (FAO), AfricaSeeds Publication year 2018 Regions Global Languages Spanish; French; English Resource type Learning materials Resource link https://www.fao.org/3/ca1495en/CA1495EN.pdf Keywords Value chain ; Seed management; Role of private sector; Training, Capacity Building Go to resources list",
+      "snippet": "It is estimated that 25–33% of the world grain crop including seeds is lost each year during storage, and this has a significant effect on global food security. The impact is even greater in food-deficit developing countries, where every year farmers struggle to preserve their seeds as basic input needed for food crop production. Seed storage is the preservation of seeds under controlled ... Explore FAO's knowledge repository for resources on food security, sustainable agriculture, and rural development. Discover publications, data, and tools to support global initiatives. Technical Fact Sheets – Sustainable Crop Management With the support of the Subregional Office for the Caribbean and the Plant Production and Protection Division of the Food and Agriculture Organization of the United Nations (FAO), 13 technical fact sheets were developed on adapted technologies and practices to improve crop management. These technologies and practices increase the efficiency ...",
+      "source_type": "search",
+      "feed_name": null,
+      "search_provider": "duckduckgo",
+      "retrieved_at": "2026-10-31T06:53:35+00:00",
+      "first_seen_at": "2026-10-31T06:53:35+00:00",
+      "version": 1,
+      "content_hash": "15c482270dce4763a1b000f9b3cce2f92962005b14d8f2adb0f21b770107f5a7",
+      "last_checked_at": "2026-10-31T06:53:35+00:00",
+      "content_changed_at": "2026-10-31T06:53:35+00:00",
+      "quality_assessment": {
+        "authority_tier": "A_official_public_authority",
+        "document_type": "web_article",
+        "publication_date": null,
+        "last_updated": null,
+        "jurisdiction": "not_stated",
+        "technical_depth": 1,
+        "quality_score": 50,
+        "score_components": {
+          "authority": 40,
+          "technical_depth": 10,
+          "date_present": 0
+        },
+        "classification_method": "heuristic_v1",
+        "review_status": "needs_human_review",
+        "rationale": [
+          "domain tier is a heuristic based on the host name",
+          "document type is inferred from title keywords",
+          "technical depth is estimated from text length and technical vocabulary",
+          "publication date is included only when explicitly found in page text"
+        ]
+      }
+    },
+    {
+      "id": "src-77da60bf96a13b",
+      "url": "https://www.fao.org/sustainable-agricultural-mechanization/guidelines-operations/crop-production/en/",
+      "title": "Crop production | Sustainable Agricultural Mechanization | Food and Agriculture Organization of the United Nations",
+      "domain": "fao.org",
+      "text": "Sustainable Agricultural Mechanization Productivity is a good indicator of the land conditions, since it directly reflects changes in the quality and limitations of the land. The main objective of soil management for agriculture is to create favourable conditions for good crop growth, seed germination, emergence of young plants, root growth, plant development, grain formation and harvest. Sustained productivity goes in hand with good management practices. Crop production Land preparation Land preparation is the first operation in ensuring that crops can achieve the best yields. It is essential to provide plants with the best soil conditions for their development. A proper seedbed should be prepared with the right nutrients and conditions that can allow, first of all, seed sprouting and then the crop's establishment for its later development. Traditionally, this has been done with aggressive practices such as ploughing, slash and burning, etc. These practices are not only unsustainable in the long run, but they are labour intensive, especially in low mechanized contexts, and thus become a burden for small-scale farmers that have to prepare seed beds manually with basic tools. FAO promotes alternative ways for land preparation, aiming to both reduce labour requirements and drudgery while at the same time trying to enhance the sustainability of land preparation activities. Reduced tillage and the use of adequate tools and equipment can contribute to this common goal. The tasks of land preparation and weeding can be made less labour intensive through the use of improved hoes, row planting, draught animal powered rippers, harrows and planters. Single axle tractor equipment is a specific option that can be used if there are appropriate service-infrastructures and farmer capacities and when economic and social conditions permit it. Other tasks related maintaining soil cover and preparing the land can be done with weed wipes and adequate spraying technology which eliminate the task of weeding to a large extent. This should be done within reduced or minimum tillage systems, such as raised beds, and conservation agriculture. Crop operations Several operations determine a crop's performance, including seeding and weeding. Adequate seeding rates, spacing and placement are crucial for the development of the plant. This is also influenced by soil conditions and the cropping system. From manual broadcast seeding to precision pneumatic seeding, there is a wide range of tools and equipment that can improve seed operations in the specific socio economic and environmental context of farmers. The combination of reduced tillage and direct seeding, when applying Conservation Agriculture principles, contributes to preserving soil conditions and enhancing seed placement. There are seeders and planters that can be used under reduced tillage conditions, such as manual hand planters, animal traction direct seeders, two wheel tractor seeders and planters (adapted to different crops), and four wheel tractor pulled and attached direct seeders (with many types of designs and levels of sophistication). Reduction of drudgery and timeliness are immediate benefits of using direct seeding, these create opportunities for higher yields and uses of manpower for smallholder farmers. Weeding Weeding by hand using traditional hoes takes about 140 hours for one person to weed one hectare (which falls to 65 hours per hectare by the third weeding). Weeding is conducted at critical times to avoid the establishment of weeds and crop damage. Late weeding of previous crops is done to prevent setting of weed seeds. The use of adequate tools and equipment can help accomplish the task faster and with less manpower, improving the livelihood of farmers and increasing the time efficiency. There are two ways of controlling weeds: mechanically or chemically. For the mechanical option, the aim is to uproot the weeds. While for the chemical, the aim is to kill weeds using a selective chemical agent that usually is sprayed.",
+      "snippet": "Crop production Land preparation Land preparation is the first operation in ensuring that crops can achieve the best yields. It is essential to provide plants with the best soil conditions for their development. A proper seedbed should be prepared with the right nutrients and conditions that can allow, first of all, seed sprouting and then the crop's establishment for its later development ...",
+      "source_type": "search",
+      "feed_name": null,
+      "search_provider": "duckduckgo",
+      "retrieved_at": "2026-10-31T06:53:36+00:00",
+      "first_seen_at": "2026-10-31T06:53:36+00:00",
+      "version": 1,
+      "content_hash": "66837a24c9ae10def000594db2a8274afcd265ff4cb8fbd328cede67f366e85a",
+      "last_checked_at": "2026-10-31T06:53:36+00:00",
+      "content_changed_at": "2026-10-31T06:53:36+00:00",
       "quality_assessment": {
         "authority_tier": "A_official_public_authority",
         "document_type": "web_article",

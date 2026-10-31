@@ -336,7 +336,28 @@
       "content_hash": "58241bb567ee0e171921c7f7449269d980df510fbe9c2a0c93e3de1678a8ca89",
       "changed_at": "2026-10-30T17:17:22+00:00",
       "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.fao.org/4/Y4358E/y4358e00.htm",
+      "version": 1,
+      "content_hash": "4950532396b84a4c302db39cd6f3e66de787ddc835bf28ac99afe80ac440ef9f",
+      "changed_at": "2026-10-31T06:53:32+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://glis.fao.org/glis/csures/1405",
+      "version": 1,
+      "content_hash": "15c482270dce4763a1b000f9b3cce2f92962005b14d8f2adb0f21b770107f5a7",
+      "changed_at": "2026-10-31T06:53:35+00:00",
+      "event": "baseline_snapshot"
+    },
+    {
+      "source_url": "https://www.fao.org/sustainable-agricultural-mechanization/guidelines-operations/crop-production/en/",
+      "version": 1,
+      "content_hash": "66837a24c9ae10def000594db2a8274afcd265ff4cb8fbd328cede67f366e85a",
+      "changed_at": "2026-10-31T06:53:36+00:00",
+      "event": "baseline_snapshot"
     }
   ],
-  "generated_at": "2026-10-30T18:10:25+00:00"
+  "generated_at": "2026-10-31T06:54:48+00:00"
 }
