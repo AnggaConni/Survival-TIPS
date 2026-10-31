@@ -74,7 +74,7 @@ function detailDialog(){
   const header=el('div','dialog-header');
   const heading=el('div','');
   heading.append(el('p','eyebrow','RECORD REVIEW'));
-  heading.append(el('h2','','Record details'));
+  heading.append(el('h2','','Record details'));heading.lastChild.id='detail-title';
   const close=el('button','dialog-close','×');
   close.type='button';close.setAttribute('aria-label','Close details');
   close.addEventListener('click',()=>dialog.close());
@@ -181,7 +181,8 @@ function renderExplorer(){
   const stage=document.getElementById('stage-filter').value;
   const filtered=explorerRecords.filter(({record:r,dataset:d})=>{
     if(dataset!=='all'&&dataset!==d)return false;
-    if(stage&&!(r.stage_ids||r.stage_classification?.suggested_stage_ids||[]).includes(stage))return false;
+    const stageIds=[...(r.stage_ids||[]),...(r.stage_classification?.suggested_stage_ids||[])];
+    if(stage&&!stageIds.includes(stage))return false;
     if(term&&![r.title,r.summary,r.id,r.category,r.url,r.name].some(v=>String(v||'').toLowerCase().includes(term)))return false;
     return true;
   });
