@@ -211,7 +211,7 @@ def source_is_relevant(source):
         return False
     practical_terms = (
         "how to", "manual", "handbook", "technical guide", "field guide", "procedure",
-        "treatment", "filtration", "disinfection", "boiling water", "water storage",
+        "water", "treatment", "filtration", "disinfection", "boiling water", "water storage",
         "water collection", "sanitation system", "latrine construction", "handwashing",
         "shelter construction", "building materials", "crop cultivation", "seed saving",
         "irrigation", "food preservation", "repair", "maintenance", "installation",
