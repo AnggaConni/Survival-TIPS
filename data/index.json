@@ -1,0 +1,14 @@
+{
+  "schema_version":"2.0",
+  "description":"Single catalogue index. Add a JSON path here to make content available in the browser library.",
+  "files":[
+    {"path":"data/water.json","dataset":"approved"},
+    {"path":"data/approved_tips.json","dataset":"approved"},
+    {"path":"data/recipes.json","dataset":"approved"},
+    {"path":"data/materials.json","dataset":"approved"},
+    {"path":"data/species.json","dataset":"approved"},
+    {"path":"data/biodiversity_profiles.json","dataset":"approved"},
+    {"path":"data/agriculture_profiles.json","dataset":"approved"},
+    {"path":"data/tips.json","dataset":"active"}
+  ]
+}
