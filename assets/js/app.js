@@ -3,7 +3,7 @@ const DATA_FILES={approved:'approved_tips.json',active:'tips.json',sources:'sour
 const STAGES=['01-drr','02-biodiversity','03-water-sanitation','04-agriculture','05-energy','06-materials','07-manufacturing','08-infrastructure'];
 const cache=new Map(),state={records:[],selected:null};
 async function loadJson(path){if(cache.has(path))return cache.get(path);const response=await fetch(path,{cache:'no-store'});if(!response.ok)throw new Error(path+' returned '+response.status);const value=await response.json();cache.set(path,value);return value;}
-function collection(value){if(Array.isArray(value))return value;if(!value||typeof value!=='object')return[];for(const key of ['articles','tips','items','records','sources','species','recipes','materials'])if(Array.isArray(value[key]))return value[key];return[];}
+function collection(value){if(Array.isArray(value))return value;if(!value||typeof value!=='object')return[];for(const key of ['articles','tips','items','records','sources','species','recipes','materials','profiles'])if(Array.isArray(value[key]))return value[key];return[];}
 function node(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=String(text);return n;}
 function tag(text,cls=''){return node('span','mac-chip '+cls,text);}
 function safePath(path){if(typeof path!=='string'||!path.trim())return'';if(/^https?:\/\//i.test(path))return path;if(path.startsWith('/')||path.split('/').includes('..'))return'';return path;}
