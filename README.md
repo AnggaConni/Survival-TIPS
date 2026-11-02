@@ -1,84 +1,100 @@
-# Survival-TIPS — JSON-first Field Knowledge Library
+# Survival-TIPS — Field Knowledge Intelligence System
 
-A static, modular survival and resilience knowledge library. **JSON files are the source of truth.** The browser reads catalogues from `data/index.json`, renders articles, images and references, and offers on-demand document exports.
+Survival-TIPS is a static, JSON-first survival and resilience knowledge library. JSON is the source of truth; the browser reads the manifest, merges the configured catalogues, classifies records into thematic filters, and displays a live coverage/gap dashboard.
 
-## Publishing workflow
+## Publishing content
 
-1. Add or edit a JSON content file in `data/`.
-2. Add its path to `data/index.json`.
-3. Put images in static folders such as `thumb/` and reference them with paths such as `thumb/galon.png`.
-4. Commit and push. Once the static site is published, the new JSON appears in the library.
-5. Open an article in JSON Explorer and export it to Word or print-to-PDF.
+1. Add or edit a JSON file in `data/`.
+2. Add the file path to `data/index.json` under `files`.
+3. Put images in `thumb/` or another static directory and reference them in article image objects, e.g. `thumb/galon.png`.
+4. Commit and push. When the static site is published, the browser reads the new JSON.
+5. The homepage dashboard recalculates theme counts and the thematic map identifies missing subject areas.
 
-No crawler, AI extraction, autonomous approval, scheduled collection, push-triggered tests or push-triggered PDF generation runs. GitHub Pages may still publish the static website if enabled; that only hosts the files.
+No crawler, AI extraction, autonomous approval, scheduled collection, or push-triggered PDF generation is used. GitHub Pages may publish the static site if configured; that is hosting, not content generation.
 
-## Article JSON model
+## How the reader works
+
+The approach is adapted from a multi-JSON Node.js reader: multiple files are loaded, their collections merged, categories/themes derived from data, and records rendered as cards. A browser cannot list repository directories by itself, so `data/index.json` is the explicit manifest.
+
+Thematic assignment uses:
+- `stage_ids` / `stages` (preferred, explicit classification)
+- `category`, `type`, tags and text keywords (automatic fallback)
+- `dataset` metadata from the manifest (e.g. species records map to biodiversity)
+
+The filter facets for `environment`, `climate` and `season` are populated from values actually present in the JSON.
+
+## Manifest example
 
 ```json
 {
-  "schema_version": "2.0",
-  "catalogue": "water-survival",
-  "title": "Water Survival & Purification",
-  "articles": [{
-    "id": "WAT-001",
-    "title": "Emergency Water Storage at Home",
-    "category": "water_storage",
-    "stage_ids": ["01-drr", "03-water-sanitation"],
-    "status": "review_required",
-    "summary": "Short summary.",
-    "body": "Full article text.",
-    "environment": ["urban", "coastal"],
-    "climate": ["tropical"],
-    "season": ["rainy", "dry"],
-    "materials": ["Food-grade container"],
-    "tools": ["Funnel"],
-    "steps": ["Step one", "Step two"],
-    "safety": ["Safety warning"],
-    "limitations": ["Known limitation"],
-    "images": [
-      {"url": "thumb/galon.png", "alt": "Sealed water gallon", "caption": "Water storage", "role": "hero"},
-      {"url": "thumb/water-jerrycan.png", "alt": "Portable water container"}
-    ],
-    "sources": [{"title": "Public-health authority", "url": "https://example.org/"}],
-    "review": {"status": "review_required", "reviewed_by": null, "reviewed_at": null}
-  }]
+  "schema_version": "2.1",
+  "files": [
+    {"path": "data/water.json", "dataset": "water", "kind": "content"},
+    {"path": "data/agriculture.json", "dataset": "agriculture", "kind": "content"},
+    {"path": "data/species.json", "dataset": "species", "kind": "evidence"}
+  ],
+  "reference_files": [
+    {"path": "data/sources.json", "dataset": "sources"}
+  ]
 }
 ```
 
-## Add a catalogue
+## Article model
 
-Create `data/food.json` with a top-level `articles` array, then add an entry to `data/index.json`:
 ```json
-{"path":"data/food.json","dataset":"approved"}
+{
+  "id": "WAT-010",
+  "title": "Emergency Water Storage",
+  "category": "water_storage",
+  "stage_ids": ["03-water-sanitation"],
+  "status": "review_required",
+  "summary": "Short article summary.",
+  "body": "Full article text.",
+  "environment": ["urban", "coastal"],
+  "climate": ["tropical"],
+  "season": ["rainy", "dry"],
+  "materials": ["Food-grade container"],
+  "tools": ["Funnel"],
+  "steps": ["Step one", "Step two"],
+  "safety": ["Safety warning"],
+  "limitations": ["Known limitation"],
+  "images": [
+    {"url": "thumb/galon.png", "alt": "Water gallon", "caption": "Storage container"},
+    {"url": "thumb/jerrycan.png", "alt": "Portable water container"}
+  ],
+  "sources": [
+    {"title": "Public-health authority", "url": "https://example.org/guidance"}
+  ],
+  "review": {"status": "review_required", "reviewed_by": null, "reviewed_at": null}
+}
 ```
 
-The `dataset` property is a grouping label for the explorer. Each article's own `status` and `review` fields remain visible. Do not mark safety-critical content approved until its evidence has been reviewed.
+## Theme taxonomy
 
-## Images
+| Theme ID | Domain |
+|---|---|
+| 01-drr | Disaster Risk & Response |
+| 02-biodiversity | Biodiversity & Ecology |
+| 03-water-sanitation | Water & Sanitation |
+| 04-agriculture | Agriculture & Food Production |
+| 05-energy | Energy & Power |
+| 06-materials | Shelter & Materials |
+| 07-manufacturing | Tools & Manufacturing |
+| 08-infrastructure | Infrastructure & Logistics |
 
-- Store images in `thumb/`, `images/` or another static folder.
-- Use repository-relative paths; do not use paths on your local computer.
+Use `stage_ids` to classify a record reliably. Keyword classification is a convenience fallback and should not replace explicit tags for important content.
+
+## Coverage dashboard
+
+The homepage displays loaded record counts, reference-source count, species records, and review-needed records. The thematic map compares current records with an initial editorial checklist. This is a heuristic inventory, not a validated assessment of real-world preparedness or technical completeness.
+
+## Images and exports
+
 - Multiple image objects per article are supported.
-- Include `alt`, captions and attribution/licence details where appropriate.
-- Confirm rights for redistribution before committing images.
+- Use relative repository paths and include alt text, caption and licence/credit where relevant.
+- PDF: open an article → Print / PDF → browser print dialog → Save as PDF.
+- Word: open an article → Word .doc. This is Word-compatible HTML in a `.doc` wrapper, not a native `.docx`.
 
-## Export
+## Safety and quality
 
-- **PDF:** Open an article → Print / Save PDF → browser print dialog → Save as PDF.
-- **Word:** Open an article → Download Word. This produces a Word-compatible `.doc` HTML file.
-- These are on-demand browser exports, not committed binary files. A true `.docx` generator would require a separate explicitly invoked toolchain.
-
-## Quality and safety
-
-A JSON status is editorial metadata, not a safety certification. Keep unverified records marked `review_required`. Water treatment, food safety, toxicology, first aid, chemical handling and engineering instructions require authoritative sources and domain review.
-
-## Repository structure
-
-- `data/index.json` — catalogue manifest.
-- `data/*.json` — structured content.
-- `thumb/` — article images.
-- `assets/js/app.js` — JSON reader, search, article viewer and exports.
-- `assets/css/site.css` — Macintosh-inspired interface.
-- `dashboard.html` — topic browser.
-- `data-explorer.html` — JSON explorer.
-- `pdf-library.html` — export desk.
+Editorial status is not a safety certification. Water treatment, food safety, toxicology, first aid, chemical handling and engineering instructions require authoritative sources and domain review. Species occurrence records and photographs do not prove edibility, medicinal use or safe handling.
