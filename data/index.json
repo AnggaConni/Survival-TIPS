@@ -1,14 +1,15 @@
 {
-  "schema_version":"2.0",
-  "description":"Single catalogue index. Add a JSON path here to make content available in the browser library.",
-  "files":[
-    {"path":"data/water.json","dataset":"approved"},
-    {"path":"data/approved_tips.json","dataset":"approved"},
-    {"path":"data/recipes.json","dataset":"approved"},
-    {"path":"data/materials.json","dataset":"approved"},
-    {"path":"data/species.json","dataset":"approved"},
-    {"path":"data/biodiversity_profiles.json","dataset":"approved"},
-    {"path":"data/agriculture_profiles.json","dataset":"approved"},
-    {"path":"data/tips.json","dataset":"active"}
-  ]
+ "schema_version":"2.1",
+ "description":"Catalogue manifest. Add JSON paths here to include them in the browser reader.",
+ "files":[
+  {"path":"data/water.json","dataset":"water","kind":"content"},
+  {"path":"data/approved_tips.json","dataset":"approved_tips","kind":"content"},
+  {"path":"data/tips.json","dataset":"tips","kind":"content"},
+  {"path":"data/recipes.json","dataset":"recipes","kind":"content"},
+  {"path":"data/materials.json","dataset":"materials","kind":"content"},
+  {"path":"data/species.json","dataset":"species","kind":"evidence"},
+  {"path":"data/biodiversity_profiles.json","dataset":"biodiversity_profiles","kind":"content"},
+  {"path":"data/agriculture_profiles.json","dataset":"agriculture_profiles","kind":"content"}
+ ],
+ "reference_files":[{"path":"data/sources.json","dataset":"sources"}]
 }
