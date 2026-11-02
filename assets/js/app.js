@@ -1,269 +1,30 @@
-const DATA_BASE = 'data/';
-const DATA_FILES = {
-  approved: 'approved_tips.json',
-  active: 'tips.json',
-  candidates: 'candidate_tips.json',
-  quarantine: 'tips.quarantine.json',
-  sources: 'sources.json',
-  activeReport: 'quality_report_active.json',
-  candidateReport: 'quality_report_candidates.json',
-  approvedReport: 'quality_report_approved.json',
-  species: 'species.json',
-  recipes: 'recipes.json',
-  materials: 'materials.json',
-  biodiversity: 'biodiversity_profiles.json',
-  agriculture: 'agriculture_profiles.json'
-};
-const STAGES = ['01-drr','02-biodiversity','03-water-sanitation','04-agriculture','05-energy','06-materials','07-manufacturing','08-infrastructure'];
-const cache = {};
-async function loadJson(file) {
-  if (cache[file]) return cache[file];
-  const response = await fetch(DATA_BASE + file, {cache:'no-store'});
-  if (!response.ok) throw new Error('HTTP ' + response.status);
-  const value = await response.json();
-  cache[file] = value;
-  return value;
-}
-function records(value) { return Array.isArray(value) ? value : (value && Array.isArray(value.tips) ? value.tips : (value && Array.isArray(value.sources) ? value.sources : [])); }
-function el(tag, className, text) { const node=document.createElement(tag); if(className) node.className=className; if(text!==undefined) node.textContent=String(text); return node; }
+/* Survival-TIPS JSON-first browser application. No crawler, AI, API key or write automation. */
+const DATA_FILES={approved:'approved_tips.json',active:'tips.json',sources:'sources.json'};
+const STAGES=['01-drr','02-biodiversity','03-water-sanitation','04-agriculture','05-energy','06-materials','07-manufacturing','08-infrastructure'];
+const JSON_INDEX='data/index.json';
+const cache=new Map();
+const state={records:[],selected:null};
+async function loadJson(path){if(cache.has(path))return cache.get(path);const response=await fetch(path,{cache:'no-store'});if(!response.ok)throw new Error(path+' returned '+response.status);const value=await response.json();cache.set(path,value);return value;}
+function collection(value){if(Array.isArray(value))return value;if(!value||typeof value!=='object')return[];for(const key of ['articles','tips','items','records','sources','species','recipes','materials'])if(Array.isArray(value[key]))return value[key];return[];}
+function node(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=String(text);return n;}
+function tag(text,cls=''){return node('span','mac-chip '+cls,text);}
+function safePath(path){if(typeof path!=='string'||!path.trim())return'';if(/^https?:\/\//i.test(path))return path;if(path.startsWith('/')||path.split('/').includes('..'))return'';return path;}
+function imageList(article){const images=article.images||article.gallery||[];if(Array.isArray(images))return images.map(x=>typeof x==='string'?{url:x}:x).filter(x=>x&&safePath(x.url||x.src||x.path));if(typeof images==='string')return[{url:images}];return[];}
+function titleOf(a){return a.title||a.name||a.id||'Untitled article';}
+function stageIds(a){const ids=a.stage_ids||a.stages||a.stage||[];return Array.isArray(ids)?ids:[ids].filter(Boolean);}
+function statusOf(a,dataset){if(dataset==='approved'||a.status==='approved'||a.verification?.status==='approved')return'Approved';if(dataset==='active')return'Needs review';return a.status||a.verification?.status||'Unreviewed';}
+function isPublished(a,dataset){return dataset==='approved'||a.status==='approved'||a.verification?.status==='approved'||a.publication_status==='approved';}
 function stat(name,value){document.querySelectorAll('[data-stat="'+name+'"]').forEach(n=>n.textContent=value);}
-function statusOf(record, dataset) {
-  if(dataset==='approved') return 'Approved publication';
-  if(dataset==='candidates') return 'AI candidate · review required';
-  if(dataset==='quarantine') return 'Quarantined · restricted preview';
-  const s=record.verification?.status || record.review_status || record.quality_status || 'Needs review';
-  return String(s).replaceAll('_',' ');
-}
-function stageLabel(ids){return Array.isArray(ids)&&ids.length?ids.join(', '):'Stage not classified';}
-function makeTag(text,kind=''){return el('span','tag '+kind,text);}
-async function initDashboard(){
-  try {
-    const [a,p,c,s]=await Promise.all([loadJson(DATA_FILES.approved),loadJson(DATA_FILES.active),loadJson(DATA_FILES.candidates),loadJson(DATA_FILES.sources)]);
-    stat('approved',records(a).length);stat('pending',records(p).length);stat('sources',records(s).length);
-  } catch(e){console.warn('Dashboard summary unavailable',e);document.querySelectorAll('#overview-stats .stat-card b').forEach(n=>n.textContent='—');}
-}
-let explorerRecords=[];
-async function initExplorer(){
-  const list=document.getElementById('record-list'); if(!list)return;
-  const params=new URLSearchParams(location.search); const initialStage=params.get('stage')||'';
-  const stageFilter=document.getElementById('stage-filter'); if(initialStage && STAGES.includes(initialStage))stageFilter.value=initialStage;
-  const jobs=await Promise.allSettled([
-    loadJson(DATA_FILES.approved),loadJson(DATA_FILES.active),loadJson(DATA_FILES.candidates),loadJson(DATA_FILES.quarantine),loadJson(DATA_FILES.sources)
-  ]);
-  const [a,p,c,q,s]=jobs.map(x=>x.status==='fulfilled'?x.value:null);
-  stat('approved',a?records(a).length:'!');stat('active',p?records(p).length:'!');stat('candidates',c?records(c).length:'!');stat('sources',s?records(s).length:'!');
-  const datasets=[['approved',a],['active',p],['candidates',c],['quarantine',q]];
-  explorerRecords=[];
-  for(const [dataset,payload] of datasets){
-    if(!payload)continue;
-    for(const r of records(payload)) explorerRecords.push({record:r,dataset});
-  }
-  if(s) for(const r of records(s)) explorerRecords.push({record:r,dataset:'source'});
-  renderExplorer();
-  document.getElementById('record-search').addEventListener('input',renderExplorer);
-  document.getElementById('dataset-filter').addEventListener('change',renderExplorer);
-  stageFilter.addEventListener('change',renderExplorer);
-}
-function detailDialog(){
-  let dialog=document.getElementById('record-detail-dialog');
-  if(dialog)return dialog;
-  dialog=el('dialog','record-dialog');
-  dialog.id='record-detail-dialog';
-  dialog.setAttribute('aria-labelledby','detail-title');
-  const shell=el('div','dialog-shell');
-  const header=el('div','dialog-header');
-  const heading=el('div','');
-  heading.append(el('p','eyebrow','RECORD REVIEW'));
-  heading.append(el('h2','','Record details'));heading.lastChild.id='detail-title';
-  const close=el('button','dialog-close','×');
-  close.type='button';close.setAttribute('aria-label','Close details');
-  close.addEventListener('click',()=>dialog.close());
-  header.append(heading,close);
-  const body=el('div','dialog-body');body.id='record-detail-body';
-  shell.append(header,body);dialog.append(shell);
-  dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close();});
-  document.body.append(dialog);
-  return dialog;
-}
-function detailSection(host,title,value,ordered=false){
-  if(value===undefined||value===null||value===''||(Array.isArray(value)&&!value.length))return;
-  const section=el('section','detail-section');
-  section.append(el('h3','',title));
-  if(Array.isArray(value)){
-    const list=el(ordered?'ol':'ul','detail-list');
-    value.forEach(item=>{
-      const li=el('li','',typeof item==='object'?JSON.stringify(item):item);
-      list.append(li);
-    });
-    section.append(list);
-  }else{
-    section.append(el('p','detail-copy',value));
-  }
-  host.append(section);
-}
-function openRecordDetail(record,dataset){
-  const dialog=detailDialog();
-  const body=document.getElementById('record-detail-body');
-  body.replaceChildren();
-  const title=record.title||record.name||record.id||'Untitled record';
-  body.append(el('h2','detail-title',title));
-  const badges=el('div','record-meta');
-  badges.append(makeTag(dataset==='source'?'Source record':dataset));
-  badges.append(makeTag(statusOf(record,dataset),dataset==='quarantine'?'danger':dataset==='approved'?'':'warn'));
-  if(record.category)badges.append(makeTag(record.category));
-  if(record.content_type)badges.append(makeTag(record.content_type));
-  body.append(badges);
-  if(dataset==='quarantine'){
-    detailSection(body,'Quarantine reason',record.quarantine_reason||'This record is quarantined and its instructional content is intentionally restricted.');
-    detailSection(body,'Record ID',record.id);
-    detailSection(body,'Stage classification',record.stage_ids);
-    body.append(el('p','detail-warning','Instructional content is hidden because the source did not substantiate the operational detail. Re-source and review before restoring.'));
-    dialog.showModal();
-    return;
-  }
-  detailSection(body,'Summary',record.summary);
-  detailSection(body,'Tutorial / procedure',record.steps,true);
-  detailSection(body,'Materials',record.materials);
-  detailSection(body,'Tools',record.tools);
-  detailSection(body,'Prerequisites',record.prerequisites);
-  detailSection(body,'Expected result',record.expected_result);
-  detailSection(body,'Potential failure modes',record.failure_modes);
-  detailSection(body,'Safety notes',record.safety_notes);
-  detailSection(body,'Warnings and limitations',record.warnings);
-  detailSection(body,'Identification criteria',record.identification_criteria);
-  detailSection(body,'Edible parts',record.edible_parts);
-  detailSection(body,'Preparation requirements',record.preparation_requirements);
-  detailSection(body,'Lookalikes and uncertainty',record.lookalikes_or_uncertainty);
-  detailSection(body,'Evidence excerpt',record.evidence_excerpt);
-  detailSection(body,'Quality notes',record.quality_notes);
-  if(record.verification){
-    const v=record.verification;
-    detailSection(body,'Verification',[
-      'Status: '+(v.status||'Not specified'),
-      'Confidence: '+(v.confidence||'Not specified'),
-      'Reviewed by: '+(v.reviewed_by||'Not recorded'),
-      'Reviewed at: '+(v.reviewed_at||'Not recorded')
-    ]);
-  }
-  if(record.stage_classification){
-    detailSection(body,'Stage classification',[
-      'Suggested stages: '+(record.stage_classification.suggested_stage_ids||[]).join(', '),
-      'Review status: '+(record.stage_classification.review_status||'Not specified'),
-      'Method: '+(record.stage_classification.method||'Not specified'),
-      'Reason: '+(record.stage_classification.reason||'Not specified')
-    ]);
-  }
-  const sources=Array.isArray(record.sources)?record.sources:(record.url?[{title:record.title||record.name||record.url,url:record.url,domain:record.domain}]:[]);
-  if(sources.length){
-    const section=el('section','detail-section');section.append(el('h3','','Sources'));
-    sources.forEach(source=>{
-      const item=el('div','detail-source');
-      const link=el('a','',source.title||source.url||'Open source');
-      if(source.url){link.href=source.url;link.target='_blank';link.rel='noopener noreferrer';}
-      item.append(link);
-      if(source.domain)item.append(el('small','',source.domain));
-      if(source.retrieved_at)item.append(el('small','', 'Retrieved: '+source.retrieved_at));
-      section.append(item);
-    });
-    body.append(section);
-  }
-  if(dataset==='source'&&record.text)detailSection(body,'Extracted source text',record.text);
-  detailSection(body,'Record ID',record.id);
-  detailSection(body,'Last retrieved',record.retrieved_at);
-  if(dataset!=='approved')body.append(el('p','detail-warning','Review status: this record is not automatically approved for practical use. Check the cited source, local applicability, and safety requirements before acting.'));
-  else body.append(el('p','detail-note','Published record. Continue to follow local regulations and source guidance.'));
-  dialog.showModal();
-}
-function renderExplorer(){
-  const list=document.getElementById('record-list');if(!list)return;
-  const term=document.getElementById('record-search').value.trim().toLowerCase();
-  const dataset=document.getElementById('dataset-filter').value;
-  const stage=document.getElementById('stage-filter').value;
-  const filtered=explorerRecords.filter(({record:r,dataset:d})=>{
-    if(dataset!=='all'&&dataset!==d)return false;
-    const stageIds=[...(r.stage_ids||[]),...(r.stage_classification?.suggested_stage_ids||[])];
-    if(stage&&!stageIds.includes(stage))return false;
-    if(term&&![r.title,r.summary,r.id,r.category,r.url,r.name].some(v=>String(v||'').toLowerCase().includes(term)))return false;
-    return true;
-  });
-  document.getElementById('result-count').textContent=filtered.length+' records shown';
-  list.replaceChildren();
-  if(!filtered.length){list.append(el('div','empty-state','No records match the selected filters.'));return;}
-  const fragment=document.createDocumentFragment();
-  filtered.slice(0,250).forEach(({record:r,dataset:d})=>{
-    const card=el('article','record-card record-card-clickable');
-    card.tabIndex=0;card.setAttribute('role','button');
-    card.setAttribute('aria-label','Open details for '+(r.title||r.name||r.id||'record'));
-    card.addEventListener('click',()=>openRecordDetail(r,d));
-    card.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();openRecordDetail(r,d);}});
-    const top=el('div','record-top');top.append(el('span','tag neutral',d==='source'?'Source record':d),makeTag(statusOf(r,d),d==='approved'?'':d==='quarantine'?'danger':'warn'));card.append(top);
-    const title=d==='quarantine'?(r.title||r.id||'Quarantined record'):(r.title||r.name||r.url||r.id||'Untitled record');
-    card.append(el('h3','',title));
-    if(d!=='quarantine'&&r.summary)card.append(el('p','',r.summary.slice(0,360)));
-    if(d==='quarantine')card.append(el('p','','Instructional content hidden pending re-sourcing and review.'));
-    const meta=el('div','record-meta');
-    if(r.category)meta.append(makeTag(r.category));
-    if(r.content_type)meta.append(makeTag(r.content_type));
-    if(r.stage_ids?.length)meta.append(makeTag(stageLabel(r.stage_ids)));
-    if(r.id)meta.append(makeTag('ID: '+r.id,'neutral'));
-    if(r.url){const link=el('a','tag','Open source ↗');link.href=r.url;link.target='_blank';link.rel='noopener noreferrer';link.addEventListener('click',event=>event.stopPropagation());meta.append(link);}
-    meta.append(makeTag('Click to inspect','neutral'));
-    card.append(meta);fragment.append(card);
-  });
-  list.append(fragment);
-  if(filtered.length>250)list.append(el('p','muted','Showing first 250 results. Narrow your search to see more.'));
-}
-async function initQuality(){
-  const host=document.getElementById('quality-issues');if(!host)return;
-  const reportJobs=await Promise.allSettled([loadJson(DATA_FILES.activeReport),loadJson(DATA_FILES.candidateReport),loadJson(DATA_FILES.approvedReport)]);
-  const reports=reportJobs.map(x=>x.status==='fulfilled'?x.value:null).filter(Boolean);
-  const active=reports.find(r=>r.dataset==='tips.json')||reports[0]||{};
-  document.getElementById('flagged-count').textContent=active.flagged_tip_count??'—';
-  document.getElementById('duplicate-count').textContent=active.possible_duplicate_pairs?.length??'—';
-  document.getElementById('conflict-count').textContent=active.possible_conflict_pairs?.length??'—';
-  document.getElementById('report-date').textContent=active.generated_at?'Audit: '+new Date(active.generated_at).toLocaleString():'No report found';
-  host.replaceChildren();
-  const flagged=active.flagged_issues||{};
-  const ids=Object.keys(flagged);
-  if(!ids.length)host.append(el('div','empty-state','No flagged issues in the available active audit report, or no report could be loaded.'));
-  ids.forEach(id=>{
-    const card=el('article','issue-card');card.append(el('h3','',id));
-    const reasons=flagged[id]||[];reasons.forEach(reason=>card.append(el('p','',reason.replaceAll('_',' '))));
-    host.append(card);
-  });
-  const duplicatePairs=active.possible_duplicate_pairs||[];
-  const conflictPairs=active.possible_conflict_pairs||[];
-  [...duplicatePairs.map(p=>({kind:'Possible duplicate',p})),...conflictPairs.map(p=>({kind:'Possible conflict',p}))].forEach(({kind,p})=>{
-    const card=el('article','issue-card');card.append(el('h3','',kind+': '+p.left_id+' ↔ '+p.right_id));
-    card.append(el('p','',p.status||'Triage signal only — human review required.'));
-    if(p.signals?.length)card.append(el('p','',p.signals.join(', ').replaceAll('_',' ')));
-    host.append(card);
-  });
-  await runIntegrityChecks();
-}
-async function runIntegrityChecks(){
-  const host=document.getElementById('integrity-results');if(!host)return;
-  const files=['sources.json','tips.json','candidate_tips.json','approved_tips.json','tips.quarantine.json','species.json','recipes.json','materials.json','biodiversity_profiles.json','agriculture_profiles.json','quality_report_active.json'];
-  let passed=0,failed=0;host.replaceChildren();
-  for(const file of files){
-    const row=el('div','integrity-item');row.append(el('b','',file));
-    try{
-      const data=await loadJson(file);const isArray=Array.isArray(data)||data&&typeof data==='object';
-      if(!isArray)throw new Error('Unexpected root type');
-      const collection=records(data);
-      const ids=collection.map(x=>x.id).filter(Boolean);
-      const duplicateIds=ids.filter((id,i)=>ids.indexOf(id)!==i);
-      if(duplicateIds.length)throw new Error('Duplicate IDs: '+[...new Set(duplicateIds)].join(', '));
-      row.append(el('span','integrity-ok','✓ Parsed · '+collection.length+' records'));passed++;
-    }catch(e){row.append(el('span','integrity-fail','✕ '+e.message));failed++;}
-    host.append(row);
-  }
-  const count=document.getElementById('json-count');if(count)count.textContent=passed+'/'+files.length;
-  const summary=el("p","muted",failed?failed+" browser-level check(s) failed. This is a lightweight check, not the repository full validator.":"All "+passed+" selected files passed lightweight browser checks.");
-  host.append(summary);
-}
-document.addEventListener('DOMContentLoaded',()=>{
-  if(document.getElementById('overview-stats'))initDashboard();
-  if(document.getElementById('record-list'))initExplorer().catch(e=>{document.getElementById('record-list').textContent='Unable to load datasets: '+e.message;});
-  if(document.getElementById('quality-issues'))initQuality().catch(e=>console.error('Quality monitor error',e));
-});
+async function readCatalogue(){const index=await loadJson(JSON_INDEX);const files=Array.isArray(index.files)?index.files:[];const all=[];for(const entry of files){if(!entry||typeof entry.path!=='string')continue;try{const data=await loadJson(safePath(entry.path));const records=collection(data);records.forEach((record,i)=>all.push({article:record,dataset:entry.dataset||'approved',file:entry.path,ordinal:i}));}catch(err){console.warn('Unable to read JSON file',entry.path,err);}}return all;}
+function makeArticleCard(item){const a=item.article,card=node('article','mac-record-card');card.tabIndex=0;card.setAttribute('role','button');card.setAttribute('aria-label','Open '+titleOf(a));const imgs=imageList(a);if(imgs.length){const im=node('img','record-image');im.src=safePath(imgs[0].url||imgs[0].src||imgs[0].path);im.alt=imgs[0].alt||titleOf(a);im.loading='lazy';im.onerror=()=>im.remove();card.append(im);}const body=node('div','record-card-content');body.append(tag(a.category||a.type||item.dataset));body.append(node('h2','',titleOf(a)));if(a.summary||a.description)body.append(node('p','',(a.summary||a.description).slice(0,220)));const meta=node('div','record-card-meta');const published=isPublished(a,item.dataset);meta.append(tag(statusOf(a,item.dataset),published?'approved':'warn'));stageIds(a).forEach(s=>meta.append(tag(s)));if(imgs.length)meta.append(tag(imgs.length+' images'));body.append(meta);card.append(body);card.addEventListener('click',()=>openArticle(item));card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openArticle(item);}});return card;}
+function renderExplorer(){const host=document.getElementById('record-list');if(!host)return;const term=(document.getElementById('record-search')?.value||'').toLowerCase().trim();const dataset=document.getElementById('dataset-filter')?.value||'all';const stage=document.getElementById('stage-filter')?.value||'';const filtered=state.records.filter(item=>{const a=item.article;if(dataset==='approved'&&!isPublished(a,item.dataset))return false;if(dataset==='active'&&isPublished(a,item.dataset))return false;if(stage&&!stageIds(a).includes(stage))return false;const hay=[titleOf(a),a.summary,a.description,a.category,a.id,a.tags?.join(' '),a.body].join(' ').toLowerCase();return !term||hay.includes(term);});host.replaceChildren();document.getElementById('result-count').textContent=filtered.length+' articles';if(!filtered.length){host.append(node('div','mac-window empty-state','No article found. Add a JSON record to a file listed in data/index.json.'));return;}const fragment=document.createDocumentFragment();filtered.forEach(item=>fragment.append(makeArticleCard(item)));host.append(fragment);}
+function section(host,title,value){if(value===undefined||value===null||value===''||(Array.isArray(value)&&!value.length))return;const sec=node('section','article-section');sec.append(node('h3','',title));if(Array.isArray(value)){const list=node('ol','');value.forEach(item=>{const li=node('li','',typeof item==='string'?item:(item.text||item.description||JSON.stringify(item)));list.append(li);});sec.append(list);}else if(typeof value==='object'){const pre=node('pre','',JSON.stringify(value,null,2));sec.append(pre);}else{sec.append(node('p','',String(value)));}host.append(sec);}
+function articleDocument(item){const a=item.article;const wrapper=node('article','');wrapper.append(node('p','mac-kicker','SURVIVAL-TIPS · FIELD ARTICLE'));wrapper.append(node('h1','',titleOf(a)));if(a.summary||a.description)wrapper.append(node('p','',a.summary||a.description));const gallery=imageList(a);if(gallery.length){const g=node('div','article-gallery');gallery.forEach(img=>{const fig=node('figure','');const image=node('img','');image.src=safePath(img.url||img.src||img.path);image.alt=img.alt||'';fig.append(image);if(img.caption||img.credit)fig.append(node('figcaption','',[img.caption,img.credit].filter(Boolean).join(' · ')));g.append(fig);});wrapper.append(g);}section(wrapper,'Overview',a.body||a.content);section(wrapper,'Why it matters',a.why_it_matters);section(wrapper,'When to use',a.when_to_use);section(wrapper,'Environment',a.environment);section(wrapper,'Climate and season',a.climate||a.season);section(wrapper,'Materials',a.materials);section(wrapper,'Tools',a.tools);section(wrapper,'Procedure / steps',a.steps||a.procedure);section(wrapper,'How it works',a.how_it_works);section(wrapper,'Expected result',a.expected_result);section(wrapper,'Limitations',a.limitations);section(wrapper,'Safety warnings',a.safety||a.safety_notes||a.warnings);section(wrapper,'Storage',a.storage);section(wrapper,'Troubleshooting',a.troubleshooting);if(Array.isArray(a.sources)&&a.sources.length){const s=node('section','article-section source-list');s.append(node('h3','','References'));a.sources.forEach(src=>{const url=typeof src==='string'?src:src.url;const link=node('a','',typeof src==='string'?src:(src.title||url));if(url){link.href=url;link.target='_blank';link.rel='noopener noreferrer';}s.append(link);});wrapper.append(s);}section(wrapper,'Record ID',a.id);section(wrapper,'Review status',statusOf(a,item.dataset));return wrapper;}
+function openArticle(item){state.selected=item;const dialog=document.getElementById('article-dialog')||createDialog();const body=dialog.querySelector('.dialog-content');body.replaceChildren();const toolbar=node('div','dialog-actions');const close=node('button','mac-button','Close');close.addEventListener('click',()=>dialog.close());const pdf=node('button','mac-button primary','Print / Save PDF');pdf.addEventListener('click',()=>printArticle(item));const word=node('button','mac-button','Download Word');word.addEventListener('click',()=>downloadWord(item));toolbar.append(close,pdf,word);body.append(toolbar,articleDocument(item));const note=node('div','mac-warning','Educational information only. Do not treat an unverified record as safe field instruction. Confirm current local guidance and source evidence.');body.append(note);dialog.showModal();}
+function createDialog(){const d=node('dialog','mac-dialog');d.id='article-dialog';const top=node('div','window-titlebar');const traffic=node('div','traffic');for(let i=0;i<3;i++)traffic.append(node('i',''));top.append(traffic,node('strong','','Article Viewer'),node('span','','SURVIVAL-TIPS'));const content=node('div','dialog-content');d.append(top,content);d.addEventListener('click',e=>{if(e.target===d)d.close();});document.body.append(d);return d;}
+function htmlEscape(s){return String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function articleHtml(item){const a=item.article;const pieces=[`<h1>${htmlEscape(titleOf(a))}</h1>`];if(a.summary||a.description)pieces.push(`<p>${htmlEscape(a.summary||a.description)}</p>`);for(const [label,value] of [['Overview',a.body||a.content],['Why it matters',a.why_it_matters],['When to use',a.when_to_use],['Environment',a.environment],['Climate and season',a.climate||a.season],['Materials',a.materials],['Tools',a.tools],['Procedure / steps',a.steps||a.procedure],['How it works',a.how_it_works],['Expected result',a.expected_result],['Limitations',a.limitations],['Safety warnings',a.safety||a.safety_notes||a.warnings],['Storage',a.storage],['Troubleshooting',a.troubleshooting]]){if(value===undefined||value===null||value==='')continue;const content=Array.isArray(value)?'<ol>'+value.map(x=>'<li>'+htmlEscape(typeof x==='string'?x:(x.text||x.description||JSON.stringify(x)))+'</li>').join('')+'</ol>':typeof value==='object'?'<pre>'+htmlEscape(JSON.stringify(value,null,2))+'</pre>':'<p>'+htmlEscape(value)+'</p>';pieces.push('<h2>'+label+'</h2>'+content);}const imgs=imageList(a);if(imgs.length)pieces.splice(2,0,'<div class="gallery">'+imgs.map(i=>'<figure><img src="'+htmlEscape(safePath(i.url||i.src||i.path))+'" alt="'+htmlEscape(i.alt||'')+'"><figcaption>'+htmlEscape(i.caption||'')+'</figcaption></figure>').join('')+'</div>');if(a.sources?.length)pieces.push('<h2>References</h2><ul>'+a.sources.map(s=>{const u=typeof s==='string'?s:s.url;return '<li><a href="'+htmlEscape(u||'#')+'">'+htmlEscape(typeof s==='string'?s:(s.title||u))+'</a></li>';}).join('')+'</ul>');return '<!doctype html><html><head><meta charset="utf-8"><title>'+htmlEscape(titleOf(a))+'</title><style>body{font:12pt/1.55 Arial,sans-serif;color:#20252a;max-width:850px;margin:40px auto;padding:0 30px}h1{font-size:28pt;line-height:1.1}h2{font-size:16pt;border-bottom:1px solid #ddd;padding-bottom:5px;margin-top:28px}p,li{white-space:normal}.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.gallery img{width:100%;max-height:280px;object-fit:contain}.gallery figcaption{font-size:9pt;color:#666}a{color:#24599b}@media print{body{margin:0 auto}}</style></head><body><p><b>SURVIVAL-TIPS · FIELD KNOWLEDGE</b></p>'+pieces.join('')+'<hr><small>Review status: '+htmlEscape(statusOf(a,item.dataset))+' · Verify guidance before practical use.</small></body></html>';}
+function printArticle(item){const w=window.open('','_blank');if(!w){alert('Please allow pop-ups to create a PDF print view.');return;}w.document.open();w.document.write(articleHtml(item));w.document.close();w.onload=()=>w.print();}
+function downloadWord(item){const html=articleHtml(item).replace('</body>','<p><small>Survival-TIPS — Word-compatible export</small></p></body>');const blob=new Blob(['\ufeff',html],{type:'application/msword'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=(titleOf(item.article).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'survival-article')+'.doc';document.body.append(a);a.click();a.remove();URL.revokeObjectURL(url);}
+async function init(){if(document.getElementById('overview-stats')){try{const index=await loadJson(JSON_INDEX);const entries=index.files||[];stat('approved',entries.length+' JSON');}catch(e){console.warn(e);}}if(document.getElementById('record-list')){try{state.records=await readCatalogue();const params=new URLSearchParams(location.search);const stage=params.get('stage');if(stage)document.getElementById('stage-filter').value=stage;renderExplorer();['record-search','dataset-filter','stage-filter'].forEach(id=>document.getElementById(id).addEventListener(id==='record-search'?'input':'change',renderExplorer));}catch(e){document.getElementById('record-list').textContent='Could not load data/index.json: '+e.message;}}const pdf=document.getElementById('export-pdf'),word=document.getElementById('export-word');if(pdf)pdf.addEventListener('click',()=>state.selected?printArticle(state.selected):alert('Open an article in JSON Explorer first.'));if(word)word.addEventListener('click',()=>state.selected?downloadWord(state.selected):alert('Open an article in JSON Explorer first.'));if(document.querySelector('.export-panel')){const p=document.createElement('p');p.className='mac-footnote';p.textContent='To export a single article, open JSON Explorer and select a record. The selected article is then available for PDF or Word export.';document.querySelector('.export-body').after(p);}}
+document.addEventListener('DOMContentLoaded',init);
